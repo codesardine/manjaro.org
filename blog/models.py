@@ -76,6 +76,7 @@ class BlogTagIndexPage(Page):
 
 
 class BlogPage(Page):
+    subpage_types = []
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
     content = RichTextField(blank=True)
