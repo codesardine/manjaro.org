@@ -1,6 +1,5 @@
 {% load static wagtailcore_tags wagtailuserbar menu_tags %}
 {% get_menu "main" as navigation %}
-{% get_site_root as home %}
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -16,6 +15,14 @@
             {% endblock %}
         </title>
         <meta name="description" content="" />
+        <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static '/site.webmanifest' %}">
+        <link rel="mask-icon" href="{% static 'img/safari-pinned-tab.svg' %}" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -370,7 +377,7 @@
                     </li>
                   {% endfor %}
                 </ul>
-                <a href="{{ home }}" aria-label="Manjaro" title="Manjaro" class="inline-flex items-center lg:mx-auto">
+                <a href="{{ home.HomePage }}" aria-label="Manjaro" title="Manjaro" class="inline-flex items-center lg:mx-auto">
                   <img id="logo" src="/static/img/logo.svg">
                   <span id="brand" class="ml-2 text-xl lowercase tracking-wide text-gray-100">Manjaro</span>
                 </a>
