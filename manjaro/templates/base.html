@@ -18,6 +18,9 @@
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
         <script>
             tailwind.config = {
                 theme: {
@@ -368,8 +371,8 @@
                   {% endfor %}
                 </ul>
                 <a href="{{ home }}" aria-label="Manjaro" title="Manjaro" class="inline-flex items-center lg:mx-auto">
-                  <img src="/static/img/logo.svg" style="width:32px;">
-                  <span class="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">Manjaro</span>
+                  <img id="logo" src="/static/img/logo.svg">
+                  <span id="brand" class="ml-2 text-xl lowercase tracking-wide text-gray-100">Manjaro</span>
                 </a>
                 <ul class="flex items-center hidden ml-auto space-x-8 lg:flex">
                   <li><a href="/" aria-label="Sign in" title="Sign in" class="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400">Sign in</a></li>
