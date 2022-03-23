@@ -57,14 +57,17 @@ class MenuItem(Orderable):
             return self.link_title
         return "Missing Title"
 
+
 @register_snippet
 class Menu(ClusterableModel):
-
-    title = models.CharField(max_length=100)
+    
+    title = models.CharField(max_length=50, null=True)
+    category_title = models.CharField(max_length=50, null=True)
     slug = AutoSlugField(populate_from="title", editable=True)
-    # slug = models.SlugField()
+
     panels = [
         MultiFieldPanel([
+            FieldPanel("category_title"),
             FieldPanel("title"),
             FieldPanel("slug")
         ], heading="Menu"),
@@ -73,3 +76,4 @@ class Menu(ClusterableModel):
     
     def __str__(self) -> str:
         return self.title
+    
