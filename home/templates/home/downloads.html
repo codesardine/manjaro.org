@@ -1,0 +1,14 @@
+{% load static downloads_tags %}
+{% get_downloads as downloads %}
+
+
+
+{% for key, value in downloads.items %}
+    {% if key == "official" %}
+        {{ value }}
+    {% elif key == "arm" %}
+        {{ value }}
+    {% elif key == "community" %}
+        {{ value }}
+    {% endif %}
+{% endfor %}

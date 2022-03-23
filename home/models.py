@@ -1,19 +1,26 @@
 from django.db import models
-
 from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel
 from customblocks import blocks
 
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import StreamFieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
 
 
-class WebPage(Page):
-    template = "home/web-page.html"
-    subpage_types = ['home.WebPage']
+class Downloads(Page):
+    max_count=1
+    title = "Downloads"
+    template = "home/downloads.html"
+    subpage_types = []
+    parent_page_types = [
+        'home.HomePage'
+    ]
+
+
+class Pages(Page):
+    template = "home/pages.html"
+    subpage_types = ['home.Pages']
     parent_page_types = [
         'home.HomePage'
     ]
@@ -49,7 +56,7 @@ class WebPage(Page):
 class HomePage(Page):
     max_count=1
     template = "home/home-page.html"
-    subpage_types = ['home.WebPage']
+    subpage_types = ['home.Pages', 'home.Downloads']
     parent_page_types = [
         'wagtailcore.Page'
     ]
