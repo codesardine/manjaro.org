@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'customblocks', 
     'wagtailyoast',
     'menus',
+    'dashboard',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
