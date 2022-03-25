@@ -79,7 +79,6 @@ class BlogPage(Page):
     subpage_types = []
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
-    author = models.CharField(max_length=50, null=True)
     author_description = models.CharField(max_length=250, null=True)
     content = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
@@ -104,6 +103,7 @@ class BlogPage(Page):
             FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         ], heading="Blog information"),
         FieldPanel('intro'),
+        FieldPanel('author_description'),
         FieldPanel('content'),
         InlinePanel('gallery_images', label="Gallery images"),
     ]

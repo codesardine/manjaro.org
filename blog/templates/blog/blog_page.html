@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailadmin_tags %}
 
 {% block body_class %}template-blogpage{% endblock %}
 
@@ -62,18 +62,14 @@
                 </p>
                 {% endif %}
             {% endwith %}              
-            <a href="/" aria-label="Article" title="Why i love C++" class="inline-block mb-3 text-2xl font-bold leading-5 text-black transition-colors duration-200 hover:text-deep-purple-accent-400">Why i love C++</a>
-            <p class="mb-5 text-gray-700">
-              Sportacus andrew weatherall goose Refined gentlemen super mario des lynam alpha trion zap rowsdower.
-            </p>
             <div class="flex items-center">
               <a href="/" aria-label="Author" title="Author" class="mr-3">
-                <img src="https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260" alt="avatar" class="object-cover w-10 h-10 rounded-full shadow-sm" />
+                <img src="{% avatar_url request.user 100 gravatar_only=True %}" alt="avatar" class="object-cover w-10 h-10 rounded-full shadow-sm" />
               </a>
               <div>
-                <a href="/" aria-label="Author" title="Author" class="font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400">{{ author }}</a>
-                <p class="text-sm font-medium leading-4 text-gray-600">{{ author.description }}</p>
-              </div>
+                <a href="/" aria-label="Author" title="Author" class="font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-400">{{ request.user | user_display_name }}</a>
+                <p class="mb-5 text-gray-700">{{ page.author_description }}</p>
+            </div>
               {% if page.tags.all.count %}
                 <div class="tags">
                     <h3>Tags</h3>
