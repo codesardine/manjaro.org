@@ -18,6 +18,16 @@ class Downloads(Page):
     ]
 
 
+class Team(Page):
+    max_count=1
+    title = "Team"
+    template = "home/team.html"
+    subpage_types = []
+    parent_page_types = [
+        'home.HomePage'
+    ]
+
+
 class Pages(Page):
     template = "home/pages.html"
     subpage_types = ['home.Pages']
@@ -56,7 +66,7 @@ class Pages(Page):
 class HomePage(Page):
     max_count=1
     template = "home/home-page.html"
-    subpage_types = ['home.Pages', 'home.Downloads']
+    subpage_types = ['home.Pages', 'home.Downloads', 'home.Team']
     parent_page_types = [
         'wagtailcore.Page'
     ]
