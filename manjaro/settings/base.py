@@ -31,6 +31,9 @@ INSTALLED_APPS = [
     'wagtailyoast',
     'menus',
     'dashboard',
+    'contact',
+    'captcha',
+    'wagtailcaptcha',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -46,13 +49,14 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
-
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'wagtail.contrib.modeladmin',
 ]
 
 MIDDLEWARE = [
@@ -175,3 +179,5 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://manjaro.org'
+
+NOCAPTCHA = True
