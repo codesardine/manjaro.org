@@ -8,17 +8,29 @@ from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
+import requests
 
 
 # pre defined pages 
 
 class Downloads(Page):
+
     max_count=1
     template = "home/downloads.html"
     subpage_types = []
     parent_page_types = [
         'home.HomePage'
     ]
+
+    def get_context(self, request):
+        data_source = "https://gitlab.manjaro.org/webpage/iso-info/-/raw/master/file-info.json"
+        response = requests.get(data_source)
+        print(response.json())
+        data = response.json()
+
+        context = super(Downloads, self).get_context(request)
+        context['data'] = data
+        return context
 
 #Downloads._meta.get_field("title").default = "Downloads"
 #Downloads._meta.get_field("slug").default = "default-homepage-title"

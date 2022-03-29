@@ -1,14 +1,128 @@
-{% load static downloads_tags %}
-{% get_downloads as downloads %}
+{% extends "base.html" %}
 
+{% load wagtailcore_tags static %}
 
+{% block content %}
 
-{% for key, value in downloads.items %}
-    {% if key == "official" %}
-        {{ value }}
-    {% elif key == "arm" %}
-        {{ value }}
-    {% elif key == "community" %}
-        {{ value }}
-    {% endif %}
-{% endfor %}
+<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+    <div>
+      <p class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+          others
+      </p>
+    </div>
+    <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+      <span class="relative inline-block">
+        <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
+          <defs>
+            <pattern id="7b568941-9ed0-4f49-85a0-5e21ca6c7ad6" x="0" y="0" width=".135" height=".30">
+              <circle cx="1" cy="1" r=".7"></circle>
+            </pattern>
+          </defs>
+          <rect fill="url(#7b568941-9ed0-4f49-85a0-5e21ca6c7ad6)" width="52" height="24"></rect>
+        </svg>
+      </span>
+      Downloads
+    </h2>
+    <p class="text-base text-gray-700 md:text-lg">
+      Some other downloads  
+  </p>
+  </div>
+  <div class="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
+
+      <a href="/" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2">
+          <div class="flex flex-col h-full">
+          <img src="/static/img/docker.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="" />
+          <div class="flex-grow border border-t-0 rounded-b">
+              <div class="p-5">
+              <h6 class="mb-2 font-semibold leading-5">Docker Image</h6>
+              <p class="text-sm text-gray-900">
+               docker description
+              </p>
+              </div>
+          </div>
+          </div>
+      </a>
+
+      <a href="/" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2">
+        <div class="flex flex-col h-full">
+        <img src="/static/img/manual.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="" />
+        <div class="flex-grow border border-t-0 rounded-b">
+            <div class="p-5">
+            <h6 class="mb-2 font-semibold leading-5">Manual</h6>
+            <p class="text-sm text-gray-900">
+             Manual description
+            </p>
+            </div>
+        </div>
+        </div>
+    </a>
+
+  </div>
+</div>
+
+{% for edition, desktops in data.items %}
+<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+      <div>
+        <p class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+            {{ edition }} Editions
+        </p>
+      </div>
+      <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+        <span class="relative inline-block">
+          <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
+            <defs>
+              <pattern id="7b568941-9ed0-4f49-85a0-5e21ca6c7ad6" x="0" y="0" width=".135" height=".30">
+                <circle cx="1" cy="1" r=".7"></circle>
+              </pattern>
+            </defs>
+            <rect fill="url(#7b568941-9ed0-4f49-85a0-5e21ca6c7ad6)" width="52" height="24"></rect>
+          </svg>
+        </span>
+        {% if edition == "official" %}
+            Team spins.
+        {% elif edition == "arm" %}
+            ARM Team spins.
+        {% elif edition == "community" %}
+            Community spins.
+        {% endif %}
+      </h2>
+      <p class="text-base text-gray-700 md:text-lg">
+        {% if edition == "official" %}
+            The Manjaro team is dedicated to bring the most used Linux desktop user interfaces to Manjaro.
+        {% elif edition == "arm" %}
+            The ARM team is dedicaded to bring Manjaro to a wide range of lot devices.
+        {% elif edition == "community" %}
+            Community spins are born from a individual/s that love a certain desktop not yet available on official editions.
+        {% endif %}      
+    </p>
+    </div>
+    <div class="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
+    {% for iso, v in desktops.items %}
+        {% if edition != "arm" %}
+        <a href="/" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2">
+            <div class="flex flex-col h-full">
+            <img src="/static/img/{{ iso }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="" />
+            <div class="flex-grow border border-t-0 rounded-b">
+                <div class="p-5">
+                <h6 class="mb-2 font-semibold leading-5">{{ iso|capfirst }} Desktop</h6>
+                <p class="text-sm text-gray-900">
+                  {{ v.description }}
+                </p>
+                </div>
+            </div>
+            </div>
+        </a>
+        {% else %}
+            {% with device=iso %}
+                {{ device }}
+            {% endwith %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  
+  {% endfor %}
+
+{% endblock %}
