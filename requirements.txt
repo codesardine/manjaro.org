@@ -2,3 +2,6 @@ Django>=3.2,<3.3
 wagtail>=2.15,<2.16
 django-extensions
 wagtail-django-recaptcha==1.0
+wagtailyoast
+black
+typing_extensions
