@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run --name manjaro.org -p 9000:9000 manjaro.org
+docker run --name manjaro.org -p 8081:8000 manjaro.org
