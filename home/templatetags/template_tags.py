@@ -5,5 +5,5 @@ register = template.Library()
 
 
 @register.filter
-def get_key(dictionary, key):
-    return dictionary.get(key)
+def removedash(value):
+    return value.replace("-", " ")
