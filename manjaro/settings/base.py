@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'contact',
     'captcha',
     'wagtailcaptcha',
+    'users',
+    'django.contrib.auth',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -51,7 +53,7 @@ INSTALLED_APPS = [
     'taggit',
     
     'django.contrib.admin',
-    'django.contrib.auth',
+    #'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -181,3 +183,9 @@ WAGTAILSEARCH_BACKENDS = {
 BASE_URL = 'http://manjaro.org'
 
 NOCAPTCHA = True
+
+AUTH_USER_MODEL = 'users.User'
+
+WAGTAIL_USER_EDIT_FORM = 'users.admin.CustomUserEditForm'
+WAGTAIL_USER_CREATION_FORM = 'users.admin.CustomUserCreationForm'
+WAGTAIL_USER_CUSTOM_FIELDS = ['description', 'title', "avatar", "tweeter", "github"]

@@ -9,6 +9,8 @@ from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
 import requests
+from django.contrib.auth import get_user_model
+from wagtail.users.models import UserProfile
 
 
 # pre defined pages 
@@ -91,6 +93,26 @@ class Team(Page):
     parent_page_types = [
         'home.HomePage'
     ]
+
+    def get_context(self, request):
+        User = get_user_model()
+        users = User.objects.all()
+        profiles =[]
+        for u in users:
+            user = request.user
+            profile = UserProfile.get_for_user(user)
+            name = profile.user.get_full_name()
+            title = profile.user.title
+            description = profile.user.description
+            avatar = user.wagtail_userprofile.avatar.url
+            tweeter = profile.user.tweeter
+            github = profile.user.github
+            dict = {"name": name, "title": title, "description": description, "avatar": avatar, "tweeter": tweeter, "github": github}
+            profiles.append(dict)            
+
+        context = super().get_context(request)
+        context['users'] = profiles
+        return context
 
 #Team._meta.get_field("title").default = "Team"
 #Team._meta.get_field("slug").default = "default-homepage-title"
