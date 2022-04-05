@@ -2,7 +2,6 @@ from email.policy import default
 from django.db import models
 from wagtail.core.models import Page
 from customblocks import blocks
-
 from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
@@ -12,14 +11,12 @@ import requests
 import random
 from django.contrib.auth import get_user_model
 from wagtail.users.models import UserProfile
-
 from manjaro.settings.base import MEDIA_ROOT, MEDIA_URL
 
 
 # pre defined pages 
 
 class Downloads(Page):
-
     max_count=1
     template = "home/downloads.html"
     subpage_types = []
@@ -177,7 +174,28 @@ class HomePage(Page):
         blank=True,
     )
 
+    manjaro_title = models.CharField(default='', blank=True, max_length=50)
+    manjaro_intro = models.CharField(default='', blank=True, max_length=200)
+    partners_title = models.CharField(default='', blank=True, max_length=50)
+    partners_intro = models.CharField(default='', blank=True, max_length=200)
+    partners_url = models.URLField(blank=True)
+    shells_intro = models.CharField(default='', blank=True, max_length=50)
+    shells_title = models.CharField(default='', blank=True, max_length=50)
+    shells_intro = models.CharField(default='', blank=True, max_length=200)
+    footer_intro = models.CharField(default='', blank=True, max_length=200)
+    footer_description = models.CharField(default='', blank=True, max_length=200)
+
     content_panels = Page.content_panels + [
+        FieldPanel("manjaro_title"),
+        FieldPanel("manjaro_intro"),
+        FieldPanel("partners_title"),
+        FieldPanel("partners_intro"),
+        FieldPanel("partners_url"),
+        FieldPanel("shells_intro"),
+        FieldPanel("shells_title"),
+        FieldPanel("shells_intro"),
+        FieldPanel("footer_intro"),
+        FieldPanel("footer_description"),
         StreamFieldPanel("content"),
     ]
 
