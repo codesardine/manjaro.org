@@ -9,8 +9,11 @@ from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
 import requests
+import random
 from django.contrib.auth import get_user_model
 from wagtail.users.models import UserProfile
+
+from manjaro.settings.base import MEDIA_ROOT, MEDIA_URL
 
 
 # pre defined pages 
@@ -98,18 +101,21 @@ class Team(Page):
         User = get_user_model()
         users = User.objects.all()
         profiles =[]
-        for u in users:
-            user = request.user
+        for user in users:
             profile = UserProfile.get_for_user(user)
             name = profile.user.get_full_name()
             title = profile.user.title
             description = profile.user.description
-            avatar = user.wagtail_userprofile.avatar.url
+            try:
+                avatar = f"/media/{profile.user.avatar.file}"
+            except AttributeError:
+                imgs =["jaro-1.png", "jaro-2.png", "jaro-3.png"]
+                avatar = f"/static/img/{random.choice(imgs)}"
             tweeter = profile.user.tweeter
             github = profile.user.github
             dict = {"name": name, "title": title, "description": description, "avatar": avatar, "tweeter": tweeter, "github": github}
-            profiles.append(dict)            
-
+            profiles.append(dict) 
+           
         context = super().get_context(request)
         context['users'] = profiles
         return context

@@ -7,9 +7,11 @@ class User(AbstractUser):
     title = models.CharField(max_length=50, blank=True)
     tweeter = models.URLField(max_length=100, blank=True)
     github = models.URLField(max_length=100, blank=True)
-    avatar = models.ImageField(
-        verbose_name='profile picture',
-        upload_to="static/img",
+    avatar = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
         blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
     )
 

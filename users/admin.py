@@ -10,7 +10,7 @@ class CustomUserEditForm(UserEditForm):
     tweeter = forms.URLField(max_length=100, required=False)
     github = forms.URLField(max_length=100, required=False)
     avatar = forms.ModelChoiceField(
-        queryset=get_image_model().objects.all(), widget=AdminImageChooser(), label='Profile Picture',
+        queryset=get_image_model().objects.all(), widget=AdminImageChooser(), label='Profile Picture', required=False,
     )
 
 
@@ -20,5 +20,5 @@ class CustomUserCreationForm(UserCreationForm):
     tweeter = forms.URLField(max_length=100, required=False)
     github = forms.URLField(max_length=100, required=False)
     avatar = forms.ModelChoiceField(
-        queryset=get_image_model().objects.all(), widget=AdminImageChooser(), label='Profile Picture',
+        queryset=get_image_model().objects.all(), widget=AdminImageChooser(), label='Profile Picture', required=False,
     )
