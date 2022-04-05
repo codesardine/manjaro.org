@@ -58,6 +58,7 @@ class Downloads(Page):
         FieldPanel("manual_intro"),
         FieldPanel("docker_intro"),
     ]
+    
 
     def get_context(self, request):
         data_source = "https://gitlab.manjaro.org/webpage/iso-info/-/raw/master/file-info.json"
