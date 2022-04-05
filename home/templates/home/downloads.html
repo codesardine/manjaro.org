@@ -5,11 +5,16 @@
 {% block content %}
 
 <div class="px-4 pt-20 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pt-28">
+  <div class="mx-auto mb-10 lg:max-w-xl text-left">
+    <h1 class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+      {{ page.title }}
+    </h1>
+  </div>
   <div class="max-w-xl mb-10 sm:mx-auto">
-    <h1 class="font-sans text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl sm:text-center">
+    <h2 class="font-sans text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl sm:text-center">
       {{ page.intro }}Choose Your Edition
       <span class="inline-block text-deep-purple-accent-400 text-2xl pt-8">{{ page.description }}stop distro hopping</span>
-    </h1>
+    </h2>
   </div>
   <div class="grid gap-12 row-gap-8 lg:grid-cols-3">
     <div class="flex">
@@ -72,7 +77,7 @@
             {{ edition }} Editions
         </p>
       </div>
-      <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+      <h3 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
         <span class="relative inline-block">
           <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
             <defs>
@@ -90,7 +95,7 @@
         {% elif edition == "community" %}
             Community Spins
         {% endif %}
-      </h2>
+      </h3>
       <p class="text-base text-gray-700 md:text-lg">
         {% if edition == "official" %}
           {{ page.team_spins_intro }}The Manjaro team is dedicated to bring the most popular Linux Desktop Environment's to Manjaro.
@@ -102,17 +107,38 @@
     </p>
     </div>
     <div class="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
-    {% for iso, value in desktops.items %}
+    {% for title, desktop in desktops.items %}
         {% if edition != "arm" %}
         <a href="/" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2">
             <div class="flex flex-col h-full">
-            <img src="/static/img/{{ iso }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="" />
+            <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="" />
             <div class="flex-grow border border-t-0 rounded-b">
                 <div class="p-5">
-                <h6 class="mb-2 font-semibold leading-5">{{ iso|capfirst }} Desktop</h6>
+                <h4 class="mb-2 font-semibold leading-5">{{ title|capfirst }} Desktop</h4>
                 <p class="text-sm text-gray-900">
-                  {{ value.description }}
+                  {% if "xfce" in title.lower %}
+                    {{ page.xfce_description }}
+                  {% elif "plasma" in title.lower %}
+                    {{ page.plasma_description }}
+                  {% elif "gnome" in title.lower %}
+                    {{ page.gnome_description }}
+                  {% elif "cinnamon" in title.lower %}
+                    {{ page.cinnamon_description }}
+                  {% elif "i3" in title.lower %}
+                    {{ page.i3_description }}
+                  {% elif "budgie" in title.lower %}
+                    {{ page.budgie_description }}
+                  {% elif "mate" in title.lower %}
+                    {{ page.mate_description }}
+                  {% elif "sway" in title.lower %}
+                    {{ page.sway_description }}
+                  {% endif %}
                 </p>
+                {% if desktop.notes %}
+                <p class="text-sm text-gray-900">
+                    {{ desktop.notes }}                              
+                </p>
+                {% endif %}
                 </div>
             </div>
             </div>
@@ -134,24 +160,45 @@
                             device
                         </p>
                       </div>
-                      <h2 class="max-w-lg mb-6 font-sans text-2xl font-bold leading-none tracking-tight text-gray-900 sm:text-2xl md:mx-auto">
+                      <h3 class="max-w-lg mb-6 font-sans text-2xl font-bold leading-none tracking-tight text-gray-900 sm:text-2xl md:mx-auto">
                         {{ device|removedash|upper }}
-                      </h2>
+                      </h3>
                       <p class="text-base text-gray-700 md:text-lg">
                         desc      
                     </p>
                     </div>
                     <div class="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
-                        {% for k, v in value.items %}
+                        {% for arm_title, arm_desktop in value.items %}
                         <a href="/" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2">
                           <div class="flex flex-col h-full">
-                          <img src="/static/img/{{ k }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="" />
+                          <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="" />
                           <div class="flex-grow border border-t-0 rounded-b">
                               <div class="p-5">
-                              <h6 class="mb-2 font-semibold leading-5">{{ k|capfirst }} Desktop</h6>
+                              <h4 class="mb-2 font-semibold leading-5">{{ arm_title|capfirst }} Desktop</h4>
                               <p class="text-sm text-gray-900">
-                                {{ v.description }}
+                                {% if "xfce" in arm_title.lower %}
+                                  {{ page.xfce_description }}
+                                {% elif "plasma" in arm_title.lower %}
+                                  {{ page.plasma_description }}
+                                {% elif "gnome" in arm_title.lower %}
+                                  {{ page.gnome_description }}
+                                {% elif "cinnamon" in arm_title.lower %}
+                                  {{ page.cinnamon_description }}
+                                {% elif "i3" in arm_title.lower %}
+                                  {{ page.i3_description }}
+                                {% elif "budgie" in arm_title.lower %}
+                                  {{ page.budgie_description }}
+                                {% elif "mate" in arm_title.lower %}
+                                  {{ page.mate_description }}
+                                {% elif "sway" in arm_title.lower %}
+                                  {{ page.sway_description }}
+                                {% endif %}
                               </p>
+                              {% if arm_desktop.notes %}
+                              <p class="text-sm text-gray-900">
+                                    {{ arm_desktop.notes }}                              
+                              </p>
+                              {% endif %}
                               </div>
                           </div>
                           </div>

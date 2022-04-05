@@ -5,6 +5,8 @@ from customblocks import blocks
 from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
+from wagtail.images.models import Image
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
 import requests
@@ -25,22 +27,131 @@ class Downloads(Page):
     ]
 
     intro = models.CharField(default='', blank=True, max_length=50)
-    description = models.CharField(default='', blank=True, max_length=200)
+    description = models.TextField(default='', blank=True, max_length=200)
 
     question_one = models.CharField(default='', blank=True, max_length=50)
-    answer_one = models.CharField(default='', blank=True, max_length=200)
+    answer_one = models.TextField(default='', blank=True, max_length=200)
 
     question_two = models.CharField(default='', blank=True, max_length=50)
-    answer_two = models.CharField(default='', blank=True, max_length=200)
+    answer_two = models.TextField(default='', blank=True, max_length=200)
 
     question_three = models.CharField(default='', blank=True, max_length=50)
-    answer_three = models.CharField(default='', blank=True, max_length=200)
+    answer_three = models.TextField(default='', blank=True, max_length=200)
 
-    team_spins_intro = models.CharField(default='', blank=True, max_length=200)
-    community_spins_intro = models.CharField(default='', blank=True, max_length=200)
-    arm_spins_intro = models.CharField(default='', blank=True, max_length=200)
-    manual_intro = models.CharField(default='', blank=True, max_length=200)
-    docker_intro = models.CharField(default='', blank=True, max_length=200)
+    team_spins_intro = models.TextField(default='', blank=True, max_length=200)
+    community_spins_intro = models.TextField(default='', blank=True, max_length=200)
+    arm_spins_intro = models.TextField(default='', blank=True, max_length=200)
+    manual_intro = models.TextField(default='', blank=True, max_length=200)
+    docker_intro = models.TextField(default='', blank=True, max_length=200)
+
+    xfce_description = models.TextField(default='', blank=True, max_length=150)
+    xfce_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    xfce_notes = models.TextField(default='', blank=True, max_length=200)
+
+    plasma_description = models.TextField(default='', blank=True, max_length=150)
+    plasma_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    plasma_notes = models.TextField(default='', blank=True, max_length=200)
+
+    gnome_description = models.TextField(default='', blank=True, max_length=150)
+    gnome_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    gnome_notes = models.TextField(default='', blank=True, max_length=200)
+
+    cinnamon_description = models.TextField(default='', blank=True, max_length=150)
+    cinnamon_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    cinnamon_notes = models.TextField(default='', blank=True, max_length=200)
+
+    i3_description = models.TextField(default='', blank=True, max_length=150)
+    i3_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    i3_notes = models.TextField(default='', blank=True, max_length=200)
+
+    budgie_description = models.TextField(default='', blank=True, max_length=150)
+    budgie_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    budgie_notes = models.TextField(default='', blank=True, max_length=200)
+
+    mate_description = models.TextField(default='', blank=True, max_length=150)
+    mate_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    mate_notes = models.TextField(default='', blank=True, max_length=200)
+
+    sway_description = models.TextField(default='', blank=True, max_length=150)
+    sway_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    sway_notes = models.TextField(default='', blank=True, max_length=200)
+
+
+    edition_panels = [
+        FieldPanel("xfce_description"),
+        #ImageChooserPanel('xfce_image'),
+        FieldPanel("xfce_notes"),
+        FieldPanel("plasma_description"),
+        #ImageChooserPanel('plasma_image'),
+        FieldPanel("plasma_notes"),
+        FieldPanel("gnome_description"),
+        #ImageChooserPanel('gnome_image'),
+        FieldPanel("gnome_notes"),
+
+        FieldPanel("cinnamon_description"),
+        #ImageChooserPanel('cinnamon_image'),
+        FieldPanel("cinnamon_notes"),
+        FieldPanel("budgie_description"),
+        #ImageChooserPanel('budgie_image'),
+        FieldPanel("budgie_notes"),
+        FieldPanel("i3_description"),
+        #ImageChooserPanel('i3_image'),
+        FieldPanel("i3_notes"),
+        FieldPanel("mate_description"),
+        #ImageChooserPanel('mate_image'),
+        FieldPanel("mate_notes"),
+        FieldPanel("sway_description"),
+        #ImageChooserPanel('sway_image'),
+        FieldPanel("sway_notes"),
+    ]
     
 
     content_panels = Page.content_panels + [
@@ -74,6 +185,7 @@ class Downloads(Page):
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading=('Content')),
+        ObjectList(edition_panels, heading=('Editions')),
         ObjectList(Page.promote_panels, heading=('Promote')),
         ObjectList(Page.settings_panels, heading=('Settings')),
         YoastPanel(
