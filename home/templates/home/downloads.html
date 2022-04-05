@@ -7,8 +7,8 @@
 <div class="px-4 pt-20 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pt-28">
   <div class="max-w-xl mb-10 sm:mx-auto">
     <h1 class="font-sans text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl sm:text-center">
-      Choose Your Edition
-      <span class="inline-block text-deep-purple-accent-400 text-2xl pt-8">stop distro hopping</span>
+      {{ page.intro }}Choose Your Edition
+      <span class="inline-block text-deep-purple-accent-400 text-2xl pt-8">{{ page.description }}stop distro hopping</span>
     </h1>
   </div>
   <div class="grid gap-12 row-gap-8 lg:grid-cols-3">
@@ -21,9 +21,9 @@
         </div>
       </div>
       <div>
-        <h6 class="mb-2 font-semibold leading-5">What is a Editon?</h6>
+        <h6 class="mb-2 font-semibold leading-5">{{ page.question_one }}What is a Editon?</h6>
         <p class="text-sm text-gray-900">
-          A Editon is a diferent user Interface ( UI ), it changes the way you interact with you computer, try diferent images and find out what you like as it is purely personal preference, the base is still Manjaro.
+          {{ page.answer_one }}A Editon is a diferent user Interface ( UI ), it changes the way you interact with you computer, try diferent images and find out what you like as it is purely personal preference, the base is still Manjaro.
         </p>
       </div>
     </div>
@@ -36,9 +36,9 @@
         </div>
       </div>
       <div>
-        <h6 class="mb-2 font-semibold leading-5">Is Manjaro better that other distros?</h6>
+        <h6 class="mb-2 font-semibold leading-5">{{ page.question_two }}Is Manjaro better that other distros?</h6>
         <p class="text-sm text-gray-900">
-          Manjaro is not superior or inferior to any other Linux distribution they all do the same, Manjaro has is own software, package managers themes Kernels and a rolling release model.
+          {{ page.answer_two }}Manjaro is not superior or inferior to any other Linux distribution they all do the same, Manjaro has is own software, package managers themes Kernels and a rolling release model.
         </p>
       </div>
     </div>
@@ -51,9 +51,9 @@
         </div>
       </div>
       <div>
-        <h6 class="mb-2 font-semibold leading-5">What about software availability?</h6>
+        <h6 class="mb-2 font-semibold leading-5">{{ page.question_three }}What about software availability?</h6>
         <p class="text-sm text-gray-900">
-          Manjaro allows installation of native packages, Snap, Flatpak or Appimage, since having a wide range of software is important, if your software of choice is not available you can try the AUR community repository.
+          {{ page.answer_three }}Manjaro allows installation of native packages, Snap, Flatpak or Appimage, since having a wide range of software is important, if your software of choice is not available you can try the AUR community repository.
         </p>
       </div>
     </div>
@@ -93,11 +93,11 @@
       </h2>
       <p class="text-base text-gray-700 md:text-lg">
         {% if edition == "official" %}
-            The Manjaro team is dedicated to bring the most popular Linux Desktop Environment's to Manjaro.
+          {{ page.team_spins_intro }}The Manjaro team is dedicated to bring the most popular Linux Desktop Environment's to Manjaro.
         {% elif edition == "arm" %}
-            The ARM team is dedicaded to bring Manjaro to a range of devices, like mobile phones, laptops, and hobbyist boards.
+          {{ page.arm_spins_intro }}The ARM team is dedicaded to bring Manjaro to a range of devices, like mobile phones, laptops, and hobbyist boards.
         {% elif edition == "community" %}
-            Community spins are born from a individual's passion, for a Desktop not available as a official edition.
+          {{ page.community_spins_intro }}Community spins are born from a individual's passion, for a Desktop not available as a official edition.
         {% endif %}      
     </p>
     </div>
@@ -197,7 +197,7 @@
           <div class="p-5">
           <h6 class="mb-2 font-semibold leading-5">Community Manual</h6>
           <p class="text-sm text-gray-900 pb-6">
-           If you never used Manjaro have a read.
+            {{ page.manual_intro }}If you never used Manjaro have a read.
           </p>
           <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide.pdf" class="px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-indigo-600 hover:bg-indigo-700 focus:shadow-outline focus:outline-none">Manjaro Guide In English</a>
           <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide-French.pdf" class="px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-indigo-600 hover:bg-indigo-700 focus:shadow-outline focus:outline-none">Manjaro Guide De L'utilisateur</a>
@@ -209,18 +209,17 @@
 
     <a target="_blank" href="https://github.com/manjaro/manjaro-docker" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2">
         <div class="flex flex-col h-full">
-        <img src="/static/img/docker.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Docker" />
-        <div class="flex-grow border border-t-0 rounded-b">
-            <div class="p-5">
-            <h6 class="mb-2 font-semibold leading-5">Manjaro Docker</h6>
-            <p class="text-sm text-gray-900">
-              Manjaro experience as a MultiArch Docker image, this provides a simple but complete image that you can base others on. 
-            </p>
-            </div>
-        </div>
+          <img src="/static/img/docker.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Docker" />
+          <div class="flex-grow border border-t-0 rounded-b">
+              <div class="p-5">
+                <h6 class="mb-2 font-semibold leading-5">Manjaro Docker</h6>
+                <p class="text-sm text-gray-900">
+                  {{ page.docker_intro }}Manjaro experience as a MultiArch Docker image, this provides a simple but complete image that you can base others on. 
+                </p>
+              </div>
+          </div>
         </div>
     </a>
-
   </div>
 </div>
 {% endblock %}

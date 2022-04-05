@@ -24,10 +24,44 @@ class Downloads(Page):
         'home.HomePage'
     ]
 
+    intro = models.CharField(default='', blank=True, max_length=50)
+    description = models.CharField(default='', blank=True, max_length=200)
+
+    question_one = models.CharField(default='', blank=True, max_length=50)
+    answer_one = models.CharField(default='', blank=True, max_length=200)
+
+    question_two = models.CharField(default='', blank=True, max_length=50)
+    answer_two = models.CharField(default='', blank=True, max_length=200)
+
+    question_three = models.CharField(default='', blank=True, max_length=50)
+    answer_three = models.CharField(default='', blank=True, max_length=200)
+
+    team_spins_intro = models.CharField(default='', blank=True, max_length=200)
+    community_spins_intro = models.CharField(default='', blank=True, max_length=200)
+    arm_spins_intro = models.CharField(default='', blank=True, max_length=200)
+    manual_intro = models.CharField(default='', blank=True, max_length=200)
+    docker_intro = models.CharField(default='', blank=True, max_length=200)
+    
+
+    content_panels = Page.content_panels + [
+        FieldPanel("intro"),
+        FieldPanel("description"),
+        FieldPanel("question_one"),
+        FieldPanel("answer_one"),
+        FieldPanel("question_two"),
+        FieldPanel("answer_two"),
+        FieldPanel("question_three"),
+        FieldPanel("answer_three"),
+        FieldPanel("team_spins_intro"),
+        FieldPanel("community_spins_intro"),
+        FieldPanel("arm_spins_intro"),
+        FieldPanel("manual_intro"),
+        FieldPanel("docker_intro"),
+    ]
+
     def get_context(self, request):
         data_source = "https://gitlab.manjaro.org/webpage/iso-info/-/raw/master/file-info.json"
         response = requests.get(data_source)
-        print(response.json())
         data = response.json()
 
         context = super(Downloads, self).get_context(request)
