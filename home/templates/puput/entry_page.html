@@ -1,0 +1,96 @@
+{% extends "puput/base.html" %}
+{% load i18n wagtailcore_tags wagtailimages_tags puput_tags social_share %}
+
+{% block title %}
+    {{ self.title }} | {{ blog_page.title }}
+{% endblock title %}
+
+{% block meta_title %}
+    {% if self.seo_title %}
+        {{ self.seo_title }}
+    {% else %}
+        {{ self.title }}
+    {% endif %}
+{% endblock meta_title %}
+
+{% block meta_description %}
+    {% if self.search_description %}
+        {{ self.search_description }}
+    {% else %}
+        {{ self.body|striptags|truncatewords:20 }}
+    {% endif %}
+{% endblock meta_description %}
+
+{% block canonical %}
+    {% canonical_url entry=self %}
+{% endblock canonical %}
+
+{% block social_share %}
+    {% image self.header_image fill-800x450 as share_image %}
+    <meta property="og:title" content="{{ self.title }}" />
+    <meta property="og:description" content="{% if self.excerpt %}{{ self.excerpt|striptags }}{% else %}{{ self.body|striptags|truncatewords:20 }}{% endif %}" />
+    <meta property="og:url" content="{% canonical_url entry=self %}" />
+    {% if self.header_image %}
+        <meta property="og:image" content="{% image_url share_image.url %}" />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="450" />
+        <meta name="twitter:image" content="{% image_url share_image.url %}" />
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ self.title }}" />
+    <meta name="twitter:description" content="{% if self.excerpt %}{{ self.excerpt|striptags }}{% else %}{{ self.body|striptags|truncatewords:20 }}{% endif %}" />
+{% endblock social_share %}
+
+{% block content %}
+<header class="px-4 mx-auto mt-16 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div class="flex flex-col max-w-screen-lg overflow-hidden bg-white border rounded shadow-sm lg:flex-row sm:mx-auto">
+      <div class="relative lg:w-1/2">
+        {% if self.header_image %}
+            {% image self.header_image fill-800x450 as header_image %}
+            <img src="{{ header_image.url }}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="{{ self.header_image.title }}" class="object-cover w-full lg:absolute h-80 lg:h-full" />
+        {% endif %}
+        <svg class="absolute top-0 right-0 hidden h-full text-white lg:inline-block" viewBox="0 0 18 104" fill="currentColor">
+          <polygon points="17.3036738 5.68434189e-14 20 5.68434189e-14 20 104 0.824555778 104"></polygon>
+        </svg>
+      </div>
+      <div class="flex flex-col justify-center p-8 bg-white lg:p-16 lg:pl-10 lg:w-1/2">
+        <div>
+          <span class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+            {{ self.date|date:"DATE_FORMAT" }}
+          </span>
+        </div>
+        <h1 class="mb-3 text-3xl font-extrabold leading-none sm:text-4xl">
+            {{ self.title }}
+        </h1>
+        <p class="mb-5 text-gray-800">
+          <span class="font-bold">{{ self.excerpt|richtext }}</span>
+        </p>
+        <ul class="flex gap-4 justify-start mb-2 mt-2">
+            <li>
+                {% post_to_facebook post_url '<span><i class="fa fa-facebook text-2xl"></i></span>' %}
+            </li>
+            <li>
+                {% post_to_twitter entry.title post_url '<span><i class="fa fa-twitter text-2xl"></i></span>' %}
+            </li>
+            <li>
+                {% post_to_linkendin post_url '<span><i class="fa fa-linkedin text-2xl"></i></span>' %}
+            </li>
+        </ul>
+        <p class="mt-3 text-xs font-semibold tracking-wide text-right">
+            Writen By: 
+            <span class="text-teal-accent-700 capitalize text-deep-purple-accent-400">
+                {{ self.owner.first_name }} {{ self.owner.last_name }}
+            </span>
+        </p>
+      </div>
+    </div>
+</header>
+
+<article class="px-4 pt-0 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div class="flex -mt-4 flex-col max-w-screen-lg overflow-hidden bg-white lg:flex-row sm:mx-auto">
+      <div class="relative w-full">
+        {{ self.body|richtext}}
+      </div>
+    </div>
+</article>
+{% endblock %}
