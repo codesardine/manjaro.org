@@ -87,10 +87,24 @@
 </header>
 
 <article class="px-4 pt-0 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-    <div class="flex -mt-4 flex-col max-w-screen-lg overflow-hidden bg-white lg:flex-row sm:mx-auto">
+    <div class="flex -mt-4 mb-20 flex-col max-w-screen-lg overflow-hidden bg-white lg:flex-row sm:mx-auto">
       <div class="relative w-full">
         {{ self.body|richtext}}
       </div>
+    </div>
+    <div class="flex -mt-4 mb-20 flex-col max-w-screen-lg overflow-hidden bg-white lg:flex-row sm:mx-auto text-xs font-semibold tracking-wide text-left">
+        <div class="flex items-center">
+            <span class="mr-4">
+              <img src="/media/{{ self.owner.avatar.file }}?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260" alt="avatar" class="object-cover w-10 h-10 rounded-full shadow-sm" />
+            </span>
+            <div class="pt-8">
+              <span class="capitalize font-semibold text-teal-accent-700 -mb-1">{{ self.owner.first_name }} {{ self.owner.last_name }}</span>
+              <p class="text-sm font-medium leading-4 text-gray-600 mb-4">Author</p>
+              <p class="text-gray-600">
+                {{ self.owner.bio }}
+              </p>
+            </div>
+        </div>    
     </div>
 </article>
 {% endblock %}

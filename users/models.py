@@ -14,4 +14,5 @@ class User(AbstractUser):
         on_delete=models.SET_NULL,
         related_name='+',
     )
+    bio = models.TextField(max_length=250, blank=True)
 

@@ -194,4 +194,4 @@ PUPUT_AS_PLUGIN = True
 
 WAGTAIL_USER_EDIT_FORM = 'users.admin.CustomUserEditForm'
 WAGTAIL_USER_CREATION_FORM = 'users.admin.CustomUserCreationForm'
-WAGTAIL_USER_CUSTOM_FIELDS = ['description', 'title', "avatar", "tweeter", "github"]
+WAGTAIL_USER_CUSTOM_FIELDS = ['description', 'title', "avatar", "tweeter", "github", "bio"]

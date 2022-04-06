@@ -12,6 +12,7 @@ class CustomUserEditForm(UserEditForm):
     avatar = forms.ModelChoiceField(
         queryset=get_image_model().objects.all(), widget=AdminImageChooser(), label='Profile Picture', required=False,
     )
+    bio = forms.Textarea()
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -22,3 +23,4 @@ class CustomUserCreationForm(UserCreationForm):
     avatar = forms.ModelChoiceField(
         queryset=get_image_model().objects.all(), widget=AdminImageChooser(), label='Profile Picture', required=False,
     )
+    bio = forms.Textarea()
