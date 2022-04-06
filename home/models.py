@@ -1,11 +1,9 @@
-from email.policy import default
 from django.db import models
 from wagtail.core.models import Page
 from customblocks import blocks
 from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
-from wagtail.images.models import Image
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index

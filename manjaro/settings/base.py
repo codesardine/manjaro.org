@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
@@ -26,7 +27,6 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 INSTALLED_APPS = [
     'home',
     'search',
-    'blog',
     'customblocks', 
     'wagtailyoast',
     'menus',
@@ -36,6 +36,11 @@ INSTALLED_APPS = [
     'wagtailcaptcha',
     'users',
     'django.contrib.auth',
+    'wagtail.contrib.sitemaps',
+    'wagtail.contrib.routable_page',
+    'django_social_share',
+    'puput',
+    'colorful',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -53,7 +58,6 @@ INSTALLED_APPS = [
     'taggit',
     
     'django.contrib.admin',
-    #'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -69,7 +73,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-
+     
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
@@ -180,11 +184,13 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://manjaro.org'
+BASE_URL = 'localhost'
 
 NOCAPTCHA = True
 
 AUTH_USER_MODEL = 'users.User'
+
+PUPUT_AS_PLUGIN = True
 
 WAGTAIL_USER_EDIT_FORM = 'users.admin.CustomUserEditForm'
 WAGTAIL_USER_CREATION_FORM = 'users.admin.CustomUserCreationForm'

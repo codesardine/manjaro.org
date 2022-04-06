@@ -6,14 +6,40 @@
         <meta charset="utf-8" />
         <title>
             {% block title %}
-                {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+              {% if blog_page.seo_title %}
+                  {{ blog_page.seo_title }}
+              {% elif page.seo_title %}
+                  {{ page.seo_title }}
+              {% elif blog_page.title %}
+                  {{ blog_page.title }}
+              {% else %}
+                  {{ page.title }}
+              {% endif %}
             {% endblock %}
             {% block title_suffix %}
                 {% wagtail_site as current_site %}
                 {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
             {% endblock %}
         </title>
-        <meta name="description" content="{{ page.search_description }}" />
+        <meta name="title"
+          content="
+            {% if blog_page.seo_title %}
+                {{ blog_page.seo_title }}
+            {% elif page.seo_title %}
+                {{ page.seo_title }}
+            {% elif blog_page.title %}
+                {{ blog_page.title }}
+            {% else %}
+                {{ page.title }}
+            {% endif %}
+        "/>
+        <meta name="description" content="
+        {% if page.search_description %}
+          {{ page.search_description }}
+        {% elif blog_page.description %}
+          {{ blog_page.description }}
+        {% endif %}
+        " />
         <meta name="robots" content="noindex, nofollow">
         <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
@@ -359,7 +385,7 @@
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/manjaro.css' %}">
 
-        {% block extra_css %}
+        {% block head %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock %}
     </head>
@@ -374,9 +400,10 @@
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/manjaro.js' %}"></script>
 
-        {% block extra_js %}
+        {% include "home/footer.html" %}
+
+        {% block footer_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}
-        {% include "home/footer.html" %}
     </body>
 </html>
