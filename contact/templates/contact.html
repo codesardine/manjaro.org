@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load wagtailcore_tags static %}
 
+{% block head %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
 {% block content %}
 <div class="relative max-w-screen-md px-4 pt-4 mx-auto xl:max-w-screen-lg sm:pt-6 sm:px-8">
     <div class="relative flex flex-col items-center mt-10 bg-white xl:flex-row">
