@@ -1,0 +1,19 @@
+{% load i18n wagtailimages_tags puput_tags %}
+
+{% for entry in entries %}
+    <p class="mb-2 text-xs font-semibold tracking-wide text-gray-600 uppercase">
+        {{ entry.date|date:"SHORT_DATE_FORMAT" }}
+    </p>
+    <div class="mb-3">
+        <a href="{{ entry.url }}" aria-label="Article"
+            class="inline-block text-black transition-colors duration-200 hover:text-deep-purple-accent-400">
+            <h3 class="font-sans font-extrabold leading-none tracking-tight text-base">
+                {{ entry.title }}
+            </h3>
+        </a>
+    </div>
+    <p class="mb-4 text-base text-gray-700 md:text-lg">
+        {% empty %}
+          {% trans 'No entries yet' %}
+    </p>
+{% endfor %}
