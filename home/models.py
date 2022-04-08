@@ -4,7 +4,7 @@ from customblocks import blocks
 from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
-from wagtail.images.edit_handlers import ImageChooserPanel
+#from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
 import requests
@@ -12,7 +12,6 @@ import random
 from django.contrib.auth import get_user_model
 from wagtail.users.models import UserProfile
 from manjaro.settings.base import MEDIA_ROOT, MEDIA_URL
-
 
 # pre defined pages 
 
