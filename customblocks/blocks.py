@@ -1,6 +1,3 @@
-import re
-from typing_extensions import Required
-from black import TRANSFORMED_MAGICS
 from wagtail.core import blocks
 from wagtail.core.templatetags.wagtailcore_tags import richtext
 from wagtail.images.blocks import ImageChooserBlock
@@ -40,3 +37,20 @@ class ProductBlock(blocks.StructBlock):
         label = "Product Details"
 
 
+class PartnerBlock(blocks.StructBlock):
+
+    title = blocks.CharBlock(required=True, help_text="Vendor")
+    description = blocks.TextBlock(required=True, help_text="Short Vendor Description")
+    details = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ("image", ImageChooserBlock(required=True)),
+            ]
+        )
+    )
+
+
+    class Meta:
+        template = "partner-component.html"
+        icon = "#todo"
+        label = "Partner"
