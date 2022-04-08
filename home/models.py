@@ -333,12 +333,10 @@ class Partners(Page):
         blank=True,
     )
 
-    intro =  models.TextField(default='', blank=True, max_length=80)
-    description =  models.TextField(default='', blank=True, max_length=150)
+    intro =  models.TextField(default='', blank=True, max_length=150)
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
-        FieldPanel("description"),
         StreamFieldPanel("content"),
     ]
 
