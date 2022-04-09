@@ -166,6 +166,22 @@ class Downloads(Page):
         FieldPanel("manual_intro"),
         FieldPanel("docker_intro"),
     ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField("intro"),
+        index.SearchField("description"),
+        index.SearchField("question_one"),
+        index.SearchField("answer_one"),
+        index.SearchField("question_two"),
+        index.SearchField("answer_two"),
+        index.SearchField("question_three"),
+        index.SearchField("answer_three"),
+        index.SearchField("team_spins_intro"),
+        index.SearchField("community_spins_intro"),
+        index.SearchField("arm_spins_intro"),
+        index.SearchField("manual_intro"),
+        index.SearchField("docker_intro")
+    ]
     
 
     def get_context(self, request):
@@ -338,9 +354,14 @@ class CustomPage(Page):
         blank=True,
     )
 
+    search_fields = Page.search_fields + [
+        index.SearchField('content'),
+    ]
+
     content_panels = Page.content_panels + [
         StreamFieldPanel("content"),
     ]
+    
 
     keywords = models.CharField(default='', blank=True, max_length=100)
 
@@ -375,6 +396,11 @@ class Partners(Page):
     )
 
     intro =  models.TextField(default='', blank=True, max_length=150)
+
+    search_fields = Page.search_fields + [
+        index.SearchField('intro'),
+        index.SearchField('content'),
+    ]
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
