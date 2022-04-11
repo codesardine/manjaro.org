@@ -423,12 +423,11 @@
       </div>
       {% endif %}
 
-        {% block content %}{% endblock %}
-
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/manjaro.js' %}"></script>
+        {% block content %}{% endblock %}        
 
         {% include "home/footer.html" %}
+
+        <script type="text/javascript" src="{% static 'js/manjaro.js' %}"></script>
 
         {% block footer_js %}
             {# Override this in templates to add extra javascript #}
