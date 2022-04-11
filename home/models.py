@@ -24,7 +24,6 @@ class Downloads(Page):
     ]
 
     intro = models.CharField(default='', blank=True, max_length=50)
-    description = models.TextField(default='', blank=True, max_length=200)
 
     question_one = models.CharField(default='', blank=True, max_length=50)
     answer_one = models.TextField(default='', blank=True, max_length=200)
@@ -153,7 +152,6 @@ class Downloads(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
-        FieldPanel("description"),
         FieldPanel("question_one"),
         FieldPanel("answer_one"),
         FieldPanel("question_two"),
@@ -169,7 +167,6 @@ class Downloads(Page):
 
     search_fields = Page.search_fields + [
         index.SearchField("intro"),
-        index.SearchField("description"),
         index.SearchField("question_one"),
         index.SearchField("answer_one"),
         index.SearchField("question_two"),
@@ -309,6 +306,16 @@ class Team(Page):
     subpage_types = []
     parent_page_types = [
         'home.HomePage'
+    ]
+
+    intro =  models.TextField(default='', blank=True, max_length=150)
+
+    search_fields = Page.search_fields + [
+        index.SearchField('intro'),
+    ]
+
+    content_panels = Page.content_panels + [
+        FieldPanel("intro"),
     ]
 
     def get_context(self, request):

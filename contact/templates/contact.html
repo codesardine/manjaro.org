@@ -6,28 +6,22 @@
 {% endblock %}
 
 {% block content %}
-<div class="relative max-w-screen-md px-4 pt-4 mx-auto xl:max-w-screen-lg sm:pt-6 sm:px-8">
-    <div class="relative flex flex-col items-center mt-10 bg-white xl:flex-row">
-        <div class="w-full p-6 py-8 sm:p-12 xl:w-1/2">
-            <div class="mx-auto mb-10 lg:max-w-xl text-left">
-                <h1 class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-                  {{ page.title }}
-                </h1>
-            </div>
+<div class="relative max-w-screen-md px-4 mx-auto xl:max-w-screen-lg sm:px-8">
+    <div class="relative flex flex-col items-center xl:flex-row bg-gray-50">
+        <div class="flex w-full justify-center xl:w-2/5">
+            <img class="w-1/2" src="{% static "/img/manjaro-email.svg" %}">
+        </div>
+        <div class="sm:px-12 xl:w-3/5">
             {{ self.intro|richtext }}
             <form method="POST" action="{% pageurl page %}">
                 {% csrf_token %}
                 <ul>
                     {{ form }}
                 </ul>
-                <button type="submit" class="mt-4 px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-indigo-600 hover:bg-indigo-700 focus:shadow-outline focus:outline-none">
+                <button type="submit" class="px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-indigo-600 hover:bg-indigo-700 focus:shadow-outline focus:outline-none">
                     Submit
                 </button>
             </form>
-        </div>
-
-        <div class="flex w-full justify-center">
-            <img class="w-1/2" src="{% static "/img/manjaro-email.svg" %}">
         </div>
     </div>
 </div>
