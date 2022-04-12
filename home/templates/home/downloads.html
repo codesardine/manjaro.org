@@ -104,7 +104,7 @@
     <div class="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
     {% for title, desktop in desktops.items %}
         {% if edition != "arm" %}
-        <a href="/" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2">
+        <a href="/" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
             <div class="flex flex-col h-full">
             <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="" />
             <div class="flex-grow border border-t-0 rounded-b">
@@ -164,7 +164,7 @@
                     </div>
                     <div class="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
                         {% for arm_title, arm_desktop in value.items %}
-                        <a href="/" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2">
+                        <a href="/" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
                           <div class="flex flex-col h-full">
                           <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="" />
                           <div class="flex-grow border border-t-0 rounded-b">
@@ -232,7 +232,7 @@
   </div>
   <div class="grid max-w-screen-md gap-10 md:grid-cols-2 sm:mx-auto">
 
-    <div aria-label="View Item" class="inline-block overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2">
+    <div aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
       <div class="flex flex-col h-full">
       <img src="/static/img/manual.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Manual" />
       <div class="flex-grow border border-t-0 rounded-b">
@@ -249,7 +249,7 @@
       </div>
     </div>
 
-    <a target="_blank" href="https://github.com/manjaro/manjaro-docker" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2">
+    <a target="_blank" href="https://github.com/manjaro/manjaro-docker" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
         <div class="flex flex-col h-full">
           <img src="/static/img/docker.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Docker" />
           <div class="flex-grow border border-t-0 rounded-b">
