@@ -3,6 +3,5 @@ wagtail>=2.15,<2.16
 django-extensions
 wagtail-django-recaptcha==1.0
 wagtailyoast
-black
-typing_extensions
 puput==1.1.3
+django-cors
