@@ -12,18 +12,18 @@
         <ul class="flex items-center hidden space-x-8 lg:flex">
           {% for item in left_navigation.menu_items.all %}
             <li>
-                <a href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
+                <a href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="inline-block font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
             </li>
           {% endfor %}
         </ul>
-        <a href="https://manjaro.org" aria-label="Manjaro" title="Manjaro" class="inline-flex items-center lg:mx-auto">
+        <a href="https://manjaro.org" aria-label="Home" title="Home" class="inline-flex items-center lg:mx-auto">
           <img id="logo" src="/static/img/logo.svg">
           <span id="brand" class="ml-2 text-xl lowercase tracking-wide text-teal-600">Manjaro</span>
         </a>
         <ul class="flex items-center hidden ml-auto space-x-8 lg:flex">
           {% for item in rigth_navigation.menu_items.all %}
             <li>
-                <a href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
+                <a href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="inline-block font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
             </li>
           {% endfor %}
         </ul>
@@ -40,7 +40,7 @@
             <div class="p-5 rounded shadow-sm bg-teal-accent-400">
               <div class="flex items-center justify-between mb-4">
                 <div>
-                  <a href="https://manjaro.org" aria-label="Manjaro" title="Manjaro" class="inline-flex items-center">
+                  <a href="https://manjaro.org" aria-label="Home" title="Home" class="inline-flex items-center">
                     <img id="logo" src="/static/img/logo.svg">
                     <span id="brand" class="ml-2 text-xl lowercase tracking-wide text-teal-600">Manjaro</span>
                   </a>

@@ -413,7 +413,9 @@
                             {% if page.description %}
                               {{ page.description }}
                             {% else %}
-                              {{ page.intro }}
+                              {% if not "contact" in page.title.lower %}
+                                {{ page.intro }}
+                              {% endif %}
                             {% endif %}
                           </p>
                       </div>            
