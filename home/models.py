@@ -385,9 +385,9 @@ class CustomPage(Page):
     ])
 
 
-class Partners(Page):
-    max_count=1
-    template = "home/partners.html"
+class PartnersSponsors(Page):
+    max_count=2
+    template = "home/partners-sponsors.html"
     subpage_types = []
     parent_page_types = [
         'home.HomePage'
@@ -434,7 +434,7 @@ class HomePage(Page):
     template = "home/home-page.html"
     subpage_types = [
         'home.CustomPage',
-        'home.Partners',
+        'home.PartnersSponsors',
         'home.Downloads',
         'home.Team',
         'home.Hardware',
