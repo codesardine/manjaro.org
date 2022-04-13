@@ -19,11 +19,24 @@ document.addEventListener("mousemove", function(e) {
 
 
 const cursorHover = document.querySelectorAll("a");
+const cursorHoverBtn = document.querySelectorAll("button");
 cursorHover.forEach(a => {
     a.addEventListener("mouseover", function(e) {
         cursor.classList.add("enlarge")
     })
   });
+cursorHoverBtn.forEach(btn => {
+    btn.addEventListener("mouseover", function(e) {
+        cursor.classList.add("enlarge")
+    })
+});
+
+
+cursorHoverBtn.forEach(btn => {
+    btn.addEventListener("mouseout", function(e) {
+        cursor.classList.remove("enlarge")
+    })
+});
 
 cursorHover.forEach(a => {
     a.addEventListener("mouseout", function(e) {
