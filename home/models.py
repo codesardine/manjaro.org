@@ -353,6 +353,8 @@ class CustomPage(Page):
         'home.HomePage'
     ]
 
+    intro =  models.TextField(default='', blank=True, max_length=150)
+
     content = StreamField(
         [
             ("richtext", blocks.RichtextBlock()),
@@ -363,10 +365,12 @@ class CustomPage(Page):
 
     search_fields = Page.search_fields + [
         index.SearchField('content'),
+        index.SearchField('intro'),
     ]
 
     content_panels = Page.content_panels + [
         StreamFieldPanel("content"),
+        FieldPanel("intro"),
     ]
     
 
