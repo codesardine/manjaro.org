@@ -8,12 +8,12 @@
         </h5>
       </div>
       <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
-        <span class="relative inline-block">
+        <span class="relative inline-block text-left">
+          {% image self.vendor_logo original class="object-contain -ml-24 sm:ml-0 h-12 pb-2" %}
           <span class="relative">{{ self.title }}</span>
         </span>
       </h2>
       <div class="flex flex-row gap-4">
-        {% image self.vendor_logo original class="object-contain w-20 h-20" %}
         <p class="text-base text-gray-700 md:text-lg text-left">
           {{ self.description }}
         </p>

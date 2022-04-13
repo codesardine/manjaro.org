@@ -29,13 +29,25 @@
 }
 
 @media (min-width: 1024px) { 
-    a:hover, p:hover, button:hover {
-        transform: scale(1.1);
+    a:hover, button:hover, .hardware .grid > .flex-col:hover {
+        transform: scale(1.1) !important;
     }
     
     p:hover {
+        transform: scale(1.1) !important;
         font-weight:500;
         cursor: zoom-in;
+    }
+
+    .downloads a p:hover, .downloads button p:hover,
+    .hardware .grid > .flex-col p:hover {
+        transform: none !important;
+        cursor: pointer;
+        font-weight: normal;
+    }
+
+    .hardware .grid > .flex-col p:hover {
+        cursor: default;
     }
     
     a, p, button {
