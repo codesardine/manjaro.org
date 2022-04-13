@@ -384,6 +384,7 @@
 </script>
         {# Global stylesheets #}
         <link rel="stylesheet" type="text/css" href="{% static 'css/manjaro.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
 
         {% block head %}
             {# Override this in templates to add extra stylesheets #}
@@ -430,6 +431,7 @@
         {% include "home/footer.html" %}
 
         <script type="text/javascript" src="{% static 'js/manjaro.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
 
         {% block footer_js %}
             {# Override this in templates to add extra javascript #}
