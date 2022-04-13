@@ -364,13 +364,13 @@ class CustomPage(Page):
     )
 
     search_fields = Page.search_fields + [
-        index.SearchField('content'),
         index.SearchField('intro'),
+        index.SearchField('content'),
     ]
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel("content"),
         FieldPanel("intro"),
+        StreamFieldPanel("content"),
     ]
     
 

@@ -53,5 +53,135 @@
     a, p, button {
         transition: all .2s ease-in-out !important;
     }
+
+    .richtext img.left {
+        float: left;
+        margin-right: 1.5rem;
+    }
+
+    .richtext img.right {
+        float: right;
+        margin-left: 1.5rem;
+    }
+
+    .richtext img.left,
+    .richtext img.right  {
+        width: 30%;
+    }
+
+    .richtext img.full-width {
+        width: 100%;
+    }
+
+    .richtext p {
+        box-shadow: none;
+    }
  }
+
+ .richtext p:first-child {
+     display: none;
+ }
+
+
+ .richtext p, .richtext img, .richtext code,
+ .richtext ol, .richtext ul, .richtext blockquote,
+ .richtext h2, .richtext h3, .richtext h4 {
+     padding: 1.5rem;
+ }
+
+ .richtext ol, .richtext ul {
+     list-style: disc;
+ }
+
+ .richtext a {
+    transition-duration: 200ms;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    color: rgb(101 31 255 / var(--tw-text-opacity));
+    font-weight: 600;
+ }
+
+ .richtext a:hover {
+    zoom: 0;
+ }
+
+.richtext blockquote:before {
+content: open-quote;
+}
+
+.richtext  blockquote:after {
+content: close-quote;
+margin-bottom: -6rem;
+}
+
+.richtext blockquote {
+    font-size: 2rem;
+    padding: 3rem;
+    font-weight: bold;
+    color: rgb(33 33 33 / var(--tw-text-opacity));;
+    text-align: center;
+    background-color:  #ffff8b;
+    position: relative;
+}
+
+.richtext blockquote:before,
+.richtext blockquote:after {
+    display: inline-block;
+    font-size: 6rem;
+    position: absolute;
+    font-weight: bold;
+}
+
+.richtext blockquote:before {
+    top: -25px;
+    left: 5px;
+}
+.richtext blockquote:after {
+    bottom: -70px;
+    right: 5px;
+    font-size: 14rem;
+}
+
+.richtext h2, .richtext h3, .richtext h4 {
+    text-align: center;
+}
+
+.richtext h2 {
+    color: rgb(0 77 64 / var(--tw-text-opacity));  
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600 !important; 
+    font-size: 0.75rem !important;
+    line-height: 1rem !important;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    background-color: rgb(29 233 182 / var(--tw-bg-opacity));
+    border-radius: 9999px;
+    display: inline-block;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+    padding-bottom: 0;
+}
+
+.richtext h4 {
+    font-size: 1.5rem !important;
+    --tw-text-opacity: 1;
+    color: rgb(101 31 255 / var(--tw-text-opacity));
+    font-weight: 700 !important;
+    padding-bottom: 0;
+    line-height: 2rem !important;
+}
+
+.richtext h3 {
+    font-size: 2.25rem !important; 
+    padding-bottom: 0;
+    letter-spacing: -0.025em;
+    font-weight: 700 !important;
+    color: rgb(33 33 33 / var(--tw-text-opacity));
+    line-height: 2.5rem !important;
+}
+
 
