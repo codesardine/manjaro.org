@@ -184,4 +184,15 @@ margin-bottom: -6rem;
     line-height: 2.5rem !important;
 }
 
+.circle {
+    top: -100px;
+left: 108px;
+z-index: -1;
+border-radius: 100%;
+width: 19rem;
+height: 19rem;
+top: -26%;
+left: 24.5%;
+}
+
 

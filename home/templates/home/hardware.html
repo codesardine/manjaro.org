@@ -7,8 +7,7 @@
 {% block content %}
 
 {% for block in page.content %}
-  <div class="lg:hscreen">
-    <div class="bg-grey-50 flex flex-col lg:flex-row sm:mx-auto lg:h-screen">      
+  <div class="bg-grey-50 flex flex-col lg:flex-row sm:mx-auto">      
         {% include_block block %}
   </div>
   {% endfor %}
