@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 #brand { 
     font-family: 'Comfortaa', cursive;
 }
@@ -211,3 +215,4 @@ margin-bottom: -6rem;
 .hover-neon:hover .hover-blue {
     filter: drop-shadow(1px 1px 2px #40c4ff) drop-shadow(-1px -1px 2px #40c4ff)
 }
+

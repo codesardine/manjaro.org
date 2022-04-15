@@ -2,6 +2,8 @@ Django>=3.2,<3.3
 wagtail>=2.15,<2.16
 django-extensions
 wagtail-django-recaptcha==1.0
-wagtailyoast
+wagtailyoast==0.0.9
 puput==1.1.3
-django-cors
+django-cors==0.1
+django-tailwind==3.1.1
+django-browser-reload==1.3.0

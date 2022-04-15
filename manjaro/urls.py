@@ -16,6 +16,7 @@ urlpatterns = [
     path('documents/', include(wagtaildocs_urls)),
 
     path('search/', search_views.search, name='search'),
+    path("__reload__/", include("django_browser_reload.urls")),
     path(r'', include('puput.urls')),
 ] 
 

@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django_social_share',
     'puput',
     'colorful',
+    'tailwind',
+    'theme',
+    'django_browser_reload',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -73,7 +76,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-     
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
@@ -190,10 +193,14 @@ BASE_URL = 'localhost'
 
 NOCAPTCHA = True
 
-AUTH_USER_MODEL = 'users.User'
-
 PUPUT_AS_PLUGIN = True
 
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+AUTH_USER_MODEL = 'users.User'
 WAGTAIL_USER_EDIT_FORM = 'users.admin.CustomUserEditForm'
 WAGTAIL_USER_CREATION_FORM = 'users.admin.CustomUserCreationForm'
 WAGTAIL_USER_CUSTOM_FIELDS = ['description', 'title', "avatar", "tweeter", "github", "bio"]
