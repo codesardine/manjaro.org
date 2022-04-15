@@ -28,6 +28,15 @@
     height: 150px;
 }
 
+.circle {
+    z-index: -1;
+    border-radius: 100%;
+    width: 19rem;
+    height: 19rem;
+    top: -48%;
+    left: 21.6%;
+}
+
 @media (min-width: 1024px) { 
     a:hover, button:hover, .hardware .grid > .flex-col:hover {
         transform: scale(1.1) !important;
@@ -75,6 +84,13 @@
 
     .richtext p {
         box-shadow: none;
+    }
+
+    .circle {
+        width: 19rem;
+        height: 19rem;
+        top: -26%;
+        left: 24.5%;
     }
  }
 
@@ -184,15 +200,14 @@ margin-bottom: -6rem;
     line-height: 2.5rem !important;
 }
 
-.circle {
-    top: -100px;
-left: 108px;
-z-index: -1;
-border-radius: 100%;
-width: 19rem;
-height: 19rem;
-top: -26%;
-left: 24.5%;
+.hover-neon:hover .hover-red {
+    filter: drop-shadow(1px 1px 2px #ff4081) drop-shadow(-1px -1px 2px #ff4081)
 }
 
+.hover-neon:hover .hover-green {
+    filter: drop-shadow(1px 1px 2px #64ffda) drop-shadow(-1px -1px 2px #64ffda)
+}
 
+.hover-neon:hover .hover-blue {
+    filter: drop-shadow(1px 1px 2px #40c4ff) drop-shadow(-1px -1px 2px #40c4ff)
+}
