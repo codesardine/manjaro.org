@@ -12,7 +12,7 @@
         <ul class="flex items-center hidden space-x-8 lg:flex">
           {% for item in left_navigation.menu_items.all %}
             <li>
-                <a href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="inline-block font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
+                <a href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="inline-block font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900">{{ item.title }}</a>
             </li>
           {% endfor %}
         </ul>
@@ -23,7 +23,7 @@
         <ul class="flex items-center hidden ml-auto space-x-8 lg:flex">
           {% for item in rigth_navigation.menu_items.all %}
             <li>
-                <a href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="inline-block font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
+                <a href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="inline-block font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900">{{ item.title }}</a>
             </li>
           {% endfor %}
         </ul>
