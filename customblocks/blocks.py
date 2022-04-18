@@ -40,7 +40,7 @@ class ProductBlock(blocks.StructBlock):
 
     class Meta:
         template = "pricing-component.html"
-        icon = "#todo"
+        icon = "form"
         label = "Product Details"
 
 
@@ -53,7 +53,7 @@ class PartnerBlock(blocks.StructBlock):
 
     class Meta:
         template = "partner-component.html"
-        icon = "#todo"
+        icon = "user"
         label = "Partner"
 
 
