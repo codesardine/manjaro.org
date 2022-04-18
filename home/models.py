@@ -460,6 +460,9 @@ class HomePage(Page):
 
     manjaro_title = models.CharField(default='', blank=True, max_length=50)
     manjaro_intro = models.CharField(default='', blank=True, max_length=200)
+    promotion_text = models.CharField(default='', blank=True, max_length=80)
+    promotion_url = models.URLField(blank=True)
+
     partners_title = models.CharField(default='', blank=True, max_length=50)
     partners_intro = models.CharField(default='', blank=True, max_length=200)
     partners_url = models.URLField(blank=True)
@@ -472,6 +475,8 @@ class HomePage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("manjaro_title"),
         FieldPanel("manjaro_intro"),
+        FieldPanel("promotion_text"),
+        FieldPanel("promotion_url"),
         FieldPanel("partners_title"),
         FieldPanel("partners_intro"),
         FieldPanel("partners_url"),
