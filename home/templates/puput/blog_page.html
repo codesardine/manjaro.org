@@ -26,6 +26,8 @@
 {% endif %}
 {% endblock meta_description %}
 
+{% block body_class %}blog-page{% endblock %}
+
 {% block social_share %}
 {% image blog_page.header_image fill-800x450 as share_image %}
 <meta property="og:title" content="{{ blog_page.title }}" />
@@ -72,13 +74,13 @@
                                 </p>
                                 <ul class="flex gap-4 justify-start mb-2 mt-2">
                                     <li>
-                                        {% post_to_facebook entry.url '<span><i class="fa fa-facebook text-2xl"></i></span>' %}
+                                        {% post_to_facebook entry.url '<span class="text-blue-900 text-2xl"><i class="fa fa-facebook"></i></span>' %}
                                     </li>
                                     <li>
-                                        {% post_to_twitter entry.title entry.url '<span><i class="fa fa-twitter text-2xl"></i></span>' %}
+                                        {% post_to_twitter entry.title entry.url '<span class="text-light-blue-300 text-2xl"><i class="fa fa-twitter"></i></span>' %}
                                     </li>
                                     <li>
-                                        {% post_to_linkendin entry.url '<span><i class="fa fa-linkedin text-2xl"></i></span>' %}
+                                        {% post_to_linkendin entry.url '<span class="text-light-blue-800 text-2xl"><i class="fa fa-linkedin"></i></span>' %}
                                     </li>
                                 </ul>
                                 <a aria-label="{{ entry.title }}"

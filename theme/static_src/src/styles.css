@@ -239,3 +239,7 @@ margin-bottom: -6rem;
     filter: drop-shadow(1px 1px #00bfa5) drop-shadow(-1px -1px #00bfa5);
     display: none;
 }
+
+.blog-page a:not(.logo), .blog-entry-page a:not(.logo) {
+    display: inline-block;
+}

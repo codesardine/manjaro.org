@@ -1,6 +1,8 @@
 {% extends "puput/base.html" %}
 {% load i18n wagtailcore_tags wagtailimages_tags puput_tags social_share %}
 
+{% block body_class %}blog-entry-page{% endblock %}
+
 {% block title %}
     {{ self.title }} | {{ blog_page.title }}
 {% endblock title %}
@@ -67,13 +69,13 @@
         </p>
         <ul class="flex gap-4 justify-start mb-2 mt-2">
             <li>
-                {% post_to_facebook post_url '<span><i class="fa fa-facebook text-2xl"></i></span>' %}
+                {% post_to_facebook post_url '<span class="text-2xl text-blue-900 "><i class="fa fa-facebook text-2xl"></i></span>' %}
             </li>
             <li>
-                {% post_to_twitter entry.title post_url '<span><i class="fa fa-twitter text-2xl"></i></span>' %}
+                {% post_to_twitter entry.title post_url '<span class="text-light-blue-300 text-2xl"><i class="fa fa-twitter text-2xl"></i></span>' %}
             </li>
             <li>
-                {% post_to_linkendin post_url '<span><i class="fa fa-linkedin text-2xl"></i></span>' %}
+                {% post_to_linkendin post_url '<span class="text-light-blue-800 text-2xl"><i class="fa fa-linkedin text-2xl"></i></span>' %}
             </li>
         </ul>
         <div class="mt-3 text-xs font-semibold tracking-wide text-right">
