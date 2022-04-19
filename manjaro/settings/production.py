@@ -18,6 +18,10 @@ DATABASES = {
 
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
+SILENCED_SYSTEM_CHECKS = os.environ.get('SILENCED_SYSTEM_CHECKS')
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
+DJANGO_ROOT = os.environ.get('DJANGO_ROOT')
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 try:
     from .local import *
