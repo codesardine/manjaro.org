@@ -200,6 +200,8 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
 AUTH_USER_MODEL = 'users.User'
 WAGTAIL_USER_EDIT_FORM = 'users.admin.CustomUserEditForm'
 WAGTAIL_USER_CREATION_FORM = 'users.admin.CustomUserCreationForm'
