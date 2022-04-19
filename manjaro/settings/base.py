@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'colorful',
     'tailwind',
     'theme',
-    'django_browser_reload',
+    #'django_browser_reload',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -76,7 +76,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
+    #"django_browser_reload.middleware.BrowserReloadMiddleware",
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
