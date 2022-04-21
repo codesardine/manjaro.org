@@ -24,6 +24,10 @@ ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+CSRF_COOKIE_SECURE = False
+SECURE_HSTS_SECONDS = False
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
 
 try:
     from .local import *

@@ -37,6 +37,13 @@ COMPRESS_CSS_FILTERS = [
     "compressor.filters.cssmin.CSSMinFilter",
 ]
 
+CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = False
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 try:
     from .local import *
 except ImportError:
