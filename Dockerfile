@@ -29,7 +29,7 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
 
 # Install the project requirements.
 COPY requirements.txt /
-RUN pip install django-browser-reload
+RUN pip install django-browser-reload gunicorn
 RUN pip install -r /requirements.txt
 
 # Use /app folder as a directory where the source code is stored.
@@ -55,4 +55,6 @@ RUN python manage.py createsuperuser --noinput --username admin --email test@man
 
 ENV DEBUG = True
 
-CMD python manage.py runserver
+ENV DJANGO_SETTINGS_MODULE = "manjaro.settings.dev"
+
+CMD gunicorn manjaro.wsgi:application --bind 127.0.0.1:8000
