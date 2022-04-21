@@ -25,6 +25,10 @@ SILENCED_SYSTEM_CHECKS = os.environ.get('SILENCED_SYSTEM_CHECKS')
 EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
 DJANGO_ROOT = os.environ.get('DJANGO_ROOT')
 
+MIDDLEWARE = MIDDLEWARE + [
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+]
+
 STATICFILES_STORAGE = "whitenoise.django.GzipManifestStaticFilesStorage"
 COMPRESS_OFFLINE = TRUE
 COMPRESS_CSS_HASHING_METHOD = "content"
