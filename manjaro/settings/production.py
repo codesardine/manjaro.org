@@ -1,8 +1,11 @@
+from pickle import TRUE
 from .base import *
 import os
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
+
 DEBUG = os.environ.get("DEBUG")
+
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 DATABASES = {
@@ -21,6 +24,14 @@ RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 SILENCED_SYSTEM_CHECKS = os.environ.get('SILENCED_SYSTEM_CHECKS')
 EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
 DJANGO_ROOT = os.environ.get('DJANGO_ROOT')
+
+STATICFILES_STORAGE = "whitenoise.django.GzipManifestStaticFilesStorage"
+COMPRESS_OFFLINE = TRUE
+COMPRESS_CSS_HASHING_METHOD = "content"
+COMPRESS_CSS_FILTERS = [
+    "compressor.filters.css_default.CssAbsoluteFilter",
+    "compressor.filters.cssmin.CSSMinFilter",
+]
 
 try:
     from .local import *

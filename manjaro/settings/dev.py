@@ -1,7 +1,16 @@
 from .base import *
+import os
+
+INSTALLED_APPS = INSTALLED_APPS + [
+    'django_browser_reload',
+]
+
+MIDDLEWARE = MIDDLEWARE + [
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
+]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-0s_dy9yon+m^ibos)el*-nez^t7-gh%f#r^ma9&9$$(osaou^i'

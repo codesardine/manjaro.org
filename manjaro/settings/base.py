@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'colorful',
     'tailwind',
     'theme',
-    #'django_browser_reload',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -76,7 +75,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    #"django_browser_reload.middleware.BrowserReloadMiddleware",
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
@@ -102,7 +100,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'manjaro.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -112,7 +109,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -187,9 +183,10 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'localhost'
+BASE_URL = 'manjaro.org'
 
-#DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+#DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' django 4.0
 
 NOCAPTCHA = True
 
@@ -199,8 +196,6 @@ TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-
-DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 AUTH_USER_MODEL = 'users.User'
 WAGTAIL_USER_EDIT_FORM = 'users.admin.CustomUserEditForm'
