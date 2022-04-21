@@ -1,28 +1,26 @@
 from .base import *
 import os
 
-env = os.environ.copy()
+DEBUG = os.environ.get("DEBUG")
 
-DEBUG = env("DEBUG")
-
-ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 DATABASES = {
     'default': {
-        'ENGINE': env("SQL_ENGINE"),
-        'NAME': env("SQL_DATABASE"),
-        'USER': env("SQL_USER"),
-        'PASSWORD': env("SQL_PASSWORD"),
-        'HOST': env("SQL_HOST"),
-        'PORT': env("SQL_PORT"),
+        'ENGINE': os.environ.get("SQL_ENGINE"),
+        'NAME': os.environ.get("SQL_DATABASE"),
+        'USER': os.environ.get("SQL_USER"),
+        'PASSWORD': os.environ.get("SQL_PASSWORD"),
+        'HOST': os.environ.get("SQL_HOST"),
+        'PORT': os.environ.get("SQL_PORT"),
     }
 }
 
-RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
-RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
-SILENCED_SYSTEM_CHECKS = env('SILENCED_SYSTEM_CHECKS')
-EMAIL_BACKEND = env('EMAIL_BACKEND')
-DJANGO_ROOT = env('DJANGO_ROOT')
+RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
+SILENCED_SYSTEM_CHECKS = os.environ.get('SILENCED_SYSTEM_CHECKS')
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
+DJANGO_ROOT = os.environ.get('DJANGO_ROOT')
 
 MIDDLEWARE = MIDDLEWARE + [
     "whitenoise.middleware.WhiteNoiseMiddleware",
