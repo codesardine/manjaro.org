@@ -22,24 +22,10 @@ SILENCED_SYSTEM_CHECKS = os.environ.get('SILENCED_SYSTEM_CHECKS')
 EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
 DJANGO_ROOT = os.environ.get('DJANGO_ROOT')
 
-MIDDLEWARE = MIDDLEWARE + [
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-]
-
-STATICFILES_STORAGE = "whitenoise.django.GzipManifestStaticFilesStorage"
-COMPRESS_OFFLINE = True
-COMPRESS_CSS_HASHING_METHOD = "content"
-COMPRESS_CSS_FILTERS = [
-    "compressor.filters.css_default.CssAbsoluteFilter",
-    "compressor.filters.cssmin.CSSMinFilter",
-]
-
 CSRF_COOKIE_SECURE = True
 SECURE_HSTS_SECONDS = False
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
-
-STATIC_ROOT = BASE_DIR + "/staticfiles"
 
 try:
     from .local import *
