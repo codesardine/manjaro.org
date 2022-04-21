@@ -22,13 +22,14 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
     libjpeg62-turbo-dev \
     zlib1g-dev \
     libwebp-dev \
- && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 # Install the application server.
-RUN pip install "gunicorn==20.0.4"
+#RUN pip install "gunicorn==20.0.4"
 
 # Install the project requirements.
 COPY requirements.txt /
+RUN pip install django-browser-reload
 RUN pip install -r /requirements.txt
 
 # Use /app folder as a directory where the source code is stored.
@@ -50,15 +51,8 @@ RUN python manage.py collectstatic --noinput --clear
 
 RUN python manage.py migrate --noinput
 
-RUN python manage.py createsuperuser --noinput --username admin --email admin@test.com 
+RUN python manage.py createsuperuser --noinput --username admin --email test@manjaro.org 
 
-# Runtime command that executes when "docker run" is called, it does the
-# following:
-#   1. Migrate the database.
-#   2. Start the application server.
-# WARNING:
-#   Migrating database at the same time as starting the server IS NOT THE BEST
-#   PRACTICE. The database should be migrated manually or using the release
-#   phase facilities of your hosting platform. This is used only so the
-#   Wagtail instance can be started with a simple "docker run" command.
-CMD gunicorn manjaro.wsgi:application
+ENV DEBUG = True
+
+CMD python manage.py runserver
