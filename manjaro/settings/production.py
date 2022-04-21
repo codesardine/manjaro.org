@@ -42,7 +42,7 @@ SECURE_HSTS_SECONDS = False
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR + "/staticfiles"
 
 try:
     from .local import *
