@@ -236,7 +236,7 @@ margin-bottom: -6rem;
 }
 
 .promo-img {
-    filter: drop-shadow(1px 1px #00bfa5) drop-shadow(-1px -1px #00bfa5);
+    filter: drop-shadow(1px 1px #f6f6f6) drop-shadow(-1px -1px #f6f6f6);
     display: none;
 }
 
