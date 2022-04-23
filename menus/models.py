@@ -61,8 +61,8 @@ class MenuItem(Orderable):
 @register_snippet
 class Menu(ClusterableModel):
     
-    title = models.CharField(max_length=50, null=True)
-    category_title = models.CharField(max_length=50, null=True)
+    title = models.CharField(max_length=50, null=True, help_text="Options: top left, top right, footer one, footer two, footer three, footer four")
+    category_title = models.CharField(max_length=50, null=True, help_text="Visible name of the menu, footer menus only")
     slug = AutoSlugField(populate_from="title", editable=True)
 
     panels = [
