@@ -261,7 +261,7 @@ class Hardware(Page):
         'home.HomePage'
     ]
 
-    intro = models.CharField(max_length=250, null=True)
+    intro = models.TextField(max_length=350, null=True)
 
     content = StreamField(
         [
@@ -281,7 +281,7 @@ class Hardware(Page):
         StreamFieldPanel("content"),
     ]
 
-    keywords = models.CharField(default='', blank=True, max_length=100)
+    keywords = models.CharField(default='', blank=True, max_length=150)
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading=('Content')),
