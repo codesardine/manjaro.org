@@ -466,7 +466,6 @@ class HomePage(Page):
     partners_title = models.CharField(default='', blank=True, max_length=50)
     partners_intro = models.CharField(default='', blank=True, max_length=200)
     partners_url = models.URLField(blank=True)
-    shells_intro = models.CharField(default='', blank=True, max_length=50)
     shells_title = models.CharField(default='', blank=True, max_length=50)
     shells_intro = models.CharField(default='', blank=True, max_length=200)
     footer_intro = models.CharField(default='', blank=True, max_length=200)
@@ -480,7 +479,6 @@ class HomePage(Page):
         FieldPanel("partners_title"),
         FieldPanel("partners_intro"),
         FieldPanel("partners_url"),
-        FieldPanel("shells_intro"),
         FieldPanel("shells_title"),
         FieldPanel("shells_intro"),
         FieldPanel("footer_intro"),
