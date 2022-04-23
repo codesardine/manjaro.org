@@ -467,7 +467,7 @@ class HomePage(Page):
     partners_intro = models.CharField(default='', blank=True, max_length=200)
     partners_url = models.URLField(blank=True)
     shells_title = models.CharField(default='', blank=True, max_length=50)
-    shells_intro = models.CharField(default='', blank=True, max_length=200)
+    shells_intro = models.TextField(blank=True, max_length=350)
     footer_intro = models.CharField(default='', blank=True, max_length=200)
     footer_description = models.CharField(default='', blank=True, max_length=200)
 
