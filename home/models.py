@@ -459,7 +459,7 @@ class HomePage(Page):
     )
 
     manjaro_title = models.CharField(default='', blank=True, max_length=50)
-    manjaro_intro = models.CharField(blank=True, max_length=350)
+    manjaro_intro = models.TextField(blank=True, max_length=350)
     promotion_text = models.CharField(default='', blank=True, max_length=80)
     promotion_url = models.URLField(blank=True)
 
