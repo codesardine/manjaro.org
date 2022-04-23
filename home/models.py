@@ -308,7 +308,7 @@ class Team(Page):
         'home.HomePage'
     ]
 
-    intro =  models.TextField(default='', blank=True, max_length=150)
+    intro =  models.TextField(default='', blank=True, max_length=350)
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
