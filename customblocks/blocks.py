@@ -33,6 +33,7 @@ class ProductBlock(blocks.StructBlock):
                 ("graphics", blocks.CharBlock(required=False, max_length=100)),
                 ("description", blocks.TextBlock(required=False, max_length=250)),
                 ("button_url", blocks.URLBlock(required=True)),
+                ("certified", blocks.BooleanBlock(help_text="if the hardware is Manjaro certified"))
             ]
         )
     )
