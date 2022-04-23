@@ -406,7 +406,7 @@ class PartnersSponsors(Page):
         blank=True,
     )
 
-    intro =  models.TextField(default='', blank=True, max_length=150)
+    intro =  models.TextField(default='', blank=True, max_length=350)
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -418,7 +418,7 @@ class PartnersSponsors(Page):
         StreamFieldPanel("content"),
     ]
 
-    keywords = models.CharField(default='', blank=True, max_length=100)
+    keywords = models.CharField(default='', blank=True, max_length=150)
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading=('Content')),
