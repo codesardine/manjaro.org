@@ -243,3 +243,7 @@ margin-bottom: -6rem;
 .blog-page a:not(.logo), .blog-entry-page a:not(.logo) {
     display: inline-block;
 }
+
+#content {
+    min-height: calc(100vh - 599px);
+}

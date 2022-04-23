@@ -96,8 +96,9 @@
           </div>
       </div>
       {% endif %}
-
-        {% block content %}{% endblock %}        
+        <article id="content">
+          {% block content %}{% endblock %}        
+        </article>
 
         {% include "home/footer.html" %}
 
