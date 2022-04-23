@@ -464,7 +464,7 @@ class HomePage(Page):
     promotion_url = models.URLField(blank=True)
 
     partners_title = models.CharField(default='', blank=True, max_length=50)
-    partners_intro = models.CharField(default='', blank=True, max_length=200)
+    partners_intro = models.TextField(blank=True, max_length=350)
     partners_url = models.URLField(blank=True)
     shells_title = models.CharField(default='', blank=True, max_length=50)
     shells_intro = models.TextField(blank=True, max_length=350)
