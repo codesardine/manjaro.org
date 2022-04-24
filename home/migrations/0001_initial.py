@@ -69,8 +69,6 @@ class Migration(migrations.Migration):
                 ('partners_url', models.URLField(blank=True)),
                 ('shells_title', models.CharField(blank=True, default='', max_length=50)),
                 ('shells_intro', models.CharField(blank=True, default='', max_length=200)),
-                ('footer_intro', models.CharField(blank=True, default='', max_length=200)),
-                ('footer_description', models.CharField(blank=True, default='', max_length=200)),
                 ('keywords', models.CharField(blank=True, default='', max_length=100)),
             ],
             options={
