@@ -247,3 +247,8 @@ margin-bottom: -6rem;
 #content {
     min-height: calc(100vh - 599px);
 }
+
+.no-zoom:hover {
+    transform: scale(1.0) !important;
+    cursor: auto;
+}
