@@ -6,7 +6,7 @@
 
 {% block content %}
 <div class="relative pt-6 lg:pt-0">
-    <img src="/static/img/minisforum.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260" class="absolute inset-0 object-cover w-full h-full" alt="" />
+    <img src="{% static '/img/minisforum.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260" class="absolute inset-0 object-cover w-full h-full" alt="" />
     <div class="relative bg-gray-900 bg-opacity-75">
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 lg:h-screen">
         <div class="flex flex-col items-center justify-between xl:flex-row w-full">
@@ -84,7 +84,7 @@
                   <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
                 </svg>
               </a>
-              <img src="/static/img/jaro-2.png" class="xl:block w-60 ml-60 promo-img">
+              <img src="{% static '/img/jaro-2.png' %}" class="xl:block w-60 ml-60 promo-img">
           </div>
         </div>
       </div>
@@ -127,7 +127,7 @@
           <img
             class="object-cover mb-6"
             style="filter: drop-shadow(4px 4px 6px black);"
-            src="/static/img/partner.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+            src="{% static '/img/partner.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
             alt=""
           />
         </div>
@@ -138,7 +138,7 @@
   <div class="lg:h-screen">
     <div class="flex flex-col lg:flex-row sm:mx-auto lg:h-screen">
       <div class="relative lg:w-1/2">
-        <img src="/static/img/shells.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" 
+        <img src="{% static '/img/shells.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" 
         class="object-cover mb-6 sm:p-4 lg:p-20 drop-shadow-2xl"
         style="filter: drop-shadow(4px 4px 6px black);" />
       </div>
