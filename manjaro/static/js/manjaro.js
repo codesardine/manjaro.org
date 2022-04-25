@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     cursorHoverP.forEach(p => {
         p.addEventListener("mouseover", function(e) {
-            console.log(p.classList)
-            if (p.childNodes.length != 0 || p.classList.contains("no-zoom")) {
+            console.log(p.textContent.length)
+            if (p.classList.contains("no-zoom") === false && p.textContent.trim() != 0) {
                 cursor.classList.add("enlarge-p")
             } else {
                 p.classList.add("no-zoom")
