@@ -23,7 +23,7 @@ class Downloads(Page):
         'home.HomePage'
     ]
 
-    intro = models.CharField(default='', blank=True, max_length=50)
+    intro = models.TextField(default='', blank=True, max_length=350)
 
     question_one = models.CharField(default='', blank=True, max_length=50)
     answer_one = models.TextField(default='', blank=True, max_length=200)
@@ -218,7 +218,7 @@ class Donations(Page):
         'home.HomePage'
     ]
 
-    intro = models.CharField(max_length=250, null=True)
+    intro = models.TextField(max_length=350, null=True)
 
     content = StreamField(
         [
@@ -238,7 +238,7 @@ class Donations(Page):
         StreamFieldPanel("content"),
     ]
 
-    keywords = models.CharField(default='', blank=True, max_length=100)
+    keywords = models.CharField(default='', blank=True, max_length=150)
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading=('Content')),
@@ -308,7 +308,7 @@ class Team(Page):
         'home.HomePage'
     ]
 
-    intro =  models.TextField(default='', blank=True, max_length=350)
+    intro =  models.TextField(blank=True, max_length=350)
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -341,6 +341,20 @@ class Team(Page):
         context['users'] = profiles
         return context
 
+    keywords = models.CharField(default='', blank=True, max_length=150)
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading=('Content')),
+        ObjectList(Page.promote_panels, heading=('Promote')),
+        ObjectList(Page.settings_panels, heading=('Settings')),
+        YoastPanel(
+            keywords='keywords',
+            title='seo_title',
+            search_description='search_description',
+            slug='slug'
+        ),
+    ]) 
+
 #Team._meta.get_field("title").default = "Team"
 #Team._meta.get_field("slug").default = "default-homepage-title"
 
@@ -353,7 +367,7 @@ class CustomPage(Page):
         'home.HomePage'
     ]
 
-    intro =  models.TextField(default='', blank=True, max_length=150)
+    intro =  models.TextField(default='', blank=True, max_length=350)
 
     content = StreamField(
         [
@@ -374,7 +388,7 @@ class CustomPage(Page):
     ]
     
 
-    keywords = models.CharField(default='', blank=True, max_length=100)
+    keywords = models.CharField(default='', blank=True, max_length=150)
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading=('Content')),
