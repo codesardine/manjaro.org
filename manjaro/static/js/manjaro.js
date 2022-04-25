@@ -20,11 +20,36 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
 
-    const cursorHover = document.querySelectorAll("a");
+    const cursorHoverA = document.querySelectorAll("a");
+    const cursorHoverP = document.querySelectorAll("p");
     const cursorHoverBtn = document.querySelectorAll("button");
-    cursorHover.forEach(a => {
+    cursorHoverA.forEach(a => {
         a.addEventListener("mouseover", function(e) {
             cursor.classList.add("enlarge")
+        })
+    });
+
+    cursorHoverA.forEach(a => {
+        a.addEventListener("mouseout", function(e) {
+            cursor.classList.remove("enlarge")
+        })
+    });
+
+    cursorHoverP.forEach(p => {
+        p.addEventListener("mouseover", function(e) {
+            console.log(p.classList)
+            if (p.childNodes.length != 0 || p.classList.contains("no-zoom")) {
+                cursor.classList.add("enlarge-p")
+            } else {
+                p.classList.add("no-zoom")
+            }
+            
+        })
+    });
+
+    cursorHoverP.forEach(p => {
+        p.addEventListener("mouseout", function(e) {
+            cursor.classList.remove("enlarge-p")
         })
     });
 
@@ -37,12 +62,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     cursorHoverBtn.forEach(btn => {
         btn.addEventListener("mouseout", function(e) {
-            cursor.classList.remove("enlarge")
-        })
-    });
-
-    cursorHover.forEach(a => {
-        a.addEventListener("mouseout", function(e) {
             cursor.classList.remove("enlarge")
         })
     });

@@ -32,6 +32,11 @@
     height: 150px;
 }
 
+#cursor.enlarge-p {
+    width: 250px;
+    height: 250px;
+}
+
 .circle {
     z-index: -1;
     border-radius: 100%;
@@ -45,11 +50,15 @@
     a:hover, button:hover, .hardware .grid > .flex-col:hover {
         transform: scale(1.1) !important;
     }
+
+    p {
+        border: 4px solid transparent;
+        padding: 3px 5px;
+    }
     
     p:hover {
-        transform: scale(1.1) !important;
-        font-weight:500;
-        cursor: zoom-in;
+        transform: scale(1.05) !important;
+        border: 4px solid #00f8fa;
     }
 
     .downloads a p:hover, .downloads button p:hover,
@@ -245,10 +254,11 @@ margin-bottom: -6rem;
 }
 
 #content {
-    min-height: calc(100vh - 599px);
+    min-height: calc(100vh - 595px);
 }
 
 .no-zoom:hover {
     transform: scale(1.0) !important;
     cursor: auto;
+    border: 4px solid transparent;
 }
