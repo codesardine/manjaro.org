@@ -40,10 +40,9 @@
 .circle {
     z-index: -1;
     border-radius: 100%;
-    width: 19rem;
-    height: 19rem;
-    top: -48%;
-    left: 21.6%;
+    width: 14rem;
+    height: 14rem;
+    box-shadow: 1px 1px 4px #362708;
 }
 
 @media (min-width: 1024px) { 
@@ -98,13 +97,6 @@
 
     .richtext p {
         box-shadow: none;
-    }
-
-    .circle {
-        width: 19rem;
-        height: 19rem;
-        top: -26%;
-        left: 24.5%;
     }
  }
 

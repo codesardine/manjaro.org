@@ -107,7 +107,7 @@
         {% if edition != "arm" %}
         <a href="{{ desktop.image }}" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
             <div class="flex flex-col h-full">
-            <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="" />
+            <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
             <div class="flex-grow border border-t-0 rounded-b">
                 <div class="p-5">
                 <h4 class="mb-2 font-semibold leading-5">{{ title|capfirst }} Desktop</h4>
@@ -159,15 +159,12 @@
                       <h4 class="max-w-lg mb-6 font-sans text-2xl font-bold leading-none tracking-tight text-gray-900 sm:text-2xl md:mx-auto">
                         {{ device|removedash|upper }}
                       </h4>
-                      <p class="text-base text-gray-700 md:text-lg">
-                        desc      
-                    </p>
                     </div>
                     <div class="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
                         {% for arm_title, arm_desktop in value.items %}
                         <a href="{{ arm_desktop.image }}" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
                           <div class="flex flex-col h-full">
-                          <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="" />
+                          <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ arm_title }} Desktop" />
                           <div class="flex-grow border border-t-0 rounded-b">
                               <div class="p-5">
                               <h5 class="mb-2 font-semibold leading-5">{{ arm_title|capfirst }} Desktop</h5>
@@ -191,7 +188,7 @@
                                 {% endif %}
                               </h6>
                               {% if arm_desktop.notes %}
-                              <p class="text-sm text-gray-900 py-5">
+                              <p class="text-sm text-gray-900 py-5 no-zoom">
                                     {{ arm_desktop.notes }}                              
                               </p>
                               {% endif %}
@@ -225,11 +222,8 @@
           <rect fill="url(#7b568941-9ed0-4f49-85a0-5e21ca6c7ad6)" width="52" height="24"></rect>
         </svg>
       </span>
-      Downloads
+      Other Downloads
     </h3>
-    <p class="text-base text-gray-700 md:text-lg">
-      Stuff that do not fit in any other category  
-  </p>
   </div>
   <div class="grid max-w-screen-md gap-10 md:grid-cols-2 sm:mx-auto">
 
@@ -239,7 +233,7 @@
       <div class="flex-grow border border-t-0 rounded-b text-left">
           <div class="p-5">
           <h3 class="mb-2 font-semibold leading-5">Community Manual</h3>
-          <p class="text-sm text-gray-900 pb-6">
+          <p class="text-sm text-gray-900 mb-6">
             {{ page.manual_intro }}
           </p>
           <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide.pdf" class="px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Guide In English</a>
