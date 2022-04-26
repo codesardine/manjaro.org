@@ -23,6 +23,7 @@ class ProductBlock(blocks.StructBlock):
     product_details = blocks.ListBlock(
         blocks.StructBlock(
             [
+                ("certified", blocks.BooleanBlock(required=False, help_text="if the hardware is Manjaro certified")),
                 ("image", ImageChooserBlock(required=True)),
                 ("model", blocks.CharBlock(required=True, max_length=40)),
                 ("processor", blocks.CharBlock(required=True, max_length=100)),
@@ -33,7 +34,6 @@ class ProductBlock(blocks.StructBlock):
                 ("graphics", blocks.CharBlock(required=False, max_length=100)),
                 ("description", blocks.TextBlock(required=False, max_length=250)),
                 ("button_url", blocks.URLBlock(required=True)),
-                ("certified", blocks.BooleanBlock(help_text="if the hardware is Manjaro certified"))
             ]
         )
     )

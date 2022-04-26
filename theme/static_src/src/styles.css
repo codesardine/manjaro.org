@@ -45,6 +45,11 @@
     box-shadow: 1px 1px 4px #362708;
 }
 
+#certified {
+    width: 150px;
+    margin: 0 auto;
+}
+
 @media (min-width: 1024px) { 
     a:hover, button:hover, .hardware .grid > .flex-col:hover {
         transform: scale(1.1) !important;
