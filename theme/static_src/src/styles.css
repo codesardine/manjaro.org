@@ -45,6 +45,17 @@
     box-shadow: 1px 1px 4px #362708;
 }
 
+.circle-1,
+.circle-2,
+.circle-3 {
+  color: #fff;
+  padding: 5%;
+  width: 180px;
+  height: 180px;
+  margin: 0 -15px;
+  mix-blend-mode: multiply;
+}
+
 #certified {
     width: 150px;
     margin: 0 auto;
@@ -52,7 +63,7 @@
 
 @media (min-width: 1024px) { 
     a:hover, button:hover, .hardware .grid > .flex-col:hover {
-        transform: scale(1.1) !important;
+        transform: scale(1.05) !important;
     }
 
     p {

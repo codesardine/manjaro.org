@@ -1,4 +1,4 @@
-{% load wagtailimages_tags %}
+{% load wagtailimages_tags static %}
 
 <div class="px-4 mt-40 pb-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pb-0">
     <div class="grid gap-4 grid-cols-1 lg:grid-cols-2 sm:text-center gap-4 md:mb-12">
@@ -23,7 +23,7 @@
     </div>
     <div class="pt-10 lg:pt-20 mt-[150px] grid max-w-md gap-4 row-gap-8 lg:max-w-screen-lg sm:row-gap-10 lg:grid-cols-3 xl:gap-8 xl:max-w-screen-xl sm:mx-auto">
      {% for item in self.product_details %}
-      <div class="hover-neon mb-52 lg:mb-30 relative bg-gray-900 flex flex-col transition duration-300 bg-grey-50 rounded shadow-sm hover:shadow">
+      <div class="hover-neon mb-52 lg:mb-30 relative bg-gray-900 flex flex-col hover:scale[1.0] transition duration-300 bg-grey-50 rounded shadow-sm hover:shadow">
         <div class="w-full">
           {% if forloop.counter == 1 %}
             {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[50%] hover-red" %}
@@ -47,7 +47,7 @@
             <p class="text-sm pb-4 text-cyan-accent-200 no-zoom">
               {{ forloop.counter }} {{ item.description }}
               {% if item.certified %}
-                <img id="certified" src="/static/img/certified.svg">
+                <img id="certified" src="{% static '/img/certified.svg' %}">
               {% endif %}
             </p>
           </div>
