@@ -309,32 +309,32 @@ class Features(Page):
 
     intro =  models.TextField(blank=True, max_length=350)
     branches_intro =  models.TextField(blank=True, max_length=350)
-    arch_linux_intro =  models.TextField(blank=True, max_length=250)
-    unstable_intro =  models.TextField(blank=True, max_length=250)
-    testing_intro =  models.TextField(blank=True, max_length=250)
-    stable_intro =  models.TextField(blank=True, max_length=250)
+    arch_linux_intro =  models.TextField(blank=True, max_length=350)
+    unstable_intro =  models.TextField(blank=True, max_length=350)
+    testing_intro =  models.TextField(blank=True, max_length=350)
+    stable_intro =  models.TextField(blank=True, max_length=350)
 
     pamac_intro =  models.TextField(blank=True, max_length=350)
-    package_formats_intro =  models.TextField(blank=True, max_length=250)
-    updates_intro =  models.TextField(blank=True, max_length=250)
-    aur_intro =  models.TextField(blank=True, max_length=250)
+    package_formats_intro =  models.TextField(blank=True, max_length=350)
+    updates_intro =  models.TextField(blank=True, max_length=350)
+    aur_intro =  models.TextField(blank=True, max_length=350)
 
     gnome_layout_switcher_intro =  models.TextField(blank=True, max_length=350)
-    manjaro_layout_intro =  models.TextField(blank=True, max_length=250)
-    traditional_layout_intro =  models.TextField(blank=True, max_length=250)
-    tilling_layout_intro =  models.TextField(blank=True, max_length=250)
-    gnome_layout_intro =  models.TextField(blank=True, max_length=250)
+    manjaro_layout_intro =  models.TextField(blank=True, max_length=350)
+    traditional_layout_intro =  models.TextField(blank=True, max_length=350)
+    tilling_layout_intro =  models.TextField(blank=True, max_length=350)
+    gnome_layout_intro =  models.TextField(blank=True, max_length=350)
 
     msm_intro =  models.TextField(blank=True, max_length=350)
-    kernels_intro =  models.TextField(blank=True, max_length=250)
-    common_settings_intro =  models.TextField(blank=True, max_length=250)
-    graphic_drivers_intro =  models.TextField(blank=True, max_length=250)
+    kernels_intro =  models.TextField(blank=True, max_length=350)
+    common_settings_intro =  models.TextField(blank=True, max_length=350)
+    graphic_drivers_intro =  models.TextField(blank=True, max_length=350)
 
-    web_app_manager_intro =  models.TextField(blank=True, max_length=250)
-    microsoft_office_intro =  models.TextField(blank=True, max_length=250)
-    skype_intro =  models.TextField(blank=True, max_length=250)
+    web_app_manager_intro =  models.TextField(blank=True, max_length=350)
+    microsoft_office_intro =  models.TextField(blank=True, max_length=350)
+    skype_intro =  models.TextField(blank=True, max_length=350)
 
-    calamares_intro =  models.TextField(blank=True, max_length=250)    
+    calamares_intro =  models.TextField(blank=True, max_length=350)    
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
