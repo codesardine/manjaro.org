@@ -308,7 +308,7 @@ class Features(Page):
     ]
 
     intro =  models.TextField(blank=True, max_length=450)
-    branches_intro =  models.TextField(blank=True, max_length=450)
+    branches_intro =  models.TextField(blank=True, max_length=650)
     arch_linux_intro =  models.TextField(blank=True, max_length=350)
     unstable_intro =  models.TextField(blank=True, max_length=350)
     testing_intro =  models.TextField(blank=True, max_length=350)
