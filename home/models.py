@@ -299,6 +299,110 @@ class Hardware(Page):
 #Donations._meta.get_field("title").default = "Donations"
 #Donations._meta.get_field("slug").default = "default-homepage-title"
 
+class Features(Page):
+    max_count=1
+    template = "home/features.html"
+    subpage_types = []
+    parent_page_types = [
+        'home.HomePage'
+    ]
+
+    intro =  models.TextField(blank=True, max_length=350)
+    branches_intro =  models.TextField(blank=True, max_length=350)
+    arch_linux_intro =  models.TextField(blank=True, max_length=250)
+    unstable_intro =  models.TextField(blank=True, max_length=250)
+    testing_intro =  models.TextField(blank=True, max_length=250)
+    stable_intro =  models.TextField(blank=True, max_length=250)
+
+    pamac_intro =  models.TextField(blank=True, max_length=350)
+    package_formats_intro =  models.TextField(blank=True, max_length=250)
+    updates_intro =  models.TextField(blank=True, max_length=250)
+    aur_intro =  models.TextField(blank=True, max_length=250)
+
+    gnome_layout_switcher_intro =  models.TextField(blank=True, max_length=350)
+    manjaro_layout_intro =  models.TextField(blank=True, max_length=250)
+    traditional_layout_intro =  models.TextField(blank=True, max_length=250)
+    tilling_layout_intro =  models.TextField(blank=True, max_length=250)
+    gnome_layout_intro =  models.TextField(blank=True, max_length=250)
+
+    msm_intro =  models.TextField(blank=True, max_length=350)
+    kernels_intro =  models.TextField(blank=True, max_length=250)
+    common_settings_intro =  models.TextField(blank=True, max_length=250)
+    graphic_drivers_intro =  models.TextField(blank=True, max_length=250)
+
+    web_app_manager_intro =  models.TextField(blank=True, max_length=250)
+    microsoft_office_intro =  models.TextField(blank=True, max_length=250)
+    skype_intro =  models.TextField(blank=True, max_length=250)
+
+    calamares_intro =  models.TextField(blank=True, max_length=250)    
+
+    search_fields = Page.search_fields + [
+        index.SearchField('intro'),
+        index.SearchField("branches_intro"),
+        index.SearchField("arch_linux_intro"),
+        index.SearchField("unstable_intro"),
+        index.SearchField("testing_intro"),
+        index.SearchField("stable_intro"),
+        index.SearchField("pamac_intro"),
+        index.SearchField("package_formats_intro"),
+        index.SearchField("updates_intro"),
+        index.SearchField("aur_intro"),
+        index.SearchField("gnome_layout_switcher_intro"),
+        index.SearchField("manjaro_layout_intro"),
+        index.SearchField("traditional_layout_intro"),
+        index.SearchField("tilling_layout_intro"),
+        index.SearchField("gnome_layout_intro"),
+        index.SearchField("msm_intro"),
+        index.SearchField("kernels_intro"),
+        index.SearchField("common_settings_intro"),
+        index.SearchField("graphic_drivers_intro"),
+        index.SearchField("web_app_manager_intro"),
+        index.SearchField("microsoft_office_intro"),
+        index.SearchField("skype_intro"),
+        index.SearchField("calamares_intro"),
+    ]
+
+    content_panels = Page.content_panels + [
+        FieldPanel("intro"),
+        FieldPanel("branches_intro"),
+        FieldPanel("arch_linux_intro"),
+        FieldPanel("unstable_intro"),
+        FieldPanel("testing_intro"),
+        FieldPanel("stable_intro"),
+        FieldPanel("pamac_intro"),
+        FieldPanel("package_formats_intro"),
+        FieldPanel("updates_intro"),
+        FieldPanel("aur_intro"),
+        FieldPanel("gnome_layout_switcher_intro"),
+        FieldPanel("manjaro_layout_intro"),
+        FieldPanel("traditional_layout_intro"),
+        FieldPanel("tilling_layout_intro"),
+        FieldPanel("gnome_layout_intro"),
+        FieldPanel("msm_intro"),
+        FieldPanel("kernels_intro"),
+        FieldPanel("common_settings_intro"),
+        FieldPanel("graphic_drivers_intro"),
+        FieldPanel("web_app_manager_intro"),
+        FieldPanel("microsoft_office_intro"),
+        FieldPanel("skype_intro"),
+        FieldPanel("calamares_intro"),
+    ]
+
+    keywords = models.CharField(default='', blank=True, max_length=150)
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading=('Content')),
+        ObjectList(Page.promote_panels, heading=('Promote')),
+        ObjectList(Page.settings_panels, heading=('Settings')),
+        YoastPanel(
+            keywords='keywords',
+            title='seo_title',
+            search_description='search_description',
+            slug='slug'
+        ),
+    ])
+
+
 class Team(Page):
     max_count=1
     title = "Team"
@@ -458,6 +562,7 @@ class HomePage(Page):
         'home.Hardware',
         'home.Donations',
         'contact.ContactPage',
+        'features',
         ]
     parent_page_types = [
         'wagtailcore.Page'

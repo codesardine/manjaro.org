@@ -56,6 +56,22 @@
   mix-blend-mode: multiply;
 }
 
+.circle-1 {
+  background: rgba(25, 161, 13, 0.61);
+  border-radius: 50% 50% 50% 70%/50% 50% 70% 60%;
+  margin-bottom: 15px;
+}
+
+.circle-2 {
+  background: #f92;
+  border-radius: 80% 30% 50% 50%/50%;
+}
+
+.circle-3 {
+  background: rgb(255, 67, 34);
+  border-radius: 40% 40% 50% 40%/30% 50% 50% 50%;
+}
+
 #certified {
     width: 150px;
     margin: 0 auto;
