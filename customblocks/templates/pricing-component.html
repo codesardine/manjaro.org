@@ -46,10 +46,10 @@
             </ul>
             <p class="text-sm pb-4 text-cyan-accent-200 no-zoom">
               {{ forloop.counter }} {{ item.description }}
-              {% if item.certified %}
-                <img id="certified" src="{% static '/img/certified.png' %}">
-              {% endif %}
             </p>
+            {% if item.certified %}
+                <img id="certified" class="pb-4" src="{% static '/img/certified.png' %}">
+              {% endif %}
           </div>
             <div class="relative">
               <a href="{{ item.button_url }}"
