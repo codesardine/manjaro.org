@@ -317,7 +317,7 @@ class Features(Page):
     pamac_intro =  models.TextField(blank=True, max_length=350)
     package_formats_intro =  models.TextField(blank=True, max_length=350)
     updates_intro =  models.TextField(blank=True, max_length=350)
-    aur_intro =  models.TextField(blank=True, max_length=350)
+    aur_intro =  models.TextField(blank=True, max_length=450)
 
     gnome_layout_switcher_intro =  models.TextField(blank=True, max_length=350)
     manjaro_layout_intro =  models.TextField(blank=True, max_length=350)
@@ -330,11 +330,11 @@ class Features(Page):
     common_settings_intro =  models.TextField(blank=True, max_length=350)
     graphic_drivers_intro =  models.TextField(blank=True, max_length=350)
 
-    web_app_manager_intro =  models.TextField(blank=True, max_length=350)
+    web_app_manager_intro =  models.TextField(blank=True, max_length=450)
     microsoft_office_intro =  models.TextField(blank=True, max_length=350)
     skype_intro =  models.TextField(blank=True, max_length=350)
 
-    calamares_intro =  models.TextField(blank=True, max_length=350)    
+    calamares_intro =  models.TextField(blank=True, max_length=450)    
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
