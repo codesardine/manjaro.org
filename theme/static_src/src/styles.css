@@ -132,11 +132,6 @@
     }
  }
 
- .richtext p:first-child {
-     display: none;
- }
-
-
  .richtext p, .richtext img, .richtext code,
  .richtext ol, .richtext ul, .richtext blockquote,
  .richtext h2, .richtext h3, .richtext h4 {
