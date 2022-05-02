@@ -40,7 +40,7 @@ class Downloads(Page):
     manual_intro = models.TextField(default='', blank=True, max_length=200)
     docker_intro = models.TextField(default='', blank=True, max_length=200)
 
-    xfce_description = models.TextField(default='', blank=True, max_length=150)
+    xfce_description = models.TextField(default='', blank=True, max_length=350)
     xfce_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -48,9 +48,9 @@ class Downloads(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    xfce_notes = models.TextField(default='', blank=True, max_length=200)
+    xfce_notes = models.TextField(default='', blank=True, max_length=300)
 
-    plasma_description = models.TextField(default='', blank=True, max_length=150)
+    plasma_description = models.TextField(default='', blank=True, max_length=350)
     plasma_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -58,9 +58,9 @@ class Downloads(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    plasma_notes = models.TextField(default='', blank=True, max_length=200)
+    plasma_notes = models.TextField(default='', blank=True, max_length=300)
 
-    gnome_description = models.TextField(default='', blank=True, max_length=150)
+    gnome_description = models.TextField(default='', blank=True, max_length=350)
     gnome_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -68,9 +68,9 @@ class Downloads(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    gnome_notes = models.TextField(default='', blank=True, max_length=200)
+    gnome_notes = models.TextField(default='', blank=True, max_length=300)
 
-    cinnamon_description = models.TextField(default='', blank=True, max_length=150)
+    cinnamon_description = models.TextField(default='', blank=True, max_length=350)
     cinnamon_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -78,9 +78,9 @@ class Downloads(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    cinnamon_notes = models.TextField(default='', blank=True, max_length=200)
+    cinnamon_notes = models.TextField(default='', blank=True, max_length=400)
 
-    i3_description = models.TextField(default='', blank=True, max_length=150)
+    i3_description = models.TextField(default='', blank=True, max_length=350)
     i3_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -88,9 +88,9 @@ class Downloads(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    i3_notes = models.TextField(default='', blank=True, max_length=200)
+    i3_notes = models.TextField(default='', blank=True, max_length=300)
 
-    budgie_description = models.TextField(default='', blank=True, max_length=150)
+    budgie_description = models.TextField(default='', blank=True, max_length=350)
     budgie_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -98,9 +98,9 @@ class Downloads(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    budgie_notes = models.TextField(default='', blank=True, max_length=200)
+    budgie_notes = models.TextField(default='', blank=True, max_length=300)
 
-    mate_description = models.TextField(default='', blank=True, max_length=150)
+    mate_description = models.TextField(default='', blank=True, max_length=350)
     mate_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -108,9 +108,9 @@ class Downloads(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    mate_notes = models.TextField(default='', blank=True, max_length=200)
+    mate_notes = models.TextField(default='', blank=True, max_length=300)
 
-    sway_description = models.TextField(default='', blank=True, max_length=150)
+    sway_description = models.TextField(default='', blank=True, max_length=350)
     sway_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -118,7 +118,7 @@ class Downloads(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    sway_notes = models.TextField(default='', blank=True, max_length=200)
+    sway_notes = models.TextField(default='', blank=True, max_length=300)
 
 
     edition_panels = [
