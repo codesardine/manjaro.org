@@ -579,20 +579,17 @@ class HomePage(Page):
 
     manjaro_title = models.CharField(default='', blank=True, max_length=50)
     manjaro_intro = models.TextField(blank=True, max_length=350)
-    promotion_text = models.CharField(default='', blank=True, max_length=80)
-    promotion_url = models.URLField(blank=True)
-
+    
     partners_title = models.CharField(default='', blank=True, max_length=50)
     partners_intro = models.TextField(blank=True, max_length=350)
     partners_url = models.URLField(blank=True)
+
     shells_title = models.CharField(default='', blank=True, max_length=50)
     shells_intro = models.TextField(blank=True, max_length=350)
 
     content_panels = Page.content_panels + [
         FieldPanel("manjaro_title"),
         FieldPanel("manjaro_intro"),
-        FieldPanel("promotion_text"),
-        FieldPanel("promotion_url"),
         FieldPanel("partners_title"),
         FieldPanel("partners_intro"),
         FieldPanel("partners_url"),
@@ -601,10 +598,23 @@ class HomePage(Page):
         StreamFieldPanel("content"),
     ]
 
+    affiliate = StreamField(
+        [
+            ("promotion", blocks.AffiliateBlock()),
+        ],
+        null=True,
+        blank=True,
+    )
+
+    affiliate_panels = [
+        StreamFieldPanel("affiliate"),
+    ]
+
     keywords = models.CharField(default='', blank=True, max_length=100)
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading=('Content')),
+        ObjectList(affiliate_panels, heading=('Affiliate')),
         ObjectList(Page.promote_panels, heading=('Promote')),
         ObjectList(Page.settings_panels, heading=('Settings')),
         YoastPanel(

@@ -38,7 +38,6 @@ class ProductBlock(blocks.StructBlock):
         )
     )
 
-
     class Meta:
         template = "pricing-component.html"
         icon = "form"
@@ -51,11 +50,26 @@ class PartnerBlock(blocks.StructBlock):
     description = blocks.TextBlock(required=True, help_text="Short Vendor Description")
     vendor_logo = ImageChooserBlock(required=False)
 
-
     class Meta:
         template = "partner-component.html"
         icon = "user"
         label = "Partner"
+
+
+class AffiliateBlock(blocks.StructBlock):
+
+    promotion = blocks.StructBlock(
+            [
+                ("text", blocks.CharBlock(required=True)),
+                ("url", blocks.URLBlock(required=True)),
+                ("background", ImageChooserBlock(required=True, help_text="Vendor Background Image")),
+            ]
+          )
+
+    class Meta:
+        template = "affiliate-component.html"
+        icon = "user"
+        label = "Affiliate"
 
 
 

@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags puput_tags static %}
+{% load wagtailcore_tags puput_tags static template_tags wagtailimages_tags %}
 
 {% block body_class %}homepage{% endblock %}
 
 {% block content %}
 <div class="relative pt-6 lg:pt-0">
-    <img src="{% static 'img/minisforum.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260" class="absolute inset-0 object-cover w-full h-full" alt="" />
+  {% with affiliate=page.affiliate|random_list %}
+    {% with promo=affiliate.value.promotion %}
+    {% image promo.background original class="absolute inset-0 object-cover w-full h-full" %}
     <div class="relative bg-gray-900 bg-opacity-75">
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 lg:h-screen">
         <div class="flex flex-col items-center justify-between xl:flex-row w-full">
@@ -98,8 +100,8 @@
               </div>
           </div>
           <div class="w-full max-w-xl xl:px-8 xl:w-5/12 lg:translate-y-[50%] transform-gpu">
-            <a href="{{ page.promotion_link }}" aria-label="Latest Hardware Minisforum PC" class="w-[100%] lg:w-[80%] text-center relative speech-bubble-rigth block font-semibold transition-colors duration-200 text-teal-accent-700 hover:text-teal-accent-200">
-                {{ page.promotion_text }}
+              <a href="{{ promo.url }}" aria-label="Latest Hardware Minisforum PC" class="w-[100%] lg:w-[80%] text-center relative speech-bubble-rigth block font-semibold transition-colors duration-200 text-teal-accent-700 hover:text-teal-accent-200">
+                {{ promo.link_text }}
                 <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
                   <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
                 </svg>
@@ -109,6 +111,8 @@
         </div>
       </div>
     </div>
+    {% endwith %}
+   {% endwith %}
   </div>
 
   <div class="lg:h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
