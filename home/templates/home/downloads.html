@@ -119,12 +119,20 @@
                     <br>
                     <div class="pl-2 pr-2 text-center">
                       <a href="{{ desktop.minimal.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Minimal</a>
+                      {% if desktop.minimal.signature %}
                       <a href="{{ desktop.minimal.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+                      {% endif %}
+                      {% if desktop.minimal.checksum %}
                       <a href="{{ desktop.minimal.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+                      {% endif %}
                       <br>
                       <a href="{{ desktop.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Full</a>
+                      {% if desktop.signature %}
                       <a href="{{ desktop.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+                      {% endif %}
+                      {% if desktop.checksum %}
                       <a href="{{ desktop.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+                      {% endif %}
                     </div>
                     <br>
                     {% if "download." in desktop.image %}
@@ -194,7 +202,14 @@
       <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ arm_title }} Desktop" />
       <div class="flex-grow border border-t-0 rounded-b">
           <div class="p-5">
-          <h5 class="mb-2 font-semibold leading-5">{{ arm_title|capfirst }}</h5>
+          <h5 class="mb-2 font-semibold leading-5">
+            {{ arm_title|capfirst }}
+            {% if "phosh" in arm_title.lower or "mobile" in arm_title.lower%}
+            {% elif "minimal" in arm_title.lower or "sway" in arm_title.lower %}            
+            {% else %}
+            Desktop
+            {% endif %}
+          </h5>
           <p class="text-sm text-gray-900">
             {% if "xfce" in arm_title.lower %}
               {{ page.xfce_description }}
@@ -220,8 +235,12 @@
           <br>
           <div class="pl-2 pr-2 text-center">           
             <a href="{{ arm_desktop.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Image</a>
+            {% if arm_desktop.signature %}
             <a href="{{ arm_desktop.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+            {% endif %}
+            {% if arm_desktop.checksum %}
             <a href="{{ arm_desktop.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+            {% endif %}
           </div>
           </div>
       </div>
@@ -284,7 +303,13 @@
               <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
               <div class="flex-grow border border-t-0 rounded-b">
                   <div class="p-5">
-                    <h4 class="mb-2 font-semibold leading-5">{{ title|capfirst }} Desktop</h4>
+                    <h4 class="mb-2 font-semibold leading-5">
+                      {{ title|capfirst }}
+                      {% if "i3" in title.lower or "sway" in title.lower %}            
+                      {% else %}
+                      Desktop
+                      {% endif %}
+                    </h4>
                     <p class="text-sm text-gray-900">
                       {% if "cinnamon" in title.lower %}
                         {{ page.cinnamon_description }}
@@ -308,12 +333,20 @@
                     <br>
                     <div class="pl-2 pr-2 text-center">
                       <a href="{{ desktop.minimal.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Minimal</a>
+                      {% if desktop.minimal.signature %}
                       <a href="{{ desktop.minimal.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+                      {% endif %}
+                      {% if desktop.minimal.checksum %}
                       <a href="{{ desktop.minimal.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+                      {% endif %}
                       <br>
                       <a href="{{ desktop.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Full</a>
+                      {% if desktop.signature %}
                       <a href="{{ desktop.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+                      {% endif %}
+                      {% if desktop.checksum %}
                       <a href="{{ desktop.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+                      {% endif %}
                     </div>
                     {% if "download." in desktop.image %}
                     <div class="text-sm text-gray-900 inline-block text-center w-full">
@@ -339,7 +372,7 @@
           </div>
         </div>
     </a>
-      <button aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
+      <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
         <div class="flex flex-col h-full">
         <img src="{% static '/img/manual.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Manual" />
         <div class="flex-grow border border-t-0 rounded-b text-left">
@@ -354,7 +387,7 @@
           </div>
         </div>
         </div>
-      </button>
+      </div>
     </div>
   </div>
   {% endif %}
