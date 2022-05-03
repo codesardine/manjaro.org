@@ -25,14 +25,14 @@ class ProductBlock(blocks.StructBlock):
             [
                 ("certified", blocks.BooleanBlock(required=False, help_text="if the hardware is Manjaro certified")),
                 ("image", ImageChooserBlock(required=True)),
-                ("model", blocks.CharBlock(required=True, max_length=40)),
+                ("model", blocks.CharBlock(required=True, max_length=100)),
                 ("processor", blocks.CharBlock(required=True, max_length=100)),
                 ("screen", blocks.CharBlock(required=True, max_length=100)),
                 ("memory", blocks.CharBlock(required=True, max_length=100)),
                 ("storage", blocks.CharBlock(required=True, max_length=100)),
-                ("ports", blocks.CharBlock(required=True, max_length=100)),
+                ("ports", blocks.CharBlock(required=True, max_length=150)),
                 ("graphics", blocks.CharBlock(required=False, max_length=100)),
-                ("description", blocks.TextBlock(required=False, max_length=250)),
+                ("description", blocks.TextBlock(required=False, max_length=450)),
                 ("button_url", blocks.URLBlock(required=True)),
             ]
         )
