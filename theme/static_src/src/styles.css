@@ -138,9 +138,13 @@
      padding: 1.5rem;
  }
 
- .richtext ol, .richtext ul {
-     list-style: disc;
+ .richtext ul {
+     list-style: none;
  }
+
+ .richtext ol {
+    list-style: decimal;
+}
 
  .richtext a {
     transition-duration: 200ms;
