@@ -471,7 +471,7 @@ class CustomPage(Page):
         'home.HomePage'
     ]
 
-    intro =  models.TextField(default='', blank=True, max_length=350)
+    intro =  models.TextField(default='', blank=True, max_length=450)
 
     content = StreamField(
         [
