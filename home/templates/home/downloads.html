@@ -91,107 +91,165 @@
             Manjaro ARM Team Spins
         {% endif %}
       </h3>
-      <p class="text-base text-gray-700 md:text-lg">
-        {% if edition == "official" %}
-          {{ page.team_spins_intro }}
-        {% elif edition == "arm" %}
-          {{ page.arm_spins_intro }}
-        {% endif %}      
-    </p>
     </div>
     {% endif %}
+    {% if edition == "official" %}
     <div class="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
-    {% for title, desktop in desktops.items %}
-        {% if edition == "official" %}
-        <a href="{{ desktop.image }}" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
+    {% for title, desktop in desktops.items %}        
+        <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
             <div class="flex flex-col h-full">
               <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
               <div class="flex-grow border border-t-0 rounded-b">
                   <div class="p-5">
-                  <h4 class="mb-2 font-semibold leading-5">{{ title|capfirst }} Desktop</h4>
-                  <p class="text-sm text-gray-900">
-                    {% if "xfce" in title.lower %}
-                      {{ page.xfce_description }}
-                    {% elif "plasma" in title.lower %}
-                      {{ page.plasma_description }}
-                    {% elif "gnome" in title.lower %}
-                      {{ page.gnome_description }}
+                    <h4 class="mb-2 font-semibold leading-5">{{ title|capfirst }} Desktop</h4>
+                    <p class="text-sm text-gray-900">
+                      {% if "xfce" in title.lower %}
+                        {{ page.xfce_description }}
+                      {% elif "plasma" in title.lower %}
+                        {{ page.plasma_description }}
+                      {% elif "gnome" in title.lower %}
+                        {{ page.gnome_description }}
+                      {% endif %}
+                    </p>
+                    {% if desktop.notes %}
+                    <p class="text-sm text-gray-900 pl-1 pr-1">
+                        {{ desktop.notes }}                              
+                    </p>
                     {% endif %}
-                  </p>
-                  {% if desktop.notes %}
-                  <p class="text-sm text-gray-900 py-5">
-                      {{ desktop.notes }}                              
-                  </p>
-                  {% endif %}
+                    <br>
+                    <div class="pl-2 pr-2 text-center">
+                      <a href="{{ desktop.minimal.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Minimal</a>
+                      <a href="{{ desktop.minimal.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+                      <a href="{{ desktop.minimal.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+                      <br>
+                      <a href="{{ desktop.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Full</a>
+                      <a href="{{ desktop.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+                      <a href="{{ desktop.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+                    </div>
+                    <br>
+                    {% if "download." in desktop.image %}
+                    <div class="text-sm text-gray-900 inline-block text-center w-full">
+                      Download provided by 
+                      <a href="https://www.cdn77.com"><img id="cdn" class="inline-block" src="/static/img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="CDN77" /></a>                           
+                    </div>
+                    {% endif %}
                   </div>
                 </div>
             </div>
-         </a>            
-        {% endif %}
-      {% endfor %}
-     
+          </div>            
+      {% endfor %}  
+      {% endif %}
+   
     </div>
   </div>
   {% endfor %}
 
+
+<div class="px-4 py-0 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-0">
+    <div class="max-w-xl mb-5 md:mx-auto sm:text-center lg:max-w-2xl">
+      <div>
+        <span class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-white uppercase rounded-full bg-deep-purple-accent-400">
+            device
+        </span>
+      </div>
+      <div class="flex justify-center">
+        <div class="mb-3 xl:w-96">
+          <select class="form-select appearance-none
+            block
+            w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-transparent bg-clip-padding bg-no-repeat
+            border border-solid border-gray-300
+            rounded
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:border-deep-purple-accent-400 focus:outline-none" aria-label="Select a device">
 {% for edition, desktops in data.items %}
-    {% for iso, value in desktops.items %}
-        {% if edition == "arm" %}
-            {% with device=iso %}
-                <div class="px-4 py-0 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-0">
-                    <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-                      <div>
-                        <span class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-white uppercase rounded-full bg-deep-purple-accent-400">
-                            device
-                        </span>
-                      </div>
-                      <h4 class="max-w-lg mb-6 font-sans text-2xl font-bold leading-none tracking-tight text-gray-900 sm:text-2xl md:mx-auto">
-                        {{ device|removedash|upper }}
-                      </h4>
-                    </div>
-                    <div class="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
-                        {% for arm_title, arm_desktop in value.items %}
-                        <a href="{{ arm_desktop.image }}" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
-                          <div class="flex flex-col h-full">
-                          <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ arm_title }} Desktop" />
-                          <div class="flex-grow border border-t-0 rounded-b">
-                              <div class="p-5">
-                              <h5 class="mb-2 font-semibold leading-5">{{ arm_title|capfirst }} Desktop</h5>
-                              <h6 class="text-sm text-gray-900">
-                                {% if "xfce" in arm_title.lower %}
-                                  {{ page.xfce_description }}
-                                {% elif "plasma" in arm_title.lower %}
-                                  {{ page.plasma_description }}
-                                {% elif "gnome" in arm_title.lower %}
-                                  {{ page.gnome_description }}
-                                {% elif "cinnamon" in arm_title.lower %}
-                                  {{ page.cinnamon_description }}
-                                {% elif "i3" in arm_title.lower %}
-                                  {{ page.i3_description }}
-                                {% elif "budgie" in arm_title.lower %}
-                                  {{ page.budgie_description }}
-                                {% elif "mate" in arm_title.lower %}
-                                  {{ page.mate_description }}
-                                {% elif "sway" in arm_title.lower %}
-                                  {{ page.sway_description }}
-                                {% endif %}
-                              </h6>
-                              {% if arm_desktop.notes %}
-                              <p class="text-sm text-gray-900 py-5 no-zoom">
-                                    {{ arm_desktop.notes }}                              
-                              </p>
-                              {% endif %}
-                              </div>
-                          </div>
-                          </div>
-                        </a>
-                        {% endfor %}  
-             {% endwith %}     
-          {% endif %}
+  {% for iso, value in desktops.items %}
+    {% if edition == "arm" %}
+      {% with device=iso %}  
+            <option {% if forloop.first %}selected{% endif %}>{{ device|removedash|upper }}</option>
+      {% endwith %}     
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+          </select>
         </div>
       </div>
-    {% endfor %}
+    </div>
+
+{% for edition, desktops in data.items %}
+  {% for iso, value in desktops.items %}
+      {% if edition == "arm" %}
+          {% with device=iso %}
+<div id="{{ device.lower|clean_id }}" class="{% if not forloop.first %}hidden {% endif %}arm-grid grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2"> 
+  {% for arm_title, arm_desktop in value.items %}
+    <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
+      <div class="flex flex-col h-full">
+      <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ arm_title }} Desktop" />
+      <div class="flex-grow border border-t-0 rounded-b">
+          <div class="p-5">
+          <h5 class="mb-2 font-semibold leading-5">{{ arm_title|capfirst }}</h5>
+          <p class="text-sm text-gray-900">
+            {% if "xfce" in arm_title.lower %}
+              {{ page.xfce_description }}
+            {% elif "plasma-mobile" in arm_title.lower %}
+              {{ page.plasma_mobile_description }}
+            {% elif "gnome" in arm_title.lower %}
+              {{ page.gnome_description }}
+            {% elif "posh" in arm_title.lower %}
+              {{ page.posh_description }}
+            {% elif "mobile" in arm_title.lower %}
+              {{ page.mobile_description }}
+            {% elif "mate" in arm_title.lower %}
+              {{ page.mate_description }}
+            {% elif "sway" in arm_title.lower %}
+              {{ page.sway_description }}
+            {% endif %}
+          </p>
+          {% if arm_desktop.notes %}
+          <p class="text-sm text-gray-900 pl-1 pr-1">
+                {{ arm_desktop.notes }}                              
+          </p>
+          {% endif %}
+          <br>
+          <div class="pl-2 pr-2 text-center">           
+            <a href="{{ arm_desktop.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Image</a>
+            <a href="{{ arm_desktop.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+            <a href="{{ arm_desktop.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+          </div>
+          </div>
+      </div>
+      </div>
+    </div>
+    {% endfor %}  
+    </div>
+      {% endwith %} 
+    {% endif %}
+  {% endfor %}
 {% endfor %}
+</div>
+
+<script defer>
+  document.querySelector(".form-select").onchange = function(e) {
+    let grid = this.value.toLowerCase().replace(/\s/g, "")
+    console.log(grid)
+    let grids = document.querySelectorAll(".arm-grid")
+    grids.forEach(el => {
+      el.classList.remove("block")
+      if (!el.classList.contains("hidden")) {
+      el.classList.add("hidden")
+    } 
+    })
+    document.getElementById(grid).classList.add("block")
+    document.getElementById(grid).classList.remove("hidden")
+  }
+</script>
 
 {% for edition, desktops in data.items %}
   {% if edition == "community" %}
@@ -199,7 +257,7 @@
     <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
       <div>
         <h2 class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-            {{ edition }}
+            others
         </h2>
       </div>
       <h3 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
@@ -213,7 +271,7 @@
             <rect fill="url(#7b568941-9ed0-4f49-85a0-5e21ca6c7ad6)" width="52" height="24"></rect>
           </svg>
         </span>
-            Community Made
+            {{ edition.capitalize }}
       </h3>
       <p class="text-base text-gray-700 md:text-lg">
           {{ page.community_spins_intro }}
@@ -221,34 +279,52 @@
     </div>
     <div class="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
     {% for title, desktop in desktops.items %}
-        <a href="{{ desktop.image }}" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
+        <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
             <div class="flex flex-col h-full">
               <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
               <div class="flex-grow border border-t-0 rounded-b">
                   <div class="p-5">
-                  <h4 class="mb-2 font-semibold leading-5">{{ title|capfirst }} Desktop</h4>
-                  <p class="text-sm text-gray-900">
-                    {% if "cinnamon" in title.lower %}
-                      {{ page.cinnamon_description }}
-                    {% elif "i3" in title.lower %}
-                      {{ page.i3_description }}
-                    {% elif "budgie" in title.lower %}
-                      {{ page.budgie_description }}
-                    {% elif "mate" in title.lower %}
-                      {{ page.mate_description }}
-                    {% elif "sway" in title.lower %}
-                      {{ page.sway_description }}
+                    <h4 class="mb-2 font-semibold leading-5">{{ title|capfirst }} Desktop</h4>
+                    <p class="text-sm text-gray-900">
+                      {% if "cinnamon" in title.lower %}
+                        {{ page.cinnamon_description }}
+                      {% elif "i3" in title.lower %}
+                        {{ page.i3_description }}
+                      {% elif "budgie" in title.lower %}
+                        {{ page.budgie_description }}
+                      {% elif "mate" in title.lower %}
+                        {{ page.mate_description }}
+                      {% elif "sway" in title.lower %}
+                        {{ page.sway_description }}
+                      {% elif "minimal" in title.lower %}
+                        {{ page.minimal_description }}
+                      {% endif %}
+                    </p>
+                    {% if desktop.notes %}
+                    <p class="text-sm text-gray-900 pl-1 pr-1">
+                        {{ desktop.notes }}                              
+                    </p>
                     {% endif %}
-                  </p>
-                  {% if desktop.notes %}
-                  <p class="text-sm text-gray-900 py-5">
-                      {{ desktop.notes }}                              
-                  </p>
-                  {% endif %}
+                    <br>
+                    <div class="pl-2 pr-2 text-center">
+                      <a href="{{ desktop.minimal.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Minimal</a>
+                      <a href="{{ desktop.minimal.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+                      <a href="{{ desktop.minimal.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+                      <br>
+                      <a href="{{ desktop.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Full</a>
+                      <a href="{{ desktop.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+                      <a href="{{ desktop.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+                    </div>
+                    {% if "download." in desktop.image %}
+                    <div class="text-sm text-gray-900 inline-block text-center w-full">
+                      Download provided by 
+                      <a href="https://www.cdn77.com"><img id="cdn" class="inline-block" src="/static/img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="CDN77" /></a>                           
+                    </div>
+                    {% endif %}
                   </div>
                 </div>
             </div>
-         </a>            
+          </div>            
       {% endfor %}
       <a target="_blank" href="https://github.com/manjaro/manjaro-docker" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
         <div class="flex flex-col h-full">

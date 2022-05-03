@@ -11,3 +11,7 @@ def removedash(value):
 @register.filter
 def random_list(list):
     return random.choice(list)
+
+@register.filter
+def clean_id(string):
+    return string.replace(" ", "")
