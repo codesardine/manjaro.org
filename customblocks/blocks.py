@@ -32,7 +32,7 @@ class ProductBlock(blocks.StructBlock):
                 ("storage", blocks.CharBlock(required=True, max_length=100)),
                 ("ports", blocks.CharBlock(required=True, max_length=150)),
                 ("graphics", blocks.CharBlock(required=False, max_length=100)),
-                ("description", blocks.TextBlock(required=False, max_length=450)),
+                ("description", blocks.TextBlock(required=False, max_length=650)),
                 ("button_url", blocks.URLBlock(required=True)),
             ]
         )
