@@ -21,10 +21,10 @@ class ProductBlock(blocks.StructBlock):
         blocks.StructBlock(
             [
                 ("certified", blocks.BooleanBlock(required=False, help_text="if the hardware is Manjaro certified")),
-                ("image", ImageChooserBlock(required=True)),
+                ("image", ImageChooserBlock(required=True, help_text="images must be 500x375 with space around the space determinates the image size")),
                 ("model", blocks.CharBlock(required=True, max_length=100)),
                 ("processor", blocks.CharBlock(required=True, max_length=100)),
-                ("screen", blocks.CharBlock(required=True, max_length=100)),
+                ("screen", blocks.CharBlock(required=False, max_length=100)),
                 ("memory", blocks.CharBlock(required=True, max_length=100)),
                 ("storage", blocks.CharBlock(required=True, max_length=100)),
                 ("ports", blocks.CharBlock(required=True, max_length=150)),
