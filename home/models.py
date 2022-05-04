@@ -434,7 +434,7 @@ class Team(Page):
             try:
                 avatar = f"/media/{profile.user.avatar.file}"
             except AttributeError:
-                imgs =["jaro-1.png", "jaro-3.png"]
+                imgs =["jaro-1.png", "jaro-3.png", "jaro-4.png"]
                 avatar = f"/static/img/{random.choice(imgs)}"
             tweeter = profile.user.tweeter
             github = profile.user.github
