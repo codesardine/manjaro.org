@@ -17,9 +17,6 @@ class RichtextBlock(blocks.RichTextBlock):
 
 class ProductBlock(blocks.StructBlock):
 
-    title = blocks.CharBlock(required=True, help_text="Vendor")
-    description = blocks.CharBlock(required=True, help_text="Very Short Vendor Description")
-    vendor_logo = ImageChooserBlock(required=True)
     product_details = blocks.ListBlock(
         blocks.StructBlock(
             [
