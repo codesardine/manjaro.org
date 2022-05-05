@@ -4,7 +4,6 @@ from customblocks import blocks
 from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
-#from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
 import requests
@@ -13,7 +12,6 @@ from django.contrib.auth import get_user_model
 from wagtail.users.models import UserProfile
 from manjaro.settings.base import MEDIA_ROOT, MEDIA_URL
 
-# pre defined pages 
 
 class Downloads(Page):
     max_count=1
@@ -41,112 +39,32 @@ class Downloads(Page):
     docker_intro = models.TextField(default='', blank=True, max_length=200)
 
     xfce_description = models.TextField(default='', blank=True, max_length=350)
-    xfce_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    xfce_notes = models.TextField(default='', blank=True, max_length=300)
-
     plasma_description = models.TextField(default='', blank=True, max_length=350)
-    plasma_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    plasma_notes = models.TextField(default='', blank=True, max_length=300)
-
     gnome_description = models.TextField(default='', blank=True, max_length=350)
-    gnome_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    gnome_notes = models.TextField(default='', blank=True, max_length=300)
-
     cinnamon_description = models.TextField(default='', blank=True, max_length=350)
-    cinnamon_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    cinnamon_notes = models.TextField(default='', blank=True, max_length=400)
-
     i3_description = models.TextField(default='', blank=True, max_length=350)
-    i3_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    i3_notes = models.TextField(default='', blank=True, max_length=300)
-
     budgie_description = models.TextField(default='', blank=True, max_length=350)
-    budgie_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    budgie_notes = models.TextField(default='', blank=True, max_length=300)
-
     mate_description = models.TextField(default='', blank=True, max_length=350)
-    mate_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    mate_notes = models.TextField(default='', blank=True, max_length=300)
-
     sway_description = models.TextField(default='', blank=True, max_length=350)
-    sway_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-    sway_notes = models.TextField(default='', blank=True, max_length=300)
-
+    
+    posh_description = models.TextField(default='', blank=True, max_length=350)
+    plasma_mobile_description = models.TextField(default='', blank=True, max_length=350)
+    minimal_description = models.TextField(default='', blank=True, max_length=350)
 
     edition_panels = [
         FieldPanel("xfce_description"),
-        #ImageChooserPanel('xfce_image'),
-        FieldPanel("xfce_notes"),
         FieldPanel("plasma_description"),
-        #ImageChooserPanel('plasma_image'),
-        FieldPanel("plasma_notes"),
         FieldPanel("gnome_description"),
-        #ImageChooserPanel('gnome_image'),
-        FieldPanel("gnome_notes"),
-
+        
         FieldPanel("cinnamon_description"),
-        #ImageChooserPanel('cinnamon_image'),
-        FieldPanel("cinnamon_notes"),
         FieldPanel("budgie_description"),
-        #ImageChooserPanel('budgie_image'),
-        FieldPanel("budgie_notes"),
         FieldPanel("i3_description"),
-        #ImageChooserPanel('i3_image'),
-        FieldPanel("i3_notes"),
         FieldPanel("mate_description"),
-        #ImageChooserPanel('mate_image'),
-        FieldPanel("mate_notes"),
         FieldPanel("sway_description"),
-        #ImageChooserPanel('sway_image'),
-        FieldPanel("sway_notes"),
+
+        FieldPanel("posh_description"),
+        FieldPanel("plasma_mobile_description"),
+        FieldPanel("minimal_description"),
     ]
     
 
@@ -205,9 +123,6 @@ class Downloads(Page):
             slug='slug'
         ),
     ])
-
-#Downloads._meta.get_field("title").default = "Downloads"
-#Downloads._meta.get_field("slug").default = "default-homepage-title"
 
 
 class Donations(Page):
@@ -295,9 +210,6 @@ class Hardware(Page):
         ),
     ])
 
-
-#Donations._meta.get_field("title").default = "Donations"
-#Donations._meta.get_field("slug").default = "default-homepage-title"
 
 class Features(Page):
     max_count=1
@@ -459,10 +371,6 @@ class Team(Page):
         ),
     ]) 
 
-#Team._meta.get_field("title").default = "Team"
-#Team._meta.get_field("slug").default = "default-homepage-title"
-
-# end pre defined pages 
 
 class CustomPage(Page):
     template = "home/custom-page.html"
