@@ -32,11 +32,10 @@ class Downloads(Page):
     question_three = models.CharField(default='', blank=True, max_length=50)
     answer_three = models.TextField(default='', blank=True, max_length=200)
 
-    team_spins_intro = models.TextField(default='', blank=True, max_length=200)
-    community_spins_intro = models.TextField(default='', blank=True, max_length=200)
-    arm_spins_intro = models.TextField(default='', blank=True, max_length=200)
+    manjaro_team_intro = models.TextField(default='', blank=True, max_length=200)
+    community_intro = models.TextField(default='', blank=True, max_length=200)
+    manjaro_arm_team_intro = models.TextField(default='', blank=True, max_length=200)
     manual_intro = models.TextField(default='', blank=True, max_length=200)
-    docker_intro = models.TextField(default='', blank=True, max_length=200)
 
     xfce_description = models.TextField(default='', blank=True, max_length=350)
     plasma_description = models.TextField(default='', blank=True, max_length=350)
@@ -46,6 +45,7 @@ class Downloads(Page):
     budgie_description = models.TextField(default='', blank=True, max_length=350)
     mate_description = models.TextField(default='', blank=True, max_length=350)
     sway_description = models.TextField(default='', blank=True, max_length=350)
+    docker_intro = models.TextField(default='', blank=True, max_length=350)
     
     phosh_description = models.TextField(default='', blank=True, max_length=350)
     plasma_mobile_description = models.TextField(default='', blank=True, max_length=350)
@@ -61,6 +61,7 @@ class Downloads(Page):
         FieldPanel("i3_description"),
         FieldPanel("mate_description"),
         FieldPanel("sway_description"),
+        FieldPanel("docker_intro"),
 
         FieldPanel("phosh_description"),
         FieldPanel("plasma_mobile_description"),
@@ -76,11 +77,10 @@ class Downloads(Page):
         FieldPanel("answer_two"),
         FieldPanel("question_three"),
         FieldPanel("answer_three"),
-        FieldPanel("team_spins_intro"),
-        FieldPanel("community_spins_intro"),
-        FieldPanel("arm_spins_intro"),
+        FieldPanel("manjaro_team_intro"),
+        FieldPanel("community_intro"),
+        FieldPanel("manjaro_arm_team_intro"),
         FieldPanel("manual_intro"),
-        FieldPanel("docker_intro"),
     ]
 
     search_fields = Page.search_fields + [
@@ -91,9 +91,9 @@ class Downloads(Page):
         index.SearchField("answer_two"),
         index.SearchField("question_three"),
         index.SearchField("answer_three"),
-        index.SearchField("team_spins_intro"),
-        index.SearchField("community_spins_intro"),
-        index.SearchField("arm_spins_intro"),
+        index.SearchField("manjaro_team_intro"),
+        index.SearchField("community_intro"),
+        index.SearchField("manjaro_arm_team_intro"),
         index.SearchField("manual_intro"),
         index.SearchField("docker_intro")
     ]
