@@ -111,6 +111,7 @@
                         {{ page.gnome_description }}
                       {% endif %}
                     </p>
+                    <br>
                     {% if desktop.notes %}
                     <p class="text-sm text-gray-900 pl-1 pr-1">
                         {{ desktop.notes }}                              
@@ -213,8 +214,8 @@
           <p class="text-sm text-gray-900">
             {% if "xfce" in arm_title.lower %}
               {{ page.xfce_description }}
-            {% elif "plasma-mobile" in arm_title.lower %}
-              {{ page.plasma_mobile_description }}
+            {% elif "plasma" in arm_title.lower %}
+              {{ page.plasma_description }}
             {% elif "gnome" in arm_title.lower %}
               {{ page.gnome_description }}
             {% elif "phosh" in arm_title.lower %}
@@ -229,6 +230,7 @@
               {{ page.minimal_description }}
             {% endif %}
           </p>
+          <br>
           {% if arm_desktop.notes %}
           <p class="text-sm text-gray-900 pl-1 pr-1">
                 {{ arm_desktop.notes }}                              
@@ -325,6 +327,7 @@
                         {{ page.sway_description }}
                       {% endif %}
                     </p>
+                    <br>
                     {% if desktop.notes %}
                     <p class="text-sm text-gray-900 pl-1 pr-1">
                         {{ desktop.notes }}                              
