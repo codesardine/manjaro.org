@@ -217,14 +217,16 @@
               {{ page.plasma_mobile_description }}
             {% elif "gnome" in arm_title.lower %}
               {{ page.gnome_description }}
-            {% elif "posh" in arm_title.lower %}
-              {{ page.posh_description }}
+            {% elif "phosh" in arm_title.lower %}
+              {{ page.phosh_description }}
             {% elif "mobile" in arm_title.lower %}
-              {{ page.mobile_description }}
+              {{ page.plasma_mobile_description }}
             {% elif "mate" in arm_title.lower %}
               {{ page.mate_description }}
             {% elif "sway" in arm_title.lower %}
               {{ page.sway_description }}
+            {% elif "minimal" in arm_title.lower %}
+              {{ page.minimal_description }}
             {% endif %}
           </p>
           {% if arm_desktop.notes %}
@@ -321,8 +323,6 @@
                         {{ page.mate_description }}
                       {% elif "sway" in title.lower %}
                         {{ page.sway_description }}
-                      {% elif "minimal" in title.lower %}
-                        {{ page.minimal_description }}
                       {% endif %}
                     </p>
                     {% if desktop.notes %}

@@ -47,7 +47,7 @@ class Downloads(Page):
     mate_description = models.TextField(default='', blank=True, max_length=350)
     sway_description = models.TextField(default='', blank=True, max_length=350)
     
-    posh_description = models.TextField(default='', blank=True, max_length=350)
+    phosh_description = models.TextField(default='', blank=True, max_length=350)
     plasma_mobile_description = models.TextField(default='', blank=True, max_length=350)
     minimal_description = models.TextField(default='', blank=True, max_length=350)
 
@@ -62,7 +62,7 @@ class Downloads(Page):
         FieldPanel("mate_description"),
         FieldPanel("sway_description"),
 
-        FieldPanel("posh_description"),
+        FieldPanel("phosh_description"),
         FieldPanel("plasma_mobile_description"),
         FieldPanel("minimal_description"),
     ]
