@@ -63,7 +63,7 @@
                         <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
                     </li>
                   {% endfor %}
-                  {% for item in rigth_navigation.menu_items.all %}
+                  {% for item in right_navigation.menu_items.all %}
                     <li>
                         <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
                     </li>
