@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wagtail.contrib.modeladmin',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
