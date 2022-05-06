@@ -44,6 +44,7 @@ class ProductBlock(blocks.StructBlock):
 class PartnerBlock(blocks.StructBlock):
 
     title = blocks.CharBlock(required=True, help_text="Vendor")
+    url = blocks.URLBlock(required=False)
     description = blocks.TextBlock(required=True, help_text="Short Vendor Description")
     vendor_logo = ImageChooserBlock(required=False)
 
