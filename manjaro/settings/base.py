@@ -159,4 +159,4 @@ INTERNAL_IPS = [
 AUTH_USER_MODEL = 'users.User'
 WAGTAIL_USER_EDIT_FORM = 'users.admin.CustomUserEditForm'
 WAGTAIL_USER_CREATION_FORM = 'users.admin.CustomUserCreationForm'
-WAGTAIL_USER_CUSTOM_FIELDS = ['description', 'title', "avatar", "tweeter", "github", "bio"]
+WAGTAIL_USER_CUSTOM_FIELDS = ['position', 'description', 'title', "avatar", "tweeter", "github", "bio"]

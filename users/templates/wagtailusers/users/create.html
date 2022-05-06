@@ -1,6 +1,7 @@
 {% extends "wagtailusers/users/create.html" %}
 
 {% block extra_fields %}
+    {% include "wagtailadmin/shared/field_as_li.html" with field=form.position %}
     {% include "wagtailadmin/shared/field_as_li.html" with field=form.title %}
     {% include "wagtailadmin/shared/field_as_li.html" with field=form.tweeter %}
     {% include "wagtailadmin/shared/field_as_li.html" with field=form.github %}

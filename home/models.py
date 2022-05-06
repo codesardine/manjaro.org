@@ -350,9 +350,14 @@ class Team(Page):
                 avatar = f"/static/img/{random.choice(imgs)}"
             tweeter = profile.user.tweeter
             github = profile.user.github
-            dict = {"name": name, "title": title, "description": description, "avatar": avatar, "tweeter": tweeter, "github": github}
+            position = profile.user.position
+            dict = {"position": position, "name": name, "title": title, "description": description, "avatar": avatar, "tweeter": tweeter, "github": github}
             profiles.append(dict) 
            
+        def get_position(profile):
+            return profile.get('position')
+            
+        profiles.sort(key=get_position)
         context = super().get_context(request)
         context['users'] = profiles
         return context
