@@ -21,6 +21,7 @@ class ProductBlock(blocks.StructBlock):
         blocks.StructBlock(
             [
                 ("certified", blocks.BooleanBlock(required=False, help_text="if the hardware is Manjaro certified")),
+                ("hidden", blocks.BooleanBlock(required=False, help_text="hide this product")),
                 ("image", ImageChooserBlock(required=True, help_text="images must be 500x375 with space around the space determinates the image size")),
                 ("model", blocks.CharBlock(required=True, max_length=100)),
                 ("processor", blocks.CharBlock(required=True, max_length=100)),
