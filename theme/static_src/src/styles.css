@@ -131,10 +131,15 @@
     }
  }
 
- .richtext p:not(#bio), .richtext img:not(#avatar), .richtext code,
+ .richtext img:not(#avatar), .richtext code,
  .richtext ol, .richtext ul, .richtext blockquote,
  .richtext h2, .richtext h3, .richtext h4 {
      padding: 1.5rem;
+ }
+
+ .richtext p:not(#bio) {
+     padding: 3px 5px;
+     margin-bottom: 1.5rem;
  }
 
  .richtext #bio {

@@ -45,7 +45,7 @@
 
 {% block content %}
 <header class="px-4 mx-auto mt-16 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-    <div class="flex flex-col max-w-screen-lg overflow-hidden bg-white border rounded shadow-sm lg:flex-row sm:mx-auto">
+    <div class="flex flex-col max-w-screen-lg bg-white border rounded shadow-sm lg:flex-row sm:mx-auto">
       <div class="relative lg:w-1/2">
         {% if self.header_image %}
             {% image self.header_image fill-800x450 as header_image %}
@@ -88,8 +88,8 @@
     </div>
 </header>
 
-<article class="richtext px-4 pt-0 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-lg md:px-24 lg:px-8 lg:pt-20">
-    <div class="flex -mt-4 mb-20 flex-col max-w-screen-lg overflow-hidden lg:flex-row sm:mx-auto">
+<article class="richtext px-4 pt-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-lg md:px-24 lg:px-8">
+    <div class="flex -mt-4 mb-20 flex-col max-w-screen-lg lg:flex-row sm:mx-auto">
       <div class="relative w-full">
         {{ self.body|richtext}}
       </div>
