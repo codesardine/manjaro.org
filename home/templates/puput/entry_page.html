@@ -88,13 +88,13 @@
     </div>
 </header>
 
-<article class="richtext px-4 pt-0 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pt-20">
+<article class="richtext px-4 pt-0 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-lg md:px-24 lg:px-8 lg:pt-20">
     <div class="flex -mt-4 mb-20 flex-col max-w-screen-lg overflow-hidden lg:flex-row sm:mx-auto">
       <div class="relative w-full">
         {{ self.body|richtext}}
       </div>
     </div>
-    <div class="flex -mt-4 mb-20 flex-col max-w-screen-lg overflow-hidden lg:flex-row sm:mx-auto text-xs font-semibold tracking-wide text-left">
+    <div class="flex -mt-4 mb-20 flex-col max-w-[700px] overflow-hidden lg:flex-row sm:mx-auto text-xs font-semibold tracking-wide text-left">
         <div class="flex items-center">
             <span class="mr-4">
               <img id="avatar" class="object-cover rounded-full shadow-sm mt-[30px]" src="/media/{{ self.owner.avatar.file }}?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260" alt="{{ self.owner.first_name }} {{ self.owner.last_name }} avatar"/>
