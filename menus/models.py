@@ -1,4 +1,3 @@
-from multiprocessing.spawn import import_main_path
 from django.db import models
 from django_extensions.db.fields import AutoSlugField
 from wagtail.admin.edit_handlers import (
