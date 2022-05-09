@@ -132,8 +132,7 @@
  }
 
  .richtext img:not(#avatar), .richtext code,
- .richtext ol, .richtext ul, .richtext blockquote,
- .richtext h2, .richtext h3, .richtext h4 {
+ .richtext ol, .richtext ul, .richtext blockquote {
      padding: 1.5rem;
  }
 
@@ -142,7 +141,8 @@
      margin-bottom: 1.5rem;
  }
 
- .richtext #bio {
+ .richtext #bio, 
+ .richtext h2, .richtext h3, .richtext h4 {
      padding: 3px 5px;
  }
 
@@ -233,15 +233,13 @@ margin-bottom: -6rem;
 
 .richtext h4 {
     font-size: 1.5rem !important;
-    --tw-text-opacity: 1;
-    color: rgb(101 31 255 / var(--tw-text-opacity));
     font-weight: 700 !important;
     padding-bottom: 0;
     line-height: 2rem !important;
 }
 
 .richtext h3 {
-    font-size: 2.25rem !important; 
+    font-size: 1.75rem !important; 
     padding-bottom: 0;
     letter-spacing: -0.025em;
     font-weight: 700 !important;

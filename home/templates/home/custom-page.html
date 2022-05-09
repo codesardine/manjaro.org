@@ -5,7 +5,9 @@
 {% block body_class %}homepage{% endblock %}
 
 {% block content %}
-    {% for block in page.content %}
-        {% include_block block %}
-    {% endfor %}
+    <div class="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-lg md:px-24 lg:px-8">
+        {% for block in page.content %}
+            {% include_block block %}
+        {% endfor %}
+    </div>
 {% endblock %}
