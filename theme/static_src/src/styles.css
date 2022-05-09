@@ -84,6 +84,9 @@
 
     p {
         padding: 3px 5px;
+    }
+
+    p#bio {
         margin-left: -5px;
     }
     
@@ -245,6 +248,7 @@ margin-bottom: -6rem;
     font-weight: 700 !important;
     color: rgb(33 33 33 / var(--tw-text-opacity));
     line-height: 2.5rem !important;
+    text-align: center;
 }
 
 .hover-neon:hover .hover-red {
