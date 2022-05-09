@@ -1,4 +1,5 @@
 wagtail==2.16.2
+Django>=3.2,<4.0
 django-extensions==3.1.5
 wagtail-django-recaptcha==1.0
 wagtailyoast==0.0.9
