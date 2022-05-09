@@ -1,27 +1,39 @@
 {% extends 'base.html' %}
 {% load wagtailcore_tags static %}
 
+{% block body_class %}contact-form{% endblock %} 
+
 {% block head %}
   <meta name="robots" content="noindex, nofollow">
+  <style>
+      textarea {
+          height: auto;
+      }
+    
+      img {
+        left: 150px;
+bottom: 5px;
+width: 52px;
+    }
+  </style>
 {% endblock %}
 
 {% block content %}
 <div class="relative max-w-screen-md px-4 mx-auto xl:max-w-screen-lg sm:px-8">
-    <div class="relative flex flex-col items-center xl:flex-row bg-gray-50">
-        <div class="flex w-full justify-center xl:w-2/5">
-            <img class="w-1/2" src="{% static '/img/manjaro-email.svg' %}">
-        </div>
-        <div class="sm:px-12 xl:w-3/5">
-            {{ self.intro|richtext }}
+
+    <div class="relative bg-gray-50">
+        <div class="sm:px-12 ">
             <form method="POST" action="{% pageurl page %}">
                 {% csrf_token %}
                 <ul>
                     {{ form }}
                 </ul>
-                <button type="submit" class="px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-indigo-600 hover:bg-indigo-700 focus:shadow-outline focus:outline-none">
+                <img class="absolute" src="{% static '/img/manjaro-email.svg' %}">
+
+                <button type="submit" class="mt-4 px-2 h-12 inline-flex items-center justify-center mb-2 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-indigo-600 hover:bg-indigo-700 focus:shadow-outline focus:outline-none">
                     Submit
                 </button>
-            </form>
+            </form>            
         </div>
     </div>
 </div>
@@ -34,7 +46,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         el.classList.add(
             'flex-grow',
             'w-full',
-            'h-12',
+            'h-full',
             'px-4',
             'mb-4',
             'transition',
@@ -50,8 +62,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             'focus:border-indigo-500'
             )
         })
-        document.querySelector('p').classList.add(
-                'mb-6',
+        document.querySelector('p:first-of-type').style.display = "none"
+        document.querySelector('textarea').rows = 10
+        document.querySelector('p:nth-of-type(2)').classList.add(
                 'text-base',
                 'text-gray-700',
                 'sm:text-base',
