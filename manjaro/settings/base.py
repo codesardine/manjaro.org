@@ -2,6 +2,25 @@ import os
 import time
 from django.core.management.utils import get_random_secret_key
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': './debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
 HARDWARE_NOISE = os.urandom(10)
 SECRET_KEY = get_random_secret_key() + HARDWARE_NOISE.hex() + str(time.time()) + get_random_secret_key()
 
