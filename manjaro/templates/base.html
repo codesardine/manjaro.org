@@ -5,21 +5,14 @@
     <head>
         <meta charset="utf-8" />
         <title>
-            {% block title %}
-              
-            {% endblock %}
+            {% block title %}{% endblock %}
             {% block title_suffix %}
                 {% wagtail_site as current_site %}
-                {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+                {% if current_site and current_site.site_name %}-{{ current_site.site_name }}{% endif %}
             {% endblock %}
         </title>
-        <meta name="title"
-          content="
-            
-        "/>
-        <meta name="description" content="
-        
-        " />
+        <meta name="title" content="{% block meta_title %}{% endblock %}"/>
+        <meta name="description" content="{% block meta_description %}{% endblock %}" />
         <meta name="robots" content="noindex, nofollow">
         <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
@@ -35,10 +28,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
-
-        {% block head %}
-            {# Override this in templates to add extra stylesheets #}
-        {% endblock %}
+        {% block head %}{% endblock %}
     </head>
 
     <body class="{% block body_class %}{% endblock %} bg-gray-50">
@@ -46,33 +36,33 @@
 
         {% include "home/navigation.html" %}
       
-      {% if not self.header_image and "home" not in page.title.lower %}
-        <div class="px-4 pt-6 lg:pt-0 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 bg-gray-50">
-          <div class="grid gap-10 lg:grid-cols-1">
-              <div class="lg:col-span-3">
-                  <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pt-20">
-                      <div class="mx-auto mb-20 lg:max-w-[80%] text-left">
-                          <h1
-                              class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-yellow-accent-700">
-                              {% if "team" in page.title %}
-                                    Know Our {{ page.title }}
-                              {% else %}
-                                {{ page.title }}
-                              {% endif %}
-                          </h1>
-                          <p class="text-base text-gray-700 md:text-lg">
-                            {% if page.description %}
-                              {{ page.description }}
-                            {% else %}
-                                {{ page.intro|richtext }}
-                            {% endif %}
-                          </p>
-                      </div>            
-                  </div>
-              </div>        
-          </div>
-      </div>
-      {% endif %}
+        {% if not self.header_image and "home" not in page.title.lower %}
+            <div class="px-4 pt-6 lg:pt-0 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 bg-gray-50">
+            <div class="grid gap-10 lg:grid-cols-1">
+                <div class="lg:col-span-3">
+                    <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pt-20">
+                        <div class="mx-auto mb-20 lg:max-w-[80%] text-left">
+                            <h1
+                                class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-yellow-accent-700">
+                                {% if "team" in page.title %}
+                                        Know Our {{ page.title }}
+                                {% else %}
+                                    {{ page.title }}
+                                {% endif %}
+                            </h1>
+                            <p class="text-base text-gray-700 md:text-lg">
+                                {% if page.description %}
+                                {{ page.description }}
+                                {% else %}
+                                    {{ page.intro|richtext }}
+                                {% endif %}
+                            </p>
+                        </div>            
+                    </div>
+                </div>        
+            </div>
+        </div>
+        {% endif %}
         <article id="content">
           {% block content %}{% endblock %}        
         </article>
@@ -82,8 +72,6 @@
         <script type="text/javascript" src="{% static 'js/manjaro.js' %}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
 
-        {% block footer_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}
+        {% block footer_js %}{% endblock %}
     </body>
 </html>

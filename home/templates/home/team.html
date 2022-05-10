@@ -3,6 +3,29 @@
 {% load wagtailcore_tags %}
 
 {% block body_class %}homepage{% endblock %}
+
+{% block title %}
+    {% if page.seo_title %}
+        {{ page.seo_title }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+{% endblock %}
+
+{% block meta_title %}
+    {% if page.seo_title %}
+        {{ page.seo_title }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+{% endblock %}
+
+{% block meta_description %}
+    {% if page.search_description %}
+        {{ page.search_description }}
+    {% endif %}
+{% endblock %}
+
 We all contribute to bring Manjaro to you, it is very rewarding to build something that we can use and share with others. 
 
 {% block content %}

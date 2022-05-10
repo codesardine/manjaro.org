@@ -7,3 +7,25 @@
         {% block social_share %}{% endblock social_share %}
         <link rel="canonical" href="{% block canonical %}{% canonical_url %}{% endblock canonical %}"/>
 {% endblock %}
+
+{% block title %}
+        {% if blog_page.seo_title %}
+            {{ blog_page.seo_title }}
+        {% elif blog_page.title %}
+            {{ blog_page.title }}
+        {% endif %}
+{% endblock %}
+
+{% block meta_title %}
+        {% if blog_page.seo_title %}
+            {{ blog_page.seo_title }}
+        {% elif blog_page.title %}
+            {{ blog_page.title }}
+        {% endif %}
+{% endblock %}
+
+{% block meta_description %}
+    {% if blog_page.description %}
+        {{ blog_page.description }}
+    {% endif %}
+{% endblock %}
