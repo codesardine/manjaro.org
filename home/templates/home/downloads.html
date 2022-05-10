@@ -161,7 +161,7 @@
                     {% if "download." in desktop.image %}
                     <div class="text-sm text-gray-900 inline-block text-center w-full">
                       Download provided by 
-                      <a href="https://www.cdn77.com"><img id="cdn" class="inline-block" src="/static/img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="CDN77" /></a>                           
+                      <a href="https://www.cdn77.com"><img id="cdn" class="inline-block" src="{% static 'img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
                     </div>
                     {% endif %}
                   </div>
@@ -376,7 +376,7 @@
                     {% if "download." in desktop.image %}
                     <div class="text-sm text-gray-900 inline-block text-center w-full">
                       Download provided by 
-                      <a href="https://www.cdn77.com"><img id="cdn" class="inline-block" src="/static/img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="CDN77" /></a>                           
+                      <a href="https://www.cdn77.com"><img id="cdn" class="inline-block" src="{% static 'img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
                     </div>
                     {% endif %}
                   </div>
@@ -386,7 +386,7 @@
       {% endfor %}
       <a target="_blank" href="https://github.com/manjaro/manjaro-docker" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
         <div class="flex flex-col h-full">
-          <img src="{% static '/img/docker.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Docker" />
+          <img src="{% static 'img/docker.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Docker" />
           <div class="flex-grow border border-t-0 rounded-b text-left">
               <div class="p-5">
                 <h3 class="mb-2 font-semibold leading-5">Manjaro Docker</h3>
@@ -399,7 +399,7 @@
     </a>
       <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
         <div class="flex flex-col h-full">
-        <img src="{% static '/img/manual.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Manual" />
+        <img src="{% static 'img/manual.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Manual" />
         <div class="flex-grow border border-t-0 rounded-b text-left">
             <div class="p-5">
             <h3 class="mb-2 font-semibold leading-5">Manjaro Manual</h3>
