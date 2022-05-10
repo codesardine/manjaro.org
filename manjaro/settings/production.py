@@ -1,7 +1,7 @@
 from .base import *
 import os
 
-DEBUG=False
+DEBUG=True
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
@@ -24,7 +24,7 @@ DJANGO_ROOT = os.environ.get('DJANGO_ROOT')
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-CONTENT_TYPE_NO_SNIFF=True
+#CONTENT_TYPE_NO_SNIFF=True
 #SECURE_SSL_REDIRECT=True
 #X_FRAME_OPTIONS='DENY'
 #XSS_PROTECTION=True
