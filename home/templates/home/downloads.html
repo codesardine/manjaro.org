@@ -141,7 +141,9 @@
                     {% endif %}
                     <br>
                     <div class="pl-2 pr-2 text-center">
+                      {% if desktop.minimal.image %}
                       <a href="{{ desktop.minimal.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Minimal</a>
+                      {% endif %}
                       {% if desktop.minimal.signature %}
                       <a href="{{ desktop.minimal.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
                       {% endif %}
@@ -149,7 +151,9 @@
                       <a href="{{ desktop.minimal.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
                       {% endif %}
                       <br>
+                      {% if desktop.image %}
                       <a href="{{ desktop.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Full</a>
+                      {% endif %}
                       {% if desktop.signature %}
                       <a href="{{ desktop.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
                       {% endif %}
@@ -259,8 +263,10 @@
           </p>
           {% endif %}
           <br>
-          <div class="pl-2 pr-2 text-center">           
+          <div class="pl-2 pr-2 text-center"> 
+            {% if arm_desktop.image %}          
             <a href="{{ arm_desktop.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Image</a>
+            {% endif %}
             {% if arm_desktop.signature %}
             <a href="{{ arm_desktop.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
             {% endif %}
@@ -356,8 +362,10 @@
                     </p>
                     {% endif %}
                     <br>
+                      {% if desktop.minimal %}
                     <div class="pl-2 pr-2 text-center">
                       <a href="{{ desktop.minimal.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Minimal</a>
+                      {% endif %}
                       {% if desktop.minimal.signature %}
                       <a href="{{ desktop.minimal.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
                       {% endif %}
@@ -365,7 +373,9 @@
                       <a href="{{ desktop.minimal.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
                       {% endif %}
                       <br>
+                      {% if desktop.image %}
                       <a href="{{ desktop.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Full</a>
+                      {% endif %}
                       {% if desktop.signature %}
                       <a href="{{ desktop.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
                       {% endif %}
