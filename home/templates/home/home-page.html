@@ -4,6 +4,10 @@
 
 {% block body_class %}homepage{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
 {% block title %}
     {% if page.seo_title %}
         {{ page.seo_title }}
@@ -27,7 +31,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="relative pt-6 lg:pt-0">
+<div id="top" class="relative pt-6 lg:pt-0">
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
     {% image promo.background original class="absolute inset-0 object-cover w-full h-full" %}
@@ -127,9 +131,10 @@
     </div>
     {% endwith %}
    {% endwith %}
+   <a href="#partners" class="down-links hidden xl:block no-zoom text-teal-accent-400 text-6xl"><i class="pulse fa-solid fa-circle-down"></i></a>
   </div>
 
-  <div class="lg:h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <div id="partners" class="relative lg:h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <div class="grid gap-10 lg:grid-cols-2">
       <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
         <div class="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-yellow-accent-700">
@@ -171,10 +176,11 @@
         </div>
       </div>
     </div>
+    <a href="#shells" class="down-links hidden xl:block no-zoom text-teal-accent-400 text-6xl"><i class="pulse fa-solid fa-circle-down"></i></a>
   </div>
 
-  <div class="lg:h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-    <div class="flex flex-col lg:flex-row sm:mx-auto lg:h-screen">
+  <div id="shells" class="relative lg:h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div class="flex flex-col lg:flex-row sm:mx-auto">
       <div class="hidden lg:flex flex relative lg:w-1/2 p-8 lg:p-6 items-center">
         <img src="{% static 'img/cloud.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" 
         class="object-cover drop-shadow-2xl"
@@ -202,6 +208,7 @@
         </div>
       </div>
     </div>
+    <a href="#top" class="down-links no-zoom hidden xl:block text-teal-accent-400 text-6xl"><i class="top pulse fa-solid fa-circle-down"></i></a>
   </div>
 
   <footer class="px-4 mx-auto mt-16 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -223,4 +230,22 @@
         {% include_block block %}
   </div>
   {% endfor %}
+<script>
+  const links = document.querySelectorAll(".down-links");
+
+for (const link of links) {
+  link.addEventListener("click", clickHandler);
+}
+
+function clickHandler(e) {
+  e.preventDefault();
+  const href = this.getAttribute("href");
+  const offsetTop = document.querySelector(href).offsetTop;
+
+  scroll({
+    top: offsetTop,
+    behavior: "smooth"
+  });
+}
+</script>
 {% endblock %}
