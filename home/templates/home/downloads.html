@@ -4,6 +4,10 @@
 
 {% block body_class %}downloads{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
 {% block title %}
     {% if page.seo_title %}
         {{ page.seo_title }}
@@ -140,25 +144,25 @@
                     </p>
                     {% endif %}
                     <br>
-                    <div class="pl-2 pr-2 text-center">
+                    <div class="pl-2 pr-2 text-center text-3xl">
                       {% if desktop.minimal.image %}
-                      <a href="{{ desktop.minimal.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Minimal</a>
+                      <a id="btn-mi" href="{{ desktop.minimal.image }}" class="mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
                       {% endif %}
                       {% if desktop.minimal.signature %}
-                      <a href="{{ desktop.minimal.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+                      <a id="btn-ms" href="{{ desktop.minimal.signature }}" class="mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
                       {% endif %}
                       {% if desktop.minimal.checksum %}
-                      <a href="{{ desktop.minimal.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+                      <a id="btn-mc" href="{{ desktop.minimal.checksum }}" class="mr-3 font-semibold transition-colors duration-200 text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
                       {% endif %}
                       <br>
                       {% if desktop.image %}
-                      <a href="{{ desktop.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Full</a>
+                      <a id="btn-fi" href="{{ desktop.image }}" class="mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
                       {% endif %}
                       {% if desktop.signature %}
-                      <a href="{{ desktop.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+                      <a id="btn-fs" href="{{ desktop.signature }}" class="mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
                       {% endif %}
                       {% if desktop.checksum %}
-                      <a href="{{ desktop.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+                      <a id="btn-fc" href="{{ desktop.checksum }}" class="mr-3 font-semibold transition-colors duration-200 text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
                       {% endif %}
                     </div>
                     <br>
@@ -263,15 +267,15 @@
           </p>
           {% endif %}
           <br>
-          <div class="pl-2 pr-2 text-center"> 
+          <div class="pl-2 pr-2 text-center text-3xl"> 
             {% if arm_desktop.image %}          
-            <a href="{{ arm_desktop.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Image</a>
+            <a id="btn-ai" href="{{ arm_desktop.image }}" class="mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
             {% endif %}
             {% if arm_desktop.signature %}
-            <a href="{{ arm_desktop.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+            <a  id="btn-as" href="{{ arm_desktop.signature }}" class="mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
             {% endif %}
             {% if arm_desktop.checksum %}
-            <a href="{{ arm_desktop.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+            <a  id="btn-ac" href="{{ arm_desktop.checksum }}" class="mr-3 font-semibold transition-colors duration-200 text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
             {% endif %}
           </div>
           </div>
@@ -363,24 +367,24 @@
                     {% endif %}
                     <br>
                       {% if desktop.minimal %}
-                    <div class="pl-2 pr-2 text-center">
-                      <a href="{{ desktop.minimal.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Minimal</a>
+                    <div class="pl-2 pr-2 text-center text-3xl">
+                      <a id="btn-mi" href="{{ desktop.minimal.image }}" class="mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
                       {% endif %}
                       {% if desktop.minimal.signature %}
-                      <a href="{{ desktop.minimal.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+                      <a id="btn-ms" href="{{ desktop.minimal.signature }}" class="mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
                       {% endif %}
                       {% if desktop.minimal.checksum %}
-                      <a href="{{ desktop.minimal.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+                      <a id="btn-mc" href="{{ desktop.minimal.checksum }}" class="mr-3 font-semibold transition-colors duration-200 text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
                       {% endif %}
                       <br>
                       {% if desktop.image %}
-                      <a href="{{ desktop.image }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Full</a>
+                      <a id="btn-fi" href="{{ desktop.image }}" class="mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
                       {% endif %}
                       {% if desktop.signature %}
-                      <a href="{{ desktop.signature }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Signature</a>
+                      <a id="btn-fs" href="{{ desktop.signature }}" class="mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
                       {% endif %}
                       {% if desktop.checksum %}
-                      <a href="{{ desktop.checksum }}" class="mr-1 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Checksum</a>
+                      <a id="btn-fc" href="{{ desktop.checksum }}" class="mr-3 font-semibold transition-colors duration-200 text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
                       {% endif %}
                     </div>
                     {% if "download." in desktop.image %}
@@ -427,4 +431,41 @@
   </div>
   {% endif %}
   {% endfor %}
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/tippy.js@6"></script>
+  <script>
+    let arm = "Download "
+    let min = "Download Minimal "
+    let ful = "Download Full "
+    let im = "Image"
+    let sig = "Signature"
+    let che = "Checksum"
+    tippy('#btn-mi', {
+      content: min + im,
+    });
+    tippy('#btn-ms', {
+      content: min + sig,
+    });
+    tippy('#btn-mc', {
+      content: min + che,
+    });
+    tippy('#btn-fi', {
+      content: ful + im,
+    });
+    tippy('#btn-fs', {
+      content: ful + sig,
+    });
+    tippy('#btn-fc', {
+      content: ful + che,
+    });
+    tippy('#btn-ai', {
+      content: arm + im,
+    });
+    tippy('#btn-as', {
+      content: arm + sig,
+    });
+    tippy('#btn-ac', {
+      content: arm + che,
+    });  
+  </script>
 {% endblock %}
