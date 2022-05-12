@@ -2,7 +2,15 @@
 
 {% load wagtailcore_tags static %}
 
-{% block body_class %}donations{% endblock %}
+{% block body_class %}donate{% endblock %}
+
+{% block head %}
+  <link href="https://opencollective.com" rel="preconnect" crossorigin>
+  <link rel="preload" href="https://opencollective.com/manjaro/banner.js" as="script">
+  <link rel="preload" href="https://opencollective.com/manjaro-us/banner.js" as="script">
+  <link rel="preload" href="https://opencollective.com/manjaro-uk/banner.js" as="script">
+  <link rel="preload" href="https://opencollective.com/manjaro-arm/banner.js" as="script">
+{% endblock %}
 
 {% block title %}
     {% if page.seo_title %}
@@ -105,38 +113,38 @@
       <div class="grid max-w-screen-md gap-10 sm:mx-auto">
         {{ page.content }}
       </div>
-      <script async src="https://opencollective.com/manjaro/banner.js"></script>
-      <script async src="https://opencollective.com/manjaro-us/banner.js"></script>
-      <script async src="https://opencollective.com/manjaro-uk/banner.js"></script>
-      <script async src="https://opencollective.com/manjaro-arm/banner.js"></script>
+      <script>
+        const ocModal = document.querySelector("#modal-oc")
+        function modal() {
+          let classes = ocModal.classList
+          if (classes.contains("hidden")) {
+            ocModal.classList.remove("hidden")
+          } else {
+            ocModal.classList.add("hidden")
+          }
+        }
+        
+        const ocBtn = document.querySelectorAll(".oc-btn")
+        ocBtn.forEach(btn => {
+          btn.addEventListener("click", function(event) {
+            modal()
+          })
+          btn.addEventListener("touchstart", function(event) {
+            modal()
+          })
+        })
+    
+        window.addEventListener("click", function(event) {
+          if ( event.target == ocModal ) {
+            modal()
+          }
+        })
+      </script>
+      <script src="https://opencollective.com/manjaro/banner.js"></script>
+      <script src="https://opencollective.com/manjaro-us/banner.js"></script>
+      <script src="https://opencollective.com/manjaro-uk/banner.js"></script>
+      <script src="https://opencollective.com/manjaro-arm/banner.js"></script>
     </article>
   </div>
-  <script>
-    const ocModal = document.querySelector("#modal-oc")
-    function modal() {
-      let classes = ocModal.classList
-      if (classes.contains("hidden")) {
-        ocModal.classList.remove("hidden")
-      } else {
-        ocModal.classList.add("hidden")
-      }
-    }
-    
-    const ocBtn = document.querySelectorAll(".oc-btn")
-    ocBtn.forEach(btn => {
-      btn.addEventListener("click", function(event) {
-        modal()
-      })
-      btn.addEventListener("touchstart", function(event) {
-        modal()
-      })
-    })
-
-    window.addEventListener("click", function(event) {
-      if ( event.target == ocModal ) {
-        modal()
-      }
-    })
-  </script>
   {% endblock %}
   

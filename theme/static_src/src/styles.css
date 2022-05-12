@@ -310,3 +310,7 @@ margin-bottom: -6rem;
 .downloads select:hover {
     cursor: pointer;
 }
+
+.donate .oc-loading {
+    display: none !important;
+}
