@@ -1,7 +1,7 @@
 {% load wagtailimages_tags static %}
 
 <div class="px-4 pt-26 -mb-24 mt-32 pb-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pb-0">
-    <div class="grid max-w-md gap-4 row-gap-8 lg:max-w-screen-lg sm:row-gap-10 lg:grid-cols-2 xl:grid-cols-3 xl:gap-8 xl:max-w-screen-xl sm:mx-auto">
+    <div class="grid max-w-md gap-4 row-gap-8 lg:max-w-screen-lg sm:row-gap-10 sm:max-w-screen-xl sm:grid-cols-2 lg:grid-cols-3 xl:gap-8 xl:max-w-screen-xl">
      {% for item in self.product_details %}
          {% if not item.hidden %}
           <div class="hover-neon mb-52 lg:mb-30 relative bg-gray-900 flex flex-col hover:scale[1.0] transition duration-300 bg-grey-50 rounded shadow-sm hover:shadow">
