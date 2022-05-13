@@ -342,8 +342,8 @@ margin-bottom: -6rem;
 }
 
 .arrow-text {
-    transform: rotate(-90deg);
     position: absolute;
+    bottom: -50px;
 }
 
 
