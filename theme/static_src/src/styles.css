@@ -417,3 +417,7 @@ margin-bottom: -6rem;
     transform: translateX(100%);
   }
 
+.downloads .editions p {
+    min-height: 155px;
+}
+

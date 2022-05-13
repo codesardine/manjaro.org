@@ -120,7 +120,7 @@
     </div>
     {% endif %}
     {% if edition == "official" %}
-    <div class="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
+    <div class="editions grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
     {% for title, desktop in desktops.items %}        
         <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
             <div class="flex flex-col h-full">
@@ -254,7 +254,7 @@
   {% for iso, value in desktops.items %}
       {% if edition == "arm" %}
           {% with device=iso %}
-<div id="{{ device.lower|clean_id }}" class="{% if not forloop.first %}hidden {% endif %}arm-grid grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2"> 
+<div id="{{ device.lower|clean_id }}" class="{% if not forloop.first %}hidden {% endif %}arm-grid editions grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2"> 
   {% for arm_title, arm_desktop in value.items %}
     <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
       <div class="flex flex-col h-full">
@@ -360,7 +360,7 @@
           {{ page.community_spins_intro }}
     </p>
     </div>
-    <div class="grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
+    <div class="grid editions gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
     {% for title, desktop in desktops.items %}
         <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
             <div class="flex flex-col h-full">
