@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const cursorHoverA = document.querySelectorAll("a");
     const cursorHoverP = document.querySelectorAll("p");
     const cursorHoverBtn = document.querySelectorAll("button");
+
     cursorHoverA.forEach(a => {
         a.addEventListener("mouseover", function(e) {
             cursor.classList.add("enlarge")
@@ -30,15 +31,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 cursor.classList.add("cursor-difference")
             } else if (a.classList.contains("cursor-saturation")) {
                 cursor.classList.add("cursor-saturation")
+            } else if (a.classList.contains("no-mouse-effect")) {
+                cursor.classList.add("hidden")
             }
         })
     });
 
     cursorHoverA.forEach(a => {
         a.addEventListener("mouseout", function(e) {
-            cursor.classList.remove("enlarge")
-            cursor.classList.remove("cursor-difference")
-            cursor.classList.remove("cursor-saturation")
+            cursor.classList.remove("enlarge","cursor-difference","cursor-saturation","hidden")
         })
     });
 
