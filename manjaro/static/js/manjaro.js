@@ -21,18 +21,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
     const cursorHoverA = document.querySelectorAll("a");
-    const cursorHoverP = document.querySelectorAll("p");
-    const cursorHoverBtn = document.querySelectorAll("button");
 
     cursorHoverA.forEach(a => {
         a.addEventListener("mouseover", function(e) {
-            cursor.classList.add("enlarge")
-            if (a.classList.contains("cursor-difference")) {
-                cursor.classList.add("cursor-difference")
-            } else if (a.classList.contains("cursor-saturation")) {
-                cursor.classList.add("cursor-saturation")
-            } else if (a.classList.contains("no-mouse-effect")) {
-                cursor.classList.add("hidden")
+            if (!a.classList.contains("no-mouse-effects")) {              
+                if (a.classList.contains("cursor-difference")) {
+                    cursor.classList.add("cursor-difference")
+                } else if (a.classList.contains("cursor-saturation")) {
+                    cursor.classList.add("cursor-saturation")
+                }
+                if (!a.classList.contains("no-zoom")) {
+                    cursor.classList.add("enlarge")
+                }
             }
         })
     });
@@ -40,37 +40,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     cursorHoverA.forEach(a => {
         a.addEventListener("mouseout", function(e) {
             cursor.classList.remove("enlarge","cursor-difference","cursor-saturation","hidden")
-        })
-    });
-
-    cursorHoverP.forEach(p => {
-        p.addEventListener("mouseover", function(e) {
-            console.log(p.textContent.length)
-            if (p.classList.contains("no-zoom") === false && p.textContent.trim() != 0) {
-                cursor.classList.add("enlarge-p")
-            } else {
-                p.classList.add("no-zoom")
-            }
-            
-        })
-    });
-
-    cursorHoverP.forEach(p => {
-        p.addEventListener("mouseout", function(e) {
-            cursor.classList.remove("enlarge-p")
-        })
-    });
-
-    cursorHoverBtn.forEach(btn => {
-        btn.addEventListener("mouseover", function(e) {
-            cursor.classList.add("enlarge")
-        })
-    });
-
-
-    cursorHoverBtn.forEach(btn => {
-        btn.addEventListener("mouseout", function(e) {
-            cursor.classList.remove("enlarge")
         })
     });
 
