@@ -26,12 +26,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
     cursorHoverA.forEach(a => {
         a.addEventListener("mouseover", function(e) {
             cursor.classList.add("enlarge")
+            if (a.classList.contains("cursor-difference")) {
+                cursor.classList.add("cursor-difference")
+            } else if (a.classList.contains("cursor-saturation")) {
+                cursor.classList.add("cursor-saturation")
+            }
         })
     });
 
     cursorHoverA.forEach(a => {
         a.addEventListener("mouseout", function(e) {
             cursor.classList.remove("enlarge")
+            cursor.classList.remove("cursor-difference")
+            cursor.classList.remove("cursor-saturation")
         })
     });
 

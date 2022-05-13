@@ -4,10 +4,6 @@
 
 {% block body_class %}homepage{% endblock %}
 
-{% block head %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-{% endblock %}
-
 {% block title %}
     {% if page.seo_title %}
         {{ page.seo_title }}
@@ -46,17 +42,17 @@
               <span class="brand">manjaro</span> {{ page.manjaro_intro }}
             </p>
             <div class="grid gap-5 row-gap-10 mx-auto">
-                <div class="flex flex-col justify-center">
-                  <h2 class="mb-4 text-sm font-bold text-white tracking-widest uppercase">Features</h2>
-                  <div class="grid space-y-3 sm:gap-2 sm:grid-cols-2 sm:space-y-0">
-                    <ul class="space-y-3">
-                      <li class="flex text-white">
-                        <span class="mr-1">
-                          <svg class="w-5 h-5 mt-px text-yellow-accent-700" stroke="currentColor" viewBox="0 0 52 52">
-                            <polygon stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-                          </svg>
-                        </span>
-                        No drivers, Plug & Play
+              <div class="flex flex-col justify-center">
+                <h2 class="mb-4 text-sm font-bold text-white tracking-widest uppercase">Features</h2>
+                <div class="grid space-y-3 sm:gap-2 sm:grid-cols-2 sm:space-y-0">
+                  <ul class="space-y-3">
+                    <li class="flex text-white">
+                      <span class="mr-1">
+                        <svg class="w-5 h-5 mt-px text-yellow-accent-700" stroke="currentColor" viewBox="0 0 52 52">
+                          <polygon stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+                        </svg>
+                      </span>
+                      No drivers, Plug & Play
                       </li>
                       <li class="flex text-white">
                         <span class="mr-1">
@@ -103,7 +99,7 @@
                     </ul>
                     <ul>
                       <li>
-                        <a href="/features/" aria-label="Latest Hardware Minisforum PC" class="font-semibold transition-colors duration-200 text-yellow-accent-200 hover:text-yellow-accent-700">
+                        <a href="/features/" aria-label="Latest Hardware Minisforum PC" class="cursor-saturation font-semibold transition-colors duration-200 text-yellow-accent-200 hover:text-yellow-accent-700">
                           <span class="mr-1 float-left">
                             <svg class="w-5 h-5 mt-px text-yellow-accent-700" stroke="currentColor" viewBox="0 0 52 52">
                               <polygon stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
@@ -118,7 +114,7 @@
               </div>
           </div>
           <div class="w-full max-w-xl xl:px-8 xl:w-5/12 lg:translate-y-[50%] transform-gpu">
-              <a href="{{ promo.url }}" aria-label="Latest Hardware Minisforum PC" class="w-[100%] lg:w-[80%] text-center relative speech-bubble-rigth block font-semibold transition-colors duration-200 text-teal-accent-700 hover:text-teal-accent-200">
+              <a href="{{ promo.url }}" aria-label="Latest Hardware Minisforum PC" class="cursor-saturation w-[100%] lg:w-[80%] text-center relative speech-bubble-rigth block font-semibold transition-colors duration-200 text-teal-accent-700 hover:text-teal-accent-200">
                 {{ promo.text }}
                 <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
                   <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
@@ -131,7 +127,14 @@
     </div>
     {% endwith %}
    {% endwith %}
-   <a href="#partners" class="down-links hidden xl:block no-zoom text-teal-accent-400 text-6xl"><i class="pulse fa-solid fa-circle-down"></i></a>
+   <a href="#partners" class="arrow-links no-zoom text-6xl hidden xl:block cursor-saturation">
+     <h2 style="top: -60px; left: -60px;" class="arrow-text text-3xl font-semibold text-gray-400">PARTNERS</h2>
+    <div class="container">
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+    </div>
+  </a>
   </div>
 
   <div id="partners" class="relative lg:h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -157,7 +160,7 @@
           </p>
         </div>
         <div>
-          <a href="/contact-for-partners/" aria-label="" class="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
+          <a href="/contact-for-partners/" aria-label="" class="ml-20 inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
             Get in touch
             <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
               <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
@@ -176,7 +179,14 @@
         </div>
       </div>
     </div>
-    <a href="#shells" class="down-links hidden xl:block no-zoom text-teal-accent-400 text-6xl"><i class="pulse fa-solid fa-circle-down"></i></a>
+    <a href="#shells" class="arrow-links no-zoom text-6xl hidden xl:block cursor-difference">
+      <h2 style="top: -40px; left: -33px;" class="arrow-text text-3xl font-semibold text-gray-700">CLOUD</h2>
+      <div class="container">
+        <div class="chevron"></div>
+        <div class="chevron"></div>
+        <div class="chevron"></div>
+      </div>
+    </a>
   </div>
 
   <div id="shells" class="relative lg:h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -208,7 +218,6 @@
         </div>
       </div>
     </div>
-    <a href="#top" class="down-links no-zoom hidden xl:block text-teal-accent-400 text-6xl"><i class="top pulse fa-solid fa-circle-down"></i></a>
   </div>
 
   <footer class="px-4 mx-auto mt-16 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -231,7 +240,7 @@
   </div>
   {% endfor %}
 <script>
-  const links = document.querySelectorAll(".down-links");
+  const links = document.querySelectorAll(".arrow-links");
 
 for (const link of links) {
   link.addEventListener("click", clickHandler);
