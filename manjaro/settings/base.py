@@ -64,12 +64,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
     'wagtail.contrib.modeladmin',
     'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -77,7 +79,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
