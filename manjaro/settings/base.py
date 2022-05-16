@@ -64,7 +64,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
     'wagtail.contrib.modeladmin',
     'django.contrib.sitemaps',
@@ -78,7 +77,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
@@ -149,7 +147,7 @@ STATICFILES_DIRS = [
 
 WHITENOISE_MANIFEST_STRICT = False
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
