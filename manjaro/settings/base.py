@@ -1,5 +1,9 @@
 import os, time
 from django.core.management.utils import get_random_secret_key
+from django.contrib.staticfiles.storage import ManifestStaticFilesStorage
+
+class StaticFilesOverride(ManifestStaticFilesStorage):
+    manifest_strict = False
 
 
 LOGGING = {
@@ -147,7 +151,7 @@ STATICFILES_DIRS = [
 
 WHITENOISE_MANIFEST_STRICT = False
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'manjaro.settings.base.StaticFilesOverride'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 STATIC_URL = '/static/'
