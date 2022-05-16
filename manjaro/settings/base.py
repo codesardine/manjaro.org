@@ -145,7 +145,7 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
-    os.path.join(PROJECT_DIR, 'media'),
+    os.path.join(BASE_DIR, 'media'),
 ]
 
 WHITENOISE_MANIFEST_STRICT = False
