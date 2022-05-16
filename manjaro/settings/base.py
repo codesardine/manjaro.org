@@ -6,8 +6,7 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'file': {
-            'level': 'DEBUG',
+        'console': {
             'class': 'logging.StreamHandler',
         },
     },
