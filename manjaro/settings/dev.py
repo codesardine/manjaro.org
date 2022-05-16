@@ -2,7 +2,6 @@ from .base import *
 
 INSTALLED_APPS = INSTALLED_APPS + [
     'django_browser_reload',
-    "whitenoise.runserver_nostatic",
 ]
 
 MIDDLEWARE = MIDDLEWARE + [
