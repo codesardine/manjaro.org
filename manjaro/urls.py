@@ -19,7 +19,6 @@ urlpatterns = [
 
     path('search/', search_views.search, name='search'),
     path(r'', include('puput.urls')),
-    path(r'^favicon\.ico$', RedirectView.as_view(url=static('img/favicon.ico'), permanent=True))
 ] 
 
 if settings.DEBUG:
