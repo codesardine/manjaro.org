@@ -3,6 +3,7 @@ from django.urls import include, path
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.views.static import serve 
+from django.urls import re_path
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
@@ -20,11 +21,12 @@ urlpatterns = [
     path('search/', search_views.search, name='search'),
     path(r'', include('puput.urls')),    
 
-    path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}), 
-    path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}), 
+    re_path(r'^media/(?:.*)$', serve,{'document_root': settings.MEDIA_ROOT}), 
+    re_path(r'^static/(?:.*)$', serve, {'document_root': settings.STATIC_ROOT, }) 
 ] 
 
 if settings.DEBUG:
+    from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
     
     urlpatterns += path("__reload__/", include("django_browser_reload.urls")),
