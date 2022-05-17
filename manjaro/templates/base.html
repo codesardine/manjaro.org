@@ -51,7 +51,11 @@
                                 {% endif %}
                             </h1>
                             <p class="text-base text-gray-700 md:text-lg">
-                                {{ page.intro|richtext }}
+                                {% if page.description %}
+                                  {{ page.description }}
+                                {% else %}
+                                  {{ page.intro|richtext }}
+                                {% endif %}
                             </p>
                         </div>            
                     </div>
