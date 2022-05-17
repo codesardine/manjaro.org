@@ -7,7 +7,7 @@ class User(AbstractUser):
     description = models.TextField(max_length=350, blank=True)
     bio = models.TextField(max_length=350, blank=True)
     title = models.CharField(max_length=50, blank=True)
-    tweeter = models.URLField(blank=True)
+    twitter = models.URLField(blank=True)
     github = models.URLField(blank=True)
     avatar = models.ForeignKey(
         'wagtailimages.Image',

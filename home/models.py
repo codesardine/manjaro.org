@@ -348,10 +348,10 @@ class Team(Page):
             except AttributeError:
                 imgs =["jaro-1.png", "jaro-3.png", "jaro-4.png"]
                 avatar = f"/static/img/{random.choice(imgs)}"
-            tweeter = profile.user.tweeter
+            twitter = profile.user.twitter
             github = profile.user.github
             position = profile.user.position
-            dict = {"position": position, "name": name, "title": title, "description": description, "avatar": avatar, "tweeter": tweeter, "github": github}
+            dict = {"position": position, "name": name, "title": title, "description": description, "avatar": avatar, "twitter": twitter, "github": github}
             profiles.append(dict) 
            
         def get_position(profile):
