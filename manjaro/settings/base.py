@@ -5,7 +5,6 @@ from django.contrib.staticfiles.storage import ManifestStaticFilesStorage
 class StaticFilesOverride(ManifestStaticFilesStorage):
     manifest_strict = False
 
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -17,8 +16,8 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
+            'level': 'ERROR',
+            'propagate': False,
         },
     },
 }
