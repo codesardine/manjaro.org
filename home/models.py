@@ -11,9 +11,11 @@ import random
 from django.contrib.auth import get_user_model
 from wagtail.users.models import UserProfile
 from manjaro.settings.base import MEDIA_ROOT, MEDIA_URL
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from django.shortcuts import redirect
 
 
-class Downloads(Page):
+class Downloads(RoutablePageMixin, Page):
     max_count=1
     template = "home/downloads.html"
     subpage_types = []
@@ -98,16 +100,33 @@ class Downloads(Page):
         index.SearchField("docker_intro")
     ]
     
-
-    def get_context(self, request):
+    def get_iso_info(self):
         data_source = "https://gitlab.manjaro.org/webpage/iso-info/-/raw/master/file-info.json"
         response = requests.get(data_source)
-        data = response.json()
+        return response.json()
 
+    def get_context(self, request):    
         context = super(Downloads, self).get_context(request)
-        context['data'] = data
+        context['data'] = self.get_iso_info()
         return context
 
+    @route(r"^plasma/$")
+    def plasma(self, request):
+        iso_info = self.get_iso_info()
+        iso = iso_info["official"]["plasma"]["minimal"]["image"]
+        return redirect(iso)
+
+    @route(r"^xfce/$")
+    def xfce(self, request):
+        iso_info = self.get_iso_info()
+        iso = iso_info["official"]["xfce"]["minimal"]["image"]
+        return redirect(iso)
+
+    @route(r"^gnome/$")
+    def gnome(self, request):
+        iso_info = self.get_iso_info()
+        iso = iso_info["official"]["gnome"]["minimal"]["image"]
+        return redirect(iso)
 
     keywords = models.CharField(default='', blank=True, max_length=100)
 
