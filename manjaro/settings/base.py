@@ -152,7 +152,7 @@ WHITENOISE_MANIFEST_STRICT = False
 
 STATICFILES_STORAGE = 'manjaro.settings.base.StaticFilesOverride'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
