@@ -370,7 +370,8 @@ class Team(Page):
             twitter = profile.user.twitter
             github = profile.user.github
             position = profile.user.position
-            dict = {"position": position, "name": name, "title": title, "description": description, "avatar": avatar, "twitter": twitter, "github": github}
+            forum = profile.user.forum
+            dict = {"position": position, "name": name, "forum": forum, "title": title, "description": description, "avatar": avatar, "twitter": twitter, "github": github}
             profiles.append(dict) 
            
         def get_position(profile):

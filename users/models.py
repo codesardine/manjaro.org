@@ -9,6 +9,7 @@ class User(AbstractUser):
     title = models.CharField(max_length=50, blank=True)
     twitter = models.URLField(blank=True)
     github = models.URLField(blank=True)
+    forum = models.URLField(blank=True)
     avatar = models.ForeignKey(
         'wagtailimages.Image',
         null=True,

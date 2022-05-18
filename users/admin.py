@@ -10,6 +10,7 @@ class CustomUserEditForm(UserEditForm):
     title = forms.CharField(max_length=50, required=False)
     twitter = forms.URLField(max_length=100, required=False)
     github = forms.URLField(max_length=100, required=False)
+    forum = forms.URLField(max_length=100, required=False)
     avatar = forms.ModelChoiceField(
         queryset=get_image_model().objects.all(), widget=AdminImageChooser(), label='Profile Picture', required=False,
     )
@@ -22,6 +23,7 @@ class CustomUserCreationForm(UserCreationForm):
     title = forms.CharField(max_length=50, required=False)
     twitter = forms.URLField(max_length=100, required=False)
     github = forms.URLField(max_length=100, required=False)
+    forum = forms.URLField(max_length=100, required=False)
     avatar = forms.ModelChoiceField(
         queryset=get_image_model().objects.all(), widget=AdminImageChooser(), label='Profile Picture', required=False,
     )
