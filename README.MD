@@ -6,7 +6,7 @@
 Development 
 
 ```
-git clone https://gitlab.manjaro.org/webpage/manjaro.org-infrastruture.git
+git clone https://gitlab.manjaro.org/webpage/manjaro.org.git
 
 pip install -r requirements.txt
 
