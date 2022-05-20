@@ -1,10 +1,11 @@
 module.exports = {
-  plugins: [
-    require("postcss-import"),
-    require("postcss-simple-vars"),
-    require("postcss-nested"),
-    require("autoprefixer"),
-    require("postcss-preset-env"),
-    require("postcss-combine-media-query")
-  ],
+  plugins: {
+    "postcss-import": {},
+    "postcss-simple-vars": {},
+    "postcss-nested": {},
+    "autoprefixer": {},
+    "postcss-preset-env": {},
+    "postcss-combine-media-query":{},
+    "cssnano": { preset: 'default' }
+  },
 }
