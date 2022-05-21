@@ -99,7 +99,7 @@
                     </ul>
                     <ul>
                       <li>
-                        <a href="/features/" aria-label="Latest Hardware Minisforum PC" class="cursor-saturation font-semibold transition-colors duration-200 text-yellow-accent-200 hover:text-yellow-accent-700">
+                        <a href="/features/" aria-label="manjaro features" class="cursor-saturation font-semibold transition-colors duration-200 text-yellow-accent-200 hover:text-yellow-accent-700">
                           <span class="mr-1 float-left">
                             <svg class="w-5 h-5 mt-px text-yellow-accent-700" stroke="currentColor" viewBox="0 0 52 52">
                               <polygon stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
@@ -114,7 +114,7 @@
               </div>
           </div>
           <div class="w-full max-w-xl xl:px-8 xl:w-5/12 lg:translate-y-[50%] transform-gpu">
-              <a href="{{ promo.url }}" aria-label="Latest Hardware Minisforum PC" class="w-[100%] lg:w-[80%] text-center relative speech-bubble-rigth block font-semibold transition-colors duration-200 text-teal-accent-700 hover:text-teal-accent-200">
+              <a href="{{ promo.url }}" aria-label="{{ promo.text }}" class="w-[100%] lg:w-[80%] text-center relative speech-bubble-rigth block font-semibold transition-colors duration-200 text-teal-accent-700 hover:text-teal-accent-200">
                 {{ promo.text }}
                 <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
                   <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
@@ -127,7 +127,7 @@
     </div>
     {% endwith %}
    {% endwith %}
-   <a href="#partner" class="arrow-links text-6xl hidden xl:block cursor-saturation">
+   <a href="#partner" class="arrow-links text-6xl hidden xl:block cursor-saturation" aria-label="partner">
     <div class="chevron-container">
       <div class="chevron"></div>
       <div class="chevron"></div>
@@ -159,7 +159,7 @@
           </p>
         </div>
         <div>
-          <a href="/contact-for-partners/" aria-label="" class="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
+          <a href="/contact-for-partners/" aria-label="contact for partners" class="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
             Get in touch
             <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
               <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
@@ -173,12 +173,12 @@
             class="object-cover mb-6"
             style="filter: drop-shadow(4px 4px 6px black);"
             src="{% static 'img/partners.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-            alt=""
+            alt="{{ page.partners_title }}"
           />
         </div>
       </div>
     </div>
-    <a href="#shells" class="arrow-links text-6xl hidden xl:block">
+    <a href="#shells" class="arrow-links text-6xl hidden xl:block" aria-label="shells">
       <div class="chevron-container">
         <div class="chevron"></div>
         <div class="chevron"></div>
@@ -190,7 +190,7 @@
   <div id="shells" class="relative lg:h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <div class="flex flex-col lg:flex-row sm:mx-auto">
       <div class="hidden lg:flex flex relative lg:w-1/2 p-8 lg:p-6 items-center">
-        <img src="{% static 'img/cloud.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" 
+        <img src="{% static 'img/cloud.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="{{ page.shells_title }}" 
         class="object-cover drop-shadow-2xl"
         style="filter: drop-shadow(4px 4px 6px black);" />
       </div>
