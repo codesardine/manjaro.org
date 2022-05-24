@@ -113,19 +113,19 @@ class Downloads(RoutablePageMixin, Page):
     @route(r"^plasma/$")
     def plasma(self, request):
         iso_info = self.get_iso_info()
-        iso = iso_info["official"]["plasma"]["minimal"]["image"]
+        iso = iso_info["official"]["plasma"]["image"]
         return redirect(iso)
 
     @route(r"^xfce/$")
     def xfce(self, request):
         iso_info = self.get_iso_info()
-        iso = iso_info["official"]["xfce"]["minimal"]["image"]
+        iso = iso_info["official"]["xfce"]["image"]
         return redirect(iso)
 
     @route(r"^gnome/$")
     def gnome(self, request):
         iso_info = self.get_iso_info()
-        iso = iso_info["official"]["gnome"]["minimal"]["image"]
+        iso = iso_info["official"]["gnome"]["image"]
         return redirect(iso)
 
     keywords = models.CharField(default='', blank=True, max_length=100)

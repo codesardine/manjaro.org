@@ -145,35 +145,22 @@
                     <br>
                     {% endif %}
                     <div class="flex items-center justify-center w-full">
-                      <label for="toggle-{{ title }}" class="flex items-center cursor-pointer">
+                      <label for="of-toggle-{{ title }}" class="flex items-center cursor-pointer">
                         <div class="relative">
-                          <input id="toggle-{{ title }}" type="checkbox" class="sr-only no-mouse-effect" />
+                          <input id="of-toggle-{{ title }}" type="checkbox" class="sr-only no-mouse-effect" />
                           <div class="w-10 h-4 bg-gray-400 rounded-full shadow-inner"></div>
                           <div class="dot absolute w-6 h-6 bg-gray-600 rounded-full shadow -left-1 -top-1 transition"></div>
                         </div>
-                        <div id="toggle-text-{{ title }}" class="ml-3 text-gray-700 font-semibold w-20">
-                          Minimal
+                        <div id="of-toggle-text-{{ title }}" class="ml-3 text-gray-700 font-semibold w-20">
+                          Full
                         </div>
                       </label>
-                    </div>
-                    <script>                     
-                      document.getElementById('toggle-{{ title }}').onchange = function(value) {
-                        if (document.getElementById('toggle-{{ title }}').checked) {
-                          document.getElementById('toggle-text-{{ title }}').textContent = "Full"
-                          document.getElementById('minimal-{{ title }}').classList.add("hidden") 
-                          document.getElementById('full-{{ title }}').classList.remove("hidden")
-                        } else {
-                          document.getElementById('toggle-text-{{ title }}').textContent = "Minimal"
-                          document.getElementById('full-{{ title }}').classList.add("hidden") 
-                          document.getElementById('minimal-{{ title }}').classList.remove("hidden")
-                        }
-                     };
-                    </script>                 
+                    </div>                 
                     <br>
                     <div class="pl-2 pr-2 text-center text-3xl">
                       {% if desktop.minimal.image %}
-                      <ul id="minimal-{{ title }}">
-                        <a id="btn-mi" href="{{ title }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
+                      <ul id="of-minimal-{{ title }}" class="hidden">
+                        <a id="btn-mi" href="{{ desktop.minimal.image }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
                         {% if desktop.minimal.signature %}
                         <a id="btn-ms" href="{{ desktop.minimal.signature }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
                         {% endif %}
@@ -183,8 +170,8 @@
                       </ul>
                       {% endif %}
                       {% if desktop.image %}
-                        <ul id="full-{{ title }}" class="hidden">
-                          <a id="btn-fi" href="{{ desktop.image }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
+                        <ul id="of-full-{{ title }}">
+                          <a id="btn-fi" href="{{ title }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
                           {% if desktop.signature %}
                           <a id="btn-fs" href="{{ desktop.signature }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
                           {% endif %}
@@ -195,6 +182,28 @@
                       </ul>
                     </div>
                     <br>
+                    <script>    
+                        if (document.getElementById('of-toggle-{{ title }}').checked) {
+                          document.getElementById('of-toggle-text-{{ title }}').textContent = "Minimal"
+                          document.getElementById('of-minimal-{{ title }}').classList.remove("hidden") 
+                          document.getElementById('of-full-{{ title }}').classList.add("hidden")
+                        } else {
+                          document.getElementById('of-toggle-text-{{ title }}').textContent = "Full"
+                          document.getElementById('of-full-{{ title }}').classList.remove("hidden") 
+                          document.getElementById('of-minimal-{{ title }}').classList.add("hidden")
+                        }
+                      document.getElementById('of-toggle-{{ title }}').onchange = function(value) {
+                        if (document.getElementById('of-toggle-{{ title }}').checked) {
+                          document.getElementById('of-toggle-text-{{ title }}').textContent = "Minimal"
+                          document.getElementById('of-minimal-{{ title }}').classList.remove("hidden") 
+                          document.getElementById('of-full-{{ title }}').classList.add("hidden")
+                        } else {
+                          document.getElementById('of-toggle-text-{{ title }}').textContent = "Full"
+                          document.getElementById('of-full-{{ title }}').classList.remove("hidden") 
+                          document.getElementById('of-minimal-{{ title }}').classList.add("hidden")
+                        }
+                     };
+                    </script>
                     {% if "download." in desktop.image %}
                     <div class="text-sm text-gray-900 inline-block text-center w-full">
                       Download provided by 
@@ -396,35 +405,22 @@
                     {% endif %}
                     {% if desktop.minimal.image and desktop.image %}
                     <div class="flex items-center justify-center w-full">
-                      <label for="toggle-{{ title }}" class="flex items-center cursor-pointer">
+                      <label for="co-toggle-{{ title }}" class="flex items-center cursor-pointer">
                         <div class="relative">
-                          <input id="toggle-{{ title }}" type="checkbox" class="sr-only" />
+                          <input id="co-toggle-{{ title }}" type="checkbox" class="sr-only" />
                           <div class="w-10 h-4 bg-gray-400 rounded-full shadow-inner"></div>
                           <div class="dot absolute w-6 h-6 bg-gray-600 rounded-full shadow -left-1 -top-1 transition"></div>
                         </div>
-                        <div id="toggle-text-{{ title }}" class="ml-3 text-gray-700 font-semibold w-20">
+                        <div id="co-toggle-text-{{ title }}" class="ml-3 text-gray-700 font-semibold w-20">
                           Minimal
                         </div>
                       </label>
                     </div>
-                    <script>                     
-                      document.getElementById('toggle-{{ title }}').onchange = function(value) {
-                        if (document.getElementById('toggle-{{ title }}').checked) {
-                          document.getElementById('toggle-text-{{ title }}').textContent = "Full"
-                          document.getElementById('minimal-{{ title }}').classList.add("hidden") 
-                          document.getElementById('full-{{ title }}').classList.remove("hidden")
-                        } else {
-                          document.getElementById('toggle-text-{{ title }}').textContent = "Minimal"
-                          document.getElementById('full-{{ title }}').classList.add("hidden") 
-                          document.getElementById('minimal-{{ title }}').classList.remove("hidden")
-                        }
-                     };
-                    </script>
                     <br>
                     {% endif %}
                     <div class="pl-2 pr-2 text-center text-3xl">
                       {% if desktop.minimal %}
-                        <ul id="minimal-{{ title }}">
+                        <ul id="co-minimal-{{ title }}" class="hidden">
                         <a id="btn-mi" href="{{ desktop.minimal.image }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
                         {% if desktop.minimal.signature %}
                         <a id="btn-ms" href="{{ desktop.minimal.signature }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
@@ -435,7 +431,7 @@
                       </ul>
                       {% endif %}
                       {% if desktop.image %}
-                        <ul id="full-{{ title }}" class="hidden">
+                        <ul id="co-full-{{ title }}">
                           <a id="btn-fi" href="{{ desktop.image }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
                           {% if desktop.signature %}
                           <a id="btn-fs" href="{{ desktop.signature }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
@@ -446,6 +442,30 @@
                         </ul>
                         {% endif %}
                     </div>
+                    {% if desktop.minimal.image and desktop.image %}
+                    <script>    
+                      if (document.getElementById('co-toggle-{{ title }}').checked) {
+                          document.getElementById('co-toggle-text-{{ title }}').textContent = "Minimal"
+                          document.getElementById('co-minimal-{{ title }}').classList.remove("hidden") 
+                          document.getElementById('co-full-{{ title }}').classList.add("hidden")
+                        } else {
+                          document.getElementById('co-toggle-text-{{ title }}').textContent = "Full"
+                          document.getElementById('co-full-{{ title }}').classList.remove("hidden") 
+                          document.getElementById('co-minimal-{{ title }}').classList.add("hidden")
+                        }
+                      document.getElementById('co-toggle-{{ title }}').onchange = function(value) {
+                        if (document.getElementById('co-toggle-{{ title }}').checked) {
+                          document.getElementById('co-toggle-text-{{ title }}').textContent = "Minimal"
+                          document.getElementById('co-minimal-{{ title }}').classList.remove("hidden") 
+                          document.getElementById('co-full-{{ title }}').classList.add("hidden")
+                        } else {
+                          document.getElementById('co-toggle-text-{{ title }}').textContent = "Full"
+                          document.getElementById('co-full-{{ title }}').classList.remove("hidden") 
+                          document.getElementById('co-minimal-{{ title }}').classList.add("hidden")
+                        }
+                     };
+                      </script>
+                      {% endif %}
                     {% if "download." in desktop.image %}
                     <br>
                     <div class="text-sm text-gray-900 inline-block text-center w-full">
