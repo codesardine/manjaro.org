@@ -71,13 +71,11 @@
                                     {{ entry.title }}
                                 </h2>
                                 </a>
-                                <p class="mb-2 text-gray-700">
-                                    {% if entry.excerpt %}
-                                        {{ entry.excerpt|richtext }}
-                                    {% else %}
-                                        {{ entry.body|richtext|truncatewords_html:70 }}
-                                    {% endif %}
-                                </p>
+                                {% if entry.excerpt %}
+                                    {{ entry.excerpt|richtext }}
+                                {% else %}
+                                    {{ entry.body|richtext|truncatewords_html:70 }}
+                                {% endif %}
                                 <ul class="flex gap-4 justify-center mb-2 mt-2">
                                     <li>
                                         {% post_to_facebook entry.url '<span class="text-blue-900 text-2xl"><i class="fa fa-facebook"></i></span>' %}
