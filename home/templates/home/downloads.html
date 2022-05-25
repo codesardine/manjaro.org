@@ -127,7 +127,12 @@
               <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
               <div class="flex-grow border border-t-0 rounded-b">
                   <div class="p-5">
-                    <h4 class="mb-2 font-semibold leading-5">{{ title|capfirst }} Desktop</h4>
+                    <h4 class="mb-2 font-semibold leading-5 relative">
+                      {{ title|capfirst }} Desktop
+                      {% if desktop.date %}
+                          <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
+                      {% endif %}
+                </h4>
                     <p class="text-sm text-gray-900">
                       {% if "xfce" in title.lower %}
                         {{ page.xfce_description }}
@@ -142,7 +147,6 @@
                     <p class="text-sm text-gray-900 pl-1 pr-1">
                         {{ desktop.notes }}                              
                     </p>
-                    <br>
                     {% endif %}
                     <div class="flex items-center justify-center w-full">
                       <label for="of-toggle-{{ title }}" class="flex items-center cursor-pointer">
@@ -151,7 +155,7 @@
                           <div class="w-10 h-4 bg-gray-400 rounded-full shadow-inner"></div>
                           <div class="dot absolute w-6 h-6 bg-gray-600 rounded-full shadow -left-1 -top-1 transition"></div>
                         </div>
-                        <div id="of-toggle-text-{{ title }}" class="ml-3 text-gray-700 font-semibold w-20">
+                        <div id="of-toggle-text-{{ title }}" class="text-center ml-3 text-gray-700 font-semibold w-20">
                           Full
                         </div>
                       </label>
@@ -166,8 +170,8 @@
                         {% endif %}
                         {% if desktop.minimal.checksum %}
                         <a id="btn-mc" href="{{ desktop.minimal.checksum }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
-                        {% endif %}
                       </ul>
+                      {% endif %}
                       {% endif %}
                       {% if desktop.image %}
                         <ul id="of-full-{{ title }}">
@@ -178,8 +182,8 @@
                           {% if desktop.checksum %}
                           <a id="btn-fc" href="{{ desktop.checksum }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
                           {% endif %}
-                      {% endif %}
                       </ul>
+                      {% endif %}
                     </div>
                     <br>
                     <script>    
@@ -270,12 +274,15 @@
       <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ arm_title }} Desktop" />
       <div class="flex-grow border border-t-0 rounded-b">
           <div class="p-5">
-          <h5 class="mb-2 font-semibold leading-5">
+          <h5 class="mb-2 font-semibold leading-5 relative">
             {{ arm_title|capfirst }}
             {% if "phosh" in arm_title.lower or "mobile" in arm_title.lower%}
             {% elif "minimal" in arm_title.lower or "sway" in arm_title.lower %}            
             {% else %}
             Desktop
+            {% endif %}
+            {% if arm_desktop.date %}
+                <span class="text-xs p-1 float-right">Updated: <time>{{ arm_desktop.date }}</time></span>
             {% endif %}
           </h5>
           <p class="text-sm text-gray-900">
@@ -381,6 +388,9 @@
                       {% if "i3" in title.lower or "sway" in title.lower %}            
                       {% else %}
                       Desktop
+                      {% endif %}
+                      {% if desktop.date %}
+                          <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
                       {% endif %}
                     </h4>
                     <p class="text-sm text-gray-900">
