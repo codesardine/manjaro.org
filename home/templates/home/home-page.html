@@ -218,6 +218,10 @@
     </div>
   </div>
 
+  <div id="error" class="fixed bg-orange-900 p-4 hidden">
+    <P class="text-white">This page does not exist, you have been redirected to the home page.</P>
+  </div>
+
 <script>
   const links = document.querySelectorAll(".arrow-links");
   for (const link of links) {
@@ -233,6 +237,14 @@
       top: offsetTop,
       behavior: "smooth"
     });
+  }
+  if (window.location.href.includes("?404")) { 
+    console.log(window.location.href)
+    let error = document.querySelector("#error")
+    error.classList.remove("hidden")
+    setTimeout( function() {
+      error.classList.add("hidden")
+    }, 10000)
   }
 </script>
 {% endblock %}
