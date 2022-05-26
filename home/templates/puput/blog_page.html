@@ -47,7 +47,6 @@
 {% block content %}
 <div class="px-4 pb-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pb-20">
     <div class="grid gap-10 lg:grid-cols-4">
-
       <div class="lg:col-span-3">
         <div class="px-4 pb-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pb-20">
             <div class="grid gap-6 sm:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 sm:mx-auto lg:max-w-full">
@@ -106,8 +105,6 @@
             </div>
         </div>        
       </div>
-
-
       <div class="lg:col-span-1">
         {% if blog_page.display_last_entries %}
         <div class="mx-auto lg:max-w-xl text-left">
@@ -149,9 +146,7 @@
                 {% archives_list %}
         </div>
         {% endif %}
-      </div>
-
-      
+      </div>      
     </div>
   </div>
 {% endblock %}
