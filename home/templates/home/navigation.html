@@ -8,7 +8,7 @@
     <path fill="currentColor" d="M0 22L120 16.7C240 11 480 1.00001 720 0.700012C960 1.00001 1200 11 1320 16.7L1440 22V54H1320C1200 54 960 54 720 54C480 54 240 54 120 54H0V22Z"></path>
   </svg>
     <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-      <div class="relative flex items-center justify-between lg:justify-center lg:space-x-16">
+      <div class="nav relative flex items-center justify-between lg:justify-center lg:space-x-16">
         <ul class="flex items-center hidden space-x-8 lg:flex">
           {% for item in left_navigation.menu_items.all %}
             <li>
@@ -28,7 +28,7 @@
           {% endfor %}
         </ul>
         <!-- Mobile menu -->
-        <div class="ml-auto lg:hidden">
+        <div id="nav-mobile" class="ml-auto lg:hidden">
           <button id="btn-open-menu" aria-label="Open Menu" title="Open Menu" class="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline">
             <svg class="w-5 text-gray-700" viewBox="0 0 24 24">
               <path fill="currentColor" d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"></path>
