@@ -164,6 +164,9 @@
                     <div class="pl-2 pr-2 text-center text-3xl">
                       {% if desktop.minimal.image %}
                       <ul id="of-minimal-{{ title }}" class="hidden">
+                        {% if desktop.minimal.torrent %}
+                        <a id="btn-mt" href="{{ desktop.minimal.torrent }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-cyan-200 hover:text-cyan-400"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+                        {% endif %}
                         <a id="btn-mi" href="{{ desktop.minimal.image }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
                         {% if desktop.minimal.signature %}
                         <a id="btn-ms" href="{{ desktop.minimal.signature }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
@@ -175,6 +178,9 @@
                       {% endif %}
                       {% if desktop.image %}
                         <ul id="of-full-{{ title }}">
+                          {% if desktop.minimal.torrent %}
+                          <a id="btn-ft" href="{{ desktop.torrent }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-cyan-200 hover:text-cyan-400"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+                          {% endif %}
                           <a id="btn-fi" href="{{ title }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
                           {% if desktop.signature %}
                           <a id="btn-fs" href="{{ desktop.signature }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
@@ -312,6 +318,9 @@
           <br>
           {% endif %}
           <div class="pl-2 pr-2 text-center text-3xl"> 
+            {% if arm_desktop.torrent %}
+            <a id="btn-at" href="{{ arm_desktop.torrent }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-cyan-200 hover:text-cyan-400"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+            {% endif %}
             {% if arm_desktop.image %}          
             <a id="btn-ai" href="{{ arm_desktop.image }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
             {% endif %}
@@ -430,7 +439,10 @@
                     {% endif %}
                     <div class="pl-2 pr-2 text-center text-3xl">
                       {% if desktop.minimal.image %}
-                        <ul id="co-minimal-{{ title }}" {% if desktop.image %}class="hidden"{% endif %}>
+                      <ul id="co-minimal-{{ title }}" {% if desktop.image %}class="hidden"{% endif %}>
+                        {% if desktop.minimal.torrent %}
+                        <a id="btn-mt" href="{{ desktop.minimal.torrent }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-cyan-200 hover:text-cyan-400"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+                        {% endif %}
                         <a id="btn-mi" href="{{ desktop.minimal.image }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
                         {% if desktop.minimal.signature %}
                         <a id="btn-ms" href="{{ desktop.minimal.signature }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
@@ -442,6 +454,9 @@
                       {% endif %}
                       {% if desktop.image %}
                         <ul id="co-full-{{ title }}">
+                          {% if desktop.torrent %}
+                          <a id="btn-ft" href="{{ desktop.torrent }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-cyan-200 hover:text-cyan-400"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+                          {% endif %}
                           <a id="btn-fi" href="{{ desktop.image }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
                           {% if desktop.signature %}
                           <a id="btn-fs" href="{{ desktop.signature }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
@@ -524,12 +539,13 @@
   <script src="https://unpkg.com/@popperjs/core@2"></script>
   <script src="https://unpkg.com/tippy.js@6"></script>
   <script>
-    let arm = "Download "
+    let dow = "Download "
     let min = "Download Minimal "
     let ful = "Download Full "
     let im = "Image"
     let sig = "Signature"
     let che = "Checksum"
+    let tor = "Torrent"
     tippy('#btn-mi', {
       content: min + im,
     });
@@ -539,23 +555,32 @@
     tippy('#btn-mc', {
       content: min + che,
     });
+    tippy('#btn-mt', {
+      content: min + tor,
+    });
     tippy('#btn-fi', {
       content: ful + im,
     });
     tippy('#btn-fs', {
       content: ful + sig,
     });
+    tippy('#btn-ft', {
+      content: ful + tor,
+    });
     tippy('#btn-fc', {
       content: ful + che,
     });
     tippy('#btn-ai', {
-      content: arm + im,
+      content: dow + im,
+    });
+    tippy('#btn-at', {
+      content: dow + tor,
     });
     tippy('#btn-as', {
-      content: arm + sig,
+      content: dow + sig,
     });
     tippy('#btn-ac', {
-      content: arm + che,
+      content: dow + che,
     });  
   </script>
 {% endblock %}
