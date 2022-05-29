@@ -452,6 +452,11 @@
                         {% endif %}
                       </ul>
                       {% endif %}
+                      {% if desktop.custom %}
+                      <ul>
+                          <a id="btn-cd" target="_blank" href="{{ desktop.custom }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-file-export"></i></a>
+                      </ul>
+                      {% endif %}
                       {% if desktop.image %}
                         <ul id="co-full-{{ title }}">
                           {% if desktop.torrent %}
@@ -465,7 +470,7 @@
                           <a id="btn-fc" href="{{ desktop.checksum }}" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
                           {% endif %}
                         </ul>
-                        {% endif %}
+                      {% endif %}
                     </div>
                     {% if desktop.minimal.image and desktop.image %}
                     <script>    
@@ -582,5 +587,8 @@
     tippy('#btn-ac', {
       content: dow + che,
     });  
+    tippy('#btn-cd', {
+      content: dow,
+    }); 
   </script>
 {% endblock %}
