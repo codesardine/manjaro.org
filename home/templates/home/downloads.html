@@ -508,19 +508,24 @@
             </div>
           </div>            
       {% endfor %}
-      <a target="_blank" href="https://github.com/manjaro/manjaro-docker" aria-label="View Item" class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
+      <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
         <div class="flex flex-col h-full">
           <img src="{% static 'img/docker.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Docker" />
           <div class="flex-grow border border-t-0 rounded-b text-left">
               <div class="p-5">
                 <h3 class="mb-2 font-semibold leading-5">Manjaro Docker</h3>
-                <p style="min-height: auto;" class="text-sm text-gray-900">
+                <p class="text-sm text-gray-900">
                   {{ page.docker_intro }}
                 </p>
+                <div class="pl-2 pr-2 text-center text-3xl">
+                  <ul>
+                    <a id="btn-cd" target="_blank" href="https://github.com/manjaro/manjaro-docker" class="no-mouse-effects mr-3 font-semibold transition-colors duration-200 text-pink-200 hover:text-pink-400"><i class="fa-solid fa-file-export"></i></a>
+                </ul>
+                </div>
               </div>
           </div>
         </div>
-    </a>
+      </div>
       <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
         <div class="flex flex-col h-full">
         <img src="{% static 'img/manual.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Manual" />
