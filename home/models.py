@@ -541,6 +541,7 @@ class HomePage(Page):
 
     shells_title = models.CharField(default='', blank=True, max_length=50)
     shells_intro = models.TextField(blank=True, max_length=350)
+    shells_url = models.URLField(blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("manjaro_title"),
@@ -550,6 +551,7 @@ class HomePage(Page):
         FieldPanel("partners_url"),
         FieldPanel("shells_title"),
         FieldPanel("shells_intro"),
+        FieldPanel("shells_url"),
         StreamFieldPanel("content"),
     ]
 
