@@ -414,7 +414,7 @@
     }
     100% {
         opacity: 0;
-        transform: translateY(clac(0.6rem * 8)) scale(0.5);
+        transform: translateY(calc(0.6rem * 8)) scale(0.5);
     }
 }
 
