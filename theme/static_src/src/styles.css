@@ -94,24 +94,8 @@
     p#bio {
         margin-left: -5px;
     }
-    
-    p:hover {
-        transform: scale(1.05) !important;
-        background-color: #00f8fa;
-    }
-
-    .downloads a p:hover, .downloads button p:hover,
-    .hardware .grid > .flex-col p:hover {
-        transform: none !important;
-        cursor: pointer;
-        font-weight: normal;
-    }
-
-    .hardware .grid > .flex-col p:hover {
-        cursor: default;
-    }
-    
-    a, p, button {
+        
+    a, button {
         transition: all .2s ease-in-out !important;
     }
 
