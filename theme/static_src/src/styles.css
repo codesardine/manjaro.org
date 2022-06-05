@@ -402,7 +402,7 @@
     }
 }
 
-.downloads {
+.downloads, .packages {
     & input:checked ~ .dot {
         transform: translateX(100%);
     }

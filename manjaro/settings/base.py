@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'colorful',
     'tailwind',
     'theme',
+    'compare',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
