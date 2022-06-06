@@ -32,7 +32,6 @@ def get_db(arch, branch, repo, pkg_model, last_update_model):
     if update:
         response = requests.get(url, stream=True)
         if response.ok:
-            pkg_model.objects.filter(arch=arch, branch=branch, repo=repo).delete()
             return response.raw
         else:
             print(url, response.status_code)
@@ -71,6 +70,7 @@ def parse_pkg_desc(fileobj, branch, repo, pkg_model, arch):
 
 def parse_db(arch, branch, repos, pkg_model, last_update_model):
     for repo in repos:
+        pkg_model.objects.filter(arch=arch, branch=branch, repo=repo).delete()
         file = get_db(arch, branch, repo, pkg_model, last_update_model)
         if file:
             tf = tarfile.open(fileobj=file, mode='r:gz')
