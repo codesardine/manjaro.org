@@ -27,6 +27,13 @@
 {% endblock %}
 
 {% block content %}
+<p class="text-sm text-center p-8 w-full mx-auto">
+  {% if packages %}
+    Searched <span class="font-semibold text-cyan-600">{{ total_packages }}</span> packages found <span class="font-semibold text-cyan-600">{{ query_total }}</span> for <span class="font-semibold text-cyan-600">{{ query }}</span>
+  {% else %}
+  Searched <span class="font-semibold text-cyan-600">{{ total_packages }}</span> packages <span class="font-semibold text-red-700">no results</span> for <span class="font-semibold text-cyan-600">{{ query }}</span></span>
+  {% endif %}
+  </p>
 <form method="get" class="flex relative mx-auto w-4/5 lg:w-2/3 lg:max-w-md">
     <input class="border-2 border-gray-200 bg-blue-gray-800 transition h-16 px-5 pr-16 rounded-md focus:outline-none focus:ring focus:ring-teal-300 focus:border-teal-300 w-full text-gray-200 text-lg " type="text" name="query" placeholder="Search" value="{{ search_query }}">
     <button type="submit" class="right-5 top-3 absolute">
@@ -34,28 +41,22 @@
         <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
       </svg>
     </button>
-    <div class="flex absolute -mt-[50px] items-center justify-center w-full">
+    <div class="flex absolute mt-24 items-center justify-center w-full z-10">
       <label for="of-toggle-arm" class="flex items-center cursor-pointer">
-        <div class="text-center mr-4 text-gray-700 font-semibold w-20">x86-64</div>
+        <div id="btn" class="text-center mr-4 text-teal-400 font-semibold w-20">x86-64</div>
         <div class="relative form-check form-switch">
           <input id="of-toggle-arm" type="checkbox" class="sr-only no-mouse-effect" role="switch" name="arm" {% if arm or arm_query %}checked{% endif %}>
           <div class="w-10 h-4 bg-gray-400 rounded-full shadow-inner"></div>
           <div class="dot absolute w-6 h-6 bg-gray-600 rounded-full shadow -left-1 -top-1 transition"></div>
         </div>
-        <div class="text-center ml-3 text-gray-700 font-semibold w-20">ARM</div>
+        <div id="btn-arm" class="text-center ml-3 text-red-400 font-semibold w-20">ARM</div>
       </label>
     </div>
   </form>
  
-  <section class="mx-auto p-6 pt-0 font-mono lg:max-w-screen-lg">
-    <p class="text-sm text-center p-8 w-full mx-auto">
-      {% if packages %}
-        Great, searched {{ total_packages }} packages found {{ query_total }} for <span class="font-semibold text-green-700">{{ query }}</span>
-      {% else %}
-      Ho no, searched {{ total_packages }} packages no results for <span class="font-semibold text-red-700">{{ query }}</span>
-      {% endif %}
-      </p>
-    <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+  <section class="relative mx-auto p-6 pt-24 font-mono lg:max-w-screen-lg">
+    <img class="absolute object-cover h-[200px] w-[200px] mt-[-100px] ml-[50px]" src="/static/img/package-light.svg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="package" />
+    <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg relative z-1">
       <div class="w-full overflow-x-auto">
         {% if packages %}   
           <table class="w-full">
@@ -82,7 +83,7 @@
                     {{ pkg.name }}
                       </a>
                     <p class="text-xs text-gray-600">{{ pkg.repo }}</p>
-                    <p class="text-xs text-gray-600 absolute right-0">{{ pkg.last_update }}</p>
+                    <p class="text-xs text-gray-500 absolute right-0">{{ pkg.last_update }}</p>
                   </div>
                 </div>
               </td>
@@ -102,6 +103,17 @@
   <script>
     if (window.location.search == "") {
       window.location.replace(window.location.origin + "?query=linux")
+    }
+    const swicth = document.getElementById("of-toggle-arm")
+    swicth.onchange = function() {
+      if (swicth.checked) {
+        document.getElementById("btn").style.color = "#ef5350"
+        document.getElementById("btn-arm").style.color = "#26a69a"
+      } else {
+        document.getElementById("btn").style.color = "#26a69a"
+        document.getElementById("btn-arm").style.color = "#ef5350"
+      }
+ 
     }
   </script>
   {% endblock %}
