@@ -75,6 +75,7 @@ class Packages(Page):
         arm = request.GET.get('arm', None)
         if arm:
             model = armPackage
+            context['arm_query'] = True
         else:
             model = Package
         

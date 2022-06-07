@@ -25,7 +25,7 @@ def check_last_update(url, arch, branch, repo, last_update_model):
         return True
 
 
-def get_db(arch, branch, repo, pkg_model, last_update_model):
+def get_db(arch, branch, repo, last_update_model):
     mirror="https://mirror.easyname.at/manjaro"
     url = f"{mirror}/{branch}/{repo}/{arch}/{repo}.db"
     update = check_last_update(url, arch, branch, repo, last_update_model)
@@ -71,7 +71,7 @@ def parse_pkg_desc(fileobj, branch, repo, pkg_model, arch):
 def parse_db(arch, branch, repos, pkg_model, last_update_model):
     for repo in repos:
         pkg_model.objects.filter(arch=arch, branch=branch, repo=repo).delete()
-        file = get_db(arch, branch, repo, pkg_model, last_update_model)
+        file = get_db(arch, branch, repo, last_update_model)
         if file:
             tf = tarfile.open(fileobj=file, mode='r:gz')
             try:
@@ -90,6 +90,8 @@ def parse_db(arch, branch, repos, pkg_model, last_update_model):
 def build_db(arch, branches, repos, pkg_model, last_update_model):
     print("starting job...")
     start = time.time()
+    #pkg_model.objects.all().delete()
+    #last_update_model.objects.all().delete()
     for branch in branches:
        parse_db(arch, branch, repos, pkg_model, last_update_model)        
     print(time.time() - start)

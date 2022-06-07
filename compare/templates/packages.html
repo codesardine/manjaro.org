@@ -38,7 +38,7 @@
       <label for="of-toggle-arm" class="flex items-center cursor-pointer">
         <div class="text-center mr-4 text-gray-700 font-semibold w-20">x86-64</div>
         <div class="relative form-check form-switch">
-          <input id="of-toggle-arm" type="checkbox" class="sr-only no-mouse-effect" role="switch" name="arm" {% if arm %}checked{% endif %}>
+          <input id="of-toggle-arm" type="checkbox" class="sr-only no-mouse-effect" role="switch" name="arm" {% if arm or arm_query %}checked{% endif %}>
           <div class="w-10 h-4 bg-gray-400 rounded-full shadow-inner"></div>
           <div class="dot absolute w-6 h-6 bg-gray-600 rounded-full shadow -left-1 -top-1 transition"></div>
         </div>
@@ -54,7 +54,7 @@
       {% else %}
         No search results for <span class="font-semibold text-red-700">{{ query }}</span>. Try something else.
       {% endif %}
-      </p>
+      </p>{{ query }}
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
       <div class="w-full overflow-x-auto">
         {% if packages %}   
