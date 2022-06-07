@@ -16,6 +16,7 @@ class Package(models.Model):
     stable = models.CharField(max_length=50, null=True)
     testing = models.CharField(max_length=50, null=True)
     unstable = models.CharField(max_length=50, null=True)
+    last_update = models.CharField(max_length=20, null=True)
 
 
 class armPackage(models.Model):
@@ -27,6 +28,7 @@ class armPackage(models.Model):
     stable = models.CharField(max_length=50, null=True)
     testing = models.CharField(max_length=50, null=True)
     unstable = models.CharField(max_length=50, null=True)
+    last_update = models.CharField(max_length=20, null=True)
 
 
 class Updates(models.Model):

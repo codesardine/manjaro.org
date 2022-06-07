@@ -74,7 +74,7 @@
                     <img class="object-cover w-full h-full rounded-full" src="/static/img/package.svg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="package" />
                     <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                   </div>
-                  <div>
+                  <div class="w-full relative">
                     <a href="https://software.manjaro.org/package/{{ pkg.name }}"
                     aria-label="{{ pkg }}"
                     target="_blank"
@@ -82,13 +82,14 @@
                     {{ pkg.name }}
                       </a>
                     <p class="text-xs text-gray-600">{{ pkg.repo }}</p>
+                    <p class="text-xs text-gray-600 absolute right-0">{{ pkg.last_update }}</p>
                   </div>
                 </div>
               </td>
               <td class="text-sm border-b text-center border-blue-300">
-                <p class="text-xs text-gray-800 p-1 bg-green-50"><span class="mr-6">Stable</span><span>{{ pkg.stable }}</span></p>
-                <p class="text-xs text-gray-800 p-1 bg-yellow-50"><span class="mr-4">Testing</span><span>{{ pkg.testing }}</span></p>
-                <p class="text-xs text-gray-800 p-1 bg-red-50"><span class="mr-2">unstable</span><span>{{ pkg.unstable }}</span></p>
+                <p class="text-xs text-gray-800 p-2 bg-green-50"><span class="mr-6">Stable</span><span>{{ pkg.stable }}</span></p>
+                <p class="text-xs text-gray-800 p-2 bg-yellow-50"><span class="mr-4">Testing</span><span>{{ pkg.testing }}</span></p>
+                <p class="text-xs text-gray-800 p-2 bg-red-50"><span class="mr-2">unstable</span><span>{{ pkg.unstable }}</span></p>
               </td>
             </tr>
             {% endfor %}

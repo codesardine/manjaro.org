@@ -1,6 +1,7 @@
 import requests
 import tarfile
 import time
+from datetime import date
 from dateutil.parser import parse as parsedate
 
 def check_last_update(url, arch, branch, repo, last_update_model):
@@ -50,13 +51,14 @@ def parse_pkg_desc(fileobj, branch, repo, pkg_model, arch):
                 try:
                     pkg_model.objects.get(name=name)
                 except pkg_model.DoesNotExist:
-                    m = pkg_model(name=name, repo=repo, branch=branch, arch=arch)
+                    update = date.today().strftime("%B %d, %Y")
+                    m = pkg_model(name=name, repo=repo, branch=branch, arch=arch, last_update=update)
                     m.save()
                 
             elif "%VERSION%" in item:
                 version = next(it).decode().strip() 
                 m = pkg_model.objects.get(name=name)
- 
+
                 if "unstable" in branch:
                     m.unstable=version
                 elif "testing" in branch:
