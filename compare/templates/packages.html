@@ -50,11 +50,11 @@
   <section class="mx-auto p-6 pt-0 font-mono lg:max-w-screen-lg">
     <p class="text-sm text-center p-8 w-full mx-auto">
       {% if packages %}
-        Great, we found {{ total }} packages for <span class="font-semibold text-green-700">{{ query }}</span>
+        Great, searched {{ total_packages }} packages found {{ query_total }} for <span class="font-semibold text-green-700">{{ query }}</span>
       {% else %}
-        No search results for <span class="font-semibold text-red-700">{{ query }}</span>. Try something else.
+      Ho no, searched {{ total_packages }} packages no results for <span class="font-semibold text-red-700">{{ query }}</span>
       {% endif %}
-      </p>{{ query }}
+      </p>
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
       <div class="w-full overflow-x-auto">
         {% if packages %}   

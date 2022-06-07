@@ -68,7 +68,7 @@ class Packages(Page):
             slug='slug'
         ),
     ])
-
+    
     def get_context(self, request):
         context = super().get_context(request)
         search_query = request.GET.get('query', None)
@@ -79,19 +79,21 @@ class Packages(Page):
         else:
             model = Package
         
+        all = model.objects.all()
+        total_packages = len(all)
         if search_query:            
             search_results = model.objects.filter(name__contains=search_query)
-
             # Log the query so Wagtail can suggest promoted results
             Query.get(search_query).add_hit()
 
             if search_query == "all":
-                search_results = model.objects.all()
+                search_results = all
         else:
             search_results = model.objects.none()
-        
+
+        context['total_packages'] = total_packages
         context['query'] = search_query
-        context['total'] = len(search_results)
+        context['query_total'] = len(search_results)
         context['packages'] = search_results
         return context   
     

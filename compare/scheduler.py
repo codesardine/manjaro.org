@@ -5,13 +5,14 @@ def start():
     import datetime
 
     NOW = datetime.datetime.now()+datetime.timedelta(seconds=2)
+    TIMER = 30
 
     jobs = BackgroundScheduler() 
-    @jobs.scheduled_job('interval', minutes=60, start_date=NOW)
+    @jobs.scheduled_job('interval', minutes=TIMER, start_date=NOW)
     def update():
         update_packages(Package, Updates)
 
-    @jobs.scheduled_job('interval', minutes=60, start_date=NOW)
+    @jobs.scheduled_job('interval', minutes=TIMER, start_date=NOW)
     def arm_update():
         update_arm_packages(armPackage, Updates)
 

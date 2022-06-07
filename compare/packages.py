@@ -90,8 +90,8 @@ def parse_db(arch, branch, repos, pkg_model, last_update_model):
 def build_db(arch, branches, repos, pkg_model, last_update_model):
     print("starting job...")
     start = time.time()
-    #pkg_model.objects.all().delete()
-    #last_update_model.objects.all().delete()
+    pkg_model.objects.all().delete()
+    last_update_model.objects.all().delete()
     for branch in branches:
        parse_db(arch, branch, repos, pkg_model, last_update_model)        
     print(time.time() - start)
