@@ -101,9 +101,9 @@
                 </div>
               </td>
               <td class="text-sm border-b text-center border-blue-300">
-                <p class="text-xs text-gray-800 p-2 bg-green-50"><span class="mr-6">Stable</span><span>{{ pkg.stable }}</span></p>
-                <p class="text-xs text-gray-800 p-2 bg-yellow-50"><span class="mr-4">Testing</span><span>{{ pkg.testing }}</span></p>
-                <p class="text-xs text-gray-800 p-2 bg-red-50"><span class="mr-2">unstable</span><span>{{ pkg.unstable }}</span></p>
+                <p class="text-xs text-gray-800 p-2 bg-green-50 capitalize"><span class="mr-6">stable</span><span>{{ pkg.stable }}</span></p>
+                <p class="text-xs text-gray-800 p-2 bg-yellow-50 capitalize"><span class="mr-4">testing</span><span>{{ pkg.testing }}</span></p>
+                <p class="text-xs text-gray-800 p-2 bg-red-50 capitalize"><span class="mr-2">unstable</span><span>{{ pkg.unstable }}</span></p>
               </td>
             </tr>
             {% endfor %}
