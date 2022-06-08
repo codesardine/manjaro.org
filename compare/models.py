@@ -1,3 +1,4 @@
+from tokenize import group
 from django.db import models
 from wagtail.core.models import Page
 from wagtail.search.models import Query
@@ -9,26 +10,34 @@ from wagtail.admin.edit_handlers import FieldPanel
 
 class Package(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, null=True, unique=True)
+    name = models.CharField(max_length=100, null=True)
     arch = models.CharField(max_length=50, null=True)
     branch = models.CharField(max_length=50, null=True)
-    repo = models.CharField(max_length=50, null=True)
+    repo = models.CharField(max_length=20, null=True)
     stable = models.CharField(max_length=50, null=True)
     testing = models.CharField(max_length=50, null=True)
     unstable = models.CharField(max_length=50, null=True)
     last_update = models.CharField(max_length=20, null=True)
+    group = models.CharField(max_length=100, null=True)
+    url = models.CharField(max_length=120, null=True)
+    packager = models.CharField(max_length=100, null=True)
+    builddate = models.DateField(null=True)
 
 
 class armPackage(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, null=True, unique=True)
+    name = models.CharField(max_length=100, null=True)
     arch = models.CharField(max_length=50, null=True)
     branch = models.CharField(max_length=50, null=True)
-    repo = models.CharField(max_length=50, null=True)
+    repo = models.CharField(max_length=20, null=True)
     stable = models.CharField(max_length=50, null=True)
     testing = models.CharField(max_length=50, null=True)
     unstable = models.CharField(max_length=50, null=True)
     last_update = models.CharField(max_length=20, null=True)
+    group = models.CharField(max_length=100, null=True)
+    url = models.CharField(max_length=120, null=True)
+    packager = models.CharField(max_length=100, null=True)
+    builddate = models.DateField(null=True)
 
 
 class Updates(models.Model):

@@ -2,10 +2,11 @@ jobs = None
 
 def start():
     global jobs
-    print("run jobs.scheduled_job ?...")
+    print("# run jobs.scheduled_job ?...")
     if jobs:
         return
     print("START jobs.scheduled_job(update_packages)")
+
     from apscheduler.schedulers.background import BackgroundScheduler
     from .packages import update_packages, update_arm_packages
     from .models import Package, armPackage, Updates
