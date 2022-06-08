@@ -117,17 +117,30 @@
     if (window.location.search == "") {
       window.location.replace(window.location.origin + "?query=linux")
     }
+
+    function switch_arm_on() {
+      document.getElementById("btn").style.color = "#ef5350"
+      document.getElementById("btn-arm").style.color = "#26a69a"
+    }
+
+    function switch_arm_off() {
+      document.getElementById("btn").style.color = "#26a69a"
+      document.getElementById("btn-arm").style.color = "#ef5350"
+    }
+
     const swicth = document.getElementById("of-toggle-arm")
     swicth.onchange = function() {
       if (swicth.checked) {
-        document.getElementById("btn").style.color = "#ef5350"
-        document.getElementById("btn-arm").style.color = "#26a69a"
+        switch_arm_on()
       } else {
-        document.getElementById("btn").style.color = "#26a69a"
-        document.getElementById("btn-arm").style.color = "#ef5350"
+        switch_arm_off()
       }
- 
     }
+    if (swicth.checked) {
+        switch_arm_on()
+      } else {
+        switch_arm_off()
+      }
   </script>
   {% endblock %}
   
