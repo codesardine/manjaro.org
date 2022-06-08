@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block content %}
-<p class="text-sm text-center p-8 w-full mx-auto">
+<p class="text-sm text-center pb-8 pt-0 w-full mx-auto">
   {% if packages %}
     Searched <span class="font-semibold text-cyan-600">{{ total_packages }}</span> packages found <span class="font-semibold text-cyan-600">{{ query_total }}</span> for <span class="font-semibold text-cyan-600">{{ query }}</span>
   {% else %}
@@ -95,7 +95,7 @@
                     <span class="inline-block py-1.5 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-800 text-white rounded">deleted</span>
                     </h6>
                     {% endif %}
-                    <p class="text-xs text-gray-600">{{ pkg.repo }}</p>
+                    <p class="text-xs text-gray-600 capitalize">{{ pkg.repo }}</p>
                     <p class="text-xs text-gray-500 absolute right-0">{{ pkg.last_update }}</p>
                   </div>
                 </div>
