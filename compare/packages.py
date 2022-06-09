@@ -291,7 +291,7 @@ class AlpmDb:
                             break
     
  
-def update_db(arch, repos, pkg_model):
+def update_db(arch, repos, pkg_model, test=False):
     db = AlpmDb(arch, repos)
     db.parse_files()
     start = time.perf_counter()
@@ -324,8 +324,11 @@ def update_db(arch, repos, pkg_model):
             except:
                 print(pkg, pkg.packager_name, pkg.builddate_str, )
                 raise
-        ret = len(pkg_model.objects.bulk_create(objs))
-        print(ret)
+        if not test:
+            ret = len(pkg_model.objects.bulk_create(objs))
+            print(ret)
+        else:
+            print("TEST: no DB update")
     finally:
         hours, rem = divmod(time.perf_counter() - start, 3600)
         minutes, seconds = divmod(rem, 60)
@@ -333,19 +336,27 @@ def update_db(arch, repos, pkg_model):
     # TODO remove:    CACHE_DIR / arch
 
 
-def update_packages(pkg_model, last_update_model):
+def update_packages(pkg_model, last_update_model, test_directory=None):
     arch = Archs.x86_64
     branches = ("stable", "testing", "unstable")
     repos = ("multilib", "core", "extra", "community", "kde-unstable")
+    global CACHE_DIR
+    if test_directory:
+        CACHE_DIR = test_directory
+
     download = Downloader(arch, branches, repos)
     if repos := download.run():  
-        update_db(arch, repos, pkg_model)     
+        update_db(arch, repos, pkg_model, bool(test_directory))
 
 
-def update_arm_packages(pkg_model, last_update_model):
+def update_arm_packages(pkg_model, last_update_model, test_directory=None):
     arch = Archs.aarch64
     branches = ("arm-stable", "arm-testing", "arm-unstable")
     repos = ("core", "extra", "community", "kde-unstable", "mobile")
+    global CACHE_DIR
+    if test_directory:
+        CACHE_DIR = test_directory
+
     download = Downloader(arch, branches, repos)
     if repos := download.run():  
-        update_db(arch, repos, pkg_model)  
+        update_db(arch, repos, pkg_model, bool(test_directory))
