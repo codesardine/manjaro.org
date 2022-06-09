@@ -297,9 +297,10 @@ def update_db(arch, repos, pkg_model, test=False):
     start = time.perf_counter()
     try:
         arch = str(arch).split(".")[1]
-        print(f"sql update {arch} :: for {len(db.pkgs)} packages in", repos)
-        for repo in repos:
+        print(f"sql update {arch} :: for {len(db.pkgs)} packages in", db.repos)
+        for repo in db.repos:
             pkg_model.objects.filter(arch=arch, repo=repo).delete()
+            print(f"sql update {arch} :: remove repo {repo}")
         pkg: PackageAlpm
         objs = []
         for _, pkg in db.pkgs.items():
@@ -325,7 +326,7 @@ def update_db(arch, repos, pkg_model, test=False):
                 raise
         if not test:
             ret = len(pkg_model.objects.bulk_create(objs))
-            print(ret)
+            print(f"sql update :: bulk_created: {int(ret)} packages")
         else:
             print("TEST: no DB update")
     finally:
