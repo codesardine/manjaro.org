@@ -182,11 +182,7 @@ class PackageAlpm:
         except IndexError:
             return self.packager
 
-    @property
-    def is_manjaro(self) -> bool:
-        """package is make by manjaro ?"""
-        return "manjaro.org" in self.packager
-
+    
     def version(self, branch: Branches) -> str:
         return getattr(self.versions, branch.name)
 
