@@ -309,7 +309,6 @@ def update_db(arch, repos, pkg_model, test=False):
                     pkg_model(
                         name=pkg.name,
                         repo=pkg.repo,
-                        # branch = #FIXME no raison to exists ?
                         arch=arch,
                         stable=pkg.version(Branches.stable),
                         testing=pkg.version(Branches.testing),
