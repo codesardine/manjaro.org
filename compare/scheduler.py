@@ -1,12 +1,5 @@
-jobs = None
-
-def start():
-    global jobs
-    print("# run jobs.scheduled_job ?...")
-    if jobs:
-        return
-    print("START jobs.scheduled_job(update_packages)")
-
+def start():    
+    print("Scheduler started..\n")
     from apscheduler.schedulers.background import BackgroundScheduler
     from .packages import update_packages, update_arm_packages
     from .models import Package, armPackage, Updates
@@ -18,11 +11,12 @@ def start():
     jobs = BackgroundScheduler()
     @jobs.scheduled_job('interval', minutes=TIMER, start_date=now)
     def update():
+        print("Packages timer fired")
         update_packages(Package, Updates)
 
-    now = datetime.datetime.now()+datetime.timedelta(minutes=TIMER//2)
     @jobs.scheduled_job('interval', minutes=TIMER, start_date=now)
     def arm_update():
+        print("ARM Packages timer fired")
         update_arm_packages(armPackage, Updates)
 
     jobs.start()

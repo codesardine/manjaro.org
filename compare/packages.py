@@ -5,9 +5,7 @@ from typing import IO, Iterator
 import requests
 import tarfile
 import time
-import pytz
 from datetime import datetime, date
-#from datetime import date
 from dateutil.parser import parse as parsedate
 import concurrent.futures
 
@@ -46,14 +44,14 @@ class Downloader():
             branch=branch,
             repo=repo,
             arch=self.arch.name,
-            prefix="" if self.arch == Archs.x86_64 else "arm-"
+            prefix="" #if self.arch == Archs.x86_64 else "arm-"
             )
 
     def run(self) -> set:
         """run threads for download"""
         self.update = set()
         futures = []
-        with concurrent.futures.ThreadPoolExecutor(max_workers=32) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
             for branch in self.branches:
                 filename = self.filename(self.arch.name, branch, "core")
                 filename.parent.mkdir(parents=True, exist_ok=True)
@@ -69,7 +67,7 @@ class Downloader():
                     ok, url, repo = future.result()
                     if ok:
                         self.update.add(repo)
-                        print(ok, "for:", url)
+                        print("Updating:", url)
                 except Exception:
                     raise
         return self.update
@@ -87,6 +85,7 @@ class Downloader():
         local_filename_datetime = datetime.fromtimestamp(local_filename.stat().st_mtime).astimezone() \
             if local_filename.exists() else None
         if local_filename_datetime and local_filename_datetime >= remote_datetime:
+            print("Nothing to do", url, repo)
             return False, url, repo
 
         resp = requests.get(url=url, timeout=10)
@@ -95,6 +94,7 @@ class Downloader():
                 fdb.write(resp.content)
             return True, url, repo
         return False, url, repo
+
 
 @dataclass(slots=True)
 class PackageVersions:
@@ -109,6 +109,7 @@ class PackageVersions:
     def one_empty(self) -> bool:
         """new package or deleted"""
         return "" in set(getattr(self, x.name) for x in fields(self))
+
 
 @dataclass(slots=True)
 class PackageAlpm:
@@ -173,7 +174,6 @@ class PackageAlpm:
         #return time.strftime("%a %d %b %Y %X %Z", time.gmtime(self.builddate))    # time.gmtime
         return time.strftime("%Y-%m-%d", time.gmtime(self.builddate))
 
-
     @property
     def packager_name(self) -> str:
         """packager without email"""
@@ -201,9 +201,21 @@ class PackageAlpm:
     @staticmethod
     def kv_from_str(text: str) -> Iterator:
         """Yields key / value pairs from a string."""
-        INT_KEYS = {'%BUILDDATE%', '%CSIZE%', '%ISIZE%'}
-        LIST_KEYS = {'%DEPENDS%', '%MAKEDEPENDS%', '%REPLACES%', '%CONFLICTS%',
-                    '%OPTDEPENDS%', '%PROVIDES%', '%LICENSE%', '%CHECKDEPENDS%'}
+        INT_KEYS = {
+            '%BUILDDATE%',
+            '%CSIZE%',
+            '%ISIZE%'
+            }
+        LIST_KEYS = {
+            '%DEPENDS%',
+            '%MAKEDEPENDS%',
+            '%REPLACES%',
+            '%CONFLICTS%',
+            '%OPTDEPENDS%',
+            '%PROVIDES%', 
+            '%LICENSE%',
+            '%CHECKDEPENDS%'
+            }
 
         LIST_SEP = '\n'
         ITEM_SEP = '\n\n'
@@ -213,8 +225,14 @@ class PackageAlpm:
                 continue
             key, value = item.split(KEY_VALUE_SEP, maxsplit=1)
 
-            if key in ['%FILENAME%', '%PGPSIG%', '%MD5SUM%', '%SHA256SUM%',
-                    '%CHECKDEPENDS%', '%MAKEDEPENDS%']:
+            if key in [
+                '%FILENAME%',
+                '%PGPSIG%',
+                '%MD5SUM%',
+                '%SHA256SUM%',
+                '%CHECKDEPENDS%',
+                '%MAKEDEPENDS%'
+                ]:
                 continue
 
             if value == 'None':
@@ -225,7 +243,6 @@ class PackageAlpm:
             elif key in LIST_KEYS:
                 value = tuple(value.split(LIST_SEP))
             yield key.replace('%', '').lower(), value
-        #yield "versions", {"stable": "", "testing": "", "unstable": ""}
 
     @classmethod
     def kv_from_file(cls, fdesc: IO) -> Iterator:
@@ -238,7 +255,7 @@ class AlpmDb:
     MAX = 99550
 
     def __init__(self, arch: Archs, repos) -> None:
-        self.arch = arch
+        self.arch = arch 
         self.repos = repos
         self.pkgs: dict[str, PackageAlpm] = {}
 
@@ -246,11 +263,12 @@ class AlpmDb:
         """parse files in all branches, all repos"""
         self.pkgs = {}
         for branch in Branches:
+
             if not Downloader.filename(self.arch.name, branch.name, "repo").parent.exists():
                 # this branch is not in setup
                 continue
             for repo in self.repos:
-                i = 0
+                index = 0
                 filename = Downloader.filename(self.arch.name, branch.name, repo)
                 pkg : PackageAlpm
                 with tarfile.open(filename, "r") as tar:
@@ -272,156 +290,27 @@ class AlpmDb:
                         else:
                             self.pkgs[pkg.key] = pkg
                         # pkg = dict(Package.kv_from_file(f))
-                        i += 1
-                        if i > AlpmDb.MAX:
+                        index += 1
+                        if index > AlpmDb.MAX:
                             break
     
-    def stats(self):    #TODO remove
-        """some TEST"""
-        for _, pkg in self.pkgs.items():
-            # if not pkg.is_updated():
-            #    continue
-            if not pkg.versions.one_empty():
-                continue
-            print(repr(pkg))
-            print(pkg.builddate_str)
-            print(pkg.versions.stable)
-            print(pkg.packager_name)
-            for branch in Branches:
-                print(f"is in {branch.name} ?", pkg.in_branch(branch), pkg.version(branch))
-            print()
-
-
-##################################
-
-def check_last_update(url, arch, branch, repo, last_update_model):
-    response = requests.head(url=url, timeout=10)
-    if not response.ok:
-        raise Exception("Download Error", url, response)
-
-    remote_datetime = parsedate(response.headers['Last-Modified']).astimezone()
-
-    try:
-        model = last_update_model.objects.get(arch=arch, branch=branch, repo=repo)
-        if model.last_update != remote_datetime:
-            model.last_update = remote_datetime
-            print(arch, branch, repo, "outdated, updating")
-            return True
-        else:
-            print(arch, branch, repo, "no update needed")
-            return False
-    except last_update_model.DoesNotExist:
-        last_update_model(arch=arch, branch=branch, repo=repo, last_update=remote_datetime).save()
-        print(arch, branch, repo, "first time update")
-        return True
-
-
-def get_db(arch, branch, repo, last_update_model):
-    mirror="https://mirror.easyname.at/manjaro"
-    url = f"{mirror}/{branch}/{repo}/{arch}/{repo}.db"
-    update = check_last_update(url, arch, branch, repo, last_update_model)
-    if update:
-        response = requests.get(url, stream=True)
-        if response.ok:
-            return response.raw
-        else:
-            print(url, response.status_code)
-    else:
-        return False
-
-
-def parse_pkg_desc(fileobj, branch, repo, pkg_model, arch):
-    it = iter(fileobj.readlines())
-    name = ""
-    try:
-        while it:
-            item = next(it).decode().strip()
-            if "%NAME%" in item:
-                name = next(it).decode().strip()
-                try:
-                    pkg_model.objects.get(name=name)
-                except pkg_model.DoesNotExist:
-                    update = date.today().strftime("%B %d, %Y")
-                    m = pkg_model(name=name, repo=repo, branch=branch, arch=arch, last_update=update)
-                    m.save()
-                
-            elif "%VERSION%" in item:
-                version = next(it).decode().strip() 
-                m = pkg_model.objects.get(name=name)
-
-                if "unstable" in branch:
-                    m.unstable=version
-                elif "testing" in branch:
-                    m.testing=version         
-                elif "stable" in branch:
-                    m.stable=version
-                m.save()
-    except StopIteration:
-        pass
-            
-
-def parse_db(arch, branch, repos, pkg_model, last_update_model):
-    for repo in repos:
-        pkg_model.objects.filter(arch=arch, branch=branch, repo=repo).delete()
-        file = get_db(arch, branch, repo, last_update_model)
-        if file:
-            tf = tarfile.open(fileobj=file, mode='r:gz')
-            try:
-                while True:
-                    member = tf.next()
-                    if member is None:
-                        break
-                    if not member.isfile():
-                        continue
-                    fileobj = tf.extractfile(member)
-                    if fileobj:
-                        parse_pkg_desc(fileobj, branch, repo, pkg_model, arch)                    
-            finally:
-                tf.close()
-
-def build_db(arch, branches, repos, pkg_model, last_update_model):
-    print(f"{arch}:: starting job ...")
+ 
+def update_db(arch, repos, pkg_model):
+    db = AlpmDb(arch, repos)
+    db.parse_files()
     start = time.perf_counter()
     try:
-        pkg_model.objects.all().delete()
-        last_update_model.objects.all().delete()
-        for branch in branches:
-            parse_db(arch, branch, repos, pkg_model, last_update_model)
-    finally:
-        hours, rem = divmod(time.perf_counter() - start, 3600)
-        minutes, seconds = divmod(rem, 60)
-        print(f"{arch}:: build_db end : {hours:.0f} {minutes:.0f}:{seconds:.0f}")
-
-
-
-def update_packages(pkg_model, last_update_model):
-    arch = "x86_64"
-    branches = ("stable", "testing", "unstable")
-    repos = ("multilib", "core", "extra", "community", "kde-unstable")
-    # branches = ("stable",)
-    # repos = ("core",)
-    updateday = date.today().strftime("%B %d, %Y")
-
-    #build_db(arch, branches, repos, pkg_model, last_update_model)  old version
-    dl = Downloader(Archs.x86_64, branches, repos)
-    if repos := dl.run():
-
-        db = AlpmDb(Archs.x86_64, repos)
-        db.parse_files()
-
-        # start real db update
-        start = time.perf_counter()
-        try:
-            print(f"sql update {arch} :: start - all packages in:", repos)
-            print(f"sql update {arch} :: for {len(db.pkgs)} packages")
-            for repo in repos:
-                pkg_model.objects.filter(arch=arch, repo=repo).delete()
-            pkg: PackageAlpm
-            objs = []
-            for _, pkg in db.pkgs.items():
-                try:
-                    # https://docs.djangoproject.com/en/4.0/ref/models/querysets/#bulk-create
-                    objs.append(pkg_model(
+        arch = str(arch).split(".")[1]
+        print(f"sql update {arch} :: for {len(db.pkgs)} packages in", repos)
+        for repo in repos:
+            pkg_model.objects.filter(arch=arch, repo=repo).delete()
+        pkg: PackageAlpm
+        objs = []
+        for _, pkg in db.pkgs.items():
+            try:
+                # https://docs.djangoproject.com/en/4.0/ref/models/querysets/#bulk-create
+                objs.append(
+                    pkg_model(
                         name=pkg.name,
                         repo=pkg.repo,
                         # branch = #FIXME no raison to exists ?
@@ -433,22 +322,34 @@ def update_packages(pkg_model, last_update_model):
                         url=pkg.url,
                         packager=pkg.packager_name,
                         builddate=pkg.builddate_str,
-                        last_update=updateday))
-                except:
-                    print(pkg, pkg.packager_name, pkg.builddate_str, )
-                    raise
-            ret = len(pkg_model.objects.bulk_create(objs))
-            print(ret)
-        finally:
-            hours, rem = divmod(time.perf_counter() - start, 3600)
-            minutes, seconds = divmod(rem, 60)
-            print(f"sql update{arch} :: end {hours:.0f} {minutes:.0f}:{seconds:.0f}")
-        # TODO remove:    CACHE_DIR / arch
+                        last_update=date.today().strftime("%B %d, %Y")
+                        )
+                    )
+            except:
+                print(pkg, pkg.packager_name, pkg.builddate_str, )
+                raise
+        ret = len(pkg_model.objects.bulk_create(objs))
+        print(ret)
+    finally:
+        hours, rem = divmod(time.perf_counter() - start, 3600)
+        minutes, seconds = divmod(rem, 60)
+        print(f"sql update {arch} :: end {hours:.0f} {minutes:.0f}:{seconds:.0f}")
+    # TODO remove:    CACHE_DIR / arch
+
+
+def update_packages(pkg_model, last_update_model):
+    arch = Archs.x86_64
+    branches = ("stable", "testing", "unstable")
+    repos = ("multilib", "core", "extra", "community", "kde-unstable")
+    download = Downloader(arch, branches, repos)
+    if repos := download.run():  
+        update_db(arch, repos, pkg_model)     
 
 
 def update_arm_packages(pkg_model, last_update_model):
-    return
-    arch = "aarch64"
+    arch = Archs.aarch64
     branches = ("arm-stable", "arm-testing", "arm-unstable")
     repos = ("core", "extra", "community", "kde-unstable", "mobile")
-    build_db(arch, branches, repos, pkg_model, last_update_model)  
+    download = Downloader(arch, branches, repos)
+    if repos := download.run():  
+        update_db(arch, repos, pkg_model)  
