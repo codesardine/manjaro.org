@@ -259,13 +259,18 @@ class AlpmDb:
         """parse files in all branches, all repos"""
         self.pkgs = {}
         for branch in Branches:
+            if "aarch64" in self.arch.name:
+                branch_name = "arm-" + branch.name
+            else:
+                branch_name = branch.name
 
-            if not Downloader.filename(self.arch.name, branch.name, "repo").parent.exists():
+            if not Downloader.filename(self.arch.name, branch_name, "repo").parent.exists():
                 # this branch is not in setup
+                print(" branch not found")
                 continue
             for repo in self.repos:
                 index = 0
-                filename = Downloader.filename(self.arch.name, branch.name, repo)
+                filename = Downloader.filename(self.arch.name, branch_name, repo)
                 pkg : PackageAlpm
                 with tarfile.open(filename, "r") as tar:
                     for tarinfo in tar:
@@ -303,6 +308,7 @@ def update_db(arch, repos, pkg_model, test=False):
         pkg: PackageAlpm
         objs = []
         for _, pkg in db.pkgs.items():
+            #print(pkg)
             try:
                 # https://docs.djangoproject.com/en/4.0/ref/models/querysets/#bulk-create
                 objs.append(
@@ -320,7 +326,8 @@ def update_db(arch, repos, pkg_model, test=False):
                         last_update=date.today().strftime("%B %d, %Y")
                         )
                     )
-            except:
+            except Exception as e:
+                print(e)
                 print(pkg, pkg.packager_name, pkg.builddate_str, )
                 raise
         if not test:
