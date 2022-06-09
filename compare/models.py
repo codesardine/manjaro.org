@@ -1,5 +1,5 @@
-from tokenize import group
 from django.db import models
+from django.db.models import Q
 from wagtail.core.models import Page
 from wagtail.search.models import Query
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
@@ -87,11 +87,17 @@ class Packages(Page):
             context['arm_query'] = True
         else:
             model = Package
-        
+
         all = model.objects.all()
         total_packages = len(all)
-        if search_query:            
-            search_results = model.objects.filter(name__contains=search_query)
+        if search_query:
+            search_query = search_query.lower()
+            """
+                search_query in name OR search_query == group
+            """
+            search_results = model.objects.filter(
+                Q(name__contains=search_query) | Q(group__exact=search_query)
+            )
             # Log the query so Wagtail can suggest promoted results
             Query.get(search_query).add_hit()
 
@@ -102,7 +108,8 @@ class Packages(Page):
 
         context['total_packages'] = total_packages
         context['query'] = search_query
+        context["search_query"] = search_query if search_query else ""
         context['query_total'] = len(search_results)
         context['packages'] = search_results
-        return context   
-    
+        return context
+
