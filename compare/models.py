@@ -84,8 +84,8 @@ class Packages(Page):
             search_query in name OR search_query == group
         """
         if any(c in r"\[{*.?$^" for c in search_query):
-            return model.objects.filter(name__iregex=search_query)
-        return model.objects.filter(
+            return model.filter(name__iregex=search_query)
+        return model.filter(
             Q(name__contains=search_query) | Q(group__exact=search_query)
         )
 
@@ -99,11 +99,11 @@ class Packages(Page):
         else:
             model = x86_64
         
-        all = model.objects.all()
+        all = model.objects.all().order_by("name", "repo")
         total_packages = len(all)
         if search_query:
             search_query = search_query.lower()
-            search_results = self.get_request(model, search_query)
+            search_results = self.get_request(all, search_query)
             # Log the query so Wagtail can suggest promoted results
             Query.get(search_query).add_hit()
 
