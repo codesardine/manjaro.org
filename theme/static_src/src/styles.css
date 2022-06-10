@@ -434,3 +434,17 @@
         }
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .packages .low-screens {
+       width: 100vw;
+
+       & .badge {
+           right: 5rem;
+       }
+    }
+} 
+
+.packages .low-screens {
+       width: 100%;
+    }

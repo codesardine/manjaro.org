@@ -54,7 +54,7 @@
     </div>
   </form>
  
-  <section class="relative mx-auto p-6 mt-16 font-mono lg:max-w-screen-lg">
+  <section class="relative mx-auto pt-6 lg:p-6 mt-16 font-mono lg:max-w-screen-lg">
     <img class="hidden lg:block absolute object-cover h-[150px] w-[150px] mt-[-80px] ml-[50px]" src="/static/img/package-light.svg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="package" />
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg relative z-1">
       <div class="w-full overflow-x-auto">
@@ -75,7 +75,7 @@
                     <img class="object-cover w-full h-full rounded-full" src="/static/img/package.svg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="package" />
                     <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                   </div>
-                  <div class="w-full relative">
+                  <div class="low-screens relative">
                     <a href="https://software.manjaro.org/package/{{ pkg.name }}"
                     aria-label="{{ pkg }}"
                     target="_blank"
@@ -83,27 +83,29 @@
                     {{ pkg.name }}
                       </a>
                     {% if not pkg.stable %}
-                    <h6 class="text-sm leading-tight text-gray-800 lg:absolute -top-4 right-0">
+                    <h6 class="badge text-sm leading-tight text-gray-800 absolute -top-4 right-0">
                     <span class="inline-block py-1.5 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-500 text-white rounded">New</span>
                     </h6>
                     {% elif pkg.stable and pkg.unstable and not pkg.testing %}
-                    <h6 class="text-sm leading-tight text-gray-800 lg:absolute -top-4 right-0">
+                    <h6 class="badge text-sm leading-tight text-gray-800 absolute -top-4 right-0">
                     <span class="inline-block py-1.5 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-orange-800 text-white rounded">error</span>
                     </h6>
                     {% elif not pkg.unstable %}
-                    <h6 class="text-sm leading-tight text-gray-800 lg:absolute -top-4 right-0">
+                    <h6 class="badge text-sm leading-tight text-gray-800 absolute -top-4 right-0">
                     <span class="inline-block py-1.5 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-800 text-white rounded">deleted</span>
                     </h6>
                     {% endif %}
                     <p class="text-xs text-gray-600 capitalize pt-1 pl-0">{{ pkg.repo }}</p>
-                    <p class="text-xs text-gray-500 absolute right-0">{{ pkg.last_modified }}</p>
+                    <p class="text-xs text-gray-500 pt-1 lg:absolute right-0">{{ pkg.last_modified }}</p>
                   </div>
                 </div>
               </td>
               <td class="text-sm border-b text-center border-blue-300">
-                <p class="text-xs text-gray-800 p-2 bg-green-50 capitalize"><span class="mr-6">stable</span><span>{{ pkg.stable }}</span></p>
-                <p class="text-xs text-gray-800 p-2 bg-yellow-50 capitalize"><span class="mr-4">testing</span><span>{{ pkg.testing }}</span></p>
-                <p class="text-xs text-gray-800 p-2 bg-red-50 capitalize"><span class="mr-2">unstable</span><span>{{ pkg.unstable }}</span></p>
+                <div class="low-screens relative">
+                  <p class="text-xs text-gray-800 p-2 bg-green-50 capitalize"><span class="mr-6">stable</span><span>{{ pkg.stable }}</span></p>
+                  <p class="text-xs text-gray-800 p-2 bg-yellow-50 capitalize"><span class="mr-4">testing</span><span>{{ pkg.testing }}</span></p>
+                  <p class="text-xs text-gray-800 p-2 bg-red-50 capitalize"><span class="mr-2">unstable</span><span>{{ pkg.unstable }}</span></p>
+                </div>
               </td>
             </tr>
             {% endfor %}
