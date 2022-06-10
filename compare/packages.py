@@ -340,7 +340,18 @@ def update_db(arch, repos, pkg_model, test=False):
         hours, rem = divmod(time.perf_counter() - start, 3600)
         minutes, seconds = divmod(rem, 60)
         print(f"sql update {arch} :: end {hours:.0f} {minutes:.0f}:{seconds:.0f}")
+    # raise Exception("One test") #TODO for remove, was ok for test error log
     # TODO remove:    CACHE_DIR / arch
+
+def send_log(err:Exception):
+    from wagtail.core.models import Page
+    from wagtail.core.log_actions import log
+    page =Page.objects.get(title="Packages")
+    log(
+        instance=page, action='wagtail.workflow.cancel',
+        #data={"error":"Exception xxxx"},    # wagtail page no display data ?
+        title=f"[Update ERROR] {err}"
+    )
 
 
 def update_x86_64(test_directory=None):
@@ -352,8 +363,11 @@ def update_x86_64(test_directory=None):
         CACHE_DIR = test_directory
 
     download = Downloader(arch, branches, repos)
-    if repos := download.run():  
-        update_db(arch, repos, x86_64, bool(test_directory))
+    if repos := download.run():
+        try:
+            update_db(arch, repos, x86_64, bool(test_directory))
+        except Exception as err:
+            send_log(err)
 
 
 def update_aarch64(test_directory=None):
@@ -365,5 +379,8 @@ def update_aarch64(test_directory=None):
         CACHE_DIR = test_directory
 
     download = Downloader(arch, branches, repos)
-    if repos := download.run():  
-        update_db(arch, repos, aarch64, bool(test_directory))
+    if repos := download.run():
+        try:
+            update_db(arch, repos, aarch64, bool(test_directory))
+        except Exception as err:
+            send_log(err)
