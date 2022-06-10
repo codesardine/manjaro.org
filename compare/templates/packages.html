@@ -76,12 +76,12 @@
                     <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                   </div>
                   <div class="low-screens relative">
-                    <a href="https://software.manjaro.org/package/{{ pkg.name }}"
+                    <a href="{% if not pkg.stable %}#{% else %}https://software.manjaro.org/package/{{ pkg.name }}{% endif %}"
                     aria-label="{{ pkg }}"
                     target="_blank"
-                    class="no-mouse-effects inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
+                    class="{% if not pkg.stable %}not-available{% endif %} no-mouse-effects inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
                     {{ pkg.name }}
-                      </a>
+                    </a>
                     {% if not pkg.stable %}
                     <h6 class="badge text-sm leading-tight text-gray-800 absolute bottom-0 lg:bottom-2 right-0 uppercase">
                     <span class="inline-block pb-1 pt-1.5 px-2 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-500 text-white rounded-full">new</span>
@@ -145,6 +145,13 @@
       } else {
         switch_arm_off()
       }
+    
+    document.querySelectorAll(".not-available").forEach(item => {
+    item.addEventListener('click', event => {
+      event.preventDefault()
+      alert("Details not available.")
+      })
+    })
   </script>
   {% endblock %}
   
