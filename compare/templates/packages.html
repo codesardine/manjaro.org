@@ -55,7 +55,7 @@
   </form>
  
   <section class="relative mx-auto p-6 pt-24 font-mono lg:max-w-screen-lg">
-    <img class="absolute object-cover h-[150px] w-[150px] mt-[-80px] ml-[50px]" src="/static/img/package-light.svg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="package" />
+    <img class="hidden lg:block absolute object-cover h-[150px] w-[150px] mt-[-80px] ml-[50px]" src="/static/img/package-light.svg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="package" />
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg relative z-1">
       <div class="w-full overflow-x-auto">
         {% if packages %}   
@@ -83,19 +83,19 @@
                     {{ pkg.name }}
                       </a>
                     {% if not pkg.stable %}
-                    <h6 class="text-base font-medium leading-tight text-gray-800 absolute -top-4 right-0">
+                    <h6 class="text-sm leading-tight text-gray-800 lg:absolute -top-4 right-0">
                     <span class="inline-block py-1.5 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-500 text-white rounded">New</span>
                     </h6>
                     {% elif pkg.stable and pkg.unstable and not pkg.testing %}
-                    <h6 class="text-base font-medium leading-tight text-gray-800 absolute -top-4 right-0">
+                    <h6 class="text-sm leading-tight text-gray-800 lg:absolute -top-4 right-0">
                     <span class="inline-block py-1.5 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-orange-800 text-white rounded">error</span>
                     </h6>
                     {% elif not pkg.unstable %}
-                    <h6 class="text-base font-medium leading-tight text-gray-800 absolute -top-4 right-0">
+                    <h6 class="text-sm leading-tight text-gray-800 lg:absolute -top-4 right-0">
                     <span class="inline-block py-1.5 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-800 text-white rounded">deleted</span>
                     </h6>
                     {% endif %}
-                    <p class="text-xs text-gray-600 capitalize">{{ pkg.repo }}</p>
+                    <p class="text-xs text-gray-600 capitalize pt-1 pl-0">{{ pkg.repo }}</p>
                     <p class="text-xs text-gray-500 absolute right-0">{{ pkg.last_modfified }}</p>
                   </div>
                 </div>
