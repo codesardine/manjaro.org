@@ -83,7 +83,8 @@ class Packages(Page):
             set orm request
             search_query in name OR search_query == group
         """
-        if any(c in r"\[{*.?$^" for c in search_query):
+        pattern = r"\[{*.?$^"
+        if any(match in pattern for match in search_query):
             return model.filter(name__iregex=search_query)
         return model.filter(
             Q(name__contains=search_query) | Q(group__exact=search_query)
@@ -100,21 +101,35 @@ class Packages(Page):
             model = x86_64
         
         all = model.objects.all().order_by("name", "repo")
-        total_packages = len(all)
+        total_packages = all.count()
         if search_query:
             search_query = search_query.lower()
             search_results = self.get_request(all, search_query)
             # Log the query so Wagtail can suggest promoted results
             Query.get(search_query).add_hit()
 
-            if search_query == "all":
-                search_results = all
+            if search_query.startswith("#"):
+                # filter commands
+                if "all" in search_query:
+                    search_results = all
+                elif "kernels" in search_query:
+                    pattern = r"linux([0-9].{1,3})(?!.)"
+                    search_results = model.objects.filter(name__iregex=pattern)
+                elif "new" in search_query:
+                    search_results = model.objects.filter(stable__exact='')
+                elif "eol" in search_query:
+                    search_results = model.objects.filter(unstable__exact='')
+                elif "error" in search_query:
+                    search_results = model.objects.filter(testing__exact='').exclude(unstable__exact='')
+                elif "manjaro" in search_query:
+                    search_results = model.objects.filter(packager__contains='manjaro')
+
         else:
             search_results = model.objects.none()
 
         context['total_packages'] = total_packages
         context['query'] = search_query
         context["search_query"] = search_query if search_query else ""
-        context['query_total'] = len(search_results)
+        context['query_total'] = search_results.count()
         context['packages'] = search_results
         return context
