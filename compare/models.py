@@ -77,7 +77,18 @@ class Packages(Page):
             slug='slug'
         ),
     ])
-    
+
+    def get_request(self, model, search_query):
+        """
+            set orm request
+            search_query in name OR search_query == group
+        """
+        if any(c in r"\[{*.?$^" for c in search_query):
+            return model.objects.filter(name__iregex=search_query)
+        return model.objects.filter(
+            Q(name__contains=search_query) | Q(group__exact=search_query)
+        )
+
     def get_context(self, request):
         context = super().get_context(request)
         search_query = request.GET.get('query', None)
@@ -92,12 +103,7 @@ class Packages(Page):
         total_packages = len(all)
         if search_query:
             search_query = search_query.lower()
-            """
-                search_query in name OR search_query == group
-            """
-            search_results = model.objects.filter(
-                Q(name__contains=search_query) | Q(group__exact=search_query)
-            )
+            search_results = self.get_request(model, search_query)
             # Log the query so Wagtail can suggest promoted results
             Query.get(search_query).add_hit()
 
@@ -112,4 +118,3 @@ class Packages(Page):
         context['query_total'] = len(search_results)
         context['packages'] = search_results
         return context
-
