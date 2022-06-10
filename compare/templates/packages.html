@@ -84,15 +84,15 @@
                       </a>
                     {% if not pkg.stable %}
                     <h6 class="badge text-sm leading-tight text-gray-800 absolute bottom-0 lg:bottom-2 right-0 uppercase">
-                    <span class="inline-block py-1.5 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-500 text-white rounded">new</span>
+                    <span class="inline-block pb-1 pt-1.5 px-2 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-500 text-white rounded-full">new</span>
                     </h6>
                     {% elif pkg.stable and pkg.unstable and not pkg.testing %}
                     <h6 class="badge text-sm leading-tight text-gray-800 absolute bottom-0 lg:bottom-2 right-0 uppercase">
-                    <span class="inline-block py-1.5 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-orange-800 text-white rounded">error</span>
+                    <span class="inline-block pb-1 pt-1.5 px-2 leading-none text-center whitespace-nowrap align-baseline font-bold bg-orange-800 text-white rounded-full">error</span>
                     </h6>
                     {% elif not pkg.unstable %}
                     <h6 class="badge text-sm leading-tight text-gray-800 absolute bottom-0 lg:bottom-2 right-0 uppercase">
-                    <span class="inline-block py-1.5 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-800 text-white rounded">eol</span>
+                    <span class="inline-block pb-1 pt-1.5 px-2 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-800 text-white rounded-full">eol</span>
                     </h6>
                     {% endif %}
                     <p class="text-xs text-gray-600 capitalize pt-1 pl-0">{{ pkg.repo }}</p>
