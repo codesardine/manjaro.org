@@ -1,8 +1,7 @@
 def start():    
     print("Scheduler started..\n")
     from apscheduler.schedulers.background import BackgroundScheduler
-    from .packages import update_packages, update_arm_packages
-    from .models import Package, armPackage, Updates
+    from .packages import update_x86_64, update_aarch64
     import datetime
 
     now = datetime.datetime.now()+datetime.timedelta(seconds=2)
@@ -10,13 +9,13 @@ def start():
 
     jobs = BackgroundScheduler()
     @jobs.scheduled_job('interval', minutes=TIMER, start_date=now)
-    def update():
+    def x86_64_update():
         print("Packages timer fired")
-        update_packages(Package, Updates)
+        update_x86_64(None)
 
     @jobs.scheduled_job('interval', minutes=TIMER, start_date=now)
-    def arm_update():
+    def aarch64_update():
         print("ARM Packages timer fired")
-        update_arm_packages(armPackage, Updates)
+        update_aarch64(None)
 
     jobs.start()

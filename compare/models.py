@@ -8,7 +8,7 @@ from wagtail.search import index
 from wagtail.admin.edit_handlers import FieldPanel
 
 
-class Package(models.Model):
+class x86_64(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, null=True)
     arch = models.CharField(max_length=50, null=True)
@@ -16,14 +16,14 @@ class Package(models.Model):
     stable = models.CharField(max_length=50, null=True)
     testing = models.CharField(max_length=50, null=True)
     unstable = models.CharField(max_length=50, null=True)
-    last_update = models.CharField(max_length=20, null=True)
+    last_modified = models.CharField(max_length=20, null=True)
     group = models.CharField(max_length=100, null=True)
     url = models.CharField(max_length=120, null=True)
     packager = models.CharField(max_length=100, null=True)
     builddate = models.DateField(null=True)
 
 
-class armPackage(models.Model):
+class aarch64(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, null=True)
     arch = models.CharField(max_length=50, null=True)
@@ -31,19 +31,19 @@ class armPackage(models.Model):
     stable = models.CharField(max_length=50, null=True)
     testing = models.CharField(max_length=50, null=True)
     unstable = models.CharField(max_length=50, null=True)
-    last_update = models.CharField(max_length=20, null=True)
+    last_modified = models.CharField(max_length=20, null=True)
     group = models.CharField(max_length=100, null=True)
     url = models.CharField(max_length=120, null=True)
     packager = models.CharField(max_length=100, null=True)
     builddate = models.DateField(null=True)
 
 
-class Updates(models.Model):
+class lastModified(models.Model):
     id = models.AutoField(primary_key=True)
     arch = models.CharField(max_length=100, null=True)
     branch = models.CharField(max_length=100, null=True)
     repo = models.CharField(max_length=100, null=True)
-    last_update = models.DateTimeField(max_length=100, default="")
+    date = models.DateTimeField(max_length=100, default="")
 
 
 class Packages(Page):
@@ -94,11 +94,11 @@ class Packages(Page):
         search_query = request.GET.get('query', None)
         arm = request.GET.get('arm', None)
         if arm:
-            model = armPackage
+            model = aarch64
             context['arm_query'] = True
         else:
-            model = Package
-
+            model = x86_64
+        
         all = model.objects.all()
         total_packages = len(all)
         if search_query:

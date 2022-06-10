@@ -1,8 +1,7 @@
 from pathlib import Path
 import shutil
 from django.core.management.base import BaseCommand, CommandError
-from ...packages import update_packages, update_arm_packages, CACHE_DIR, Archs
-from ...models import Package, armPackage, Updates
+from ...packages import update_aarch64, update_x86_64, CACHE_DIR, Archs
 
 
 class Command(BaseCommand):
@@ -26,8 +25,8 @@ class Command(BaseCommand):
             self._remove_dirs(self.directory)
             # Path(self.directory).mkdir(exist_ok=True)
         if options['arch'] == "x86_64":
-            update_packages(Package, Updates, self.directory if options['test'] else None)
+            update_x86_64(self.directory if options['test'] else None)
         elif options['arch'] == "arm":
-            update_arm_packages(armPackage, Updates, self.directory if options['test'] else None)
+            update_aarch64(self.directory if options['test'] else None)
         if options['test']:
             self._remove_dirs(self.directory)

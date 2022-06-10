@@ -8,6 +8,7 @@ import time
 from datetime import datetime, date
 from dateutil.parser import parse as parsedate
 import concurrent.futures
+from .models import x86_64, aarch64
 
 MIRROR = "https://mirrors.manjaro.org/repo"
 CACHE_DIR = "/tmp"
@@ -80,7 +81,6 @@ class Downloader():
             raise Exception("Download Error", url, response)
         remote_datetime = parsedate(response.headers['Last-Modified']).astimezone()
 
-        # Get local file's datetime
         # TODO replace with database table updates
         local_filename_datetime = datetime.fromtimestamp(local_filename.stat().st_mtime).astimezone() \
             if local_filename.exists() else None
@@ -324,7 +324,7 @@ def update_db(arch, repos, pkg_model, test=False):
                         url=pkg.url,
                         packager=pkg.packager_name,
                         builddate=pkg.builddate_str,
-                        last_update=date.today().strftime("%B %d, %Y")
+                        last_modified=date.today().strftime("%B %d, %Y")
                         )
                     )
             except Exception as e:
@@ -343,7 +343,7 @@ def update_db(arch, repos, pkg_model, test=False):
     # TODO remove:    CACHE_DIR / arch
 
 
-def update_packages(pkg_model, last_update_model, test_directory=None):
+def update_x86_64(test_directory=None):
     arch = Archs.x86_64
     branches = ("stable", "testing", "unstable")
     repos = ("multilib", "core", "extra", "community", "kde-unstable")
@@ -353,10 +353,10 @@ def update_packages(pkg_model, last_update_model, test_directory=None):
 
     download = Downloader(arch, branches, repos)
     if repos := download.run():  
-        update_db(arch, repos, pkg_model, bool(test_directory))
+        update_db(arch, repos, x86_64, bool(test_directory))
 
 
-def update_arm_packages(pkg_model, last_update_model, test_directory=None):
+def update_aarch64(test_directory=None):
     arch = Archs.aarch64
     branches = ("arm-stable", "arm-testing", "arm-unstable")
     repos = ("core", "extra", "community", "kde-unstable", "mobile")
@@ -366,4 +366,4 @@ def update_arm_packages(pkg_model, last_update_model, test_directory=None):
 
     download = Downloader(arch, branches, repos)
     if repos := download.run():  
-        update_db(arch, repos, pkg_model, bool(test_directory))
+        update_db(arch, repos, aarch64, bool(test_directory))
