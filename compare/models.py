@@ -8,7 +8,23 @@ from wagtail.search import index
 from wagtail.admin.edit_handlers import FieldPanel
 
 
-class x86_64(models.Model):
+class Tag():
+    """abstract class : Trait"""
+    @property
+    def tag(self):
+        ret = ""
+        if not self.stable:
+            ret = "new"
+        if not self.unstable:
+            ret = "eof"
+        if not self.stable and not self.unstable:
+            ret = "error"
+        if self.stable and self.unstable and not self.testing:
+            ret = "error"
+        return ret
+
+
+class x86_64(models.Model, Tag):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, null=True)
     arch = models.CharField(max_length=50, null=True)
@@ -23,7 +39,7 @@ class x86_64(models.Model):
     builddate = models.DateField(null=True)
 
 
-class aarch64(models.Model):
+class aarch64(models.Model, Tag):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, null=True)
     arch = models.CharField(max_length=50, null=True)
