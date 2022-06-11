@@ -4,8 +4,8 @@
    height="16"
    version="1.1"
    id="svg7"
-   sodipodi:docname="package.svg"
-   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
+   sodipodi:docname="package-upstream.svg"
+   inkscape:version="1.2 (56b05e47e7, 2022-06-09, custom)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -20,11 +20,11 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="14.75"
-     inkscape:cx="8"
-     inkscape:cy="8"
+     inkscape:zoom="41.7193"
+     inkscape:cx="14.729394"
+     inkscape:cy="5.9924304"
      inkscape:window-width="1512"
-     inkscape:window-height="944"
+     inkscape:window-height="908"
      inkscape:window-x="0"
      inkscape:window-y="36"
      inkscape:window-maximized="1"
@@ -36,10 +36,47 @@
        type="text/css">
    .ColorScheme-Text { color:#6e6e6e; } .ColorScheme-Highlight { color:#4285f4; } .ColorScheme-NeutralText { color:#ff9800; } .ColorScheme-PositiveText { color:#4caf50; } .ColorScheme-NegativeText { color:#f44336; }
   </style>
+    <linearGradient
+       id="lg"
+       y1="9.9084301"
+       x2="25.431995"
+       x1="34.76569"
+       y2="28.426884"
+       gradientTransform="matrix(0.9319351,0,0,1.0730361,-18.263733,6.0909258)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#fff"
+         stop-opacity="0"
+         offset="0"
+         id="stop1012" />
+      <stop
+         stop-color="#fff"
+         stop-opacity=".27451"
+         offset="1"
+         id="stop1014" />
+    </linearGradient>
   </defs>
   <path
      style="fill:currentColor"
      class="ColorScheme-Text"
      d="M 3,1 C 2.446,1 2.1749,1.4754 2,2 L 1,5 V 13 C 1,13.554 1.446,14 2,14 H 14 C 14.554,14 15,13.554 15,13 V 5 L 14,2 C 13.825,1.4744 13.554,1 13,1 Z M 3.6699,3 H 12.33 L 12.664,4 H 3.334 Z M 7,6 H 9 V 9 H 10.75 L 8,12 5.25,9 H 7 Z"
      id="path5" />
+  <rect
+     style="fill:#6e6e6e;fill-opacity:1"
+     id="rect518"
+     width="9.8930693"
+     height="7.7676258"
+     x="3.3458118"
+     y="4.9151778" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33379px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;stroke-width:0.700037"
+     x="4.5931668"
+     y="12.421748"
+     id="text296"><tspan
+       sodipodi:role="line"
+       id="tspan294"
+       x="4.5931668"
+       y="12.421748"
+       style="stroke-width:0.700037">U</tspan></text>
 </svg>

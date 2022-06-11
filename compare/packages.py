@@ -174,14 +174,6 @@ class PackageAlpm:
         #return time.strftime("%a %d %b %Y %X %Z", time.gmtime(self.builddate))    # time.gmtime
         return time.strftime("%Y-%m-%d", time.gmtime(self.builddate))
 
-    @property
-    def packager_name(self) -> str:
-        """packager without email"""
-        try:
-            return self.packager.split("<", 1)[0].strip()
-        except IndexError:
-            return self.packager
-
     
     def version(self, branch: Branches) -> str:
         return getattr(self.versions, branch.name)
@@ -328,8 +320,7 @@ def update_db(arch, repos, pkg_model, test=False):
                         )
                     )
             except Exception as e:
-                print(e)
-                print(pkg, pkg.packager, pkg.builddate_str, )
+                print(pkg, pkg.packager, pkg.builddate_str, e)
                 raise
         if not test:
             ret = len(pkg_model.objects.bulk_create(objs))
