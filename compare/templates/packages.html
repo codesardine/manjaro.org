@@ -28,10 +28,11 @@
 
 {% block content %}
 <p class="text-sm text-center pb-8 pt-0 w-full mx-auto">
+  Searched <span class="font-semibold text-cyan-600">{{ total_packages }}</span> packages
   {% if packages %}
-    Searched <span class="font-semibold text-cyan-600">{{ total_packages }}</span> packages found <span class="font-semibold text-cyan-600">{{ query_total }}</span> for <span class="font-semibold text-cyan-600">{{ query }}</span>
+  found <span class="font-semibold text-cyan-600">{{ query_total }}</span> for <span class="font-semibold text-cyan-600">{{ query }}</span>
   {% else %}
-  Searched <span class="font-semibold text-cyan-600">{{ total_packages }}</span> packages <span class="font-semibold text-red-700">no results</span> for <span class="font-semibold text-cyan-600">{{ query }}</span></span>
+  <span class="font-semibold text-red-700">no results</span> for <span class="font-semibold text-cyan-600">{{ query }}</span></span>
   {% endif %}
   </p>
 <form method="get" class="flex relative mx-auto w-4/5 lg:w-2/3 lg:max-w-md">
@@ -82,17 +83,15 @@
                     class="{% if not pkg.stable %}not-available{% endif %} no-mouse-effects inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
                     {{ pkg.name }}
                     </a>
-                    {% if not pkg.stable %}
+                    {% if pkg.tag %}
                     <h6 class="badge text-sm leading-tight text-gray-800 absolute bottom-0 lg:bottom-2 right-0 uppercase">
-                    <span class="inline-block pb-1 pt-1.5 px-2 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-500 text-white rounded-full">new</span>
-                    </h6>
-                    {% elif pkg.stable and pkg.unstable and not pkg.testing %}
-                    <h6 class="badge text-sm leading-tight text-gray-800 absolute bottom-0 lg:bottom-2 right-0 uppercase">
-                    <span class="inline-block pb-1 pt-1.5 px-2 leading-none text-center whitespace-nowrap align-baseline font-bold bg-orange-800 text-white rounded-full">error</span>
-                    </h6>
-                    {% elif not pkg.unstable %}
-                    <h6 class="badge text-sm leading-tight text-gray-800 absolute bottom-0 lg:bottom-2 right-0 uppercase">
-                    <span class="inline-block pb-1 pt-1.5 px-2 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-800 text-white rounded-full">eol</span>
+                      {% if pkg.tag == "new" %}
+                      <span class="inline-block pb-1 pt-1.5 px-2 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-500 text-white rounded-full">{{pkg.tag}}</span>
+                      {% elif pkg.tag == "error" %}
+                      <span class="inline-block pb-1 pt-1.5 px-2 leading-none text-center whitespace-nowrap align-baseline font-bold bg-orange-800 text-white rounded-full">{{pkg.tag}}</span>
+                      {% elif pkg.tag == "eof" %}
+                      <span class="inline-block pb-1 pt-1.5 px-2 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-800 text-white rounded-full">{{pkg.tag}}</span>
+                      {% endif %}
                     </h6>
                     {% endif %}
                     <p class="text-xs text-gray-600 capitalize pt-1 pl-0">{{ pkg.repo }}</p>
@@ -111,7 +110,7 @@
             {% endfor %}
           </tbody>
         </table>
-        {% endif %}         
+        {% endif %}
       </div>
     </div>
   </section>
@@ -154,4 +153,3 @@
     })
   </script>
   {% endblock %}
-  
