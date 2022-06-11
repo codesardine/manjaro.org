@@ -322,14 +322,14 @@ def update_db(arch, repos, pkg_model, test=False):
                         unstable=pkg.version(Branches.unstable),
                         group=pkg.groups,
                         url=pkg.url,
-                        packager=pkg.packager_name,
+                        packager=pkg.packager,
                         builddate=pkg.builddate_str,
                         last_modified=date.today().strftime("%B %d, %Y")
                         )
                     )
             except Exception as e:
                 print(e)
-                print(pkg, pkg.packager_name, pkg.builddate_str, )
+                print(pkg, pkg.packager, pkg.builddate_str, )
                 raise
         if not test:
             ret = len(pkg_model.objects.bulk_create(objs))
