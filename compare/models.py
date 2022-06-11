@@ -65,7 +65,8 @@ class lastModified(models.Model):
     arch = models.CharField(max_length=100, null=True)
     branch = models.CharField(max_length=100, null=True)
     repo = models.CharField(max_length=100, null=True)
-    date = models.DateTimeField(max_length=100, default="")
+    date = models.DateTimeField()
+    status = models.TextField(default="")
 
 
 class Packages(Page):
@@ -116,12 +117,11 @@ class Packages(Page):
         context = super().get_context(request)
         search_query = request.GET.get('query', None)
         arm = request.GET.get('arm', None)
+        model = x86_64
         if arm:
             model = aarch64
             context['arm_query'] = True
-        else:
-            model = x86_64
-        
+
         all = model.objects.all()
         total_packages = all.count()
         if search_query:

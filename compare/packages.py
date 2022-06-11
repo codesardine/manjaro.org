@@ -5,10 +5,12 @@ from typing import IO, Iterator
 import requests
 import tarfile
 import time
+from zoneinfo import ZoneInfo
 from datetime import datetime, date
 from dateutil.parser import parse as parsedate
 import concurrent.futures
-from .models import x86_64, aarch64
+from .models import x86_64, aarch64, lastModified
+
 
 MIRROR = "https://mirrors.manjaro.org/repo"
 CACHE_DIR = "/tmp"
@@ -25,15 +27,44 @@ class Branches(enum.Enum):
     unstable = 2
 
 
+class RepoTimes():
+    """
+        last update for repos
+        use table lastModified
+        from : https://gitlab.manjaro.org/webpage/manjaro.org/-/blob/67f7b985ef79b1c101c25c2bdadfcf15ad07f286/compare/packages.py
+    """
+
+    def __init__(self, lastModified, arch) -> None:
+        self.arch = arch
+        self.model = lastModified
+        self.repos = self.model.objects.all()
+
+    def get_date(self, repo, branch) -> datetime:
+        item = self.model.get(arch=self.arch, repo=repo, branch=branch)
+        if item:
+            return item.date
+        else:
+            return datetime(2000, 10, 9)
+
+    def set_date(self, repo, branch):
+        obj, created = self.model.objects.update_or_create(
+            arch=self.arch, repo=repo, branch=branch,
+            date=now()
+        )
+        return obj
+
+
 class Downloader():
     URL_TEMPLATE = "{MIRROR}/{prefix}{branch}/{repo}/{arch}/{repo}.db"
 
-    def __init__(self, arch: Archs, branches, repos) -> None:
+    def __init__(self, arch: Archs, branches, repos, files_times) -> None:
         self.items = []
         self.update = set()
         self.arch = arch
         self.branches = branches
         self.repos = repos
+        self.files_times = files_times
+        self.files_times.objects.filter(arch=arch.name).update(status="")
 
     @staticmethod
     def filename(arch: str, branch: str, repo: str) -> Path:
@@ -61,7 +92,8 @@ class Downloader():
                         self.download,
                         self.format_url(branch, repo),
                         self.filename(self.arch.name, branch, repo),
-                        repo
+                        self.arch.name, branch, repo,
+                        self.files_times
                         ))
             for future in concurrent.futures.as_completed(futures):
                 try:
@@ -74,24 +106,38 @@ class Downloader():
         return self.update
 
     @staticmethod
-    def download(url: str, local_filename: Path, repo) -> tuple:
+    def download(url: str, local_filename: Path, arch, branch, repo, files_times) -> tuple:
         """download one file in thread"""
         response = requests.head(url=url, timeout=10)
         if not response.ok:
             raise Exception("Download Error", url, response)
         remote_datetime = parsedate(response.headers['Last-Modified']).astimezone()
 
-        # TODO replace with database table updates
-        local_filename_datetime = datetime.fromtimestamp(local_filename.stat().st_mtime).astimezone() \
-            if local_filename.exists() else None
-        if local_filename_datetime and local_filename_datetime >= remote_datetime:
+        local_datetime = datetime(1999, 1, 20, tzinfo=ZoneInfo("America/Los_Angeles"))
+        try:
+            model = files_times.objects.get(arch=arch, branch=branch, repo=repo)
+            local_datetime = model.date
+        except files_times.DoesNotExist:
+            files_times(
+                arch=arch, branch=branch, repo=repo,
+                date=local_datetime,
+                status=""
+            ).save()
+            print(f"{arch:10} {branch:14} {repo:16} to download")
+
+
+        if local_datetime == remote_datetime:
             print("Nothing to do", url, repo)
             return False, url, repo
 
-        resp = requests.get(url=url, timeout=10)
+        resp = requests.get(url=url, timeout=20)
         if resp.ok:
             with open(local_filename, 'wb') as fdb:
                 fdb.write(resp.content)
+            model = files_times.objects.get(arch=arch, branch=branch, repo=repo)
+            model.date=remote_datetime
+            model.status="ok"
+            model.save()
             return True, url, repo
         return False, url, repo
 
@@ -362,11 +408,13 @@ def update_x86_64(test_directory=None):
     if test_directory:
         CACHE_DIR = test_directory
 
-    download = Downloader(arch, branches, repos)
+    download = Downloader(arch, branches, repos, lastModified)
     if repos := download.run():
         try:
             update_db(arch, repos, x86_64, bool(test_directory))
         except Exception as err:
+            lastModified.objects.filter(arch=arch.name).update(status=f"[ERROR] {err}")
+            print("EXCEPTION !", err)
             send_log(err)
 
 
@@ -378,7 +426,7 @@ def update_aarch64(test_directory=None):
     if test_directory:
         CACHE_DIR = test_directory
 
-    download = Downloader(arch, branches, repos)
+    download = Downloader(arch, branches, repos, lastModified)
     if repos := download.run():
         try:
             update_db(arch, repos, aarch64, bool(test_directory))
