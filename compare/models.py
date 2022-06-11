@@ -9,7 +9,10 @@ from wagtail.admin.edit_handlers import FieldPanel
 
 
 class Tag():
-    """abstract class : Trait"""
+    """
+    abstract class : Trait
+    for 2 packages tables
+    """
     @property
     def tag(self):
         ret = ""
@@ -22,6 +25,9 @@ class Tag():
         if self.stable and self.unstable and not self.testing:
             ret = "error"
         return ret
+
+    class Meta:
+        ordering = ("name", "repo")
 
 
 class x86_64(models.Model, Tag):
@@ -116,7 +122,7 @@ class Packages(Page):
         else:
             model = x86_64
         
-        all = model.objects.all().order_by("name", "repo")
+        all = model.objects.all()
         total_packages = all.count()
         if search_query:
             search_query = search_query.lower()
