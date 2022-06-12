@@ -4,6 +4,7 @@ from .models import lastModified
 
 
 def update_status_view(request):
+    #TODO views html, bash and json ? if request.GET("format"== "xxx")
     ret = ""
     for item in lastModified.objects.all().values():
         ret = f"{ret}\n{item}"

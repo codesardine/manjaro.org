@@ -27,33 +27,6 @@ class Branches(enum.Enum):
     unstable = 2
 
 
-class RepoTimes():
-    """
-        last update for repos
-        use table lastModified
-        from : https://gitlab.manjaro.org/webpage/manjaro.org/-/blob/67f7b985ef79b1c101c25c2bdadfcf15ad07f286/compare/packages.py
-    """
-
-    def __init__(self, lastModified, arch) -> None:
-        self.arch = arch
-        self.model = lastModified
-        self.repos = self.model.objects.all()
-
-    def get_date(self, repo, branch) -> datetime:
-        item = self.model.get(arch=self.arch, repo=repo, branch=branch)
-        if item:
-            return item.date
-        else:
-            return datetime(2000, 10, 9)
-
-    def set_date(self, repo, branch):
-        obj, created = self.model.objects.update_or_create(
-            arch=self.arch, repo=repo, branch=branch,
-            date=now()
-        )
-        return obj
-
-
 class Downloader():
     URL_TEMPLATE = "{MIRROR}/{prefix}{branch}/{repo}/{arch}/{repo}.db"
 
@@ -126,7 +99,7 @@ class Downloader():
             print(f"{arch:10} {branch:14} {repo:16} to download")
 
 
-        if local_datetime == remote_datetime:
+        if local_datetime == remote_datetime and local_filename.exists():
             print("Nothing to do", url, repo)
             return False, url, repo
 
