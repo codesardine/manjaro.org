@@ -5,11 +5,14 @@ from .models import lastModified
 
 def update_status_view(request):
     #TODO views html, bash and json ? if request.GET("format"== "xxx")
-    ret = ""
+    rets = []
+    nl = ',\n'
     for item in lastModified.objects.all().values():
-        ret = f"{ret}\n{item}"
+        rets.append(f"{item}")
     return HttpResponse(
                 # str(lastModified.objects.all().values())
-                ret,
-                # contentype='application/json'
+                f"[\n{nl.join(rets)})\n]",
+                headers={
+                    'Content-Type': 'application/json',
+                }
             )
