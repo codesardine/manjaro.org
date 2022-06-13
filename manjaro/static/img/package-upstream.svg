@@ -5,7 +5,7 @@
    version="1.1"
    id="svg7"
    sodipodi:docname="package-upstream.svg"
-   inkscape:version="1.2 (56b05e47e7, 2022-06-09, custom)"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -21,12 +21,12 @@
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
      inkscape:zoom="41.7193"
-     inkscape:cx="14.729394"
-     inkscape:cy="5.9924304"
-     inkscape:window-width="1512"
-     inkscape:window-height="908"
+     inkscape:cx="14.765348"
+     inkscape:cy="6.0044152"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
      inkscape:window-x="0"
-     inkscape:window-y="36"
+     inkscape:window-y="32"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg7" />
   <defs
@@ -68,15 +68,4 @@
      height="7.7676258"
      x="3.3458118"
      y="4.9151778" />
-  <text
-     xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:9.33379px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;stroke-width:0.700037"
-     x="4.5931668"
-     y="12.421748"
-     id="text296"><tspan
-       sodipodi:role="line"
-       id="tspan294"
-       x="4.5931668"
-       y="12.421748"
-       style="stroke-width:0.700037">U</tspan></text>
 </svg>
