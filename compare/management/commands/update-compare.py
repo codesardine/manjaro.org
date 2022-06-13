@@ -1,10 +1,8 @@
-from zoneinfo import ZoneInfo
-from datetime import datetime
-from pathlib import Path
 import shutil
 from django.core.management.base import BaseCommand, CommandError
+from django.db import connection
 from ...packages import update_aarch64, update_x86_64, CACHE_DIR, Archs
-from ...models import lastModified
+
 
 
 class Command(BaseCommand):
@@ -24,8 +22,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if options['force']:
-            #TODO remove compare_lastmodified field "date"
-            lastModified.objects.filter(arch=options['arch']).update(date=datetime(1999, 1, 20, tzinfo=ZoneInfo("America/Los_Angeles")))
+            with connection.cursor() as cursor:
+                cursor.execute("UPDATE compare_lastmodified set date='1999-09-09', status='';")
             self._remove_dirs(CACHE_DIR)
         if options['arch'] == "x86_64":
             update_x86_64(None)
