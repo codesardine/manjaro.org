@@ -6,7 +6,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from puput import urls as puput_urls 
-from compare import urls as compare_urls 
+#from compare import urls as compare_urls 
 from wagtail.contrib.sitemaps.views import sitemap
 
 
@@ -15,7 +15,7 @@ urlpatterns = [
 
     path('admin/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
-    path('status/', include(compare_urls)),
+    #path('status/', include(compare_urls)),
 ]
 
 if settings.DEBUG:
