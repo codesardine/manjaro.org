@@ -8,11 +8,20 @@ from wagtail.search import index
 from wagtail.admin.edit_handlers import FieldPanel
 
 
-class Tag():
-    """
-    abstract class : Trait
-    for 2 packages tables
-    """
+class PackageAbstract(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, null=True)
+    arch = models.CharField(max_length=50, null=True)
+    repo = models.CharField(max_length=20, null=True)
+    stable = models.CharField(max_length=50, null=True)
+    testing = models.CharField(max_length=50, null=True)
+    unstable = models.CharField(max_length=50, null=True)
+    last_modified = models.CharField(max_length=20, null=True)
+    group = models.CharField(max_length=100, null=True)
+    url = models.CharField(max_length=120, null=True)
+    packager = models.CharField(max_length=100, null=True)
+    builddate = models.DateField(null=True)
+
     @property
     def tag(self):
         ret = ""
@@ -25,39 +34,15 @@ class Tag():
         if self.stable and self.unstable and not self.testing:
             ret = "error"
         return ret
-
     class Meta:
+        abstract = True
         ordering = ("name", "repo")
 
+class x86_64(PackageAbstract):
+    pass
 
-class x86_64(models.Model, Tag):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, null=True)
-    arch = models.CharField(max_length=50, null=True)
-    repo = models.CharField(max_length=20, null=True)
-    stable = models.CharField(max_length=50, null=True)
-    testing = models.CharField(max_length=50, null=True)
-    unstable = models.CharField(max_length=50, null=True)
-    last_modified = models.CharField(max_length=20, null=True)
-    group = models.CharField(max_length=100, null=True)
-    url = models.CharField(max_length=120, null=True)
-    packager = models.CharField(max_length=100, null=True)
-    builddate = models.DateField(null=True)
-
-
-class aarch64(models.Model, Tag):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, null=True)
-    arch = models.CharField(max_length=50, null=True)
-    repo = models.CharField(max_length=20, null=True)
-    stable = models.CharField(max_length=50, null=True)
-    testing = models.CharField(max_length=50, null=True)
-    unstable = models.CharField(max_length=50, null=True)
-    last_modified = models.CharField(max_length=20, null=True)
-    group = models.CharField(max_length=100, null=True)
-    url = models.CharField(max_length=120, null=True)
-    packager = models.CharField(max_length=100, null=True)
-    builddate = models.DateField(null=True)
+class aarch64(PackageAbstract):
+    pass
 
 
 class lastModified(models.Model):

@@ -31,6 +31,7 @@ class Command(BaseCommand):
             self.restaure()
             exit(0)
         if options['force']:
+            # or DELETE  FROM compare_lastmodified ?
             with connection.cursor() as cursor:
                 cursor.execute("UPDATE compare_lastmodified set date='1999-09-09', status='';")
             self._remove_dirs(CACHE_DIR)
