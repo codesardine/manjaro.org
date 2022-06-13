@@ -1,3 +1,36 @@
-from django.shortcuts import render
+#from django.shortcuts import render
+from django.http import HttpResponse
+from .models import lastModified
 
-# Create your views here.
+
+def update_status_view(request):
+    #TODO views html, bash and json ? if request.GET("format"== "xxx")
+    format_out = request.GET.get('format', 'json')
+    items = lastModified.objects.all().order_by("arch", "branch", "repo")
+    if format_out == "txt":
+        rets = []
+        for item in items:
+            rets.append(f"{item.arch:12}{item.branch:18}{item.repo:16}{item.date.strftime('%Y-%d-%m,%Hh:%M'):18} {item.status}")
+        return HttpResponse(
+                '\n'.join(rets)
+            )
+    elif format_out == "html":
+        rets = []
+        sep = '</td><td>'
+        for item in items:
+            rets.append(f"<tr><td>{item.arch}{sep}{item.branch}{sep}{item.repo}{sep}{item.date.strftime('%Y-%d-%m,%Hh:%M')}</td><th>{item.status}</th></tr>")
+        return HttpResponse(
+                '<table cellspacing="6">' + '\n'.join(rets) + "</table>"
+            )
+    else:
+        # default == json
+        rets = []
+        nl = ',\n'
+        for item in items.values():
+            rets.append(f"{item}")
+        return HttpResponse(
+                    f"[\n{nl.join(rets)}\n]",
+                    headers={
+                        'Content-Type': 'application/json',
+                    }
+                )
