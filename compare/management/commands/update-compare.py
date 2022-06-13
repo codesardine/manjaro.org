@@ -14,7 +14,7 @@ class Command(BaseCommand):
         parser.add_argument('arch', nargs='?', default="x86_64", help="Architecture : [x86_64] (default) or [arm]", type=str)
         parser.add_argument('--force', action='store_true', help=f"Force all uploads")
         parser.add_argument('--save', action='store_true', help=f"Save in {self.backup}")
-        parser.add_argument('--restaure', action='store_true', help=f"Restaure from {self.backup}")
+        parser.add_argument('--restore', action='store_true', help=f"Restore from {self.backup}")
         #TODO remove tests
         #parser.add_argument('--test', action='store_true', help=f"Test update but not update DB {self.directory}")
 
@@ -42,7 +42,7 @@ class Command(BaseCommand):
             update_aarch64(None)
 
     def check_datas(self):
-        """all datas valides ? we can run a backup"""
+        """ is all data valid? we can run a backup"""
         #TODO more tests ???
         from ...models import lastModified
 
@@ -62,9 +62,9 @@ class Command(BaseCommand):
                         if item[1] < 1:
                             return False, f"{arch}/{branch}", item[0]
         if lastModified.objects.filter().count() > nb:
-            return False, "lastModified", "error too mutch entries"
+            return False, "lastModified", "error too many entries"
         if lastModified.objects.filter(status="ERROR").count():
-            return False, "lastModified", "error found in status"
+            return False, "lastModified", "status error found"
         return True, "", ""
 
 
