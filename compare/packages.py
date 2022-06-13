@@ -359,7 +359,7 @@ def update_db(arch, repos, pkg_model, test=False):
         hours, rem = divmod(time.perf_counter() - start, 3600)
         minutes, seconds = divmod(rem, 60)
         print(f"sql update {arch} :: end {hours:.0f} {minutes:.0f}:{seconds:.0f}")
-    # raise Exception("One test") #TODO for remove, was ok for test error log
+    #raise Exception("One test") #TODO for remove, was ok for test error log
     # TODO remove:    CACHE_DIR / arch
 
 def send_log(err:Exception):
