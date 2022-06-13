@@ -1,9 +1,9 @@
 #from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import lastModified
 
 
-def update_status_view(request):
+def update_status(request):
     #TODO views html, bash and json ? if request.GET("format"== "xxx")
     format_out = request.GET.get('format', 'json')
     items = lastModified.objects.all().order_by("arch", "branch", "repo")
@@ -23,14 +23,5 @@ def update_status_view(request):
                 '<table cellspacing="6">' + '\n'.join(rets) + "</table>"
             )
     else:
-        # default == json
-        rets = []
-        nl = ',\n'
-        for item in items.values():
-            rets.append(f"{item}")
-        return HttpResponse(
-                    f"[\n{nl.join(rets)}\n]",
-                    headers={
-                        'Content-Type': 'application/json',
-                    }
-                )
+        status = list(items.values())
+        return JsonResponse({'status' : status})
