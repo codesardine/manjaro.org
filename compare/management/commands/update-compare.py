@@ -1,5 +1,5 @@
 import shutil
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.db import connection
 from ...packages import Branches, update_aarch64, update_x86_64, CACHE_DIR, Archs
 
@@ -7,29 +7,29 @@ from ...packages import Branches, update_aarch64, update_x86_64, CACHE_DIR, Arch
 
 class Command(BaseCommand):
     help = 'update packages for branch-compare'
-    directory = CACHE_DIR + '/test-bcompare'
-    backup = "compare/backup/compare_backup.json"
+    directory = f'{CACHE_DIR}/test-bcompare'
+    backup_path = "compare/backup/compare_backup.json"
 
     def add_arguments(self, parser):
         parser.add_argument('arch', nargs='?', default="x86_64", help="Architecture : [x86_64] (default) or [arm]", type=str)
         parser.add_argument('--force', action='store_true', help=f"Force all uploads")
-        parser.add_argument('--save', action='store_true', help=f"Save in {self.backup}")
-        parser.add_argument('--restore', action='store_true', help=f"Restore from {self.backup}")
+        parser.add_argument('--save', action='store_true', help=f"Save in {self.backup_path}")
+        parser.add_argument('--restore', action='store_true', help=f"Restore from {self.backup_path}")
         #TODO remove tests
         #parser.add_argument('--test', action='store_true', help=f"Test update but not update DB {self.directory}")
 
     def _remove_dirs(self, directory: str):
         """Clear download directories"""
-        shutil.rmtree(directory + "/" + Archs.x86_64.name, ignore_errors=True)
-        shutil.rmtree(directory + "/" + Archs.aarch64.name, ignore_errors=True)
+        shutil.rmtree(f'{directory}/{Archs.x86_64.name}', ignore_errors=True)
+        shutil.rmtree(f'{directory}/{Archs.aarch64.name}', ignore_errors=True)
 
     def handle(self, *args, **options):
         # self.check_datas()
         if options['save']:
-            self.bakup()
+            self._backup()
             exit(0)
-        if options['restaure']:
-            self.restaure()
+        if options['restore']:
+            self.restore()
             exit(0)
         if options['force']:
             # or DELETE  FROM compare_lastmodified ?
@@ -68,27 +68,27 @@ class Command(BaseCommand):
         return True, "", ""
 
 
-    def bakup(self):
+    def _backup(self):
         """ test function for auto backup before all compare db update
         """
         from pathlib import Path
         from django.core import management
 
-        Path(self.backup).parent.mkdir(exist_ok=True)
+        Path(self.backup_path).parent.mkdir(exist_ok=True)
         ok, err1, err2 = self.check_datas()
         if not ok:
             print("No backup, database is not clear :", err1, err2)
             return
 
-        with open(self.backup, 'w') as fbackup:
+        with open(self.backup_path, 'w') as fbackup:
             management.call_command("dumpdata", "compare", indent=2, stdout=fbackup)
 
-    def restaure(self):
+    def restore(self):
         from pathlib import Path
         from django.core import management
 
-        if not Path(self.backup).exists():
-            print(f"Error: {self.backup} not exists")
+        if not Path(self.backup_path).exists():
+            print(f"Error: {self.backup_path} not exists")
             return
 
-        management.call_command('loaddata', self.backup, verbosity=3)
+        management.call_command('loaddata', self.backup_path, verbosity=3)
