@@ -1,7 +1,7 @@
 import shutil
 from django.core.management.base import BaseCommand, CommandError
 from django.db import connection
-from ...packages import update_aarch64, update_x86_64, CACHE_DIR, Archs
+from ...packages import Branches, update_aarch64, update_x86_64, CACHE_DIR, Archs
 
 
 
@@ -24,6 +24,7 @@ class Command(BaseCommand):
         shutil.rmtree(directory + "/" + Archs.aarch64.name, ignore_errors=True)
 
     def handle(self, *args, **options):
+        # self.check_datas()
         if options['save']:
             self.bakup()
             exit(0)
@@ -40,20 +41,45 @@ class Command(BaseCommand):
         elif options['arch'] == "arm":
             update_aarch64(None)
 
+    def check_datas(self):
+        """all datas valides ? we can run a backup"""
+        #TODO more tests ???
+        from ...models import lastModified
+
+        nb = 0
+        with connection.cursor() as cursor:
+            for arch in Archs:
+                table_name = arch.name
+                for abranch in Branches:
+                    branch = abranch.name
+                    sql = f"""SELECT repo, COUNT({branch})
+                        FROM compare_{table_name}
+                        WHERE {branch} != ''
+                        GROUP BY repo;"""
+                    for item in cursor.execute(sql):
+                        nb += 1
+                        print("   # test ...", table_name, branch, item[0], item[1])
+                        if item[1] < 1:
+                            return False, f"{arch}/{branch}", item[0]
+        if lastModified.objects.filter().count() > nb:
+            return False, "lastModified", "error too mutch entries"
+        if lastModified.objects.filter(status="ERROR").count():
+            return False, "lastModified", "error found in status"
+        return True, "", ""
+
+
     def bakup(self):
         """ test function for auto backup before all compare db update
         """
         from pathlib import Path
         from django.core import management
-        from ...models import lastModified
 
         Path(self.backup).parent.mkdir(exist_ok=True)
-        # if lastModified.objects.count() != lastModified.objects.filter(status="ok" or '' and date > 2000):
-        if lastModified.objects.filter(status="ERROR").count():     # good condition ?
-            print("No backup, database is not clear")
+        ok, err1, err2 = self.check_datas()
+        if not ok:
+            print("No backup, database is not clear :", err1, err2)
             return
 
-        #management.call_command("flush", verbosity=0, interactive=False)
         with open(self.backup, 'w') as fbackup:
             management.call_command("dumpdata", "compare", indent=2, stdout=fbackup)
 
