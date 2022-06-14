@@ -24,16 +24,15 @@ class PackageAbstract(models.Model):
 
     @property
     def tag(self):
-        ret = ""
-        if not self.stable:
-            ret = "new"
-        if not self.unstable:
-            ret = "eof"
-        if not self.stable and not self.unstable:
-            ret = "error"
-        if self.stable and self.unstable and not self.testing:
-            ret = "error"
-        return ret
+        status = ""
+        if not self.testing and self.stable and self.unstable or \
+           not self.stable and not self.unstable and self.testing:
+            status = "error"
+        elif not self.stable:
+            status = "new"
+        elif not self.unstable:
+            status = "eol"
+        return status
     class Meta:
         abstract = True
         ordering = ("name", "repo")
@@ -131,7 +130,7 @@ class Packages(Page):
                     search_results = model.objects.filter(name__iregex=pattern)
                 elif "new" in search_query:
                     search_results = model.objects.filter(stable__exact='')
-                elif "eof" in search_query:
+                elif "eol" in search_query:
                     search_results = model.objects.filter(unstable__exact='')
                 elif "error" in search_query:
                     search_results = model.objects.filter(testing__exact='').exclude(unstable__exact='')
@@ -150,5 +149,4 @@ class Packages(Page):
         context["search_query"] = search_query if search_query else ""
         context['packages'] = search_results
         context['query_total'] = query_total
-
         return context
