@@ -50,16 +50,15 @@ class Command(BaseCommand):
         nb = 0
         with connection.cursor() as cursor:
             for arch in Archs:
-                table_name = arch.name
                 for abranch in Branches:
                     branch = abranch.name
                     sql = f"""SELECT repo, COUNT({branch})
-                        FROM compare_{table_name}
-                        WHERE {branch} != ''
+                        FROM compare_packagemodel
+                        WHERE {branch} != '' AND architecture="{arch.value}"
                         GROUP BY repo;"""
                     for item in cursor.execute(sql):
                         nb += 1
-                        print("   # test ...", table_name, branch, item[0], item[1])
+                        print("   # test ...", arch.name, branch, item[0], item[1])
                         if item[1] < 1:
                             return False, f"{arch}/{branch}", item[0]
         if lastModified.objects.filter().count() > nb:
