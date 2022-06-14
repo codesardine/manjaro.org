@@ -174,7 +174,7 @@ class Packages(Page):
                     search_results = model.objects.filter(name__iregex=pattern)
                 elif "new" in search_query:
                     search_results = model.objects.filter(stable__exact='')
-                elif "eol" in search_query:
+                elif "eof" in search_query:
                     search_results = model.objects.filter(unstable__exact='')
                 elif "error" in search_query:
                     search_results = model.objects.filter(testing__exact='').exclude(unstable__exact='')
