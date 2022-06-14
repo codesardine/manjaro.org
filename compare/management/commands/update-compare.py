@@ -41,6 +41,7 @@ class Command(BaseCommand):
             update_x86_64(None)
         elif options['arch'] == "arm":
             update_aarch64(None)
+        self.make_report_packages()
 
     def check_datas(self):
         """ is all data valid? we can run a backup"""
@@ -67,6 +68,20 @@ class Command(BaseCommand):
             return False, "lastModified", "status error found"
         return True, "", ""
 
+    def make_report_packages(self):
+        sql = '''SELECT architecture, repo,
+            sum(CASE WHEN (stable) != "" THEN 1 ELSE 0 END)  as stables,
+            sum(CASE WHEN (testing) != "" THEN 1 ELSE 0 END)  as testings,
+            sum(CASE WHEN (unstable) != "" THEN 1 ELSE 0 END)  as unstables
+            FROM compare_packagemodel
+            GROUP BY repo, architecture
+            order by architecture;'''
+        print(f"\n{'-' * (10+16+1+9+9+9)}")
+        print(f'{"":10}{"":16} {"stable":>9}{"testing":>9}{"unstable":>9}')
+        with connection.cursor() as cursor:
+            for item in cursor.execute(sql):
+                print(f'{Archs(item[0]).name:10}{item[1]:16} {item[2]:>9}{item[3]:>9}{item[4]:>9}')
+        print(f"{'-' * (10+16+1+9+9+9)}")
 
     def _backup(self):
         """ test function for auto backup before all compare db update
