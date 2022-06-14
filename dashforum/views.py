@@ -1,0 +1,41 @@
+import urllib.request
+import json
+import concurrent.futures
+from django.shortcuts import render
+from django.http import HttpResponse
+
+
+def index(request):
+
+    branch = request.GET.get('branch', "stable")
+    if branch not in ("stable", "testing", "unstable"):
+        branch = "stable"
+
+    with urllib.request.urlopen(f"https://forum.manjaro.org/c/announcements/{branch}-updates.json") as f_url:
+        req = f_url.read()
+
+    # doc: https://docs.discourse.org/#tag/Categories
+    topics = json.loads(req)['topic_list']['topics']
+    topics = [t for t in topics if not t['title'].startswith('About')][0:12]  # limit 12 / 30
+
+    futures = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=12) as executor:
+        futures.append(executor.map(_get_subject, topics))
+
+    return render(request, 'wagtailforum/index.html', {
+        'branch': branch,
+        'topics': topics,
+    })
+
+
+def _get_subject(topic):
+    """read one subject"""
+    with urllib.request.urlopen(f"https://forum.manjaro.org/t/{topic['id']}.json") as f_url:
+        req = f_url.read()
+    post = json.loads(req)['post_stream']['posts'][0]
+    topic['voters'] = post['polls'][0]['voters']
+    topic['poll_ok'] = post['polls'][0]['options'][0]['votes']
+    pourcentage = round((post['polls'][0]['options'][0]['votes'] / post['polls'][0]['voters']) * 100)
+    topic['poll_pourcent'] = 100 - pourcentage
+    topic['poll_thanks'] = post['polls'][0]['options'][1]['votes']
+    topic['poll_opps'] = post['polls'][0]['options'][2]['votes']

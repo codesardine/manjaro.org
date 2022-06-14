@@ -1,0 +1,52 @@
+{% extends "wagtailadmin/base.html" %}
+{% block titletag %}{{ stable }} forum annoncements{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <style>
+        .vote {
+            width:95%; height: 1em;
+            background-color: green;
+            border: 0px solid green;
+            padding-left: 1em; 
+        }
+        .vote span { color: #fff;  }
+        .vote .no {
+            height : 1em;
+            float : right;
+            background-color : red;
+
+        }
+        table.w-full { border:0px solid #ddd; }
+        table.w-full img { height:66px; border:0; }
+        table.w-full td { text-align: left; padding:3px; }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% include "wagtailadmin/shared/header.html" with title="Forum - votes in announcements" icon="date" %}
+
+    <div class="nice-padding">
+        <form method="get" class="">
+            <table><tr>
+            <td><input id="search" class="" type="text" name="branch" placeholder="Branch" value="{{ branch }}"></td>
+            <td><button type="submit" class="right-5 top-3">Go</button></td>
+            </tr></table>
+        </form>
+        <table class="w-full">
+        <tbody>
+            {% for topic in topics %}
+            <tr>
+                <td title="({{ topic.posts_count }} posts" valign="bottom"><b>{{ topic.title }}</b> <small>({{ topic.posts_count }})</small></td>
+                <td><a href="https://forum.manjaro.org/t/{{ topic.id}}" target="_blank"><img src="{{ topic.image_url}}"/></a></td>
+            </tr>
+            <tr>
+                <td colspan="1" title="{{ topic.voters }} votes">
+                    <div class="vote"><span>{{ topic.voters }}</span><div class="no" style="width:{{ topic.poll_pourcent }}%">&nbsp;</div></div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+{% endblock %}

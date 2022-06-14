@@ -31,7 +31,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 INSTALLED_APPS = [
     'home',
     'search',
-    'customblocks', 
+    'customblocks',
     'wagtailyoast',
     'menus',
     'dashboard',
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'compare',
+    'dashforum',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -63,7 +64,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
-    
+
     'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
