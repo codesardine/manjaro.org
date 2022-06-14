@@ -121,6 +121,8 @@ class Packages(Page):
                     search_results = all
                 elif "kernels" in search_query:
                     pattern = r"linux([0-9].{1,3})(?!.)"
+                    if arm:
+                        pattern = r"^linux-([a-z0-9]{1,9}(?!.))"
                     search_results = model.objects.filter(name__iregex=pattern)
                 elif "new" in search_query:
                     search_results = model.objects.filter(stable__exact='')
