@@ -6,7 +6,7 @@ from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
 from wagtail.admin.edit_handlers import FieldPanel
-
+import re
 
 class PackageAbstract(models.Model):
     id = models.AutoField(primary_key=True)
@@ -55,6 +55,7 @@ class lastModified(models.Model):
 
 
 class Packages(Page):
+    regex = r"\[{*.?$^"
     max_count=1
     template = "packages.html"
     subpage_types = []
@@ -91,8 +92,12 @@ class Packages(Page):
             set orm request
             search_query in name OR search_query == group
         """
-        pattern = r"\[{*.?$^"
-        if any(match in pattern for match in search_query):
+        try:
+            re.compile(search_query)        
+        except re.error:
+            return model.none()
+        
+        if any(match in self.regex for match in search_query):
             return model.filter(name__iregex=search_query)
         return model.filter(
             Q(name__contains=search_query) | Q(group__exact=search_query)
@@ -134,11 +139,16 @@ class Packages(Page):
                     search_results = model.objects.filter(packager__contains='manjaro')
 
         else:
-            search_results = model.objects.none()
+            search_results = model.none()
 
+        query_total = search_results.count()
         context['total_packages'] = total_packages
         context['query'] = search_query
+        if any(match in self.regex for match in search_query) and query_total == 0:
+            context['query'] = "your regex"
+
         context["search_query"] = search_query if search_query else ""
-        context['query_total'] = search_results.count()
         context['packages'] = search_results
+        context['query_total'] = query_total
+
         return context
