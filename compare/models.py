@@ -37,8 +37,10 @@ class PackageAbstract(models.Model):
         abstract = True
         ordering = ("name", "repo")
 
+
 class x86_64(PackageAbstract):
     pass
+
 
 class aarch64(PackageAbstract):
     pass
@@ -138,12 +140,14 @@ class Packages(Page):
                     search_results = model.objects.filter(packager__contains='manjaro')
 
         else:
-            search_results = model.none()
+            search_results = model.objects.none()
 
         query_total = search_results.count()
         context['total_packages'] = total_packages
         context['query'] = search_query
-        if any(match in self.regex for match in search_query) and query_total == 0:
+        if search_query is not None and \
+           any(match in self.regex for match in search_query) \
+           and query_total == 0:
             context['query'] = "your regex"
 
         context["search_query"] = search_query if search_query else ""
