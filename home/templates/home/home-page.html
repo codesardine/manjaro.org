@@ -28,6 +28,7 @@
 
 {% block content %}
 <div id="top" class="relative pt-6 lg:pt-0">
+{% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
     {% image promo.background original class="absolute inset-0 object-cover w-full h-full" %}
@@ -113,6 +114,7 @@
     </div>
     {% endwith %}
    {% endwith %}
+{% endif %}
    <a href="#partner" class="arrow-links text-6xl hidden xl:block cursor-saturation" aria-label="partner">
     <div class="chevron-container">
       <div class="chevron"></div>
