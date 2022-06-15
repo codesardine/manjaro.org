@@ -402,7 +402,7 @@
     }
 }
 
-.downloads {
+.downloads, .packages {
     & input:checked ~ .dot {
         transform: translateX(100%);
     }
@@ -434,3 +434,18 @@
         }
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .packages .low-screens {
+       width: 100vw;
+
+       & .badge {
+           right: 7rem;
+       }
+
+    }
+} 
+
+.packages .low-screens {
+       width: 100%;
+    }
