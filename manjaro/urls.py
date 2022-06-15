@@ -15,7 +15,7 @@ urlpatterns = [
 
     path('admin/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
-    path('status/', update_status),
+    #path('status/', update_status),
 ]
 
 if settings.DEBUG:
