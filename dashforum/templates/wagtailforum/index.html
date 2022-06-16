@@ -50,6 +50,7 @@
         }
         small {
             padding-left: 1rem;
+            display: inline-block;
         }
     </style>
 {% endblock %}
@@ -71,13 +72,13 @@
                 <td>
                     <img src="{{ topic.image_url }}"/>
                 </td>
-                <td title="({{ topic.posts_count }} posts" valign="bottom">
+                <td valign="bottom">
+                    <p>Total Posts: {{ topic.posts_count }}</p>
                     <a href="https://forum.manjaro.org/t/{{ topic.id }}" target="_blank">
                         <b>{{ topic.title }}</b> 
-                        <small>Total Posts: {{ topic.posts_count }}</small>
                     </a>
                     <div class="vote">
-                        <span>{{ topic.voters }}</span>
+                        <span>{{ topic.voters }} votes</span>
                         <div class="no" style="width:{{ topic.poll_pourcent }}%">&nbsp;</div>
                     </div>
             </tr>
