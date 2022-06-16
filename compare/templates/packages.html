@@ -28,7 +28,6 @@
 
 {% block content %}
 <p class="text-sm text-center pb-8 pt-0 w-full mx-auto">
-  {% if debug %}<p style="height:100px;">padding</p>{% endif %}
   Searched <span class="font-semibold text-cyan-600">{{ total_packages }}</span> packages
   {% if packages %}
   found <span class="font-semibold text-cyan-600">{{ query_total }}</span> for <span class="font-semibold text-cyan-600">{{ query }}</span>
