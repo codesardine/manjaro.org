@@ -1,7 +1,8 @@
 import shutil
 from django.core.management.base import BaseCommand
 from django.db import connection
-from ...packages import Branches, update_aarch64, update_x86_64, CACHE_DIR, Archs
+from ...packages import Branches, update_aarch64, update_x86_64, CACHE_DIR
+from ...models import Archs
 
 
 
@@ -11,7 +12,7 @@ class Command(BaseCommand):
     backup_path = "compare/backup/compare_backup.json"
 
     def add_arguments(self, parser):
-        parser.add_argument('arch', nargs='?', default="x86_64", help="Architecture : [x86_64] (default) or [arm]", type=str)
+        parser.add_argument('arch', nargs='?', default=f"{Archs.x86_64.name}", help=f"Architecture : [{Archs.x86_64.name}] (default) or [arm]", type=str)
         parser.add_argument('--force', action='store_true', help=f"Force all uploads")
         parser.add_argument('--save', action='store_true', help=f"Save in {self.backup_path}")
         parser.add_argument('--restore', action='store_true', help=f"Restore from {self.backup_path}")

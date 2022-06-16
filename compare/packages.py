@@ -9,16 +9,16 @@ from zoneinfo import ZoneInfo
 from datetime import datetime, date
 from dateutil.parser import parse as parsedate
 import concurrent.futures
-from .models import x86_64, aarch64, lastModified
+from .models import x86_64, aarch64, lastModified, Archs
 
 
 MIRROR = "https://mirrors.manjaro.org/repo"
 CACHE_DIR = "/tmp"
 
 
-class Archs(enum.Enum):
+'''class Archs(enum.Enum):
     x86_64 = enum.auto()
-    aarch64 = enum.auto()
+    aarch64 = enum.auto()'''
 
 
 class Branches(enum.Enum):
@@ -193,7 +193,6 @@ class PackageAlpm:
         #return time.strftime("%a %d %b %Y %X %Z", time.gmtime(self.builddate))    # time.gmtime
         return time.strftime("%Y-%m-%d", time.gmtime(self.builddate))
 
-    
     def version(self, branch: Branches) -> str:
         return getattr(self.versions, branch.name)
 
@@ -262,7 +261,7 @@ class AlpmDb:
     MAX = 99550
 
     def __init__(self, arch: Archs, repos) -> None:
-        self.arch = arch 
+        self.arch = arch
         self.repos = repos
         self.pkgs: dict[str, PackageAlpm] = {}
 
@@ -305,29 +304,30 @@ class AlpmDb:
                         index += 1
                         if index > AlpmDb.MAX:
                             break
-    
- 
+
+
 def update_db(arch, repos, pkg_model, test=False):
     db = AlpmDb(arch, repos)
     db.parse_files()
     start = time.perf_counter()
     try:
-        arch = str(arch).split(".")[1]
-        print(f"sql update {arch} :: for {len(db.pkgs)} packages in", db.repos)
+        arch_name = str(arch).split(".")[1]
+        print(f"sql update {arch.name} :: for {len(db.pkgs)} packages in", db.repos)
         for repo in db.repos:
-            pkg_model.objects.filter(arch=arch, repo=repo).delete()
-            print(f"sql update {arch} :: remove repo {repo}")
+            # pkg_model.objects.filter(architecture=arch.value, repo=repo).delete()
+            pkg_model.objects.filter(repo=repo).delete()
+            print(f"sql update {arch.name} :: remove repo {repo}")
         pkg: PackageAlpm
         objs = []
         for _, pkg in db.pkgs.items():
             #print(pkg)
             try:
-                # https://docs.djangoproject.com/en/4.0/ref/models/querysets/#bulk-create
                 objs.append(
                     pkg_model(
                         name=pkg.name,
                         repo=pkg.repo,
-                        arch=arch,
+                        architecture=arch.value,  # not useful with proxyManagers
+                        arch=pkg.arch,    # SELECT arch  from compare_packagemodel group by arch
                         stable=pkg.version(Branches.stable),
                         testing=pkg.version(Branches.testing),
                         unstable=pkg.version(Branches.unstable),
@@ -356,12 +356,15 @@ def update_db(arch, repos, pkg_model, test=False):
 def send_log(err:Exception):
     from wagtail.core.models import Page
     from wagtail.core.log_actions import log
-    page =Page.objects.get(title="Packages")
-    log(
-        instance=page, action='wagtail.workflow.cancel',
-        #data={"error":"Exception xxxx"},    # wagtail page no display data ?
-        title=f"[Update ERROR] {err}"
-    )
+    try:
+        page =Page.objects.get(title="Packages")
+        log(
+            instance=page, action='wagtail.workflow.cancel',
+            #data={"error":"Exception xxxx"},    # wagtail page no display data ?
+            title=f"[Update ERROR] {err}"
+        )
+    except: # wagtail.core.models.Page.DoesNotExist:
+        pass
 
 
 def update_x86_64(test_directory=None):

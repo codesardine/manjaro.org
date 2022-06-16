@@ -10,7 +10,11 @@ def update_status(request):
     if format_out == "txt":
         rets = []
         for item in items:
-            rets.append(f"{item.arch:12}{item.branch:18}{item.repo:16}{item.date.strftime('%Y-%d-%m,%Hh:%M'):18} {item.status}")
+            try:
+                date_str = item.date.strftime('%Y-%d-%m,%Hh:%M')
+            except AttributeError:
+                date_str = ""
+            rets.append(f"{item.arch:12}{item.branch:18}{item.repo:16}{date_str:18} {item.status}")
         return HttpResponse(
                 '\n'.join(rets)
             )
@@ -18,10 +22,14 @@ def update_status(request):
         rets = []
         sep = '</td><td>'
         for item in items:
-            rets.append(f"<tr><td>{item.arch}{sep}{item.branch}{sep}{item.repo}{sep}{item.date.strftime('%Y-%d-%m,%Hh:%M')}</td><th>{item.status}</th></tr>")
+            try:
+                date_str = item.date.strftime('%Y-%d-%m,%Hh:%M')
+            except AttributeError:
+                date_str = ""
+            rets.append(f"<tr><td>{item.arch}{sep}{item.branch}{sep}{item.repo}{sep}{date_str}</td><th>{item.status}</th></tr>")
         return HttpResponse(
                 '<table cellspacing="6">' + '\n'.join(rets) + "</table>"
             )
     else:
         status = list(items.values())
-        return JsonResponse({'status' : status})
+        return JsonResponse({'status': status})

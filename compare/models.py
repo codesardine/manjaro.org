@@ -7,9 +7,39 @@ from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
 from wagtail.admin.edit_handlers import FieldPanel
 import re
+import enum
 
-class PackageAbstract(models.Model):
+class Archs(enum.Enum):
+    x86_64 = enum.auto()
+    aarch64 = enum.auto()
+
+
+class x86_64Manager(models.Manager):
+    """Force type x86_64"""
+
+    def get_queryset(self):
+        return super(x86_64Manager, self).get_queryset().filter(architecture=Archs.x86_64.value)
+
+    def create(self, **kwargs):   # not work ?
+        # print("     # aarch64Manager.get_queryset() force ", Archs.x86_64, Archs.x86_64.value)
+        kwargs.update({'architecture': Archs.x86_64.value})
+        return super(x86_64Manager, self).create(**kwargs)
+
+class aarch64Manager(models.Manager):
+    """Force type aarch64"""
+
+    def get_queryset(self):
+        return super(aarch64Manager, self).get_queryset().filter(architecture=Archs.aarch64.value)
+
+    def create(self, **kwargs):    # not work ?
+        # print("     # aarch64Manager.get_queryset() force ", Archs.x86_64, Archs.aarch64.value)
+        kwargs.update({'architecture': Archs.aarch64.value})
+        return super(aarch64Manager, self).create(**kwargs)
+
+
+class PackageModel(models.Model):
     id = models.AutoField(primary_key=True)
+    architecture = models.IntegerField(null=False)
     name = models.CharField(max_length=100, null=True)
     arch = models.CharField(max_length=50, null=True)
     repo = models.CharField(max_length=20, null=True)
@@ -34,16 +64,28 @@ class PackageAbstract(models.Model):
             status = "eol"
         return status
     class Meta:
-        abstract = True
+        #abstract = True
         ordering = ("name", "repo")
 
+    def __str__(self) -> str:
+        ret = []
+        ret.append(f'"architecture":"{Archs(self.architecture).name}", "repo":"{self.repo}", "name":"{self.name}"')
+        ret.append(f'"stable":"{self.stable}", "testing":"{self.testing}", "unstable":"{self.unstable}"')
+        ret.append(f'"last_modified":"{self.last_modified}", "packager":"{self.packager}", "arch":"{self.arch}"')
+        ret.append(f'"id":"{self.id}"')
+        return f'{{ {",".join(ret)} }}'
 
-class x86_64(PackageAbstract):
-    pass
+class x86_64(PackageModel):
+    objects = x86_64Manager()
 
+    class Meta:
+        proxy = True
 
-class aarch64(PackageAbstract):
-    pass
+class aarch64(PackageModel):
+    objects = aarch64Manager()
+
+    class Meta:
+        proxy = True
 
 
 class lastModified(models.Model):
