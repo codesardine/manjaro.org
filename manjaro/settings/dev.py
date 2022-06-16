@@ -2,11 +2,14 @@ from .base import *
 
 INSTALLED_APPS = INSTALLED_APPS + [
     'django_browser_reload',
+    'debug_toolbar',
 ]
 
-MIDDLEWARE = MIDDLEWARE + [
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
-]
+# 
+MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware', ] + MIDDLEWARE + [
+        # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+        "django_browser_reload.middleware.BrowserReloadMiddleware",
+    ]
 
 DEBUG = True
 
@@ -15,7 +18,7 @@ RECAPTCHA_PRIVATE_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
