@@ -145,7 +145,7 @@
     }
 
     & ul {
-        list-style: none;
+        list-style: circle;
     }
    
     & ol {
