@@ -84,6 +84,7 @@ class x86_64(PackageModel):
     class Meta:
         proxy = True
 
+
 class aarch64(PackageModel):
     objects = aarch64Manager()
 
@@ -185,7 +186,7 @@ class Packages(Page):
                     search_results = model.objects.filter(packager__contains='manjaro')
 
         else:
-            search_results = model.none()
+            search_results = model.objects.none()
 
         query_total = search_results.count()
         context['total_packages'] = total_packages
