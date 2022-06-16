@@ -8,6 +8,8 @@ from wagtail.search import index
 from wagtail.admin.edit_handlers import FieldPanel
 import re
 import enum
+import re
+
 
 class Archs(enum.Enum):
     x86_64 = enum.auto()
@@ -24,6 +26,7 @@ class x86_64Manager(models.Manager):
         # print("     # aarch64Manager.get_queryset() force ", Archs.x86_64, Archs.x86_64.value)
         kwargs.update({'architecture': Archs.x86_64.value})
         return super(x86_64Manager, self).create(**kwargs)
+
 
 class aarch64Manager(models.Manager):
     """Force type aarch64"""
@@ -182,7 +185,7 @@ class Packages(Page):
                     search_results = model.objects.filter(packager__contains='manjaro')
 
         else:
-            search_results = model.objects.none()
+            search_results = model.none()
 
         query_total = search_results.count()
         context['total_packages'] = total_packages
