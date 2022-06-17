@@ -164,8 +164,6 @@ class Packages(Page):
         if search_query:
             search_query = search_query.lower()
             search_results = self.get_request(all, search_query)
-            # Log the query so Wagtail can suggest promoted results
-            Query.get(search_query).add_hit()
 
             if search_query.startswith("#"):
                 # filter commands
@@ -200,5 +198,5 @@ class Packages(Page):
         context["search_query"] = search_query if search_query else ""
         context['packages'] = search_results
         context['query_total'] = query_total
-        
+
         return context
