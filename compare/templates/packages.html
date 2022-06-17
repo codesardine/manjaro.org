@@ -118,7 +118,9 @@
       window.location.replace(window.location.origin + "?query=%23manjaro")
     }
 
-    document.getElementById("search").focus();
+    const search = document.getElementById("search")
+    search.focus()
+    search.value = ""
 
     function switch_arm_on() {
       document.getElementById("btn").style.color = "#ef5350"
