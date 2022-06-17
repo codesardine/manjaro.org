@@ -181,16 +181,17 @@ class Packages(Page):
                 elif "eol" in search_query:
                     search_results = model.objects.filter(unstable__exact='')
                 elif "error" in search_query:
-                    search_results = model.objects.filter(testing__exact='').exclude(unstable__exact='')
+                    search_results = [match for match in all if match.tag == "error"]
                 elif "manjaro" in search_query:
                     search_results = model.objects.filter(packager__contains='manjaro')
 
         else:
             search_results = model.objects.none()
 
-        query_total = search_results.count()
+        query_total = len(search_results) if isinstance(search_results, list) else search_results.count()
         context['total_packages'] = total_packages
         context['query'] = search_query
+
         if search_query is not None and \
            any(match in self.regex for match in search_query) \
            and query_total == 0:
@@ -199,4 +200,5 @@ class Packages(Page):
         context["search_query"] = search_query if search_query else ""
         context['packages'] = search_results
         context['query_total'] = query_total
+        
         return context
