@@ -311,7 +311,6 @@ def update_db(arch, repos, pkg_model, test=False):
     db.parse_files()
     start = time.perf_counter()
     try:
-        arch_name = str(arch).split(".")[1]
         print(f"sql update {arch.name} :: for {len(db.pkgs)} packages in", db.repos)
         for repo in db.repos:
             # pkg_model.objects.filter(architecture=arch.value, repo=repo).delete()
