@@ -94,7 +94,7 @@ class Downloader():
             files_times(
                 arch=arch, branch=branch, repo=repo,
                 date=local_datetime,
-                status=""
+                status=response.status_code
             ).save()
             print(f"{arch:10} {branch:14} {repo:16} to download")
 
@@ -109,7 +109,7 @@ class Downloader():
                 fdb.write(resp.content)
             model = files_times.objects.get(arch=arch, branch=branch, repo=repo)
             model.date=remote_datetime
-            model.status="ok"
+            model.status=response.status_code
             model.save()
             return True, url, repo
         return False, url, repo
