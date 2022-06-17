@@ -8,7 +8,7 @@
             {% block title %}{% endblock %}
             {% block title_suffix %}
                 {% wagtail_site as current_site %}
-                {% if current_site and current_site.site_name %}-{{ current_site.site_name }}{% endif %}
+                {% if current_site and current_site.site_name %}| {{ current_site.site_name }}{% endif %}
             {% endblock %}
         </title>
         <meta name="google-site-verification" content="v6PClftSd5zHZAuSJyRpCl1fewbsYfYDp2-opMdPPXE" />
