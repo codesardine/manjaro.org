@@ -1,0 +1,11 @@
+{% load i18n wagtailroutablepage_tags %}
+
+<ul>
+    {% for category in categories %}
+        <li>
+            <a class="inline-block font-extrabold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" href="{% routablepageurl blog_page "entries_by_category" category.slug %}">{{ category.name }}</a>
+        </li>
+    {% empty %}
+        {% trans 'No categories yet' %}
+    {% endfor %}
+</ul>
