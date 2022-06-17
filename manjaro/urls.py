@@ -6,7 +6,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from puput import urls as puput_urls 
-from compare.views import update_status 
+from compare.views import pkgs_update_status_json, pkgs_update_status
 from wagtail.contrib.sitemaps.views import sitemap
 
 
@@ -15,7 +15,8 @@ urlpatterns = [
 
     path('admin/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
-    #path('status/', update_status),
+    path('status.json', pkgs_update_status_json),
+    path('status/', pkgs_update_status),
 ]
 
 if settings.DEBUG:
