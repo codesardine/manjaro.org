@@ -128,6 +128,19 @@ class Packages(RoutablePageMixin, Page):
                 }
         )
 
+    @route(r"^status/repos/$")
+    def status_repos(self, request):
+        repport = RepportPackages()
+        repport.request()
+        return self.render(
+            request,
+            template="status_pkgs.html",
+            context_overrides={
+                "archs": (a for a in Archs),
+                "repport": repport,
+            }
+        )
+
     intro = models.TextField(default='', blank=True, max_length=350)
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
