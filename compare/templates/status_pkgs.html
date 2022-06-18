@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load custom_filter %}
+
+{% load static wagtailcore_tags %}
+
+{% block body_class %}package-status{% endblock %}
+
+{% block title %}
+    Packages status
+{% endblock %}
+
+{% block meta_title %}
+Package database repositories status.
+{% endblock %}
+
+{% block meta_description %}
+Package database repositories status.
+{% endblock %}
+
+{% block content %}
+<div class="px-4 pt-6 lg:pt-0 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 bg-gray-50">
+    <div class="grid gap-10 lg:grid-cols-1">
+        <div class="lg:col-span-3">
+            <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pt-20">
+                <div class="mx-auto mb-20 lg:max-w-[80%] text-left">
+                    <h1
+                        class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-yellow-accent-700">
+                        Status
+                    </h1>
+                    <p class="text-base text-gray-700 md:text-lg">
+                        Package database repositories status.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="relative mx-auto lg:max-w-screen-lg">
+    {% for arch in archs %}
+    <table>
+          <tr class="text-md font-semibold tracking-wide text-left text-gray-800 bg-gray-200 uppercase border-b">
+            <th class="px-4 py-3">{{ arch.name }}</th>
+            <th class="px-4 py-3 text-center">Stable</th>
+            <th class="px-4 py-3 text-center">testing</th>
+            <th class="px-4 py-3 text-center">Unstable</th>
+          </tr>
+        {% for repo in repport|repport_arch:arch %}
+        <tr class="text-gray-700">
+          <td class="px-4 py-3 border">
+                <p class="text-xs text-gray-800 pr-4">{{ repo.repo }}</p>
+          </td>
+          <td class="text-sm border-b text-right">
+            <p class="text-xs text-gray-800 pr-4">{{ repo.stables }}</p>
+        </td>
+        <td class="text-sm border-b text-right">
+            <p class="text-xs text-gray-800 pr-4">{{ repo.testings }}</p>
+        </td>
+        <td class="text-sm border-b text-right">
+            <p class="text-xs text-gray-800 pr-4">{{ repo.unstables }}</p>
+        </td>
+        </tr>
+        {% endfor %}
+        {% with total=repport|repport_total:arch %}
+        <tr class="text-sm">
+          <td></td>
+          <td class="text-sm border-b text-right">
+              <p class="text-xs text-gray-900 pr-4" style="{% if total.stables < 10000 %}color:red;{% endif %}">{{ total.stables }}</p>
+          </td>
+          <td class="text-sm border-b text-right">
+              <p class="text-xs text-gray-900 pr-4" style="{% if total.stables < 10000 %}color:red;{% endif %}">{{ total.testings }}</p>
+          </td>
+          <td class="text-sm border-b text-right">
+              <p class="text-xs text-gray-900 pr-4" style="{% if total.stables < 10000 %}color:red;{% endif %}">{{ total.unstables }}</p>
+          </td>
+        </tr>
+        {% endwith %}
+    </table><br>
+    {% endfor %}
+    <section>
+{% endblock %}
