@@ -81,13 +81,13 @@ class Downloader():
     @staticmethod
     def download(url: str, local_filename: Path, arch, branch, repo, files_times) -> tuple:
         """download one file in thread"""
-        response = requests.head(url=url, timeout=10)
+        response = requests.head(url=url, timeout=30)
         if not response.ok:
             raise Exception("Download Error", url, response)
             
         remote_datetime = parsedate(response.headers['Last-Modified']).astimezone()
         local_datetime = datetime(1999, 1, 20, tzinfo=ZoneInfo("America/Los_Angeles"))
-        
+
         try:
             model = files_times.objects.get(arch=arch, branch=branch, repo=repo)
             local_datetime = model.date

@@ -1,11 +1,12 @@
 from django.db import models
 from django.db.models import Q
 from wagtail.core.models import Page
-from wagtail.search.models import Query
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
 from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+import requests
 import re
 import enum
 import re
@@ -101,7 +102,7 @@ class lastModified(models.Model):
     status = models.TextField(default="")
 
 
-class Packages(Page):
+class Packages(RoutablePageMixin, Page):
     regex = r"\[{*.?$^"
     max_count=1
     template = "packages.html"
@@ -110,8 +111,18 @@ class Packages(Page):
         'wagtailcore.Page'
     ]
 
-    intro = models.TextField(default='', blank=True, max_length=350)
+    @route(r"^status/$")
+    def status(self, request):
+        url = request.get_raw_uri().replace("status/", "status.json")
+        response = requests.get(url)  
+            
+        return self.render(
+            request,
+            template="status.html",
+            context_overrides = response.json()
+        )
 
+    intro = models.TextField(default='', blank=True, max_length=350)
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
     ]
@@ -121,7 +132,6 @@ class Packages(Page):
     ]
 
     keywords = models.CharField(default='', blank=True, max_length=150)
-
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading=('Content')),
         ObjectList(Page.promote_panels, heading=('Promote')),
