@@ -37,7 +37,7 @@ class Downloader():
         self.branches = branches
         self.repos = repos
         self.files_times = files_times
-        self.files_times.objects.filter(arch=arch.name).update(status="")
+        self.files_times.objects.filter(arch=arch.name)
 
     @staticmethod
     def filename(arch: str, branch: str, repo: str) -> Path:
@@ -81,16 +81,15 @@ class Downloader():
     @staticmethod
     def download(url: str, local_filename: Path, arch, branch, repo, files_times) -> tuple:
         """download one file in thread"""
-        response = requests.head(url=url, timeout=30)
-        if not response.ok:
-            raise Exception("Download Error", url, response)
-            
+        response = requests.head(url=url, timeout=30)            
         remote_datetime = parsedate(response.headers['Last-Modified']).astimezone()
         local_datetime = datetime(1999, 1, 20, tzinfo=ZoneInfo("America/Los_Angeles"))
 
         try:
             model = files_times.objects.get(arch=arch, branch=branch, repo=repo)
             local_datetime = model.date
+            model.status=response.status_code
+            model.save()
         except files_times.DoesNotExist:
             files_times(
                 arch=arch, branch=branch, repo=repo,
@@ -98,7 +97,10 @@ class Downloader():
                 status=response.status_code
             ).save()
             print(f"{arch:10} {branch:14} {repo:16} to download")
-
+        
+        if not response.ok:
+            #TODO error use another mirror
+            raise Exception("Download Error", url, response)
 
         if local_datetime == remote_datetime and local_filename.exists():
             print("Nothing to do", url, repo)

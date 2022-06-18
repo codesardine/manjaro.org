@@ -19,10 +19,3 @@ def clean_id(string):
 @register.filter
 def format_branch(value):
     return value.replace("arm-", "")
-
-@register.filter
-def format_status(status):
-    if any(char.isdigit() for char in status):
-        return status
-    else:
-        return "unkown"
