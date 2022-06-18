@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags template_tags %}
 
 {% block body_class %}package-status{% endblock %}
 
@@ -27,7 +27,7 @@ Package database last update status.
                         Status
                     </h1>
                     <p class="text-base text-gray-700 md:text-lg">
-                        Package database last update status.
+                        Package database update status.
                     </p>
                 </div>            
             </div>
@@ -49,16 +49,16 @@ Package database last update status.
                 <p class="text-xs text-gray-800 p-2 capitalize">{{ update.arch }}</p>
           </td>
           <td class="text-sm border-b text-center">
-              <p class="text-xs text-gray-800 p-2 capitalize">{{ update.branch }}</p>
+              <p class="text-xs text-gray-800 p-2 capitalize">{{ update.branch|format_branch }}</p>
           </td>
           <td class="text-sm border-b text-center">
             <p class="text-xs text-gray-800 p-2 capitalize">{{ update.repo }}</p>
         </td>
         <td class="text-sm border-b text-center">
-            <p class="text-xs text-gray-800 p-2 capitalize">{{ update.status }}</p>
+            <p class="text-xs text-gray-800 p-2 capitalize">{{ update.status|format_status }}</p>
         </td>
         <td class="text-sm border-b text-center">
-            <p class="text-xs text-gray-800 p-2 capitalize">{{ update.date }}</p>
+            <p class="text-xs text-gray-800 p-2 capitalize">{{ update.date|format_date }}</p>
         </td>
         </tr>
         {% endfor %}
