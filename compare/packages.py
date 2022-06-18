@@ -9,7 +9,7 @@ from zoneinfo import ZoneInfo
 from datetime import datetime, date
 from dateutil.parser import parse as parsedate
 import concurrent.futures
-from .models import x86_64, aarch64, lastModified, Archs
+from .models import x86_64, aarch64, lastModified, Archs, Branches
 
 
 MIRROR = "https://mirrors.manjaro.org/repo"
@@ -19,12 +19,6 @@ CACHE_DIR = "/tmp"
 '''class Archs(enum.Enum):
     x86_64 = enum.auto()
     aarch64 = enum.auto()'''
-
-
-class Branches(enum.Enum):
-    stable = 0
-    testing = 1
-    unstable = 2
 
 
 class Downloader():

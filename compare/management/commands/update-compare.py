@@ -1,8 +1,8 @@
 import shutil
 from django.core.management.base import BaseCommand
 from django.db import connection
-from ...packages import Branches, update_aarch64, update_x86_64, CACHE_DIR
-from ...models import Archs
+from ...packages import update_aarch64, update_x86_64, CACHE_DIR
+from ...models import Archs, Branches, RepportPackages
 
 
 
@@ -25,6 +25,10 @@ class Command(BaseCommand):
         shutil.rmtree(f'{directory}/{Archs.aarch64.name}', ignore_errors=True)
 
     def handle(self, *args, **options):
+        """Run command manage.py update-compare"""
+
+        self.make_report_packages()
+
         # self.check_datas()
         if options['save']:
             self._backup()
@@ -32,16 +36,18 @@ class Command(BaseCommand):
         if options['restore']:
             self.restore()
             exit(0)
-        if options['force']:
-            # or DELETE  FROM compare_lastmodified ?
-            with connection.cursor() as cursor:
-                cursor.execute("UPDATE compare_lastmodified set date='1999-09-09', status='';")
-            self._remove_dirs(CACHE_DIR)
-        if options['arch'] == "x86_64":
-            update_x86_64(None)
-        elif options['arch'] == "arm":
-            update_aarch64(None)
-        self.make_report_packages()
+        try:
+            if options['force']:
+                # or DELETE  FROM compare_lastmodified ?
+                with connection.cursor() as cursor:
+                    cursor.execute("UPDATE compare_lastmodified set date='1999-09-09', status='';")
+                self._remove_dirs(CACHE_DIR)
+            if options['arch'] == "x86_64":
+                update_x86_64(None)
+            elif options['arch'] == "arm":
+                update_aarch64(None)
+        finally:
+            self.make_report_packages()
 
     def check_datas(self):
         """ is all data valid? we can run a backup"""
@@ -69,19 +75,17 @@ class Command(BaseCommand):
         return True, "", ""
 
     def make_report_packages(self):
-        sql = '''SELECT architecture, repo,
-            sum(CASE WHEN (stable) != "" THEN 1 ELSE 0 END)  as stables,
-            sum(CASE WHEN (testing) != "" THEN 1 ELSE 0 END)  as testings,
-            sum(CASE WHEN (unstable) != "" THEN 1 ELSE 0 END)  as unstables
-            FROM compare_packagemodel
-            GROUP BY repo, architecture
-            order by architecture;'''
-        print(f"\n{'-' * (10+16+1+9+9+9)}")
-        print(f'{"":10}{"":16} {"stable":>9}{"testing":>9}{"unstable":>9}')
-        with connection.cursor() as cursor:
-            for item in cursor.execute(sql):
-                print(f'{Archs(item[0]).name:10}{item[1]:16} {item[2]:>9}{item[3]:>9}{item[4]:>9}')
-        print(f"{'-' * (10+16+1+9+9+9)}")
+        repport = RepportPackages()
+        repport.request()
+
+        for arch in Archs:
+            print(f"\n{'-' * (16+1+9+9+9)}")
+            print(f"{arch.name:16} {'stable':>9}{'testing':>9}{'unstable':>9}")
+            for item in repport.items[arch.name]:
+                print(f'{item.repo:16} {item.stables:>9}{item.testings:>9}{item.unstables:>9}')
+            totals = repport.get_total(arch)
+            print(f'{" ":16} {totals.stables:>9}{totals.testings:>9}{totals.unstables:>9}')
+            print(f"{'-' * (16+1+9+9+9)}")
 
     def _backup(self):
         """ test function for auto backup before all compare db update

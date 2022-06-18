@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Q
+from django.db import connection
 from wagtail.core.models import Page
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
@@ -9,12 +10,17 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 import requests
 import re
 import enum
-import re
+from collections import namedtuple
 
 
 class Archs(enum.Enum):
     x86_64 = enum.auto()
     aarch64 = enum.auto()
+
+class Branches(enum.Enum):
+    stable = 0
+    testing = 1
+    unstable = 2
 
 
 class x86_64Manager(models.Manager):
@@ -210,3 +216,38 @@ class Packages(RoutablePageMixin, Page):
         context['query_total'] = query_total
 
         return context
+
+
+class RepportPackages():
+    _sql = '''SELECT architecture, repo,
+            sum(CASE WHEN (stable) != "" THEN 1 ELSE 0 END)  as stables,
+            sum(CASE WHEN (testing) != "" THEN 1 ELSE 0 END)  as testings,
+            sum(CASE WHEN (unstable) != "" THEN 1 ELSE 0 END)  as unstables
+            FROM compare_packagemodel
+            GROUP BY repo, architecture
+            order by architecture;'''
+
+    def __init__(self) -> None:
+        self.items = {}
+        for arch in Archs:
+            self.items[arch.name] = []
+
+    def request(self):
+        # self.items = PackageModel.objects.raw(self._sql) # no possible: want id field
+        with connection.cursor() as cursor:
+            cursor.execute(self._sql)
+            desc = cursor.description
+            obj = namedtuple('Result', [col[0] for col in desc])
+            items = cursor.fetchall()
+            for item in items:
+                item = list(item)
+                item[0] = Archs(item[0])
+                self.items[Archs(item[0]).name].append(obj(*item))
+
+    def get_total(self, arch: Archs):
+        obj = namedtuple('Counts', [f"{b.name}s" for b in Branches])
+        return obj(
+            sum(n[2] for n in self.items[arch.name]),
+            sum(n[3] for n in self.items[arch.name]),
+            sum(n[4] for n in self.items[arch.name]),
+        )
