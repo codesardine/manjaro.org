@@ -1,7 +1,5 @@
-from email.utils import parsedate
 from django import template
 import random
-from dateutil.parser import parse 
 
 register = template.Library()
 
@@ -21,10 +19,6 @@ def clean_id(string):
 @register.filter
 def format_branch(value):
     return value.replace("arm-", "")
-
-@register.filter
-def format_date(date):
-    return parse(date).astimezone().strftime("%A %d. %B %Y %H:%M")
 
 @register.filter
 def format_status(status):

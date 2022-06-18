@@ -113,13 +113,13 @@ class Packages(RoutablePageMixin, Page):
 
     @route(r"^status/$")
     def status(self, request):
-        url = request.get_raw_uri().replace("status/", "status.json")
-        response = requests.get(url)  
-            
+        last_modified = lastModified.objects.order_by("arch", "branch", "repo") 
         return self.render(
             request,
             template="status.html",
-            context_overrides = response.json()
+            context_overrides = {
+                "status": last_modified
+                }
         )
 
     intro = models.TextField(default='', blank=True, max_length=350)
