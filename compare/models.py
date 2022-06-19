@@ -7,7 +7,6 @@ from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
 from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-import requests
 import re
 import enum
 from collections import namedtuple
@@ -120,25 +119,16 @@ class Packages(RoutablePageMixin, Page):
     @route(r"^status/$")
     def status(self, request):
         last_modified = lastModified.objects.order_by("arch", "branch", "repo") 
+        report = ReportPackages()
+        report.request()
         return self.render(
             request,
             template="status.html",
             context_overrides = {
-                "status": last_modified
-                }
-        )
-
-    @route(r"^status/repos/$")
-    def status_repos(self, request):
-        repport = RepportPackages()
-        repport.request()
-        return self.render(
-            request,
-            template="status_pkgs.html",
-            context_overrides={
+                "status": last_modified,
                 "archs": (a for a in Archs),
-                "repport": repport,
-            }
+                "report": report,
+                }
         )
 
     intro = models.TextField(default='', blank=True, max_length=350)
@@ -231,11 +221,11 @@ class Packages(RoutablePageMixin, Page):
         return context
 
 
-class RepportPackages():
+class ReportPackages():
     _sql = '''SELECT architecture, repo,
-            sum(CASE WHEN (stable) != "" THEN 1 ELSE 0 END)  as stables,
-            sum(CASE WHEN (testing) != "" THEN 1 ELSE 0 END)  as testings,
-            sum(CASE WHEN (unstable) != "" THEN 1 ELSE 0 END)  as unstables
+            sum(CASE WHEN (stable) != "" THEN 1 ELSE 0 END)  as stable,
+            sum(CASE WHEN (testing) != "" THEN 1 ELSE 0 END)  as testing,
+            sum(CASE WHEN (unstable) != "" THEN 1 ELSE 0 END)  as unstable
             FROM compare_packagemodel
             GROUP BY repo, architecture
             order by architecture;'''

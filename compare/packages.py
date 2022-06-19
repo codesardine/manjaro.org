@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field, fields
-import enum
 from pathlib import Path
 from typing import IO, Iterator
 import requests

@@ -16,6 +16,3 @@ def random_list(list):
 def clean_id(string):
     return string.replace(" ", "")
 
-@register.filter
-def format_branch(value):
-    return value.replace("arm-", "")

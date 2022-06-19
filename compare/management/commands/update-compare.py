@@ -2,7 +2,7 @@ import shutil
 from django.core.management.base import BaseCommand
 from django.db import connection
 from ...packages import update_aarch64, update_x86_64, CACHE_DIR
-from ...models import Archs, Branches, RepportPackages
+from ...models import Archs, Branches, ReportPackages
 
 
 
@@ -75,15 +75,15 @@ class Command(BaseCommand):
         return True, "", ""
 
     def make_report_packages(self):
-        repport = RepportPackages()
-        repport.request()
+        report = ReportPackages()
+        report.request()
 
         for arch in Archs:
             print(f"\n{'-' * (16+1+9+9+9)}")
             print(f"{arch.name:16} {'stable':>9}{'testing':>9}{'unstable':>9}")
-            for item in repport.items[arch.name]:
+            for item in report.items[arch.name]:
                 print(f'{item.repo:16} {item.stables:>9}{item.testings:>9}{item.unstables:>9}')
-            totals = repport.get_total(arch)
+            totals = report.get_total(arch)
             print(f'{" ":16} {totals.stables:>9}{totals.testings:>9}{totals.unstables:>9}')
             print(f"{'-' * (16+1+9+9+9)}")
 
