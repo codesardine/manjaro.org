@@ -223,9 +223,9 @@ class Packages(RoutablePageMixin, Page):
 
 class ReportPackages():
     _sql = '''SELECT architecture, repo,
-            sum(CASE WHEN (stable) != "" THEN 1 ELSE 0 END)  as stable,
-            sum(CASE WHEN (testing) != "" THEN 1 ELSE 0 END)  as testing,
-            sum(CASE WHEN (unstable) != "" THEN 1 ELSE 0 END)  as unstable
+            sum(CASE WHEN (stable) != '' THEN 1 ELSE 0 END)  as stable,
+            sum(CASE WHEN (testing) != '' THEN 1 ELSE 0 END)  as testing,
+            sum(CASE WHEN (unstable) != '' THEN 1 ELSE 0 END)  as unstable
             FROM compare_packagemodel
             GROUP BY repo, architecture
             order by architecture;'''
