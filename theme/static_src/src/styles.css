@@ -84,7 +84,7 @@
 
 @media (min-width: 1024px) { 
     a:hover, button:hover, .hardware .grid > .flex-col:hover {
-        transform: scale(1.05) !important;
+        transform: scale(1.05);
     }
 
     p {
