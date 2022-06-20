@@ -82,7 +82,7 @@ class Command(BaseCommand):
             print(f"\n{'-' * (16+1+9+9+9)}")
             print(f"{arch.name:16} {'stable':>9}{'testing':>9}{'unstable':>9}")
             for item in report.items[arch.name]:
-                print(f'{item.repo:16} {item.stables:>9}{item.testings:>9}{item.unstables:>9}')
+                print(f'{item.repo:16} {item.stable:>9}{item.testing:>9}{item.unstable:>9}')
             totals = report.get_total(arch)
             print(f'{" ":16} {totals.stables:>9}{totals.testings:>9}{totals.unstables:>9}')
             print(f"{'-' * (16+1+9+9+9)}")
