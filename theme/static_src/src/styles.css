@@ -262,7 +262,7 @@
 }
 
 .speech-bubble-rigth {
-    border: 4px solid #00bfa5;
+    border: 4px solid rgba(255,214,0,var(--tw-text-opacity));
     padding: 20px;
     text-align: center;
 
@@ -272,8 +272,8 @@
         height: 0;
         position: absolute;
         border-left: 10px solid transparent;
-        border-right: 10px solid #00bfa5;
-        border-top: 10px solid #00bfa5;
+        border-right: 10px solid rgba(255,214,0,var(--tw-text-opacity));
+        border-top: 10px solid rgba(255,214,0,var(--tw-text-opacity));
         border-bottom: 10px solid transparent;
         right: 20px;
         bottom: -23px;
