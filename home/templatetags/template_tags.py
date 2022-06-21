@@ -1,3 +1,4 @@
+from wagtail.core.models import Site
 from django import template
 import random
 
@@ -16,3 +17,8 @@ def random_list(list):
 def clean_id(string):
     return string.replace(" ", "")
 
+@register.simple_tag(takes_context=True)
+def menu(context):    
+    homepage = Site.objects.filter(is_default_site=True).first().root_page
+    context['menuitems'] = homepage.get_children().live().in_menu()
+    return ""

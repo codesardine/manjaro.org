@@ -581,4 +581,3 @@ class HomePage(Page):
             slug='slug'
         ),
     ])
-    

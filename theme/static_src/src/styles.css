@@ -13,6 +13,13 @@
     width: 22px;
 }
 
+#logo-desktop {
+    height: 80px;
+    left: 100px;
+    position: absolute;
+    top: -40px;
+}
+
 #cursor {
     position: fixed;
     border-radius: 50%;
@@ -420,21 +427,6 @@
     height: auto;
 }
 
-
-@media (max-width: 1280px) { 
-    #nav-mobile {
-        display: block;
-    }
-
-    .nav {
-        justify-content: space-between;
-    
-        & ul:not(nav ul) {
-            display: none;
-        }
-    }
-}
-
 @media only screen and (max-width: 600px) {
     .packages .low-screens {
        width: 100vw;
@@ -449,3 +441,8 @@
 .packages .low-screens {
        width: 100%;
     }
+
+.dual-menu {
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+}
