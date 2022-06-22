@@ -28,11 +28,13 @@
 
 {% block content %}
 <div id="top" class="relative pt-6 lg:pt-0">
+  <img src="{% static 'img/fixed-bg.jpg' %}" class="fixed inset-0 object-cover w-full h-full">
 {% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
     {% image promo.background original class="absolute inset-0 object-cover w-full h-full" %}
-    <div class="relative bg-gray-900 bg-opacity-[.6]">
+    <div class="bg-gray-900 bg-opacity-[.6] w-full h-full fixed"></div>
+    <div class="relative">
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
         <div class="flex flex-col items-center justify-between xl:flex-row w-full">
           <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
@@ -49,19 +51,19 @@
                   <ul class="space-y-3">
                     <li class="flex text-white">
                       <span class="mr-1">
-                        <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-cyan-accent-700"></i>
+                        <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-accent-700"></i>
                       </span>
                       No drivers, Plug & Play
                       </li>
                       <li class="flex text-white">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-cyan-accent-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-accent-700"></i>
                         </span>
                         Rolling release
                       </li>
                       <li class="flex text-white">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-cyan-accent-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-accent-700"></i>
                         </span>
                         Wide range of software
                       </li>
@@ -69,28 +71,28 @@
                     <ul class="space-y-3">
                       <li class="flex text-white">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-cyan-accent-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-accent-700"></i>
                         </span>
                         Secure by default
                       </li>
                       <li class="flex text-white">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-cyan-accent-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-accent-700"></i>
                         </span>
                         Lightning fast
                       </li>
                       <li class="flex text-white">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-cyan-accent-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-accent-700"></i>
                         </span>
                         Easily installed
                       </li>
                     </ul>
                     <ul>
                       <li>
-                        <a href="/features/" aria-label="manjaro features" class="cursor-saturation font-semibold text-yellow-accent-700">
+                        <a href="/features/" aria-label="manjaro features" class="font-semibold transition-colors duration-200 text-cyan-accent-700 hover:text-cyan-accent-400">
                           <span class="mr-1 float-left">
-                            <i class="text-sm fa-solid fa-link w-5 h-5 mt-px text-yellow-accent-700"></i>
+                            <i class="text-sm fa-solid fa-link w-5 h-5"></i>
                           </span>
                           Learn More
                       </a>
@@ -101,8 +103,8 @@
               </div>
           </div>
           <div class="w-full max-w-xl xl:px-8 xl:w-5/12 lg:translate-y-[50%] transform-gpu">
-              <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="hover:scale-100 w-[100%] lg:w-[80%] text-center relative speech-bubble-rigth block font-semibold text-yellow-accent-700">
-                <i class="text-sm fa-solid fa-link w-5 h-5 mt-px text-yellow-accent-700"></i>
+              <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="hover:scale-100 w-[100%] lg:w-[80%] rounded-lg bg-blue-gray-900 text-center relative speech-bubble-rigth block font-semibold transition-colors duration-200 text-cyan-accent-700 hover:text-cyan-accent-400">
+                <i class="text-sm fa-solid fa-link w-5 h-5"></i>
                 {{ promo.text }}
               </a>
               <img src="{% static 'img/jaro-2.png' %}" class="xl:block w-60 ml-60 promo-img">
@@ -123,48 +125,46 @@
   </div>
 
   <div id="partner" class="relative lg:min-h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-    <div class="grid gap-10 lg:grid-cols-2">
+    <div class="grid gap-2 lg:grid-cols-2">
       <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
-        <div class="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-yellow-accent-700">
-          <svg class="text-teal-900 w-7 h-7" viewBox="0 0 24 24">
-            <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points=" 8,5 8,1 16,1 16,5" stroke-linejoin="round"></polyline>
-            <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="9,15 1,15 1,5 23,5 23,15 15,15" stroke-linejoin="round"></polyline>
-            <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="22,18 22,23 2,23 2,18" stroke-linejoin="round"></polyline>
-            <rect x="9" y="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" width="6" height="4" stroke-linejoin="round"></rect>
-          </svg>
+        <div class="max-w-xl mb-6 text-center">
+          <div class="w-full flex items-center justify-center">
+            <div class="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-yellow-accent-700">
+              <svg class="text-teal-900 w-7 h-7" viewBox="0 0 24 24">
+                <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points=" 8,5 8,1 16,1 16,5" stroke-linejoin="round"></polyline>
+                <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="9,15 1,15 1,5 23,5 23,15 15,15" stroke-linejoin="round"></polyline>
+                <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="22,18 22,23 2,23 2,18" stroke-linejoin="round"></polyline>
+                <rect x="9" y="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" width="6" height="4" stroke-linejoin="round"></rect>
+              </svg>
+            </div>
         </div>
-        <div class="max-w-xl mb-6">
-          <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+          <h2 class="w-full uppercase mb-6 font-sans text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl sm:leading-none">
             {{ page.partners_title }}<br class="hidden md:block" />
-            your next
-            <span class="inline-block text-deep-purple-accent-400">OS integration</span>
-            <span class="inline-block text-teal-600">partner with us</span>
+            <span class="inline-block text-teal-600">OS integration</span>
+            <span class="inline-block text-yellow-accent-700">partner with us</span>
           </h2>
-          <p class="text-base text-gray-700 md:text-lg">
+          <p class="text-base text-gray-200 md:text-lg mb-2">
             {{ page.partners_intro }}
           </p>
-        </div>
-        <div>
-          <a href="/contact-for-partners/" aria-label="contact for partners" class="hidden inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
-            Get in touch
-            <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
-              <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
-            </svg>
+          <a href="/contact-for-partners/" aria-label="contact for partners" class="hidden inline-flex items-center font-semibold transition-colors duration-200 text-cyan-accent-700 hover:text-cyan-accent-400">
+            <i class="text-sm fa-solid fa-link w-5 h-5 pt-[2px] mr-2"></i>Get in touch
           </a>
         </div>
+        <div>
+        </div>
       </div>
-      <div class="flex items-center justify-center -mx-4 lg:pl-8">
-        <div class="flex-col items-end px-3 hidden lg:flex">
+      <div class="flex items-center justify-center">
+        <div class="flex-col items-end hidden lg:flex">
           <img
             class="object-cover mb-6"
             style="filter: drop-shadow(4px 4px 6px black);"
-            src="{% static 'img/partners.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+            src="{% static 'img/partner.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
             alt="{{ page.partners_title }}"
           />
         </div>
       </div>
     </div>
-    <a href="#shells" class="arrow-links text-6xl hidden xl:block" aria-label="shells">
+    <a href="#shells" class="arrow-links text-6xl hidden xl:block cursor-saturation" aria-label="shells">
       <div class="chevron-container">
         <div class="chevron"></div>
         <div class="chevron"></div>
@@ -173,33 +173,38 @@
     </a>
   </div>
 
-  <div id="shells" class="relative lg:min-h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-    <div class="flex flex-col lg:flex-row sm:mx-auto">
-      <div class="hidden lg:flex relative lg:w-1/2 p-8 lg:p-6 items-center">
-        <img src="{% static 'img/cloud.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="{{ page.shells_title }}" 
-        class="object-cover drop-shadow-2xl"
-        style="filter: drop-shadow(4px 4px 6px black);" />
+  <div id="shells" class="relative lg:min-h-screen flex items-center justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div class="grid gap-2 lg:grid-cols-2">
+      <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
+        <div class="flex items-center justify-center">
+          <div class="flex-col items-end hidden lg:flex">
+            <img
+              class="object-cover mb-6"
+              style="filter: drop-shadow(4px 4px 6px black);"
+              src="{% static 'img/cloud.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+              alt="{{ page.shells_title }}"
+            />
+          </div>
+        </div>
       </div>
-      <div class="flex flex-col justify-center p-8 lg:p-6 lg:w-1/2">
-        <div>
-          <h2 class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-            Your OS in the cloud
-          </h2>
+        <div class="max-w-xl mb-6 text-center">
+          <div class="w-full flex items-center justify-center mb-2">
+              <img src="{% static 'img/shells.png' %}">
         </div>
-        <h3 class="mb-3 text-3xl font-extrabold leading-none sm:text-4xl">
-          {{ page.shells_title }}
-        </h3>
-        <p class="mb-5 text-gray-800">
-          <span class="font-bold">Manjaro running in the cloud with Shells</span> {{ page.shells_intro }}
-        </p>
-        <div class="flex items-center">
-          <a href="{{ page.shells_url }}" aria-label="" class="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
+          <h2 class="mb-6 uppercase font-sans text-3xl font-bold tracking-tight w-full text-gray-200 sm:text-4xl sm:leading-none">
+            <span class="inline-block text-teal-600">cloud solution</span><br class="hidden md:block">
+            <span class="text-yellow-accent-700">{{ page.shells_title }} your OS in the cloud</span>
+            
+          </h2>  
+          <p class="text-base text-gray-200 md:text-lg mb-2">
+            <span class="text-gray-200 font-semibold"><span class="brand">manjaro</span> running in the cloud with Shells</span> {{ page.shells_intro }}
+          </p>
+          <a href="{{ page.shells_url }}" aria-label="{{ page.shells_title }}" class="font-semibold transition-colors duration-200 text-cyan-accent-700 hover:text-cyan-accent-400">
+              <i class="text-sm fa-solid fa-link w-5 h-5"></i>
             Learn More
-            <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
-              <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
-            </svg>
-          </a>
+        </a>
         </div>
+        <div>
       </div>
     </div>
   </div>
