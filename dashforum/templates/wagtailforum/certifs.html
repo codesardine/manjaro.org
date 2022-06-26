@@ -1,0 +1,51 @@
+{% extends "wagtailadmin/base.html" %}
+{% block titletag %}{{ stable }} forum annoncements{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <style>
+        table.w-full { 
+            border:0px solid #ddd;
+            with:auto;
+            margin:0 auto;
+        }
+        table.w-full td { 
+            text-align: left;
+            padding:1rem;
+            padding-bottom: 3rem;
+        }
+        table.w-full td:first-child { text-align:center; }
+        form {
+            padding-bottom: 1.5rem;
+        }
+        small {
+            padding-left: 1rem;
+            display: inline-block;
+        }
+        .hot { color:#900; font-weight:700; }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% include "wagtailadmin/shared/header.html" with title="Manjaro Certifications" icon="date" %}
+
+    <div class="nice-padding">
+        <table class="w-full">
+        <tbody>
+            {% for certif in certifs %}
+            <tr>
+                <td>
+                    <a href="https://{{ certif.url }}/">{{ certif.url }}</a>
+                </td>
+                <td class="sep">
+                    <span class="{% if certif.delta < 15 %}hot{% endif %}">{{ certif.delta }}</span>
+                </td>
+                <td>
+                    <span class="">{{ certif.date }}</b></span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    </div>
+{% endblock %}
