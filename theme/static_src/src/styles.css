@@ -10,7 +10,19 @@
 }
 
 #logo { 
-    width: 22px;
+    position: absolute;
+    top:-36px;
+    width: 120px;
+
+    & img {
+        width: 89px;
+        margin: 0 auto;
+    }
+}
+
+#inline-logo {
+    width: 150px;
+    height: auto;
 }
 
 #cursor {
@@ -431,21 +443,6 @@
     z-index: 999;
     width: 350px;
     height: auto;
-}
-
-
-@media (max-width: 1280px) { 
-    #nav-mobile {
-        display: block;
-    }
-
-    .nav {
-        justify-content: space-between;
-    
-        & ul:not(nav ul) {
-            display: none;
-        }
-    }
 }
 
 @media only screen and (max-width: 600px) {

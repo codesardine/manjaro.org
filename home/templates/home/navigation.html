@@ -3,46 +3,57 @@
 {% get_menu "top-right" as right_navigation %}
 <div id="cursor"></div>
 
-<div class="bg-teal-accent-400 fixed top-0 left-0 right-0 z-10">
-  <svg class="absolute top-6 invisible lg:visible w-3/5 -right-8 rotate-180 h-16 text-teal-accent-400" preserveAspectRatio="none" viewBox="0 0 1440 54">
+<div class="bg-teal-accent-400 fixed top-0 left-0 right-0 z-10">    
+  <div class="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div class="nav relative flex items-center justify-between lg:justify-end lg:space-x-16">
+      <ul class="items-center hidden space-x-8 lg:flex text-sm capitalize">
+        {% for item in right_navigation.menu_items.all %}
+          <li>
+              <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="inline-block font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900">{{ item.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="bg-teal-accent-400 lg:bg-teal-400 fixed top-0 lg:top-[36px] left-0 right-0 z-10">
+  <svg class="absolute top-[20px] invisible lg:visible w-full rotate-180 h-16 text-teal-400" preserveAspectRatio="none" viewBox="0 0 1440 54">
     <path fill="currentColor" d="M0 22L120 16.7C240 11 480 1.00001 720 0.700012C960 1.00001 1200 11 1320 16.7L1440 22V54H1320C1200 54 960 54 720 54C480 54 240 54 120 54H0V22Z"></path>
   </svg>
-    <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-      <div class="nav relative flex items-center justify-between lg:justify-center lg:space-x-16">
-        <ul class="flex items-center hidden space-x-8 lg:flex">
+    <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 relative">
+      <a id="logo" href="https://manjaro.org" aria-label="Home" title="Home" class="hover:scale-100 absolute bg-blue-gray-700 no-mouse-effects logo lg:inline-flex items-center hidden lg:mx-auto">
+        <img src="{% static 'img/block-logo.svg' %}">
+      </a>
+      <a href="https://manjaro.org" aria-label="Home" title="Home" class="absolute top-4 lg:hidden flex justify-center">
+        <img id="inline-logo" src="{% static 'img/inline-logo-dark.svg' %}" alt="manjaro">
+      </a>
+      <div class="nav relative flex items-center justify-between lg:justify-start lg:ml-40 lg:space-x-16">
+        <ul class="items-center hidden space-x-8 lg:flex text-md font-bold capitalize">
           {% for item in left_navigation.menu_items.all %}
             <li>
-                <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="inline-block font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900">{{ item.title }}</a>
+                <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="inline-block tracking-wide cursor-saturation transition-colors duration-200  text-teal-100 hover:text-white">{{ item.title }}</a>
             </li>
           {% endfor %}
-        </ul>
-        <a href="https://manjaro.org" aria-label="Home" title="Home" class="logo inline-flex items-center lg:mx-auto">
-          <img id="logo" src="{% static 'img/logo.svg' %}">
-          <span class="brand ml-2 text-xl lowercase tracking-wide text-teal-600">Manjaro</span>
-        </a>
-        <ul class="flex items-center hidden space-x-8 lg:flex">
-          {% for item in right_navigation.menu_items.all %}
-            <li>
-                <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="inline-block font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900">{{ item.title }}</a>
-            </li>
-          {% endfor %}
+        </ul>  
+        <ul class="justify-end w-full hidden lg:flex">
+          <a href="#" class="no-mouse-effects inline-block self-end text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
         </ul>
         <!-- Mobile menu -->
         <div id="nav-mobile" class="ml-auto lg:hidden">
           <button id="btn-open-menu" aria-label="Open Menu" title="Open Menu" class="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline">
-            <svg class="w-5 text-gray-700" viewBox="0 0 24 24">
+            <svg class="w-5 text-blue-gray-700" viewBox="0 0 24 24">
               <path fill="currentColor" d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"></path>
               <path fill="currentColor" d="M23,6H1C0.4,6,0,5.6,0,5s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,6,23,6z"></path>
               <path fill="currentColor" d="M23,20H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,20,23,20z"></path>
             </svg>
           </button>
-          <div id="menu" class="absolute top-0 left-0 w-full hidden">
+          <div id="menu" class="absolute top-0 left-0 right-0 w-full hidden">
             <div class="p-5 rounded shadow-sm bg-teal-accent-400">
               <div class="flex items-center justify-between mb-4">
                 <div>
-                  <a href="https://manjaro.org" aria-label="Home" title="Home" class="logo inline-flex items-center">
-                    <img id="logo" src="{% static 'img/logo.svg' %}" alt="manjaro">
-                    <span class="brand ml-2 text-xl lowercase tracking-wide text-teal-600">Manjaro</span>
+                  <a href="https://manjaro.org" aria-label="Home" title="Home" class="inline-flex items-center">
+                    <img id="inline-logo" src="{% static 'img/inline-logo-dark.svg' %}" alt="manjaro">
                   </a>
                 </div>
                 <div>
@@ -60,12 +71,12 @@
                 <ul class="space-y-4">
                   {% for item in left_navigation.menu_items.all %}
                     <li>
-                        <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
+                        <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="capitalize font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
                     </li>
                   {% endfor %}
                   {% for item in right_navigation.menu_items.all %}
                     <li>
-                        <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
+                        <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="capitalize font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
                     </li>
                   {% endfor %}
                 </ul>
