@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.db import models
 from wagtail.core.models import Page
 from customblocks import blocks
@@ -15,6 +16,9 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from django.shortcuts import redirect
 from puput.models import EntryPage
 
+import urllib.request
+import json
+import concurrent.futures
 
 def get_sitemap_urls(self, request=None):
     # fix for https://github.com/APSL/puput/issues/225
@@ -35,6 +39,48 @@ def get_sitemap_urls(self, request=None):
     ]
 
 EntryPage.get_sitemap_urls = get_sitemap_urls
+
+
+class Votes(Page):
+    max_count=1
+    template = "home/votes.html"
+    subpage_types = []
+    parent_page_types = [
+        'home.HomePage'
+    ]
+    
+    def get_context(self, request):
+        def _get_votes(topic):
+            """read one subject"""
+            with urllib.request.urlopen(f"https://forum.manjaro.org/t/{topic['id']}.json") as f_url:
+                req = f_url.read()
+            post = json.loads(req)['post_stream']['posts'][0]
+            topic['voters'] = post['polls'][0]['voters']
+            topic['poll_ok'] = post['polls'][0]['options'][0]['votes']
+            pourcentage = round((post['polls'][0]['options'][0]['votes'] / post['polls'][0]['voters']) * 100)
+            topic['poll_pourcent'] = 100 - pourcentage
+            topic['poll_thanks'] = post['polls'][0]['options'][1]['votes']
+            topic['poll_opps'] = post['polls'][0]['options'][2]['votes']
+
+        branch = request.GET.get('branch', None)
+        if branch not in ("stable", "testing", "unstable"):
+            branch = "stable"
+
+        with urllib.request.urlopen(f"https://forum.manjaro.org/c/announcements/{branch}-updates.json") as f_url:
+            req = f_url.read()
+
+        # doc: https://docs.discourse.org/#tag/Categories
+        topics = json.loads(req)['topic_list']['topics']
+        topics = [t for t in topics if not t['title'].startswith('About')][0:12]  # limit 12 / 30
+
+        futures = []
+        with concurrent.futures.ThreadPoolExecutor(max_workers=12) as executor:
+            futures.append(executor.map(_get_votes, topics))
+        
+        context = super(Votes, self).get_context(request)
+        context["branch"] = branch
+        context["topics"] = topics
+        return context
 
 
 class Downloads(RoutablePageMixin, Page):
@@ -518,6 +564,7 @@ class HomePage(Page):
         'home.Donations',
         'contact.ContactPage',
         'features',
+        'Votes',
         ]
     parent_page_types = [
         'wagtailcore.Page'
