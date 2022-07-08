@@ -20,7 +20,7 @@
     }
 }
 
-#inline-logo {
+#inline-logo img {
     width: 150px;
     height: auto;
 }
@@ -310,7 +310,8 @@
     display: none;
 }
 
-.blog-page a:not(.logo), .blog-entry-page a:not(.logo) {
+.blog-page a:not(#inline-logo):not(#logo),
+.blog-entry-page a:not(#inline-logo):not(#logo) {
     display: inline-block;
 }
 
