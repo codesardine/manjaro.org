@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags template_tags static %}
+
+{% block body_class %}votes{% endblock %}
+
+{% block title %}
+    {% if page.seo_title %}
+        {{ page.seo_title }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+{% endblock %}
+
+{% block meta_title %}
+    {% if page.seo_title %}
+        {{ page.seo_title }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+{% endblock %}
+
+{% block meta_description %}
+    {% if page.search_description %}
+        {{ page.search_description }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div class="nice-padding">
+        <div class="flex justify-center">
+            <form method="get" class="grid grid-cols-3 mb-6">
+              <div class="form-check">
+                <input name="branch" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="stable" id="stable" {% if branch == 'stable' %}checked{% endif %}>
+                <label class="form-check-label inline-block text-gray-800" for="stable">
+                  Stable
+                </label>
+              </div>
+              <div class="form-check">
+                <input name="branch" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="testing" id="testing" {% if branch == 'testing' %}checked{% endif %}>
+                <label class="form-check-label inline-block text-gray-800" for="testing">
+                  Testing
+                </label>
+              </div>
+              <div class="form-check">
+                <input name="branch" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="unstable" id="unstable" {% if branch == 'unstable' %}checked{% endif %}>
+                <label class="form-check-label inline-block text-gray-800" for="unstable">
+                  Unstable
+                </label>
+              </div>
+            </form>
+        </div>
+        <table class="w-full border-0">
+            <tbody>
+                {% for topic in topics %}
+                <tr>
+                    <td class="text-left p-[3px] pb-4">
+                        <img class="align-bottom w-{200px} h-auto" src="{{ topic.image_url }}"/>
+                    </td>
+                    <td class="align-bottom pl-4 pb-4">
+                        <a class="inline-block transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://forum.manjaro.org/t/{{ topic.id }}" target="_blank">
+                            <b>{{ topic.title }}</b> 
+                        </a>
+                        <div class="vote bg-green-600 text-white font-semibold relative">
+                            <span class="absolute pl-4 inline-block">{{ topic.voters }} votes</span>
+                            <span class="absolute inline-block right-4">Posts {{ topic.posts_count }}</span>
+                            <div class="bg-red-500" style="width:{{ topic.poll_pourcent }}%">&nbsp;</div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+const input = document.querySelectorAll('input');
+
+[].forEach.call(input, function(el) {
+  el.addEventListener("change", function (el) {
+    [].forEach.call(input, function(elem) {
+        if (elem.id == el.target.id) {
+            elem.checked = true
+        } else {
+            elem.checked = false
+        }
+    })
+    let url = window.location.origin + window.location.pathname + "?branch=" + el.target.id
+    window.location.replace(url)
+  })
+});
+</script>
+{% endblock %}
