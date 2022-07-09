@@ -9,7 +9,16 @@
       <ul class="items-center hidden space-x-8 lg:flex text-sm capitalize">
         {% for item in right_navigation.menu_items.all %}
           <li>
-              <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="inline-block font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900">{{ item.title }}</a>
+              <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="inline-block font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900">
+                {% if "donate" in item.title %}
+                  <i class="fa-solid fa-hand-holding-dollar"></i>
+                {% elif "merchandise" in item.title %}
+                  <i class="fa-solid fa-gifts"></i>
+                {% elif "hardware" in item.title %}
+                  <i class="fa-solid fa-microchip"></i>
+                {% endif %}
+              {{ item.title }}
+            </a>
           </li>
         {% endfor %}
       </ul>
@@ -76,7 +85,10 @@
           {% endfor %}
         </ul>  
         <ul class="justify-end w-full hidden lg:flex">
-          <a href="https://manjaro.org/download/" class="no-mouse-effects inline-block self-end text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">Download</a>
+          <a href="https://manjaro.org/download/" class="no-mouse-effects inline-block self-end text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+            <i class="fa-solid fa-cloud-arrow-down"></i>
+            Download
+          </a>
         </ul>
         <!-- Mobile menu -->
         <div id="nav-mobile" class="ml-auto lg:hidden">
