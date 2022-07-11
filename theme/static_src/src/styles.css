@@ -25,35 +25,6 @@
     height: auto;
 }
 
-#cursor {
-    position: fixed;
-    border-radius: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    pointer-events: none;
-    left: -100px;
-    top: 50%;
-    mix-blend-mode: color-burn;
-    background-color: #01BAEF;
-    z-index: 99999;
-    height: 0;
-    width: 0;
-    transition: width 150ms ease-in, height 150ms ease-in;
-    will-change: auto;
-    
-    &.cursor-difference {
-        mix-blend-mode: difference;
-    }
-
-    &.cursor-saturation {
-    mix-blend-mode: saturation;
-    }
-
-    &.enlarge {
-    width: 170px;
-    height: 170px;
-    }
-}
-
 .circle {
     z-index: -1;
     border-radius: 100%;
@@ -95,10 +66,6 @@
 }
 
 @media (min-width: 1024px) { 
-    a:hover, button:hover, .hardware .grid > .flex-col:hover {
-        transform: scale(1.05);
-    }
-
     p {
         padding: 3px 5px;
     }
