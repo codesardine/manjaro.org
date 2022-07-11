@@ -7,7 +7,7 @@
       <ul class="items-center hidden space-x-8 lg:flex text-sm capitalize">
         {% for item in right_navigation.menu_items.all %}
           <li>
-              <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="hover:border-b-2 font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900 hover:border-gray-900">
+              <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="hover:border-b-[1px] font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900 hover:border-gray-900">
                 {% if "donate" in item.title %}
                   <i class="fa-solid fa-hand-holding-dollar"></i>
                 {% elif "merchandise" in item.title %}
@@ -78,7 +78,7 @@
         <ul class="items-center hidden space-x-8 lg:flex text-md font-bold capitalize">
           {% for item in left_navigation.menu_items.all %}
             <li>
-                <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="tracking-wide hover:border-b-4 transition-colors duration-200  text-teal-100 hover:text-white">{{ item.title }}</a>
+                <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="tracking-wide hover:border-b-2 transition-colors duration-200  text-teal-100 hover:text-white">{{ item.title }}</a>
             </li>
           {% endfor %}
         </ul>  
