@@ -66,7 +66,7 @@
                 <th class="px-4 py-3">
                   Packages
                   <a href="/status/" target="_blank" 
-                  class="no-mouse-effects bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold ml-2 py-2 px-4 rounded"
+                  class="bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold ml-2 py-2 px-4 rounded"
                   style="vertical-align:inherit;">
                     Status
                   </a>
@@ -86,7 +86,7 @@
                     <a href="{% if not pkg.stable %}#{% else %}https://software.manjaro.org/package/{{ pkg.name }}{% endif %}"
                     aria-label="{{ pkg }}"
                     target="_blank"
-                    class="{% if not pkg.stable %}not-available{% endif %} no-mouse-effects inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
+                    class="{% if not pkg.stable %}not-available{% endif %} inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
                     {{ pkg.name }}
                     </a>
                     {% if pkg.tag %}
