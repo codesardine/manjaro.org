@@ -4,7 +4,7 @@
     <div class="grid max-w-md gap-4 row-gap-8 lg:max-w-screen-lg sm:row-gap-10 sm:max-w-screen-xl sm:grid-cols-2 lg:grid-cols-3 xl:gap-8 xl:max-w-screen-xl">
      {% for item in self.product_details %}
          {% if not item.hidden %}
-          <div class="hover-neon mb-52 lg:mb-30 relative bg-gray-900 flex flex-col hover:scale[1.0] transition duration-300 bg-grey-50 rounded shadow-sm hover:shadow">
+          <div class="hover-neon mb-52 lg:mb-30 relative bg-gray-900 flex flex-col transition duration-300 bg-grey-50 rounded shadow-sm hover:shadow">
             <div class="w-full">
               {% if forloop.counter == 1 %}
                 {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-red" %}
@@ -27,7 +27,7 @@
                   <li class="pb-2 text-cyan-accent-200 text-sm"><span class="text-yellow-accent-700 font-semibold">Ports </span>{{ item.ports }}</li>
                   <li class="pb-2 text-cyan-accent-200 text-sm"><span class="text-yellow-accent-700 font-semibold">Graphics </span>{{ item.graphics }}</li>
                 </ul>
-                <p class="text-sm pb-4 text-cyan-accent-200 no-zoom">
+                <p class="text-sm pb-4 text-cyan-accent-200">
                   {{ item.description }}
                 </p>
                 {% if item.certified %}

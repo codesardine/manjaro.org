@@ -286,12 +286,6 @@
     min-height: calc(100vh - 595px);
 }
 
-.no-zoom:hover {
-    transform: scale(1.0) !important;
-    cursor: auto;
-    background-color: transparent;
-}
-
 #cdn {
     width: 65px;
     height: auto;
