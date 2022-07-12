@@ -53,7 +53,7 @@
         </div>
         <table class="w-full border-0">
             <tbody>
-                {% for topic in topics %}
+                {% for topic in topics|slice:":5" %}
                 <tr>
                     <td class="text-left p-[3px] pb-4 hidden lg:block">
                         <img class="align-bottom w-{200px} h-auto" src="{{ topic.image_url }}"/>
