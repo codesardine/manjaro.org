@@ -5,8 +5,7 @@ INSTALLED_APPS = INSTALLED_APPS + [
     'debug_toolbar',
 ]
 
-MIDDLEWARE = [
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
+MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware',] + MIDDLEWARE + [
         'django_browser_reload.middleware.BrowserReloadMiddleware',
     ]
 

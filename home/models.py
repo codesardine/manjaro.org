@@ -41,9 +41,9 @@ def get_sitemap_urls(self, request=None):
 EntryPage.get_sitemap_urls = get_sitemap_urls
 
 
-class Votes(Page):
+class UpdateStatus(Page):
     max_count=1
-    template = "home/votes.html"
+    template = "home/update-status.html"
     subpage_types = []
     parent_page_types = [
         'home.HomePage'
@@ -77,10 +77,34 @@ class Votes(Page):
         with concurrent.futures.ThreadPoolExecutor(max_workers=12) as executor:
             futures.append(executor.map(_get_votes, topics))
         
-        context = super(Votes, self).get_context(request)
+        context = super().get_context(request)
         context["branch"] = branch
         context["topics"] = topics
         return context
+
+    intro = models.TextField(default='', blank=True, max_length=350)
+
+    search_fields = Page.search_fields + [
+        index.SearchField('intro'),
+    ]
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro'),
+    ]
+
+    keywords = models.CharField(default='', blank=True, max_length=150)
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading=('Content')),
+        ObjectList(Page.promote_panels, heading=('Promote')),
+        ObjectList(Page.settings_panels, heading=('Settings')),
+        YoastPanel(
+            keywords='keywords',
+            title='seo_title',
+            search_description='search_description',
+            slug='slug'
+        ),
+    ]) 
 
 
 class Downloads(RoutablePageMixin, Page):
@@ -564,7 +588,7 @@ class HomePage(Page):
         'home.Donations',
         'contact.ContactPage',
         'features',
-        'Votes',
+        'home.UpdateStatus',
         ]
     parent_page_types = [
         'wagtailcore.Page'
