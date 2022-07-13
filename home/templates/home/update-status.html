@@ -26,6 +26,20 @@
     {% endif %}
 {% endblock %}
 
+{% block head %}
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <style>
+        .ct-series-a .ct-area, .ct-series-a .ct-slice-donut-solid, .ct-series-a .ct-slice-pie  {
+            fill: rgba(67,160,71,var(--tw-bg-opacity));
+        }
+        .ct-label {
+            fill: white;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
 <div class="px-4 pb-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pb-20">
     <div class="nice-padding">
@@ -51,44 +65,52 @@
               </div>
             </form>
         </div>
-        <table class="w-full border-0">
-            <tbody>
+        <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 place-items-center text-center lg:text-left">
                 {% for topic in topics|slice:":5" %}
-                <tr>
-                    <td class="text-left p-[3px] pb-4 hidden lg:block">
-                        <img class="align-bottom w-{200px} h-auto" src="{{ topic.image_url }}"/>
-                    </td>
-                    <td class="align-bottom pl-4 pb-4">
-                        <a class="inline-block transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://forum.manjaro.org/t/{{ topic.id }}" target="_blank">
+                   <div id="ct-chart{{ topic.id }}" class="ct-chart w-1/3 lg:justify-self-end lg:mr-14"></div>               
+                    <div class="w-2/3 lg:justify-self-start">
+                        <a class="transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://forum.manjaro.org/t/{{ topic.id }}" target="_blank">
                             <b>{{ topic.title }}</b> 
                         </a>
-                        <div class="vote bg-green-600 text-white font-semibold relative">
-                            <span class="absolute pl-4 inline-block">{{ topic.voters }} votes</span>
-                            <span class="absolute inline-block right-4">Posts {{ topic.posts_count }}</span>
-                            <div class="bg-red-500" style="width:{{ topic.poll_pourcent }}%">&nbsp;</div>
-                        </div>
-                    </td>
-                </tr>
+                    </br></br>
+                        <div class="text-gray-800">{{ topic.voters }} Votes</div>
+                        <div class="text-gray-800">{{ topic.posts_count }} Posts</div>
+                    </div>
+                <script>
+                    var red = parseInt('{{ topic.poll_pourcent }}')
+                    var green = 100 - red
+                    console.log('{{ topic.poll_pourcent }}%')
+                    var data = {
+                    series: [green, red]
+                    };
+
+                    var sum = function(a, b) { return a + b };
+
+                    new Chartist.Pie('#ct-chart{{ topic.id }}', data, {
+                    labelInterpolationFnc: function(value) {
+                        return Math.round(value / data.series.reduce(sum) * 100) + '%';
+                    }
+                    });
+                </script>
                 {% endfor %}
-            </tbody>
-        </table>
+            </div>
     </div>
 </div>
 <script>
-const input = document.querySelectorAll('input');
+    const input = document.querySelectorAll('input');
 
-[].forEach.call(input, function(el) {
-  el.addEventListener("change", function (el) {
-    [].forEach.call(input, function(elem) {
-        if (elem.id == el.target.id) {
-            elem.checked = true
-        } else {
-            elem.checked = false
-        }
+    [].forEach.call(input, function(el) {
+    el.addEventListener("change", function (el) {
+        [].forEach.call(input, function(elem) {
+            if (elem.id == el.target.id) {
+                elem.checked = true
+            } else {
+                elem.checked = false
+            }
+        })
+        let url = window.location.origin + window.location.pathname + "?branch=" + el.target.id
+        window.location.replace(url)
     })
-    let url = window.location.origin + window.location.pathname + "?branch=" + el.target.id
-    window.location.replace(url)
-  })
-});
+    });
 </script>
 {% endblock %}
