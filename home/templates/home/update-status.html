@@ -65,29 +65,32 @@
               </div>
             </form>
         </div>
-        <div class="w-full grid grid-cols-1 gap-8 place-items-center text-left text-sm ">
-                {% for topic in topics|slice:":5" %}               
-                    <div class="bg-no-repeat bg-cover h-96 w-full flex items-end relative" style="background-image: url({{ topic.image_url }})" >
-                        <div id="ct-chart{{ topic.id }}" class="ct-chart w-60 h-60 absolute top-1 left-1">
-                            <div class="text-gray-200 absolute top-20 left-36 pl-1 font-semibold">{{ topic.posts_count }} Posts</div>
-                            <div class="text-gray-200 absolute top-24 left-36 pt-1 pl-1 font-semibold">{{ topic.voters }} Votes</div>
-                           </div>
-                        <div class="h-18 p-4 bg-gray-900/75 w-full">
-                            <a class="transition-colors duration-200 text-gray-400 hover:text-white font-semibold" href="https://forum.manjaro.org/t/{{ topic.id }}" target="_blank">
-                                {{ topic.title }}
-                            </a>
-                        </div>
+        <div class="w-full grid grid-cols-1 gap-20 place-items-center text-center text-sm ">
+                {% for topic in topics|slice:":5" %}
+                <div class="bg-no-repeat bg-cover w-full flex items-end relative">
+                    <div class="w-full">
+                        <a id="title{{ topic.id }}" class="transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-accent-700 font-semibold" href="https://forum.manjaro.org/t/{{ topic.id }}" target="_blank">
+                        </a>
                     </div>
+                </div>
+                <div id="ct-chart{{ topic.id }}" class="ct-chart w-80 h-80 grid grid-cols-1 place-items-center -mt-14 relative">
+                    <div class="text-gray-800 absolute top-[132px] -left-28 pl-1 font-semibold">{{ topic.posts_count }} Posts</div>
+                    <div class="text-gray-800 absolute top-[150px] -left-28 pl-1 font-semibold">{{ topic.voters }} Votes</div>
+                    <i class="fa-solid fa-thumbs-up absolute top-[128px] -right-20 pr-2 text-2xl font-semibold text-green-400"></i>
+                    <i class="fa-solid fa-thumbs-down absolute top-[154px] -right-20 pr-2 text-2xl font-semibold text-red-400"></i>
+                </div>        
                 <script>
+                    var titleElem = document.querySelector("#title{{ topic.id }}")
+                    var title = "{{ topic.title }}"
+                    var topicTitle = title.split("]")[1]
+                    titleElem.textContent = topicTitle
                     var red = parseInt('{{ topic.poll_pourcent }}')
                     var green = 100 - red
                     console.log('{{ topic.poll_pourcent }}%')
                     var data = {
                     series: [green, red]
                     };
-
                     var sum = function(a, b) { return a + b };
-
                     new Chartist.Pie('#ct-chart{{ topic.id }}', data, {
                     labelInterpolationFnc: function(value) {
                         return Math.round(value / data.series.reduce(sum) * 100) + '%';
