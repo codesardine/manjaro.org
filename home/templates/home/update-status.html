@@ -65,16 +65,18 @@
               </div>
             </form>
         </div>
-        <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 place-items-center text-center lg:text-left">
-                {% for topic in topics|slice:":5" %}
-                   <div id="ct-chart{{ topic.id }}" class="ct-chart w-1/3 lg:justify-self-end lg:mr-14"></div>               
-                    <div class="w-2/3 lg:justify-self-start">
-                        <a class="transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://forum.manjaro.org/t/{{ topic.id }}" target="_blank">
-                            <b>{{ topic.title }}</b> 
-                        </a>
-                    </br></br>
-                        <div class="text-gray-800">{{ topic.voters }} Votes</div>
-                        <div class="text-gray-800">{{ topic.posts_count }} Posts</div>
+        <div class="w-full grid grid-cols-1 gap-8 place-items-center text-left text-sm ">
+                {% for topic in topics|slice:":5" %}               
+                    <div class="bg-no-repeat bg-cover h-96 w-full flex items-end relative" style="background-image: url({{ topic.image_url }})" >
+                        <div id="ct-chart{{ topic.id }}" class="ct-chart w-60 h-60 absolute top-1 left-1">
+                            <div class="text-gray-200 absolute top-20 left-36 pl-1 font-semibold">{{ topic.posts_count }} Posts</div>
+                            <div class="text-gray-200 absolute top-24 left-36 pt-1 pl-1 font-semibold">{{ topic.voters }} Votes</div>
+                           </div>
+                        <div class="h-18 p-4 bg-gray-900/75 w-full">
+                            <a class="transition-colors duration-200 text-gray-400 hover:text-white font-semibold" href="https://forum.manjaro.org/t/{{ topic.id }}" target="_blank">
+                                {{ topic.title }}
+                            </a>
+                        </div>
                     </div>
                 <script>
                     var red = parseInt('{{ topic.poll_pourcent }}')
