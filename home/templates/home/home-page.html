@@ -215,7 +215,11 @@
 
 <script>
   const links = document.querySelectorAll(".arrow-links");
+  const links1 = document.querySelectorAll(".link");
   for (const link of links) {
+    link.addEventListener("click", clickHandler);
+  }
+  for (const link of links1) {
     link.addEventListener("click", clickHandler);
   }
 

@@ -6,20 +6,23 @@
     <div class="nav relative flex items-center justify-between lg:justify-end lg:space-x-16">
       <ul class="items-center hidden space-x-8 lg:flex text-sm capitalize">
         {% for item in right_navigation.menu_items.all %}
-          <li>
-              <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900 hover:border-gray-900">
-                {% if "donate" in item.title %}
-                  <i class="fa-solid fa-hand-holding-dollar"></i>
-                {% elif "merchandise" in item.title %}
-                  <i class="fa-solid fa-gifts"></i>
-                {% elif "hardware" in item.title %}
-                  <i class="fa-solid fa-microchip"></i>
-                {% elif "partner with us" in item.title %}
-                  <i class="fa-solid fa-handshake-simple"></i>
-                {% endif %}
-              {{ item.title }}
-            </a>
-          </li>
+              <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
+                  <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" 
+                  class="{% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900 hover:border-gray-900">
+                    {% if "donate" in item.title %}
+                      <i class="fa-solid fa-hand-holding-dollar"></i>
+                    {% elif "merchandise" in item.title.lower %}
+                      <i class="fa-solid fa-gifts"></i>
+                    {% elif "hardware" in item.title.lower %}
+                      <i class="fa-solid fa-microchip"></i>
+                    {% elif "partner with us" in item.title.lower %}
+                      <i class="fa-solid fa-handshake-simple"></i>
+                    {% elif "cloud" in item.title.lower %}
+                      <i class="fa-solid fa-cloud"></i>
+                    {% endif %}
+                  {{ item.title }}
+                </a>
+              </li>
         {% endfor %}
       </ul>
     </div>
@@ -85,10 +88,6 @@
           {% endfor %}
         </ul>  
         <ul class="justify-end w-full hidden lg:flex">
-          <a href="#shells" class="mr-2 inline-block self-end text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
-            <i class="fa-solid fa-cloud"></i>
-            Cloud Solution
-          </a>
           <a href="https://manjaro.org/download/" class="inline-block self-end text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
             <i class="fa-solid fa-circle-arrow-down"></i>
             Download
