@@ -14,6 +14,8 @@
                   <i class="fa-solid fa-gifts"></i>
                 {% elif "hardware" in item.title %}
                   <i class="fa-solid fa-microchip"></i>
+                {% elif "partner with us" in item.title %}
+                  <i class="fa-solid fa-handshake-simple"></i>
                 {% endif %}
               {{ item.title }}
             </a>
@@ -83,8 +85,12 @@
           {% endfor %}
         </ul>  
         <ul class="justify-end w-full hidden lg:flex">
+          <a href="#shells" class="mr-2 inline-block self-end text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+            <i class="fa-solid fa-cloud"></i>
+            Cloud Solution
+          </a>
           <a href="https://manjaro.org/download/" class="inline-block self-end text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
-            <i class="fa-solid fa-cloud-arrow-down"></i>
+            <i class="fa-solid fa-circle-arrow-down"></i>
             Download
           </a>
         </ul>
