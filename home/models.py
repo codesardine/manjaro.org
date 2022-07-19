@@ -71,10 +71,11 @@ class UpdateStatus(Page):
 
         # doc: https://docs.discourse.org/#tag/Categories
         topics = json.loads(req)['topic_list']['topics']
-        topics = [t for t in topics if not t['title'].startswith('About')][0:12]  # limit 12 / 30
+        post_limit = 3
+        topics = [t for t in topics if not t['title'].startswith('About')][0:post_limit]  # limit 12 / 30
 
         futures = []
-        with concurrent.futures.ThreadPoolExecutor(max_workers=12) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=post_limit) as executor:
             futures.append(executor.map(_get_votes, topics))
         
         context = super().get_context(request)
