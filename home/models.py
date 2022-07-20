@@ -50,6 +50,7 @@ class UpdateStatus(Page):
     ]
     
     def get_context(self, request):
+        
         def _get_votes(topic):
             """read one subject"""
             with urllib.request.urlopen(f"https://forum.manjaro.org/t/{topic['id']}.json") as f_url:
@@ -63,10 +64,16 @@ class UpdateStatus(Page):
             topic['poll_opps'] = post['polls'][0]['options'][2]['votes']
 
         branch = request.GET.get('branch', None)
+        arm = request.GET.get('arm', None)
         if branch not in ("stable", "testing", "unstable"):
             branch = "stable"
 
-        with urllib.request.urlopen(f"https://forum.manjaro.org/c/announcements/{branch}-updates.json") as f_url:
+        if arm == "true":
+            updates_url = f"https://forum.manjaro.org/c/arm/{branch}-updates.json"
+        else:
+            updates_url = f"https://forum.manjaro.org/c/announcements/{branch}-updates.json"
+
+        with urllib.request.urlopen(updates_url) as f_url:
             req = f_url.read()
 
         # doc: https://docs.discourse.org/#tag/Categories
@@ -81,6 +88,7 @@ class UpdateStatus(Page):
         context = super().get_context(request)
         context["branch"] = branch
         context["topics"] = topics
+        context["arm"] = arm
         return context
 
     intro = models.TextField(default='', blank=True, max_length=350)
