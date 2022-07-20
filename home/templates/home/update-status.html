@@ -2,7 +2,7 @@
 
 {% load wagtailcore_tags template_tags static %}
 
-{% block body_class %}Updates Status{% endblock %}
+{% block body_class %}update-status{% endblock %}
 
 {% block title %}
     {% if page.seo_title %}
@@ -43,26 +43,39 @@
 {% block content %}
 <div class="px-4 pb-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pb-20">
     <div>
-        <div class="flex justify-center mb-20">
-            <form method="get" class="grid grid-cols-3 mb-10">
-              <div class="form-check">
-                <input name="branch" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="stable" id="stable" {% if branch == 'stable' %}checked{% endif %}>
-                <label class="form-check-label inline-block text-gray-800" for="stable">
-                  Stable
-                </label>
-              </div>
-              <div class="form-check">
-                <input name="branch" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="testing" id="testing" {% if branch == 'testing' %}checked{% endif %}>
-                <label class="form-check-label inline-block text-gray-800" for="testing">
-                  Testing
-                </label>
-              </div>
-              <div class="form-check">
-                <input name="branch" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="unstable" id="unstable" {% if branch == 'unstable' %}checked{% endif %}>
-                <label class="form-check-label inline-block text-gray-800" for="unstable">
-                  Unstable
-                </label>
-              </div>
+        <div class="mb-20">
+            <form method="get" class="grid grid-cols-1 pb-20">
+                <div class="flex mb-3 items-center justify-center w-full">
+                    <label for="of-toggle-arm" class="flex items-center cursor-pointer">
+                        <div id="btn" class="text-center mr-4 text-teal-400 font-semibold w-20">x86-64</div>
+                        <div class="relative form-check form-switch">
+                        <input id="of-toggle-arm" type="checkbox" class="sr-only" role="switch" name="arm" {% if arm == 'true' %}checked{% endif %}>
+                        <div class="w-10 h-4 bg-gray-400 rounded-full shadow-inner"></div>
+                        <div class="dot absolute w-6 h-6 bg-gray-600 rounded-full shadow -left-1 -top-1 transition"></div>
+                        </div>
+                        <div id="btn-arm" class="text-center ml-3 text-red-400 font-semibold w-20">ARM</div>
+                    </label>
+                </div>
+                <div class="flex justify-center">
+                    <div class="form-check mr-2">
+                        <input name="branch" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="stable" id="stable" {% if branch == 'stable' %}checked{% endif %}>
+                        <label class="form-check-label inline-block text-gray-800" for="stable">
+                        Stable
+                        </label>
+                    </div>
+                    <div class="form-check mr-2">
+                        <input name="branch" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="testing" id="testing" {% if branch == 'testing' %}checked{% endif %}>
+                        <label class="form-check-label inline-block text-gray-800" for="testing">
+                        Testing
+                        </label>
+                    </div>
+                    <div class="form-check mr-2">
+                        <input name="branch" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="unstable" id="unstable" {% if branch == 'unstable' %}checked{% endif %}>
+                        <label class="form-check-label inline-block text-gray-800" for="unstable">
+                        Unstable
+                        </label>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="w-full grid grid-cols-1 gap-20 place-items-center text-center text-sm ">
@@ -86,7 +99,6 @@
                         titleElem.textContent = topicTitle
                         var red = parseInt('{{ topic.poll_pourcent }}')
                         var green = 100 - red
-                        console.log('{{ topic.poll_pourcent }}%')
                         var data = {
                         series: [green, red]
                         };
@@ -99,7 +111,12 @@
                             total: 200,
                             showLabel: true,
                             labelInterpolationFnc: function(value) {
-                                return Math.round(value / data.series.reduce(sum) * 100) + '%';
+                                math = Math.round(value / data.series.reduce(sum) * 100)
+                                if (math != 0) {
+                                    return math + '%';
+                                } else {
+                                    return ""
+                                }
                             }
                         });
                     </script>
@@ -108,20 +125,47 @@
     </div>
 </div>
 <script>
+    const arm = document.querySelector("#of-toggle-arm")
     const input = document.querySelectorAll('input');
-
     [].forEach.call(input, function(el) {
-    el.addEventListener("change", function (el) {
-        [].forEach.call(input, function(elem) {
-            if (elem.id == el.target.id) {
-                elem.checked = true
-            } else {
-                elem.checked = false
+        el.addEventListener("change", function (el) {
+            [].forEach.call(input, function(elem) {
+                if  (elem.id != "of-toggle-arm") {
+                if (elem.id == el.target.id) {
+                    elem.checked = true
+                } else {
+                    elem.checked = false
+                }
+        }})
+            if  (el.target.id != "of-toggle-arm") {
+                let url = window.location.origin + window.location.pathname + "?branch=" + el.target.id + "&arm=" + arm.checked
+                window.location.replace(url)
             }
+            
         })
-        let url = window.location.origin + window.location.pathname + "?branch=" + el.target.id
-        window.location.replace(url)
-    })
     });
+    function switch_arm_on() {
+      document.getElementById("btn").style.color = "#ef5350"
+      document.getElementById("btn-arm").style.color = "#26a69a"
+    }
+
+    function switch_arm_off() {
+      document.getElementById("btn").style.color = "#26a69a"
+      document.getElementById("btn-arm").style.color = "#ef5350"
+    }
+
+    const swicth = document.getElementById("of-toggle-arm")
+    swicth.onchange = function() {
+      if (swicth.checked) {
+        switch_arm_on()
+      } else {
+        switch_arm_off()
+      }
+    }
+    if (swicth.checked) {
+        switch_arm_on()
+      } else {
+        switch_arm_off()
+      }
 </script>
 {% endblock %}

@@ -389,7 +389,7 @@
     }
 }
 
-.downloads, .packages {
+.downloads, .packages, .update-status {
     & input:checked ~ .dot {
         transform: translateX(100%);
     }
