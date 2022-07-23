@@ -20,6 +20,25 @@
     }
 }
 
+#bg-image {
+    background-image: url("/static/img/fixed-bg-small.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+@media only screen and (min-width: 800px) {
+    #bg-image {
+        background-image: url("/static/img/fixed-bg-medium.jpg");
+    }
+} 
+
+@media only screen and (min-width: 1600px) {
+    #bg-image {
+        background-image: url("/static/img/fixed-bg.jpg");
+    }
+} 
+
 #inline-logo img {
     width: 150px;
     height: auto;

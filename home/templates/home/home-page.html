@@ -28,11 +28,11 @@
 
 {% block content %}
 <div id="top" class="relative pt-6 lg:pt-0">
-  <img src="{% static 'img/fixed-bg.jpg' %}" class="fixed inset-0 object-cover w-full h-full">
+  <div id="bg-image" class="fixed inset-0 object-cover w-full h-full"></div>
 {% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
-    {% image promo.background original class="absolute inset-0 object-cover w-full h-full" %}
+    {% image promo.background original class="absolute object-contain w-[60%] h-[60%] top-[40%] right-[5%]" %}
     <div class="bg-gray-900 bg-opacity-[.6] w-full h-full fixed"></div>
     <div class="relative">
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
