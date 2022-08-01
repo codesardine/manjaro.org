@@ -11,11 +11,11 @@
 
 #logo { 
     position: absolute;
-    top:-36px;
+    bottom: 0;
     width: 120px;
 
     & img {
-        width: 89px;
+        width: 90px;
         margin: 0 auto;
     }
 }

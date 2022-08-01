@@ -1,38 +1,29 @@
-{% load static menu_tags %}
+{% block head %}
+<script>
+  function toggleSubMenu(menu) {
+    let submenu = document.querySelectorAll('.dropdown')
+    submenu.forEach(function(el) {
+      if (!el.classList.contains("hidden")) {
+              el.classList.add("hidden")
+            } 
+    })
+    if (menu.classList.contains('hidden')) {
+      menu.classList.remove('hidden');
+    } else {
+      menu.classList.add('hidden');
+    }
+  }
+</script>
+{% endblock %}
+
+{% load static menu_tags wagtailcore_tags %}
 {% get_menu "top-left" as left_navigation %}
 {% get_menu "top-right" as right_navigation %}
-<div class="bg-teal-accent-400 fixed top-0 left-0 right-0 z-10">    
-  <div class="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-    <div class="nav relative flex items-center justify-between lg:justify-end lg:space-x-16">
-      <ul class="items-center hidden space-x-8 lg:flex text-sm capitalize">
-        {% for item in right_navigation.menu_items.all %}
-              <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
-                  <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" 
-                  class="{% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900 hover:border-gray-900">
-                    {% if "donate" in item.title %}
-                      <i class="fa-solid fa-hand-holding-dollar"></i>
-                    {% elif "merchandise" in item.title.lower %}
-                      <i class="fa-solid fa-gifts"></i>
-                    {% elif "hardware" in item.title.lower %}
-                      <i class="fa-solid fa-microchip"></i>
-                    {% elif "partner with us" in item.title.lower %}
-                      <i class="fa-solid fa-handshake-simple"></i>
-                    {% elif "cloud" in item.title.lower %}
-                      <i class="fa-solid fa-cloud"></i>
-                    {% endif %}
-                  {{ item.title }}
-                </a>
-              </li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-</div>
 
-<div class="bg-teal-accent-400 lg:bg-teal-400 fixed top-0 lg:top-[36px] left-0 right-0 z-10">
-  
-    <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 relative">
-      <a id="logo" href="https://manjaro.org" aria-label="Home" title="Home" class="absolute bg-blue-gray-700 logo lg:inline-flex items-center hidden lg:mx-auto">
+
+<div class="bg-teal-accent-400 lg:bg-teal-400 fixed top-0 lg:top-[36px] left-0 right-0 z-10">  
+    <div class="z-40 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 relative">
+      <a id="logo" href="https://manjaro.org" aria-label="Home" title="Home" class="z-30 absolute bg-blue-gray-700 logo lg:inline-flex items-center hidden lg:mx-auto">
         <img src="{% static 'img/block-logo.svg' %}">
       </a>
       <a id="inline-logo" href="https://manjaro.org" aria-label="Home" title="Home" class="absolute top-4 lg:hidden flex justify-center">
@@ -40,7 +31,7 @@
       </a>
       <div class="w-full justify-center hidden lg:flex relative">
         <svg
-            class="absolute top-[12px] w-full px-[120px] h-16 text-teal-400 -z-10"
+            class="absolute top-[12px] w-full px-[120px] h-16 text-teal-400"
             preserveAspectRatio="none"
             viewBox="0 0 1440 54"
             version="1.1"
@@ -79,12 +70,68 @@
               style="stroke-width:0.999941" />
         </svg>
       </div>
+
+      <div class="bg-teal-accent-400 fixed top-0 left-0 right-0 z-20">    
+        <div class="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+          <div class="nav relative flex items-center justify-between lg:justify-end lg:space-x-16">
+            <ul class="items-center hidden space-x-8 lg:flex text-sm capitalize">
+              {% for item in right_navigation.menu_items.all %}
+                    {% if not item.submenu %}
+                    <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
+                        <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" 
+                        class="{% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900 hover:border-gray-900">
+                          {% if "donate" in item.title %}
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                          {% elif "merchandise" in item.title.lower %}
+                            <i class="fa-solid fa-gifts"></i>
+                          {% elif "hardware" in item.title.lower %}
+                            <i class="fa-solid fa-microchip"></i>
+                          {% elif "partner with us" in item.title.lower %}
+                            <i class="fa-solid fa-handshake-simple"></i>
+                          {% elif "cloud" in item.title.lower %}
+                            <i class="fa-solid fa-cloud"></i>
+                          {% endif %}
+                        {{ item.title }}
+                      </a>
+                    </li>
+                    {% else %}
+                    <li>
+                      <button onclick="toggleSubMenu(document.getElementById('submenu{{ item.title }}'))" class="submenuBtn flex-row hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900 hover:border-gray-900"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
+                        <ul id="submenu{{ item.title }}" class="text-sm dropdown {{ item.title }} rounded overflow-hidden absolute hidden flex flex-col bg-white drop-shadow-xl">
+                            {% for block in item.submenu %}
+                                {% with subitem=block.value.submenu_item %}
+                                <li>
+                                    <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide hover:bg-blue-gray-700 transition-colors duration-200  text-gray-700 hover:text-teal-50">{{ subitem.title }}</a> 
+                                </li>
+                                {% endwith %}
+                            {% endfor %}
+                        </ul>
+                      </li>
+                    {% endif %}
+              {% endfor %}
+          </div>
+        </div>
+      </div>
+
       <div class="nav relative flex items-center justify-between lg:justify-start lg:ml-40 lg:space-x-16">
         <ul class="items-center hidden space-x-8 lg:flex text-md font-bold capitalize">
           {% for item in left_navigation.menu_items.all %}
             <li>
-                <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="tracking-wide hover:border-b-2 transition-colors duration-200  text-teal-100 hover:text-white">{{ item.title }}</a>
-            </li>
+                {% if not item.submenu %}
+                  <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[1px] transition-colors duration-200  text-teal-100 hover:text-white">{{ item.title }}</a>
+                {% else %}
+                  <button onclick="toggleSubMenu(document.getElementById('submenu{{ item.title }}'))" class="submenuBtn font-bold inline-flex capitalize tracking-wide border-b-[1px] border-transparent hover:border-white hover:border-b-[1px] transition-colors duration-200  text-teal-100 hover:text-white"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
+                  <ul id="submenu{{ item.title }}" class="text-sm {{ item.title }} dropdown rounded overflow-hidden absolute hidden flex flex-col bg-white drop-shadow-xl">
+                  {% for block in item.submenu %}
+                      {% with subitem=block.value.submenu_item %}
+                      <li>
+                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide bg-blue-gray-700 hover:bg-gray-50 transition-colors duration-200  hover:text-gray-700 text-teal-50">{{ subitem.title }}</a> 
+                      </li>
+                      {% endwith %}
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
           {% endfor %}
         </ul>  
         <ul class="justify-end w-full hidden lg:flex">
@@ -121,17 +168,39 @@
                   </button>
                 </div>
               </div>
-              <nav>
+              <nav class="overflow-y-scroll h-[90vh]">
                 <ul class="space-y-4">
                   {% for item in left_navigation.menu_items.all %}
-                    <li>
-                        <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="capitalize font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
-                    </li>
+                    {% if not item.submenu %}
+                      <li>
+                          <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="capitalize font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
+                      </li>
+                    {% endif %}
+                    {% for block in item.submenu %}
+                        {% with subitem=block.value.submenu_item %}
+                          {%  if subitem.title %}
+                            <li>
+                                <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="capitalize font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ subitem.title }}</a>
+                            </li>
+                          {% endif %}
+                        {% endwith %}
+                    {% endfor %}
                   {% endfor %}
                   {% for item in right_navigation.menu_items.all %}
-                    <li>
-                        <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="capitalize font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
-                    </li>
+                  {% if not item.submenu %}
+                      <li>
+                          <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="capitalize font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ item.title }}</a>
+                      </li>
+                  {% endif %}
+                  {% for block in item.submenu %}
+                      {% with subitem=block.value.submenu_item %}
+                        {%  if subitem.title %}
+                          <li>
+                              <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="capitalize font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-teal-700">{{ subitem.title }}</a>
+                          </li>
+                        {% endif %}
+                      {% endwith %}
+                  {% endfor %}
                   {% endfor %}
                 </ul>
               </nav>
@@ -141,3 +210,19 @@
       </div>
     </div>
   </div>
+  <script>
+    window.onclick = function (event) {
+        let leftSubmenu = document.querySelectorAll('.dropdown')
+        leftSubmenu.forEach(function(el) {
+          let btnText = ""
+          if (event.target.innerText) {
+            btnText = event.target.innerText.toUpperCase()
+          } 
+          if (!event.target.classList.contains("submenuBtn") || el.classList.contains(btnText)) {
+            if (!el.classList.contains("hidden")) {
+              el.classList.add("hidden")
+            } 
+          }           
+        });
+    }
+  </script>

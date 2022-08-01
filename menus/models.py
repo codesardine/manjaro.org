@@ -10,7 +10,9 @@ from wagtail.snippets.models import register_snippet
 from wagtail.core.models import Orderable
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-
+from wagtail.core.fields import StreamField
+from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
+from . import blocks
 class MenuItem(Orderable):
     
     link_title = models.CharField(
@@ -33,11 +35,20 @@ class MenuItem(Orderable):
 
     page = ParentalKey("Menu", related_name="menu_items")
 
+    submenu = StreamField(
+        [
+            ("submenu_item", blocks.SubmenuBlock()),
+        ],
+        null=True,
+        blank=True,
+    )
+
     panels = [
         FieldPanel("link_title"),
         FieldPanel("link_url"),
         PageChooserPanel("link_page"),
-        FieldPanel("open_in_new_tab")
+        FieldPanel("open_in_new_tab"),
+        StreamFieldPanel("submenu")
     ]
 
     @property
