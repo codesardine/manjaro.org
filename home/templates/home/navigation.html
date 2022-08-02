@@ -19,8 +19,6 @@
 {% load static menu_tags wagtailcore_tags %}
 {% get_menu "top-left" as left_navigation %}
 {% get_menu "top-right" as right_navigation %}
-
-
 <div class="bg-teal-accent-400 lg:bg-teal-400 fixed top-0 lg:top-[36px] left-0 right-0 z-10">  
     <div class="z-40 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 relative">
       <a id="logo" href="https://manjaro.org" aria-label="Home" title="Home" class="z-30 absolute bg-blue-gray-700 logo lg:inline-flex items-center hidden lg:mx-auto">
@@ -70,7 +68,6 @@
               style="stroke-width:0.999941" />
         </svg>
       </div>
-
       <div class="bg-teal-accent-400 fixed top-0 left-0 right-0 z-20">    
         <div class="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
           <div class="nav relative flex items-center justify-between lg:justify-end lg:space-x-16">
@@ -101,7 +98,7 @@
                             {% for block in item.submenu %}
                                 {% with subitem=block.value.submenu_item %}
                                 <li>
-                                    <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide bg-white hover:bg-blue-gray-700 text-gray-700 hover:text-teal-50">{{ subitem.title }}</a> 
+                                    <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide bg-gray-50 hover:bg-blue-gray-700 text-gray-700 hover:text-teal-50">{{ subitem.title }}</a> 
                                 </li>
                                 {% endwith %}
                             {% endfor %}
@@ -112,20 +109,19 @@
           </div>
         </div>
       </div>
-
       <div class="nav relative flex items-center justify-between lg:justify-start lg:ml-40 lg:space-x-16">
         <ul class="items-center hidden space-x-8 lg:flex text-md font-bold capitalize">
           {% for item in left_navigation.menu_items.all %}
             <li>
                 {% if not item.submenu %}
-                  <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[1px] text-teal-100 hover:text-white">{{ item.title }}</a>
+                  <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[1px] text-teal-100 hover:text-gray-200">{{ item.title }}</a>
                 {% else %}
-                  <button onclick="toggleSubMenu(document.getElementById('submenu{{ item.title }}'))" class="submenuBtn font-bold inline-flex capitalize tracking-wide border-b-[1px] border-transparent hover:border-white hover:border-b-[1px] text-teal-100 hover:text-white"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
+                  <button onclick="toggleSubMenu(document.getElementById('submenu{{ item.title }}'))" class="submenuBtn font-bold inline-flex capitalize tracking-wide border-b-[1px] border-transparent hover:border-gray-50 hover:border-b-[1px] text-teal-100 hover:text-gray-50"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
                   <ul id="submenu{{ item.title }}" class="text-sm {{ item.title }} dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
                       <li>
-                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide bg-blue-gray-700 hover:bg-gray-50 hover:text-gray-700 text-teal-50">{{ subitem.title }}</a> 
+                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide bg-blue-gray-700 hover:bg-gray-100 hover:text-gray-700 text-teal-50">{{ subitem.title }}</a> 
                       </li>
                       {% endwith %}
                   {% endfor %}
@@ -135,7 +131,7 @@
           {% endfor %}
         </ul>  
         <ul class="justify-end w-full hidden lg:flex">
-          <a href="https://manjaro.org/download/" class="inline-block self-end text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0">
+          <a href="https://manjaro.org/download/" class="inline-block self-end text-sm px-4 py-2 leading-none border font-semibold rounded text-gray-50 border-gray-50 hover:border-transparent hover:text-teal-500 hover:bg-gray-50 mt-4 lg:mt-0">
             <i class="fa-solid fa-circle-arrow-down"></i>
             Download
           </a>
@@ -173,14 +169,14 @@
                   {% for item in left_navigation.menu_items.all %}
                     {% if not item.submenu %}
                       <li>
-                          <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="capitalize font-medium tracking-wide text-teal-900  hover:text-teal-700">{{ item.title }}</a>
+                          <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{ item.title }}</a>
                       </li>
                     {% endif %}
                     {% for block in item.submenu %}
                         {% with subitem=block.value.submenu_item %}
                           {%  if subitem.title %}
                             <li>
-                                <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="capitalize font-medium tracking-wide text-teal-900  hover:text-teal-700">{{ subitem.title }}</a>
+                                <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{ subitem.title }}</a>
                             </li>
                           {% endif %}
                         {% endwith %}
@@ -189,14 +185,14 @@
                   {% for item in right_navigation.menu_items.all %}
                   {% if not item.submenu %}
                       <li>
-                          <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="capitalize font-medium tracking-wide text-teal-900  hover:text-teal-700">{{ item.title }}</a>
+                          <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{ item.title }}</a>
                       </li>
                   {% endif %}
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
                         {%  if subitem.title %}
                           <li>
-                              <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="capitalize font-medium tracking-wide text-teal-900  hover:text-teal-700">{{ subitem.title }}</a>
+                              <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{ subitem.title }}</a>
                           </li>
                         {% endif %}
                       {% endwith %}
