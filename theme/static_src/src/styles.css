@@ -128,9 +128,6 @@
     }
    
     & a {
-       transition-duration: 200ms;
-       transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
-       transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
        color: rgb(101 31 255 / var(--tw-text-opacity));
        font-weight: 600;
     }

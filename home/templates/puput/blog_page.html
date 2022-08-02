@@ -57,13 +57,13 @@
                     {% paginate per_page entries %}
                     {% for entry in entries %}
                         {% entry_url entry blog_page as post_url %}
-                        <article class="overflow-hidden transition-shadow duration-300 rounded shadow-sm">
+                        <article class="overflow-hidden rounded shadow-sm">
                             {% image entry.header_image original as header_image %}
                             <img src="{{ header_image.url }}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
                                 class="object-cover w-full h-50" alt="{{ entry.header_image.title }}" />
                             <div class="text-center p-5">
                                 <a aria-label="{{ entry.title }}"
-                                    class="transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
+                                    class=" text-deep-purple-accent-400 hover:text-deep-purple-800"
                                     href="{{ entry.url }}">
                                 <h2 title="{{ entry.title }}"
                                     class="inline-block mb-3 text-2xl font-bold leading-5">
