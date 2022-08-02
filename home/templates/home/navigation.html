@@ -121,7 +121,7 @@
                   <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[1px] transition-colors duration-200  text-teal-100 hover:text-white">{{ item.title }}</a>
                 {% else %}
                   <button onclick="toggleSubMenu(document.getElementById('submenu{{ item.title }}'))" class="submenuBtn font-bold inline-flex capitalize tracking-wide border-b-[1px] border-transparent hover:border-white hover:border-b-[1px] transition-colors duration-200  text-teal-100 hover:text-white"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
-                  <ul id="submenu{{ item.title }}" class="text-sm {{ item.title }} dropdown rounded overflow-hidden absolute hidden flex flex-col bg-white drop-shadow-xl">
+                  <ul id="submenu{{ item.title }}" class="text-sm {{ item.title }} dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
                       <li>
