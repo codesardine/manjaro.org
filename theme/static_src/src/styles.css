@@ -73,10 +73,6 @@
     p#bio {
         margin-left: -5px;
     }
-        
-    a, button {
-        transition: all .2s ease-in-out !important;
-    }
 
     .richtext {
         

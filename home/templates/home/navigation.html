@@ -79,7 +79,7 @@
                     {% if not item.submenu %}
                     <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
                         <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" 
-                        class="{% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900 hover:border-gray-900">
+                        class="{% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 hover:text-gray-900 hover:border-gray-900">
                           {% if "donate" in item.title %}
                             <i class="fa-solid fa-hand-holding-dollar"></i>
                           {% elif "merchandise" in item.title.lower %}
@@ -96,12 +96,12 @@
                     </li>
                     {% else %}
                     <li>
-                      <button onclick="toggleSubMenu(document.getElementById('submenu{{ item.title }}'))" class="submenuBtn flex-row hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 transition-colors duration-200 hover:text-gray-900 hover:border-gray-900"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
-                        <ul id="submenu{{ item.title }}" class="text-sm dropdown {{ item.title }} rounded overflow-hidden absolute hidden flex flex-col bg-white drop-shadow-xl">
+                      <button onclick="toggleSubMenu(document.getElementById('submenu{{ item.title }}'))" class="submenuBtn flex-row hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 hover:text-gray-900 hover:border-gray-900"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
+                        <ul id="submenu{{ item.title }}" class="text-sm dropdown {{ item.title }} rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
                             {% for block in item.submenu %}
                                 {% with subitem=block.value.submenu_item %}
                                 <li>
-                                    <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide hover:bg-blue-gray-700 transition-colors duration-200  text-gray-700 hover:text-teal-50">{{ subitem.title }}</a> 
+                                    <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide bg-white hover:bg-blue-gray-700 text-gray-700 hover:text-teal-50">{{ subitem.title }}</a> 
                                 </li>
                                 {% endwith %}
                             {% endfor %}
@@ -118,14 +118,14 @@
           {% for item in left_navigation.menu_items.all %}
             <li>
                 {% if not item.submenu %}
-                  <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[1px] transition-colors duration-200  text-teal-100 hover:text-white">{{ item.title }}</a>
+                  <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[1px] text-teal-100 hover:text-white">{{ item.title }}</a>
                 {% else %}
-                  <button onclick="toggleSubMenu(document.getElementById('submenu{{ item.title }}'))" class="submenuBtn font-bold inline-flex capitalize tracking-wide border-b-[1px] border-transparent hover:border-white hover:border-b-[1px] transition-colors duration-200  text-teal-100 hover:text-white"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
+                  <button onclick="toggleSubMenu(document.getElementById('submenu{{ item.title }}'))" class="submenuBtn font-bold inline-flex capitalize tracking-wide border-b-[1px] border-transparent hover:border-white hover:border-b-[1px] text-teal-100 hover:text-white"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
                   <ul id="submenu{{ item.title }}" class="text-sm {{ item.title }} dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
                       <li>
-                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide bg-blue-gray-700 hover:bg-gray-50 transition-colors duration-200  hover:text-gray-700 text-teal-50">{{ subitem.title }}</a> 
+                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide bg-blue-gray-700 hover:bg-gray-50 hover:text-gray-700 text-teal-50">{{ subitem.title }}</a> 
                       </li>
                       {% endwith %}
                   {% endfor %}
