@@ -80,7 +80,7 @@
                             {% for block in item.submenu %}
                                 {% with subitem=block.value.submenu_item %}
                                 <li>
-                                    <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide bg-gray-50 hover:bg-blue-gray-700 text-gray-700 hover:text-teal-50">{{ subitem.title }}</a> 
+                                    <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide bg-gray-50 hover:bg-blue-gray-700 text-gray-700 hover:text-teal-50">{{ subitem.title }}</a> 
                                 </li>
                                 {% endwith %}
                             {% endfor %}
@@ -103,7 +103,7 @@
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
                       <li>
-                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide bg-blue-gray-700 hover:bg-gray-100 hover:text-gray-700 text-teal-50">{{ subitem.title }}</a> 
+                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="px-10 py-4 block font-medium tracking-wide bg-blue-gray-700 hover:bg-gray-100 hover:text-gray-700 text-teal-50">{{ subitem.title }}</a> 
                       </li>
                       {% endwith %}
                   {% endfor %}
@@ -192,7 +192,6 @@
     window.onclick = function (event) {
         let leftSubmenu = document.querySelectorAll('.dropdown')
         leftSubmenu.forEach(function(el) {
-          console.log(el.id)
             if (el.id === "submenu" + event.target.textContent.trim()) {
               el.classList.toggle("hidden")
             } else {
