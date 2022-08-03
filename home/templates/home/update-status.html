@@ -97,7 +97,12 @@
                         var title = "{{ topic.title }}"
                         var topicTitle = title.split("]")[1]
                         titleElem.textContent = topicTitle
-                        var red = parseInt('{{ topic.poll_pourcent }}')
+                        var percentage = "{{ topic.poll_pourcent }}"
+                        if (percentage) {
+                            var red = parseInt('{{ topic.poll_pourcent }}')
+                        } else {
+                            var red = 0
+                        }
                         var green = 100 - red
                         var data = {
                         series: [green, red]
@@ -113,12 +118,12 @@
                             labelInterpolationFnc: function(value) {
                                 math = Math.round(value / data.series.reduce(sum) * 100)
                                 if (math != 0) {
-                                    return math + '%';
+                                    return math + '%'
                                 } else {
                                     return ""
                                 }
                             }
-                        });
+                        })                    
                     </script>
                 {% endfor %}
             </div>
