@@ -32,7 +32,19 @@
 {% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
-    {% image promo.background original class="absolute object-contain w-[100%] scale-[1.6] right-[-50%] p-20 lg:scale-100 lg:w-[60%] h-[90vh] lg:bottom-0 lg:right-0" %}
+    <picture>
+      {% image promo.background width-600 as promo_background_600 %}
+      <source srcset="{{ promo_background_600.url }}" media="(max-width: 600px)">
+      {% image promo.background width-768 as promo_background_768 %}
+      <source srcset="{{ promo_background_768.url }}" media="(max-width: 768px)">
+      {% image promo.background width-992 as promo_background_992 %}
+      <source srcset="{{ promo_background_992.url }}" media="(max-width: 992px)">
+      {% image promo.background width-1200 as promo_background_1200 %}
+      <source srcset="{{ promo_background_1200.url }}" media="(max-width: 1200px)">
+      {% image promo.background width-1600 as promo_background_1600 %}
+      <source srcset="{{ promo_background_1600.url }}" media="(max-width: 1600px)">
+      {% image promo.background original class="absolute object-contain w-[100%] scale-[1.6] right-[-50%] p-20 lg:scale-100 lg:w-[60%] h-[90vh] lg:bottom-0 lg:right-0" %}
+    </picture>
     <div class="bg-gray-900 bg-opacity-[.6] w-full h-full fixed"></div>
     <div class="relative">
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
