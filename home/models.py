@@ -56,7 +56,10 @@ class UpdateStatus(Page):
             with urllib.request.urlopen(f"https://forum.manjaro.org/t/{topic['id']}.json") as f_url:
                 req = f_url.read()
             post = json.loads(req)['post_stream']['posts'][0]
-            topic['voters'] = post['polls'][0]['voters']
+            topic['voters'] = 0
+            if post['polls'][0]['voters'] > 0:
+                topic['voters'] = post['polls'][0]['voters']
+                
             topic['poll_ok'] = post['polls'][0]['options'][0]['votes']
             pourcentage = round((post['polls'][0]['options'][0]['votes'] / post['polls'][0]['voters']) * 100)
             topic['poll_pourcent'] = 100 - pourcentage
