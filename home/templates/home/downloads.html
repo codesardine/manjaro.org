@@ -124,7 +124,11 @@
     {% for title, desktop in desktops.items %}        
         <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
             <div class="flex flex-col h-full">
-              <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
+              <picture>
+                <source srcset="/static/img/{{ title }}.webp" type="image/webp">
+                <source srcset="/static/img/{{ title }}.jpg" type="image/jpeg"> 
+                <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
+              </picture>
               <div class="flex-grow border border-t-0 rounded-b">
                   <div class="p-5">
                     <h4 class="mb-2 font-semibold leading-5 relative">
@@ -217,7 +221,12 @@
                     {% if "download." in desktop.image %}
                     <div class="text-sm text-gray-900 inline-block text-center w-full">
                       Download provided by 
-                      <a href="https://www.cdn77.com"><img id="cdn" class="inline-block" src="{% static 'img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
+                      <a href="https://www.cdn77.com">
+                        <picture>
+                          <source srcset="{% static 'img/cdn77.webp' %}" type="image/webp">
+                          <source srcset="{% static 'img/cdn77.png' %}" type="image/png"> 
+                          <img id="cdn" class="inline-block" src="{% static 'img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
+                        </picture>
                     </div>
                     {% endif %}
                   </div>
@@ -275,7 +284,11 @@
   {% for arm_title, arm_desktop in value.items %}
     <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
       <div class="flex flex-col h-full">
-      <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ arm_title }} Desktop" />
+        <picture>
+          <source srcset="/static/img/{{ arm_title }}.webp" type="image/webp">
+          <source srcset="/static/img/{{ arm_title }}.jpg" type="image/jpeg"> 
+          <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ arm_title }} Desktop" />
+        </picture>
       <div class="flex-grow border border-t-0 rounded-b">
           <div class="p-5">
           <h5 class="mb-2 font-semibold leading-5 relative">
@@ -387,7 +400,11 @@
     {% for title, desktop in desktops.items %}
         <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
             <div class="flex flex-col h-full">
-              <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
+              <picture>
+                <source srcset="/static/img/{{ title }}.webp" type="image/webp">
+                <source srcset="/static/img/{{ title }}.jpg" type="image/jpeg"> 
+                <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
+              </picture>
               <div class="flex-grow border border-t-0 rounded-b">
                   <div class="p-5">
                     <h4 class="mb-2 font-semibold leading-5">
@@ -498,7 +515,12 @@
                     <br>
                     <div class="text-sm text-gray-900 inline-block text-center w-full">
                       Download provided by 
-                      <a href="https://www.cdn77.com"><img id="cdn" class="inline-block" src="{% static 'img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
+                      <a href="https://www.cdn77.com">
+                        <picture>
+                          <source srcset="{% static 'img/cdn77.webp' %}" type="image/webp">
+                          <source srcset="{% static 'img/cdn77.png' %}" type="image/png"> 
+                          <img id="cdn" class="inline-block" src="{% static 'img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
+                        </picture>
                     </div>
                     {% endif %}
                   </div>
@@ -508,7 +530,11 @@
       {% endfor %}
       <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
         <div class="flex flex-col h-full">
-          <img src="{% static 'img/docker.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Docker" />
+          <picture>
+            <source srcset="{% static 'img/docker.webp' %}" type="image/webp">
+            <source srcset="{% static 'img/docker.jpg' %}" type="image/jpeg"> 
+            <img src="{% static 'img/docker.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Docker" />
+          </picture>
           <div class="flex-grow border border-t-0 rounded-b text-left">
               <div class="p-5">
                 <h3 class="mb-2 font-semibold leading-5">Manjaro Docker</h3>
@@ -526,7 +552,11 @@
       </div>
       <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
         <div class="flex flex-col h-full">
-        <img src="{% static 'img/manual.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Manual" />
+          <picture>
+            <source srcset="{% static 'img/manual.webp' %}" type="image/webp">
+            <source srcset="{% static 'img/manual.jpg' %}" type="image/jpeg"> 
+            <img src="{% static 'img/manual.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Manual" />
+          </picture>
         <div class="flex-grow border border-t-0 rounded-b text-left">
             <div class="p-5">
             <h3 class="mb-2 font-semibold leading-5">Manjaro Manual</h3>

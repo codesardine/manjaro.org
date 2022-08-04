@@ -136,7 +136,11 @@
     </div>
     <div class="grid gap-8 lg:grid-cols-2 mx-auto lg:max-w-[80%]">
       <div class="grid grid-rows-1 gap-5">
-        <img class="object-cover w-full h-full col-span-2 rounded shadow-lg" src="{% static 'img/pamac1.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="Pamac main view" />
+        <picture>
+          <source srcset="{% static 'img/pamac1.webp' %}" type="image/webp">
+          <source srcset="{% static 'img/pamac1.jpg' %}" type="image/jpeg"> 
+          <img class="object-cover w-full h-full col-span-2 rounded shadow-lg" src="{% static 'img/pamac1.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="Pamac" />
+        </picture>
       </div>
       <div class="flex flex-col justify-center">
         <div class="pb-4 mb-4 border-b">
@@ -222,8 +226,16 @@
         </div>
       </div>
       <div class="grid gap-8 lg:grid-rows-2 place-items-center">
-        <img class="object-contain w-[85%] rounded shadow-lg" src="{% static 'img/layout1.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
-        <img class="object-contain w-[85%] rounded shadow-lg" src="{% static 'img/layout2.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
+        <picture>
+          <source srcset="{% static 'img/layout1.webp' %}" type="image/webp">
+          <source srcset="{% static 'img/layout1.jpg' %}" type="image/jpeg"> 
+          <img class="object-contain w-[85%] rounded shadow-lg" src="{% static 'img/layout1.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="Gnome Layout Switcher" />
+        </picture>
+        <picture>
+          <source srcset="{% static 'img/layout2.webp' %}" type="image/webp">
+          <source srcset="{% static 'img/layout2.jpg' %}" type="image/jpeg"> 
+          <img class="object-contain w-[85%] rounded shadow-lg" src="{% static 'img/layout2.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="Gnome Layout Switcher" />
+        </picture>
       </div>
     </div>
   </div>
@@ -239,7 +251,11 @@
     </div>
     <div class="grid max-w-screen-lg gap-8 lg:grid-cols-2 sm:mx-auto">
       <div class="grid grid-cols-2 gap-5">
-        <img class="object-cover w-full h-full col-span-2 rounded shadow-lg" src="{% static 'img/msm.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
+        <picture>
+          <source srcset="{% static 'img/msm.webp' %}" type="image/webp">
+          <source srcset="{% static 'img/msm.jpg' %}" type="image/jpeg"> 
+          <img class="object-cover w-full h-full col-span-2 rounded shadow-lg" src="{% static 'img/msm.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="Manjaro settings manager" />
+        </picture>
       </div>
       <div class="flex flex-col justify-center">
         <div class="pb-4 mb-4 border-b">
@@ -282,10 +298,18 @@
     </div>
     <div class="grid gap-6 row-gap-5 lg:grid-cols-3">
       <div>
-        <img class="object-cover w-full mb-6 rounded shadow-lg lg:h-80 xl:h-96" src="{% static 'img/webapp.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="" />
+        <picture>
+          <source srcset="{% static 'img/webapp.webp' %}" type="image/webp">
+          <source srcset="{% static 'img/webapp.jpg' %}" type="image/jpeg"> 
+          <img class="object-cover w-full mb-6 rounded shadow-lg lg:h-80 xl:h-96" src="{% static 'img/webapp.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="" />
+        </picture>
       </div>
       <div>
-        <img class="object-cover w-full mb-6 rounded shadow-lg lg:h-80 xl:h-96" src="{% static 'img/ms.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
+        <picture>
+          <source srcset="{% static 'img/ms.webp' %}" type="image/webp">
+          <source srcset="{% static 'img/ms.jpg' %}" type="image/jpeg"> 
+          <img class="object-cover w-full mb-6 rounded shadow-lg lg:h-80 xl:h-96" src="{% static 'img/ms.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
+        </picture>
         <h5 class="mb-2 text-xl font-bold leading-none sm:text-2xl">
           Microsoft Office
         </h5>
@@ -294,7 +318,11 @@
         </p>
       </div>
       <div>
-        <img class="object-cover w-full mb-6 rounded shadow-lg lg:h-80 xl:h-96" src="{% static 'img/skype.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
+        <picture>
+          <source srcset="{% static 'img/skype.webp' %}" type="image/webp">
+          <source srcset="{% static 'img/skype.jpg' %}" type="image/jpeg"> 
+          <img class="object-cover w-full mb-6 rounded shadow-lg lg:h-80 xl:h-96" src="{% static 'img/skype.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" />
+        </picture>
         <h5 class="mb-2 text-xl font-bold leading-none sm:text-2xl">
           Skype
         </h5>
@@ -317,7 +345,11 @@
         </p>
       </div>
       <div>
-        <img class="object-contain w-full rounded shadow-lg" src="{% static 'img/calamares.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260" alt="" />
+        <picture>
+          <source srcset="{% static 'img/calamares.webp' %}" type="image/webp">
+          <source srcset="{% static 'img/calamares.jpg' %}" type="image/jpeg"> 
+          <img class="object-contain w-full rounded shadow-lg" src="{% static 'img/calamares.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260" alt="" />
+        </picture>
       </div>
     </div>
   </div>
