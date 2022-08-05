@@ -29,8 +29,16 @@
 {% block content %}
 <div id="top" class="relative pt-6 lg:pt-0">
   <picture>
-    <source srcset="{% static 'img/fixed-bg.webp' %}" type="image/webp">
-    <source srcset="{% static 'img/fixed-bg.jpg' %}" type="image/jpeg"> 
+    <source srcset="{% static 'img/fixed-bg-640.webp' %}" type="image/webp" media="(max-width: 640px)">
+    <source srcset="{% static 'img/fixed-bg-640.jpg' %}" type="image/jpeg" media="(max-width: 640px)"> 
+    <source srcset="{% static 'img/fixed-bg-768.webp' %}" type="image/webp" media="(max-width: 768x)">
+    <source srcset="{% static 'img/fixed-bg-768.jpg' %}" type="image/jpeg" media="(max-width: 768px)"> 
+    <source srcset="{% static 'img/fixed-bg-1024.webp' %}" type="image/webp" media="(max-width: 1024px)">
+    <source srcset="{% static 'img/fixed-bg-1024.jpg' %}" type="image/jpeg" media="(max-width: 1024px)"> 
+    <source srcset="{% static 'img/fixed-bg-1280.webp' %}" type="image/webp" media="(max-width: 1280px)">
+    <source srcset="{% static 'img/fixed-bg-1280.jpg' %}" type="image/jpeg" media="(max-width: 1280px)"> 
+    <source srcset="{% static 'img/fixed-bg.webp' %}" type="image/webp" media="(min-width: 1281px)">
+    <source srcset="{% static 'img/fixed-bg.jpg' %}" type="image/jpeg" media="(min-width: 1281px)"> 
     <img src="{% static 'img/fixed-bg.jpg' %}" class="fixed inset-0 object-cover w-full h-full" alt="page background">
   </picture>
 {% if page.affiliate %}
