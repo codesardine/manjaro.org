@@ -44,11 +44,19 @@
 {% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
-    {% image promo.background original class="absolute object-contain w-[100%] scale-[1.6] right-[-50%] p-20 lg:scale-100 lg:w-[60%] h-[90vh] lg:bottom-0 lg:right-0" %}
+    <picture>
+      {% image promo.background width-640 as promo_img_640 %}
+      <source srcset="{{ promo_img_640.url }}" type="image/png" media="(max-width: 640px)">
+      {% image promo.background width-1024 as promo_img_1024 %}
+      <source srcset="{{ promo_img_1024.url }}" type="image/png" media="(max-width: 1024px)"> 
+      {% image promo.background width-1280 as promo_img_1280 %}
+      <source srcset="{{ promo_img_1280.url }}" type="image/png" media="(max-width: 1280px)">
+      {% image promo.background original class="absolute inset-0 object-cover w-full h-full" %}
+    </picture>
     <div class="bg-gray-900 bg-opacity-[.6] w-full h-full fixed"></div>
     <div class="relative">
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
-        <div class="flex flex-col items-center justify-between xl:flex-row w-full">
+        <div id="promo" class="flex flex-col items-center justify-between xl:flex-row w-full">
           <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
             <h1 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
                 <span class="text-gray-50 uppercase">
@@ -116,7 +124,7 @@
                 </div>
               </div>
           </div>
-          <div class="w-full max-w-xl xl:px-8 xl:w-5/12 lg:pt-48">
+          <div class="w-full max-w-xl xl:px-8 xl:w-5/12 lg:pt-32">
               <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="w-[100%] lg:w-[80%] rounded-lg bg-blue-gray-900 text-center relative speech-bubble-rigth block font-semibold  text-cyan-accent-700 hover:text-cyan-accent-400">
                 <i class="text-sm fa-solid fa-link w-5 h-5"></i>
                 {{ promo.text }}
