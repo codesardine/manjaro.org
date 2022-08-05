@@ -43,7 +43,9 @@
         <div class="flex flex-col items-center justify-between xl:flex-row w-full">
           <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
             <h1 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
-                <span class="text-gray-50 uppercase"><span class="text-teal-accent-400 brand lowercase align-bottom">manjaro </span>{{ page.manjaro_title }}</span>
+                <span class="text-gray-50 uppercase">
+                  <span class="text-teal-accent-400 brand lowercase align-bottom">manjaro </span>
+                  {{ page.manjaro_title }}</span>
             </h1>
             <p class="max-w-xl mb-4 text-base text-gray-300 md:text-lg">
               <span class="brand">manjaro</span> {{ page.manjaro_intro }}
@@ -106,7 +108,7 @@
                 </div>
               </div>
           </div>
-          <div class="w-full max-w-xl xl:px-8 xl:w-5/12 lg:translate-y-[50%] transform-gpu">
+          <div class="w-full max-w-xl xl:px-8 xl:w-5/12 lg:pt-48">
               <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="w-[100%] lg:w-[80%] rounded-lg bg-blue-gray-900 text-center relative speech-bubble-rigth block font-semibold  text-cyan-accent-700 hover:text-cyan-accent-400">
                 <i class="text-sm fa-solid fa-link w-5 h-5"></i>
                 {{ promo.text }}
@@ -114,7 +116,7 @@
               <picture>
                 <source srcset="{% static 'img/jaro-2.webp' %}" type="image/webp">
                 <source srcset="{% static 'img/jaro-2.png' %}" type="image/png"> 
-                <img src="{% static 'img/jaro-2.png' %}" class="xl:block w-60 ml-60 promo-img" alt="mascot">
+                <img src="{% static 'img/jaro-2.png' %}" class="xl:block w-60 ml-60 promo-img" alt="mascot" width="250" height="250">
               </picture>
           </div>
         </div>
@@ -170,7 +172,7 @@
             class="object-cover mb-6"
             style="filter: drop-shadow(4px 4px 6px black);"
             src="{% static 'img/partner.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-            alt="{{ page.partners_title }}"
+            alt="{{ page.partners_title }}" width="600" height="408"
           />
           </picture>
         </div>
@@ -197,7 +199,7 @@
               class="object-cover mb-6"
               style="filter: drop-shadow(4px 4px 6px black);"
               src="{% static 'img/cloud.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-              alt="{{ page.shells_title }}"
+              alt="{{ page.shells_title }}" width="512" height="254"
             />
             </picture>
           </div>
@@ -208,7 +210,7 @@
             <picture>
               <source srcset="{% static 'img/shells.webp' %}" type="image/webp">
               <source srcset="{% static 'img/shells.png' %}" type="image/png"> 
-              <img src="{% static 'img/shells.png' %}">
+              <img src="{% static 'img/shells.png' %}" width="170" height="72">
             </picture>
         </div>
           <h2 class="mb-6 uppercase font-sans text-3xl font-bold tracking-tight w-full text-gray-200 sm:text-4xl sm:leading-none">
