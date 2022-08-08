@@ -413,5 +413,19 @@
 
 .packages .low-screens {
        width: 100%;
+}
+
+
+@media only screen and (max-width: 410px) {
+    .update-status {
+        & .ct-chart {
+            i {
+                display: none;
+            }
+        }
+
+        .topic-title {
+            margin-top: -22rem;
+        }
     }
-    
+} 
