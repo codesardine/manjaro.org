@@ -70,7 +70,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         console.log(token)
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            let text = form.querySelector("#id_message")
+            let text = form.querySelector("textarea")
             let parser = new DOMParser();
             let doc = parser.parseFromString(text.value, 'text/html');
             let en_or_gb = /^[a-zA-Z-äöüÄÖÜß+@!%?.’,'(): \r\n]+$/
