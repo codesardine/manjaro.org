@@ -6,32 +6,23 @@
 {% block head %}
   <meta name="robots" content="noindex, nofollow">
   <style>
-      textarea {
-          height: auto;
-      }
-    
-      img {
-        left: 150px;
-bottom: 5px;
-width: 52px;
+    textarea {
+        height: auto;
     }
   </style>
 {% endblock %}
 
 {% block content %}
 <div class="relative max-w-screen-md px-4 mx-auto xl:max-w-screen-lg sm:px-8">
-
     <div class="relative bg-gray-50">
         <div class="sm:px-12 ">
-            <form method="POST" action="{% pageurl page %}">
-                {% csrf_token %}
+            <form>
                 <ul>
                     {{ form }}
                 </ul>
-                <img class="absolute" src="{% static 'img/manjaro-email.svg' %}">
-
-                <button type="submit" class="mt-4 px-2 h-12 inline-flex items-center justify-center mb-2 font-medium tracking-wide text-white rounded shadow-md bg-indigo-600 hover:bg-indigo-700 focus:shadow-outline focus:outline-none">
-                    Submit
+                <button id="submitBtn" type="submit" class="mt-4 px-2 h-12 inline-flex items-center justify-center mb-2 font-medium tracking-wide text-white rounded shadow-md bg-blue-gray-700 focus:shadow-outline focus:outline-none">
+                    <img class="mr-2 w-10" src="{% static 'img/manjaro-email.svg' %}">
+                    Send
                 </button>
             </form>            
         </div>
@@ -40,9 +31,9 @@ width: 52px;
 <script>
 window.addEventListener('DOMContentLoaded', (event) => {
         document.querySelectorAll("label").forEach((el) => {
-        el.classList.add('inline-block', 'mb-2', 'font-semibold')
+        el.classList.add('block', 'mb-2', 'font-semibold')
         })
-        document.querySelectorAll("input, textarea").forEach((el) => {
+        document.querySelectorAll("textarea").forEach((el) => {
         el.classList.add(
             'flex-grow',
             'w-full',
@@ -70,8 +61,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 'sm:text-base',
                 'md:text-lg',
                 'lg:text-base',
-                'xl:text-lg'
+                'xl:text-lg',
+                'w-full'
             )
+
+        const form = document.querySelector('form')
+        const token = '{% csrf_token %}'
+        console.log(token)
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            let text = form.querySelector("#id_message")
+            let parser = new DOMParser();
+            let doc = parser.parseFromString(text.value, 'text/html');
+            let en_or_gb = /^[a-zA-Z-äöüÄÖÜß+@!%?.’,'(): \r\n]+$/
+
+            if (text.value.length < 200) {
+                alert("A minimum of 200 characters is needed.")
+            } else if (doc.body.children.length != 0) {
+                alert("HTML not allowed.")
+            } else if (!text.value.match(en_or_gb)) {
+                alert("There is some invalid characters, only English or German languange is accepted.")
+            } else {
+                const btn = form.querySelector("button")
+                btn.insertAdjacentHTML("beforebegin", token)
+                form.method="POST"
+                form.action="{% pageurl page %}"
+                form.submit()
+            }
+        });
     })
 </script>
 {% endblock %}
