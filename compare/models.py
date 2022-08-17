@@ -103,7 +103,7 @@ class lastModified(models.Model):
     arch = models.CharField(max_length=100, null=True)
     branch = models.CharField(max_length=100, null=True)
     repo = models.CharField(max_length=100, null=True)
-    date = models.DateTimeField()
+    date = models.DateTimeField(null=True)
     status = models.TextField(default="")
 
 
