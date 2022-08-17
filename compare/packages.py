@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field, fields
 from pathlib import Path
+import re
 from typing import IO, Iterator
 import requests
 import tarfile
@@ -74,8 +75,12 @@ class Downloader():
     @staticmethod
     def download(url: str, local_filename: Path, arch, branch, repo, files_times) -> tuple:
         """download one file in thread"""
-        response = requests.head(url=url, timeout=30)            
-        remote_datetime = parsedate(response.headers['Last-Modified']).astimezone()
+        response = requests.head(url=url, timeout=30)   
+        try:
+            remote_datetime = parsedate(response.headers['Last-Modified']).astimezone()
+        except KeyError:
+            print(arch, branch, repo, "missing Last-Modified Headers")
+            remote_datetime = datetime.now().astimezone()
         local_datetime = datetime(1999, 1, 20, tzinfo=ZoneInfo("America/Los_Angeles"))
 
         try:
