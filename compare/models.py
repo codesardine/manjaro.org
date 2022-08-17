@@ -57,7 +57,7 @@ class PackageModel(models.Model):
     unstable = models.CharField(max_length=50, null=True)
     last_modified = models.CharField(max_length=20, null=True)
     group = models.CharField(max_length=100, null=True)
-    url = models.CharField(max_length=120, null=True)
+    url = models.CharField(max_length=150, null=True)
     packager = models.CharField(max_length=100, null=True)
     builddate = models.DateField(null=True)
 
