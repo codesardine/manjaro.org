@@ -11,7 +11,7 @@ import concurrent.futures
 from .models import x86_64, aarch64, lastModified, Archs, Branches
 
 
-MIRROR = "https://mirrors.manjaro.org/repo"
+MIRROR = "http://repo.manjaro.org/repo"
 CACHE_DIR = "/tmp"
 
 
