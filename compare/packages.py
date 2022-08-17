@@ -12,7 +12,7 @@ import concurrent.futures
 from .models import x86_64, aarch64, lastModified, Archs, Branches
 
 
-MIRROR = "https://manjaro.moson.eu/"
+MIRROR = "https://mirrors.manjaro.org/repo"
 CACHE_DIR = "/tmp"
 
 
@@ -339,7 +339,7 @@ def update_db(arch, repos, pkg_model, test=False):
                         )
                     )
             except Exception as e:
-                print(pkg, pkg.packager, pkg.builddate_str, e)
+                #print(pkg, pkg.packager, pkg.builddate_str, e)
                 raise
         if not test:
             ret = len(pkg_model.objects.bulk_create(objs))
