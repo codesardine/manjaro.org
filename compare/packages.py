@@ -1,11 +1,9 @@
 from dataclasses import dataclass, field, fields
 from pathlib import Path
-import re
 from typing import IO, Iterator
 import requests
 import tarfile
 import time
-from zoneinfo import ZoneInfo
 from datetime import datetime, date
 from dateutil.parser import parse as parsedate
 import concurrent.futures
@@ -14,11 +12,7 @@ from .models import x86_64, aarch64, lastModified, Archs, Branches
 
 MIRROR = "https://mirrors.manjaro.org/repo"
 CACHE_DIR = "/tmp"
-
-
-'''class Archs(enum.Enum):
-    x86_64 = enum.auto()
-    aarch64 = enum.auto()'''
+MAX_WORKERS = 10
 
 
 class Downloader():
@@ -50,7 +44,7 @@ class Downloader():
         """run threads for download"""
         self.update = set()
         futures = []
-        with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
+        with concurrent.futures.ThreadPoolExecutor(MAX_WORKERS) as executor:
             for branch in self.branches:
                 filename = self.filename(self.arch.name, branch, "core")
                 filename.parent.mkdir(parents=True, exist_ok=True)
@@ -75,13 +69,17 @@ class Downloader():
     @staticmethod
     def download(url: str, local_filename: Path, arch, branch, repo, files_times) -> tuple:
         """download one file in thread"""
-        response = requests.head(url=url, timeout=30)   
+        response = requests.head(url=url, timeout=30)  
+        if not response.ok:
+            #TODO error use another mirror
+            raise Exception("Download Error", url, response)
+
         try:
             remote_datetime = parsedate(response.headers['Last-Modified']).astimezone()
-        except KeyError:
-            print(arch, branch, repo, "missing Last-Modified Headers")
+        except Exception as e:
+            print(arch, branch, repo, e)
             remote_datetime = datetime.now().astimezone()
-        local_datetime = datetime(1999, 1, 20, tzinfo=ZoneInfo("America/Los_Angeles"))
+        local_datetime = remote_datetime
 
         try:
             model = files_times.objects.get(arch=arch, branch=branch, repo=repo)
@@ -96,10 +94,6 @@ class Downloader():
             ).save()
             print(f"{arch:10} {branch:14} {repo:16} to download")
         
-        if not response.ok:
-            #TODO error use another mirror
-            raise Exception("Download Error", url, response)
-
         if local_datetime == remote_datetime and local_filename.exists():
             print("Nothing to do", url, repo)
             return False, url, repo
