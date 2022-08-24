@@ -285,7 +285,7 @@
 }
 
 #content {
-    min-height: calc(100vh - 595px);
+    min-height: calc(100vh - 495px);
 }
 
 #cdn {
