@@ -1,7 +1,7 @@
 {% load docs_tags %}
 
 <div class="lg:border-gray-300 lg:border-r-2 left-sidebar flex relative">
-  <button id="btn-toggle-menu" aria-label="Open Menu" title="Open Menu" class="lg:hidden absolute text-2xl left-10 -top-12 text-blue-gray-700">
+  <button id="btn-toggle-menu" aria-label="Open Menu" title="Open Menu" class="lg:hidden absolute text-[3rem] left-10 -top-16 text-blue-gray-700">
     <i class="fa-solid fa-circle-chevron-right"></i>
   </button>
     <aside id="docs-nav" class="pt-12 px-8 lg:pt-0 z-10 lg:z-auto top-0 h-[100vh] lg:h-auto bg-white lg:bg-transparent translate-x-[-150%] lg:translate-x-0 fixed lg:relative py-2 lg:px-4 transition-transform duration-200 shadow-md lg:shadow-none">
@@ -37,10 +37,12 @@
   h1 {
       height: min-content;
   }
-    #content > div {
+
+  #content > div {
       display: flex;
       flex-direction: column;
-  }    
+  }   
+
   .container {
     padding: 0;
     padding-left: 2rem;
@@ -50,12 +52,17 @@
     visibility: hidden;
   }
 
+  .container p:first-child {
+      padding-top: 16px !important;
+    }
+
   @media all and (min-width: 1024px) {
     .left-sidebar {
         order: 1;
         flex: 1;
         max-width: min-content;
     }
+    
     .content div:last-child {
         flex: 2;
         order: 2;
@@ -67,9 +74,6 @@
         flex-direction: row;
         flex-wrap: wrap;    
     } 
-    .container p:first-child {
-      padding-top: 16px !important;
-    }
   }
 
   .toggle-menu {
