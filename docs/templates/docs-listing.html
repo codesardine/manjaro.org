@@ -27,15 +27,12 @@
 {% endblock %}
 
 {% block content %}
-<div class="content mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
+<div class="content mt-32 lg:mt-36 lg:mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
     {% include "docs-nav.html" %}
         {% for block in page.content %}
             {% include_block block %}
         {% endfor %}
 </div>
-<script>
-    document.querySelector("#content div:nth-child(2)").classList.add("w-2/3")
-</script>
     {% block footer_js %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
     <script>hljs.highlightAll()</script>

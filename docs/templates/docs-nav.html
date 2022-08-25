@@ -1,17 +1,25 @@
 {% load docs_tags %}
 
-<div class="border-gray-300 border-r-2 left-sidebar flex">
-    <aside class="relative py-2 px-4">
+<div class="lg:border-gray-300 lg:border-r-2 left-sidebar flex relative">
+  <button id="btn-toggle-menu" aria-label="Open Menu" title="Open Menu" class="lg:hidden absolute text-2xl left-10 -top-8 text-blue-gray-700">
+    <i class="fa-solid fa-circle-chevron-right"></i>
+  </button>
+    <aside id="docs-nav" class="pt-12 px-8 lg:pt-0 z-10 top-0 h-[100vh] lg:h-auto bg-white lg:bg-transparent translate-x-[-150%] lg:translate-x-0 fixed lg:relative py-2 lg:px-4 transition-transform duration-200 shadow-md">
+      <button id="btn-close-toggle-menu" aria-label="Close Menu" title="Close Menu" class="lg:hidden absolute top-3 right-3 p-2 -mt-2 -mr-2 rounded bg-gray-300 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:shadow-outline">
+        <svg class="w-5 text-gray-900" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"></path>
+        </svg>
+      </button>
       <ul>
         {% for category in categories %}
           {% if category|is_internal and not user.is_authenticated %}
                 {% else %}
                 <ul>
-                  <li><h4 class="uppercase text-gray-700 font-semibold text-sm">{{ category }}</h4></li>                
+                  <li><h4 class="py-4 px-2 uppercase text-gray-700 font-semibold text-sm">{{ category }}</h4></li>                
                   {% for url in nav %}
                     {% if url.category == category %}
                       <li class="relative">
-                          <a href="{{url.url}}" class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-blue-600 text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out" data-mdb-ripple="true" data-mdb-ripple-color="primary">
+                          <a href="{{url.url}}" class="flex items-center text-sm py-4 px-6 h-12 overflow-hidden text-blue-600 text-ellipsis whitespace-nowrap rounded hover:text-blue-600 hover:bg-blue-50" data-mdb-ripple="true" data-mdb-ripple-color="primary">
                             <span class="capitalize">{{ url.title }}</span>
                           </a>
                       </li>
@@ -41,26 +49,46 @@
   ul ul li:only-of-type {
     display: none;
   }
+
+  @media all and (min-width: 1024px) {
+    .left-sidebar {
+        order: 1;
+        flex: 1;
+        max-width: min-content;
+    }
+    .content div:last-child {
+        flex: 2;
+        order: 2;
+    }
+  }
+
   @media all and (min-width: 768px) {
-      #content > div {
-          flex-direction: row;
-          flex-wrap: wrap;    
-      } 
-      .left-sidebar {
-          order: 1;
-          flex: 1;
-          max-width: min-content;
-      }
-      .content div:last-child {
-          flex: 2;
-          order: 2;
-      }
-      .content {
-          margin-top: 9rem;
-      }
-      .container p:first-child {
-        padding-top: 8px !important;
-      }
+    #content > div {
+        flex-direction: row;
+        flex-wrap: wrap;    
+    } 
+    .container p:first-child {
+      padding-top: 8px !important;
+    }
+  }
+
+  .toggle-menu {
+    transform: translateX(0) !important;
   }
 </style>
+<script async>
+  document.getElementById("btn-toggle-menu").addEventListener("click", function(el) {
+    document.getElementById("docs-nav").classList.toggle("toggle-menu")
+  })
+
+  document.getElementById("btn-close-toggle-menu").addEventListener("click", function(el) {
+    document.getElementById("docs-nav").classList.remove("toggle-menu")
+  })
+
+  window.addEventListener("click", function(ev) {
+    if (ev,target.id != "docs-nav") {
+      document.getElementById("docs-nav").classList.remove("toggle-menu")
+    }
+  })
+</script>
 {% endblock %}

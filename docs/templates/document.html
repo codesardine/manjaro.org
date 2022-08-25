@@ -29,16 +29,13 @@
 
 
 {% block content %}
-<div class="content mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
+<div class="content mt-32 lg:mt-36 lg:mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
     {% include "docs-nav.html" %}
         {% for block in page.content %}
-             <h1 class="w-full p-4 text-left font-bold text-lg text-gray-800">{{ page.title }}</h1>
+             <h1 class="w-full ml-[1.3rem] lg:ml-0 p-4 text-left font-bold text-lg text-gray-800">{{ page.title }}</h1>
             {% include_block block %}
         {% endfor %}
 </div>
-<script>
-    document.querySelector("#content div:nth-child(2)").classList.add("w-2/3")
-</script>
     {% block footer_js %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
     <script>hljs.highlightAll()</script>
