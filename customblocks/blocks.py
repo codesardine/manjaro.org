@@ -1,3 +1,4 @@
+from email.policy import default
 from wagtail.core import blocks
 from wagtail.core.templatetags.wagtailcore_tags import richtext
 from wagtail.images.blocks import ImageChooserBlock
@@ -57,7 +58,7 @@ class PartnerBlock(blocks.StructBlock):
 class AffiliateBlock(blocks.StructBlock):
 
     promotion = blocks.StructBlock(
-            [
+            [   ("hidden", blocks.BooleanBlock(required=False, help_text="hide this promotion")),
                 ("text", blocks.CharBlock(required=True)),
                 ("url", blocks.URLBlock(required=True)),
                 ("background", ImageChooserBlock(required=True, help_text="Vendor Background Image")),

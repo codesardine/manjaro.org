@@ -44,6 +44,7 @@
 {% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
+    {% if not promo.hidden %}
     <picture>
       {% image promo.background width-640 as promo_img_640 %}
       <source srcset="{{ promo_img_640.url }}" type="image/png" media="(max-width: 640px)">
@@ -53,6 +54,7 @@
       <source srcset="{{ promo_img_1280.url }}" type="image/png" media="(max-width: 1280px)">
       {% image promo.background original class="absolute inset-0 object-cover w-full h-full" %}
     </picture>
+    {% endif %}
     <div class="bg-gray-900 bg-opacity-[.6] w-full h-full fixed"></div>
     <div class="relative">
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
@@ -124,6 +126,7 @@
                 </div>
               </div>
           </div>
+          {% if not promo.hidden %}
           <div class="w-full max-w-xl xl:px-8 xl:w-5/12 lg:pt-32">
               <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="w-[100%] lg:w-[80%] rounded-lg bg-blue-gray-900 text-center relative speech-bubble-rigth block font-semibold  text-cyan-accent-700 hover:text-cyan-accent-400">
                 <i class="text-sm fa-solid fa-link w-5 h-5"></i>
@@ -135,6 +138,7 @@
                 <img src="{% static 'img/jaro-2.png' %}" class="xl:block w-60 ml-60 promo-img" alt="mascot" width="250" height="250">
               </picture>
           </div>
+          {% endif %}
         </div>
       </div>
     </div>
