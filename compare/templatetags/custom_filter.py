@@ -3,8 +3,8 @@ from django import template
 register = template.Library()
 
 @register.filter
-def report_arch(repports, architecture):
-    return repports.items[architecture.name]
+def report_arch(reports, architecture):
+    return reports.items[architecture.name]
 
 @register.filter
 def report_total(repports, architecture):
