@@ -127,7 +127,7 @@ class Downloads(RoutablePageMixin, Page):
         'home.HomePage'
     ]
 
-    intro = models.TextField(default='', blank=True, max_length=350)
+    intro = models.TextField(default='', blank=True, max_length=700)
 
     question_one = models.CharField(default='', blank=True, max_length=50)
     answer_one = models.TextField(default='', blank=True, max_length=200)
