@@ -228,7 +228,7 @@ class ReportPackages():
             sum(CASE WHEN (unstable) != '' THEN 1 ELSE 0 END)  as unstable
             FROM compare_packagemodel
             GROUP BY repo, architecture
-            order by architecture;'''
+            order by repo;'''
 
     def __init__(self) -> None:
         self.items = {}
