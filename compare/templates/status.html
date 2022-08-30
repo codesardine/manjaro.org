@@ -33,7 +33,7 @@ Package database last update status.
     </h2><br>
     {% for arch in archs %}
     <table class="w-full">
-          <tr class="text-md font-semibold tracking-wide text-center text-gray-800 bg-gray-200 uppercase border-b">
+          <tr class="text-md font-semibold tracking-wide text-center text-gray-800 bg-gray-50 uppercase border-b">
             <th class="px-4 py-3">{{ arch.name }}</th>
             <th class="px-4 py-3 text-center">Stable</th>
             <th class="px-4 py-3 text-center">testing</th>
@@ -58,7 +58,7 @@ Package database last update status.
         {% with total=report|report_total:arch %}
         <tr class="text-sm">
           <td>
-            <p class="text-md font-semibold tracking-wide text-center text-gray-800 bg-gray-200 uppercase border-b pr-4">total</p>
+            <p class="text-md font-semibold tracking-wide text-center text-gray-800 bg-gray-50 uppercase border-b pr-4">total</p>
         </td>
           <td class="text-sm border-b text-center">
               <p class="text-xs text-gray-900 pr-4" style="{% if total.stables < 10000 %}color:red;{% endif %}">{{ total.stables }}</p>
@@ -80,7 +80,7 @@ Package database last update status.
         Database Update Status
     </h2></br>
     <table class="w-full">
-          <tr class="text-sm tracking-wide text-left text-gray-800 bg-gray-200 uppercase border-b">
+          <tr class="text-sm tracking-wide text-left text-gray-800 bg-gray-50 uppercase border-b">
             <th class="px-4 py-3 text-center">Arch</th>
             <th class="px-4 py-3 text-center">Branch</th>
             <th class="px-4 py-3 text-center">Repository</th>
