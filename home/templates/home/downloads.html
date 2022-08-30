@@ -89,9 +89,9 @@
 
 {% for edition, desktops in data.items %}
   {% if edition == "arm" %}
-    <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pt-20">
+    <div class="px-4 pt-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
   {% elif edition == "official" %}
-    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div class="px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
   {% endif %}
   {% if edition != "community" %}
     <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
@@ -100,16 +100,9 @@
             {{ edition }} Editions
         </h2>
       </div>
-      <h3 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+      <h3 class="max-w-lg font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
         <span class="relative inline-block">
-          <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
-            <defs>
-              <pattern id="7b568941-9ed0-4f49-85a0-5e21ca6c7ad6" x="0" y="0" width=".135" height=".30">
-                <circle cx="1" cy="1" r=".7"></circle>
-              </pattern>
-            </defs>
-            <rect fill="url(#7b568941-9ed0-4f49-85a0-5e21ca6c7ad6)" width="52" height="24"></rect>
-          </svg>
+          <i class="fa-solid fa-people-group text-gray-500 mr-1"></i>
         </span>
         {% if edition == "official" %}
             Manjaro Team
@@ -122,37 +115,41 @@
     {% if edition == "official" %}
     <div class="editions grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
     {% for title, desktop in desktops.items %}        
-        <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
+        <div class="inline-block overflow-hidden rounded shadow-sm">
             <div class="flex flex-col h-full">
               <picture>
                 <source srcset="/static/img/{{ title }}.webp" type="image/webp">
                 <source srcset="/static/img/{{ title }}.jpg" type="image/jpeg"> 
                 <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
               </picture>
-              <div class="flex-grow border border-t-0 rounded-b">
+              <div class="flex-grow border border-t-0 rounded-b bg-gray-50">
                   <div class="p-5">
-                    <h4 class="mb-2 font-semibold leading-5 relative">
-                      {{ title|capfirst }} Desktop
+                    <h4 class="mb-2 font-semibold leading-5 relative uppercase text-center">
+                      {{ title }} Desktop
                       {% if desktop.date %}
                           <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
                       {% endif %}
                 </h4>
-                    <p class="text-sm text-gray-900">
-                      {% if "xfce" in title.lower %}
+                  <span class="w-full text-center">
+                    <div class="w-full text-center">
+                      <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
+                    </div>
+                      <p class="text-sm text-gray-900 desc text-left mb-6 overflow-hidden transition-all duration-300 ease-in-out max-h-0">
+                      {% if "xfce" in title.lower %} sdkfhskdfhksdhfksdhfks dhfksdhfksdhfkshf kshfkshfksfhskjfdh
                         {{ page.xfce_description }}
                       {% elif "plasma" in title.lower %}
                         {{ page.plasma_description }}
                       {% elif "gnome" in title.lower %}
                         {{ page.gnome_description }}
                       {% endif %}
-                    </p>
                     <br>
                     {% if desktop.notes %}
-                    <p class="text-sm text-gray-900 pl-1 pr-1">
-                        {{ desktop.notes }}                              
+                    <span class="text-sm text-gray-900 pl-1 pr-1">
+                        {{ desktop.notes }}         </span>                     
                     </p>
+                  </span>
                     {% endif %}
-                    <div class="flex items-center justify-center w-full">
+                    <div class="flex items-center justify-center w-full mt-6">
                       <label for="of-toggle-{{ title }}" class="flex items-center cursor-pointer">
                         <div class="relative">
                           <input id="of-toggle-{{ title }}" type="checkbox" class="sr-only no-mouse-effect" />
@@ -167,31 +164,31 @@
                     <br>
                     <div class="pl-2 pr-2 text-center text-3xl">
                       {% if desktop.minimal.image %}
-                      <ul id="of-minimal-{{ title }}" class="hidden">
+                      <ul id="of-minimal-{{ title }}" class="hidden mt-2">
                         {% if desktop.minimal.torrent %}
-                        <a id="btn-mt" href="{{ desktop.minimal.torrent }}" class="mr-3 font-semibold  text-cyan-200 hover:text-cyan-400"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+                        <a id="btn-mt" href="{{ desktop.minimal.torrent }}" class="mr-4 text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i></a>
                         {% endif %}
-                        <a id="btn-mi" href="{{ desktop.minimal.image }}" class="mr-3 font-semibold  text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
+                        <a id="btn-mi" href="{{ desktop.minimal.image }}" class="mr-4 text-blue-300 hover:text-blue-500"><i class="fa-brands fa-usb"></i></i></a>
                         {% if desktop.minimal.signature %}
-                        <a id="btn-ms" href="{{ desktop.minimal.signature }}" class="mr-3 font-semibold  text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
+                        <a id="btn-ms" href="{{ desktop.minimal.signature }}" class="mr-4 text-orange-300 hover:text-orange-500"><i class="fa-solid fa-signature"></i></a>
                         {% endif %}
                         {% if desktop.minimal.checksum %}
-                        <a id="btn-mc" href="{{ desktop.minimal.checksum }}" class="mr-3 font-semibold  text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
+                        <a id="btn-mc" href="{{ desktop.minimal.checksum }}" class="text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double"></i></a>
+                        {% endif %}
                       </ul>
                       {% endif %}
-                      {% endif %}
                       {% if desktop.image %}
-                        <ul id="of-full-{{ title }}">
-                          {% if desktop.torrent %}
-                          <a id="btn-ft" href="{{ desktop.torrent }}" class="mr-3 font-semibold  text-cyan-200 hover:text-cyan-400"><i class="fa-solid fa-cloud-arrow-down"></i></a>
-                          {% endif %}
-                          <a id="btn-fi" href="{{ title }}" class="mr-3 font-semibold  text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
-                          {% if desktop.signature %}
-                          <a id="btn-fs" href="{{ desktop.signature }}" class="mr-3 font-semibold  text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
-                          {% endif %}
-                          {% if desktop.checksum %}
-                          <a id="btn-fc" href="{{ desktop.checksum }}" class="mr-3 font-semibold  text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
-                          {% endif %}
+                      <ul id="of-full-{{ title }}" class="hidden mt-2">
+                        {% if desktop.torrent %}
+                        <a id="btn-ft" href="{{ desktop.torrent }}" class="mr-4 text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i></a>
+                        {% endif %}
+                        <a id="btn-fi" href="{{ desktop.image }}" class="mr-4 text-blue-300 hover:text-blue-500"><i class="fa-brands fa-usb"></i></i></a>
+                        {% if desktop.signature %}
+                        <a id="btn-fs" href="{{ desktop.signature }}" class="mr-4 text-orange-300 hover:text-orange-500"><i class="fa-solid fa-signature"></i></a>
+                        {% endif %}
+                        {% if desktop.checksum %}
+                        <a id="btn-fc" href="{{ desktop.checksum }}" class="text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double"></i></a>
+                        {% endif %}
                       </ul>
                       {% endif %}
                     </div>
@@ -243,7 +240,7 @@
 <div class="px-4 py-0 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-0">
     <div class="max-w-xl mb-5 md:mx-auto sm:text-center lg:max-w-2xl">
       <div>
-        <span class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-white uppercase rounded-full bg-deep-purple-accent-400">
+        <span class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-yellow-accent-700">
             device
         </span>
       </div>
@@ -261,7 +258,7 @@
             border border-solid border-gray-300
             rounded
             m-0
-            focus:text-gray-700 focus:border-deep-purple-accent-400 focus:outline-none" aria-label="Select a device">
+            focus:text-gray-700 focus:border-green-accent-400 focus:outline-none" aria-label="Select a device">
 {% for edition, desktops in data.items %}
   {% for iso, value in desktops.items %}
     {% if edition == "arm" %}
@@ -282,17 +279,17 @@
           {% with device=iso %}
 <div id="{{ device.lower|clean_id }}" class="{% if not forloop.first %}hidden {% endif %}arm-grid editions grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2"> 
   {% for arm_title, arm_desktop in value.items %}
-    <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
+    <div class="inline-block overflow-hidden rounded shadow-sm">
       <div class="flex flex-col h-full">
         <picture>
           <source srcset="/static/img/{{ arm_title }}.webp" type="image/webp">
           <source srcset="/static/img/{{ arm_title }}.jpg" type="image/jpeg"> 
           <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ arm_title }} Desktop" />
         </picture>
-      <div class="flex-grow border border-t-0 rounded-b">
+      <div class="flex-grow border border-t-0 rounded-b bg-gray-50">
           <div class="p-5">
-          <h5 class="mb-2 font-semibold leading-5 relative">
-            {{ arm_title|capfirst }}
+          <h5 class="mb-2 font-semibold leading-5 relative uppercase text-center">
+            {{ arm_title }}
             {% if "phosh" in arm_title.lower or "mobile" in arm_title.lower%}
             {% elif "minimal" in arm_title.lower or "sway" in arm_title.lower %}            
             {% else %}
@@ -302,44 +299,48 @@
                 <span class="text-xs p-1 float-right">Updated: <time>{{ arm_desktop.date }}</time></span>
             {% endif %}
           </h5>
-          <p class="text-sm text-gray-900">
-            {% if "xfce" in arm_title.lower %}
-              {{ page.xfce_description }}
-            {% elif "plasma" in arm_title.lower %}
-              {{ page.plasma_description }}
-            {% elif "gnome" in arm_title.lower %}
-              {{ page.gnome_description }}
-            {% elif "phosh" in arm_title.lower %}
-              {{ page.phosh_description }}
-            {% elif "mobile" in arm_title.lower %}
-              {{ page.plasma_mobile_description }}
-            {% elif "mate" in arm_title.lower %}
-              {{ page.mate_description }}
-            {% elif "sway" in arm_title.lower %}
-              {{ page.sway_description }}
-            {% elif "minimal" in arm_title.lower %}
-              {{ page.minimal_description }}
-            {% endif %}
-          </p>
-          <br>
-          {% if arm_desktop.notes %}
-          <p class="text-sm text-gray-900 pl-1 pr-1">
-                {{ arm_desktop.notes }}                              
-          </p>
-          <br>
+          <span class="w-full text-center">
+            <div class="w-full text-center">
+              <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
+            </div>
+            <p class="text-sm text-gray-900 max-h-0">
+              {% if "xfce" in arm_title.lower %}
+                {{ page.xfce_description }}
+              {% elif "plasma" in arm_title.lower %}
+                {{ page.plasma_description }}
+              {% elif "gnome" in arm_title.lower %}
+                {{ page.gnome_description }}
+              {% elif "phosh" in arm_title.lower %}
+                {{ page.phosh_description }}
+              {% elif "mobile" in arm_title.lower %}
+                {{ page.plasma_mobile_description }}
+              {% elif "mate" in arm_title.lower %}
+                {{ page.mate_description }}
+              {% elif "sway" in arm_title.lower %}
+                {{ page.sway_description }}
+              {% elif "minimal" in arm_title.lower %}
+                {{ page.minimal_description }}
+              {% endif %}
+            <br>
+            {% if arm_desktop.notes %}
+                  {{ arm_desktop.notes }}  
+                  <br>                            
+            </p>
+            <br>
+          </span>
           {% endif %}
-          <div class="pl-2 pr-2 text-center text-3xl"> 
+          <div class="pl-2 pr-2 text-center text-3xl mt-4"> 
             {% if arm_desktop.torrent %}
-            <a id="btn-at" href="{{ arm_desktop.torrent }}" class="mr-3 font-semibold  text-cyan-200 hover:text-cyan-400"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+            <a id="btn-at" href="{{ arm_desktop.torrent }}" class="mr-4 text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i></a>
             {% endif %}
             {% if arm_desktop.image %}          
-            <a id="btn-ai" href="{{ arm_desktop.image }}" class="mr-3 font-semibold  text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
+            <a id="btn-ai" href="{{ arm_desktop.image }}" class="mr-4 text-blue-300 hover:text-blue-500"><i class="fa-brands fa-usb"></i></i></a>
             {% endif %}
             {% if arm_desktop.signature %}
-            <a  id="btn-as" href="{{ arm_desktop.signature }}" class="mr-3 font-semibold  text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
+            <a  id="btn-as" href="{{ arm_desktop.signature }}" class="mr-4 text-orange-300 hover:text-orange-500"><i class="fa-solid fa-signature"></i></a>
             {% endif %}
             {% if arm_desktop.checksum %}
-            <a  id="btn-ac" href="{{ arm_desktop.checksum }}" class="mr-3 font-semibold  text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
+            <a  id="btn-ac" href="{{ arm_desktop.checksum }}" class="text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double"></i></a>
             {% endif %}
           </div>
           </div>
@@ -372,23 +373,16 @@
 
 {% for edition, desktops in data.items %}
   {% if edition == "community" %}
-    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div class="px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
     <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
       <div>
         <h2 class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
             others
         </h2>
       </div>
-      <h3 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+      <h3 class="max-w-lg font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
         <span class="relative inline-block">
-          <svg viewBox="0 0 52 24" fill="currentColor" class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
-            <defs>
-              <pattern id="7b568941-9ed0-4f49-85a0-5e21ca6c7ad6" x="0" y="0" width=".135" height=".30">
-                <circle cx="1" cy="1" r=".7"></circle>
-              </pattern>
-            </defs>
-            <rect fill="url(#7b568941-9ed0-4f49-85a0-5e21ca6c7ad6)" width="52" height="24"></rect>
-          </svg>
+          <i class="fa-solid fa-users text-gray-500 mr-1"></i>
         </span>
             {{ edition.capitalize }}
       </h3>
@@ -398,17 +392,17 @@
     </div>
     <div class="grid editions gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
     {% for title, desktop in desktops.items %}
-        <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
+        <div class="inline-block overflow-hidden rounded shadow-sm">
             <div class="flex flex-col h-full">
               <picture>
                 <source srcset="/static/img/{{ title }}.webp" type="image/webp">
                 <source srcset="/static/img/{{ title }}.jpg" type="image/jpeg"> 
                 <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
               </picture>
-              <div class="flex-grow border border-t-0 rounded-b">
+              <div class="flex-grow border border-t-0 rounded-b bg-gray-50">
                   <div class="p-5">
-                    <h4 class="mb-2 font-semibold leading-5">
-                      {{ title|capfirst }}
+                    <h4 class="mb-2 font-semibold leading-5 uppercase text-center">
+                      {{ title }}
                       {% if "i3" in title.lower or "sway" in title.lower %}            
                       {% else %}
                       Desktop
@@ -417,28 +411,30 @@
                           <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
                       {% endif %}
                     </h4>
-                    <p class="text-sm text-gray-900">
-                      {% if "cinnamon" in title.lower %}
-                        {{ page.cinnamon_description }}
-                      {% elif "i3" in title.lower %}
-                        {{ page.i3_description }}
-                      {% elif "budgie" in title.lower %}
-                        {{ page.budgie_description }}
-                      {% elif "mate" in title.lower %}
-                        {{ page.mate_description }}
-                      {% elif "sway" in title.lower %}
-                        {{ page.sway_description }}
-                      {% endif %}
-                    </p>
-                    <br>
-                    {% if desktop.notes %}
-                    <p class="text-sm text-gray-900 pl-1 pr-1">
-                        {{ desktop.notes }}                              
-                    </p>
-                    <br>
+                    <span class="w-full text-center">
+                      <div class="w-full text-center">
+                        <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
+                      </div>
+                      <p class="text-sm text-gray-900 desc max-h-0">
+                        {% if "cinnamon" in title.lower %}
+                          {{ page.cinnamon_description }}
+                        {% elif "i3" in title.lower %}
+                          {{ page.i3_description }}
+                        {% elif "budgie" in title.lower %}
+                          {{ page.budgie_description }}
+                        {% elif "mate" in title.lower %}
+                          {{ page.mate_description }}
+                        {% elif "sway" in title.lower %}
+                          {{ page.sway_description }}
+                        {% endif %}
+                      <br>
+                      {% if desktop.notes %}
+                          {{ desktop.notes }}                              
+                      </p>
+                    </span>
                     {% endif %}
                     {% if desktop.minimal.image and desktop.image %}
-                    <div class="flex items-center justify-center w-full">
+                    <div class="flex items-center justify-center w-full mt-6">
                       <label for="co-toggle-{{ title }}" class="flex items-center cursor-pointer">
                         <div class="relative">
                           <input id="co-toggle-{{ title }}" type="checkbox" class="sr-only" />
@@ -456,33 +452,33 @@
                       {% if desktop.minimal.image %}
                       <ul id="co-minimal-{{ title }}" {% if desktop.image %}class="hidden"{% endif %}>
                         {% if desktop.minimal.torrent %}
-                        <a id="btn-mt" href="{{ desktop.minimal.torrent }}" class="mr-3 font-semibold  text-cyan-200 hover:text-cyan-400"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+                        <a id="btn-mt" href="{{ desktop.minimal.torrent }}" class="mr-4 text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i></a>
                         {% endif %}
-                        <a id="btn-mi" href="{{ desktop.minimal.image }}" class="mr-3 font-semibold  text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
+                        <a id="btn-mi" href="{{ desktop.minimal.image }}" class="mr-4 text-blue-300 hover:text-blue-500"><i class="fa-brands fa-usb"></i></i></a>
                         {% if desktop.minimal.signature %}
-                        <a id="btn-ms" href="{{ desktop.minimal.signature }}" class="mr-3 font-semibold  text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
+                        <a id="btn-ms" href="{{ desktop.minimal.signature }}" class="mr-4 text-orange-300 hover:text-orange-500"><i class="fa-solid fa-signature"></i></a>
                         {% endif %}
                         {% if desktop.minimal.checksum %}
-                        <a id="btn-mc" href="{{ desktop.minimal.checksum }}" class="mr-3 font-semibold  text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
+                        <a id="btn-mc" href="{{ desktop.minimal.checksum }}" class="text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double"></i></a>
                         {% endif %}
                       </ul>
                       {% endif %}
                       {% if desktop.custom %}
-                      <ul>
-                          <a id="btn-cd" target="_blank" href="{{ desktop.custom }}" class="mr-3 font-semibold  text-pink-200 hover:text-pink-400"><i class="fa-solid fa-file-export"></i></a>
+                      <ul class="mt-6">
+                          <a id="btn-ed" target="_blank" href="{{ desktop.custom }}" class="mr-3 font-semibold text-deep-purple-accent-400 hover:text-deep-purple-800"><i class="fa-solid fa-file-export"></i></a>
                       </ul>
                       {% endif %}
                       {% if desktop.image %}
                         <ul id="co-full-{{ title }}">
                           {% if desktop.torrent %}
-                          <a id="btn-ft" href="{{ desktop.torrent }}" class="mr-3 font-semibold  text-cyan-200 hover:text-cyan-400"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+                          <a id="btn-ft" href="{{ desktop.torrent }}" class="mr-4 text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i></a>
                           {% endif %}
-                          <a id="btn-fi" href="{{ desktop.image }}" class="mr-3 font-semibold  text-pink-200 hover:text-pink-400"><i class="fa-solid fa-compact-disc"></i></a>
+                          <a id="btn-fi" href="{{ desktop.image }}" class="mr-4 text-blue-300 hover:text-blue-500"><i class="fa-brands fa-usb"></i></i></a>
                           {% if desktop.signature %}
-                          <a id="btn-fs" href="{{ desktop.signature }}" class="mr-3 font-semibold  text-blue-200 hover:text-blue-400"><i class="fa-solid fa-signature"></i></a>
+                          <a id="btn-fs" href="{{ desktop.signature }}" class="mr-4 text-orange-300 hover:text-orange-500"><i class="fa-solid fa-signature"></i></a>
                           {% endif %}
                           {% if desktop.checksum %}
-                          <a id="btn-fc" href="{{ desktop.checksum }}" class="mr-3 font-semibold  text-teal-200 hover:text-teal-400"><i class="fa-solid fa-check-double"></i></a>
+                          <a id="btn-fc" href="{{ desktop.checksum }}" class="text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double"></i></a>
                           {% endif %}
                         </ul>
                       {% endif %}
@@ -528,42 +524,52 @@
             </div>
           </div>            
       {% endfor %}
-      <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
+      <div class="inline-block overflow-hidden rounded shadow-sm">
         <div class="flex flex-col h-full">
           <picture>
             <source srcset="{% static 'img/docker.webp' %}" type="image/webp">
             <source srcset="{% static 'img/docker.jpg' %}" type="image/jpeg"> 
             <img src="{% static 'img/docker.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Docker" />
           </picture>
-          <div class="flex-grow border border-t-0 rounded-b text-left">
+          <div class="flex-grow border border-t-0 rounded-b text-left bg-gray-50">
               <div class="p-5">
-                <h3 class="mb-2 font-semibold leading-5">Manjaro Docker</h3>
-                <p class="text-sm text-gray-900">
-                  {{ page.docker_intro }}
-                </p>
-                <div class="pl-2 pr-2 text-center text-3xl">
+                <h3 class="mb-2 font-semibold leading-5 uppercase text-center">Manjaro Docker</h3>
+                <span class="w-full text-center">
+                  <div class="w-full text-center">
+                    <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
+                  </div>
+                  <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden">
+                    {{ page.docker_intro }}               ljljlj kjljl               
+                  </p>
+                </span>
+                <div class="pl-2 pr-2 text-center text-3xl mt-6">
                   <ul>
-                    <a id="btn-cd" target="_blank" href="https://github.com/manjaro/manjaro-docker" class="mr-3 font-semibold  text-pink-200 hover:text-pink-400"><i class="fa-solid fa-file-export"></i></a>
+                    <a id="btn-ed" target="_blank" href="https://github.com/manjaro/manjaro-docker" class="mr-3 font-semibold text-deep-purple-accent-400 hover:text-deep-purple-800"><i class="fa-solid fa-file-export"></i></a>
                 </ul>
                 </div>
               </div>
           </div>
         </div>
       </div>
-      <div class="inline-block overflow-hidden duration-300 transform rounded shadow-sm hover:-translate-y-2">
+      <div class="inline-block overflow-hidden rounded shadow-sm">
         <div class="flex flex-col h-full">
           <picture>
             <source srcset="{% static 'img/manual.webp' %}" type="image/webp">
             <source srcset="{% static 'img/manual.jpg' %}" type="image/jpeg"> 
             <img src="{% static 'img/manual.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Manual" />
           </picture>
-        <div class="flex-grow border border-t-0 rounded-b text-left">
+        <div class="flex-grow border border-t-0 rounded-b text-left bg-gray-50">
             <div class="p-5">
-            <h3 class="mb-2 font-semibold leading-5">Manjaro Manual</h3>
-            <p style="min-height: auto;" class="text-sm text-gray-900 mb-6">
-              {{ page.manual_intro }}
-            </p>
-            <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide.pdf" class="px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Guide In English</a>
+            <h3 class="mb-2 font-semibold leading-5 uppercase text-center">Manjaro Manual</h3>
+            <span class="w-full text-center">
+              <div class="w-full text-center">
+                <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
+              </div>
+              <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden">
+                {{ page.manual_intro }} mlmlmlm lmlml lmlml                              
+              </p>
+            </span>
+            <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide.pdf" class="mt-4 px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Guide In English</a>
             <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide-French.pdf" class="px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Guide De L'utilisateur</a>
             <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide-Turkish.pdf" class="px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Kullanici rehberi</a>
           </div>
@@ -577,6 +583,13 @@
   <script src="https://unpkg.com/@popperjs/core@2"></script>
   <script src="https://unpkg.com/tippy.js@6"></script>
   <script>
+    function showDesc(btn) {
+      let parent = btn.parentElement.parentElement
+      let desc = parent.children[1]
+      desc.classList.toggle("max-h-0")
+      console.log(desc)
+      
+    }
     let dow = "Download "
     let min = "Download Minimal "
     let ful = "Download Full "
@@ -623,5 +636,8 @@
     tippy('#btn-cd', {
       content: dow,
     }); 
+    tippy('#btn-ed', {
+      content: "External " + dow,
+    });
   </script>
 {% endblock %}

@@ -395,10 +395,6 @@
     & input:checked ~ .dot {
         transform: translateX(100%);
     }
-
-    & .editions p {
-        min-height: 155px;
-    }
 }
 
 #error {
