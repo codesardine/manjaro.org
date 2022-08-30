@@ -124,18 +124,14 @@
               </picture>
               <div class="flex-grow border border-t-0 rounded-b bg-gray-50">
                   <div class="p-5">
-                    <h4 class="mb-2 font-semibold leading-5 relative uppercase text-center">
-                      {{ title }} Desktop
+                    <h4 class="font-semibold leading-5 relative uppercase text-center">
+                      {{ title }} Desktop <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
                       {% if desktop.date %}
                           <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
                       {% endif %}
-                </h4>
-                  <span class="w-full text-center">
-                    <div class="w-full text-center">
-                      <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
-                    </div>
+                     </h4>
                       <p class="text-sm text-gray-900 desc text-left mb-6 overflow-hidden transition-all duration-300 ease-in-out max-h-0">
-                      {% if "xfce" in title.lower %} 
+                      {% if "xfce" in title.lower %}
                         {{ page.xfce_description }}
                       {% elif "plasma" in title.lower %}
                         {{ page.plasma_description }}
@@ -145,9 +141,9 @@
                     <br>
                     {% if desktop.notes %}
                     <span class="text-sm text-gray-900 pl-1 pr-1">
-                        {{ desktop.notes }}         </span>                     
+                        {{ desktop.notes }}         
+                    </span>                     
                     </p>
-                  </span>
                     {% endif %}
                     <div class="flex items-center justify-center w-full mt-6">
                       <label for="of-toggle-{{ title }}" class="flex items-center cursor-pointer">
@@ -162,7 +158,7 @@
                       </label>
                     </div>                 
                     <br>
-                    <div class="pl-2 pr-2 text-center text-3xl">
+                    <div class="pl-2 pr-2 text-center text-2xl">
                       {% if desktop.minimal.image %}
                       <ul id="of-minimal-{{ title }}" class="hidden mt-2">
                         {% if desktop.minimal.torrent %}
@@ -288,21 +284,17 @@
         </picture>
       <div class="flex-grow border border-t-0 rounded-b bg-gray-50">
           <div class="p-5">
-          <h5 class="mb-2 font-semibold leading-5 relative uppercase text-center">
+          <h3 class="font-semibold leading-5 relative uppercase text-center">
             {{ arm_title }}
             {% if "phosh" in arm_title.lower or "mobile" in arm_title.lower%}
             {% elif "minimal" in arm_title.lower or "sway" in arm_title.lower %}            
             {% else %}
             Desktop
-            {% endif %}
+            {% endif %} <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
             {% if arm_desktop.date %}
                 <span class="text-xs p-1 float-right">Updated: <time>{{ arm_desktop.date }}</time></span>
             {% endif %}
-          </h5>
-          <span class="w-full text-center">
-            <div class="w-full text-center">
-              <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
-            </div>
+          </h3>
             <p class="text-sm text-gray-900 max-h-0 overflow-hidden">
               {% if "xfce" in arm_title.lower %}
                 {{ page.xfce_description }}
@@ -327,9 +319,8 @@
                   <br>                            
             </p>
             <br>
-          </span>
           {% endif %}
-          <div class="pl-2 pr-2 text-center text-3xl mt-4"> 
+          <div class="pl-2 pr-2 text-center text-2xl mt-4"> 
             {% if arm_desktop.torrent %}
             <a id="btn-at" href="{{ arm_desktop.torrent }}" class="mr-4 text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i></a>
             {% endif %}
@@ -401,20 +392,16 @@
               </picture>
               <div class="flex-grow border border-t-0 rounded-b bg-gray-50">
                   <div class="p-5">
-                    <h4 class="mb-2 font-semibold leading-5 uppercase text-center">
+                    <h4 class="font-semibold leading-5 uppercase text-center">
                       {{ title }}
                       {% if "i3" in title.lower or "sway" in title.lower %}            
                       {% else %}
                       Desktop
-                      {% endif %}
+                      {% endif %} <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
                       {% if desktop.date %}
                           <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
                       {% endif %}
                     </h4>
-                    <span class="w-full text-center">
-                      <div class="w-full text-center">
-                        <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
-                      </div>
                       <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden">
                         {% if "cinnamon" in title.lower %}
                           {{ page.cinnamon_description }}
@@ -431,7 +418,6 @@
                       {% if desktop.notes %}
                           {{ desktop.notes }}                              
                       </p>
-                    </span>
                     {% endif %}
                     {% if desktop.minimal.image and desktop.image %}
                     <div class="flex items-center justify-center w-full mt-6">
@@ -448,7 +434,7 @@
                     </div>
                     <br>
                     {% endif %}
-                    <div class="pl-2 pr-2 text-center text-3xl">
+                    <div class="pl-2 pr-2 text-center text-2xl">
                       {% if desktop.minimal.image %}
                       <ul id="co-minimal-{{ title }}" {% if desktop.image %}class="hidden"{% endif %}>
                         {% if desktop.minimal.torrent %}
@@ -533,16 +519,13 @@
           </picture>
           <div class="flex-grow border border-t-0 rounded-b text-left bg-gray-50">
               <div class="p-5">
-                <h3 class="mb-2 font-semibold leading-5 uppercase text-center">Manjaro Docker</h3>
-                <span class="w-full text-center">
-                  <div class="w-full text-center">
-                    <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
-                  </div>
+                <h3 class="font-semibold leading-5 uppercase text-center">Manjaro Docker
+                  <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
+                </h3>
                   <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden">
-                    {{ page.docker_intro }}                           
+                    {{ page.docker_intro }}                       
                   </p>
-                </span>
-                <div class="pl-2 pr-2 text-center text-3xl mt-6">
+                <div class="pl-2 pr-2 text-center text-2xl mt-6">
                   <ul>
                     <a id="btn-ed" target="_blank" href="https://github.com/manjaro/manjaro-docker" class="mr-3 font-semibold text-deep-purple-accent-400 hover:text-deep-purple-800"><i class="fa-solid fa-file-export"></i></a>
                 </ul>
@@ -560,15 +543,12 @@
           </picture>
         <div class="flex-grow border border-t-0 rounded-b text-left bg-gray-50">
             <div class="p-5">
-            <h3 class="mb-2 font-semibold leading-5 uppercase text-center">Manjaro Manual</h3>
-            <span class="w-full text-center">
-              <div class="w-full text-center">
-                <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
-              </div>
+            <h3 class="font-semibold leading-5 uppercase text-center">Manjaro Manual
+              <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
+            </h3>
               <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden">
-                {{ page.manual_intro }}                              
+                {{ page.manual_intro }}                          
               </p>
-            </span>
             <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide.pdf" class="mt-4 px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Guide In English</a>
             <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide-French.pdf" class="px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Guide De L'utilisateur</a>
             <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide-Turkish.pdf" class="px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Kullanici rehberi</a>
@@ -586,9 +566,7 @@
     function showDesc(btn) {
       let parent = btn.parentElement.parentElement
       let desc = parent.children[1]
-      desc.classList.toggle("max-h-0")
-      console.log(desc)
-      
+      desc.classList.toggle("max-h-0")      
     }
     let dow = "Download "
     let min = "Download Minimal "
@@ -638,6 +616,9 @@
     }); 
     tippy('#btn-ed', {
       content: "External " + dow,
+    });
+    tippy('#btn-td', {
+      content: "Toggle Description",
     });
   </script>
 {% endblock %}
