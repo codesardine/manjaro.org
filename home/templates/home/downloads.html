@@ -135,7 +135,7 @@
                       <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
                     </div>
                       <p class="text-sm text-gray-900 desc text-left mb-6 overflow-hidden transition-all duration-300 ease-in-out max-h-0">
-                      {% if "xfce" in title.lower %} sdkfhskdfhksdhfksdhfks dhfksdhfksdhfkshf kshfkshfksfhskjfdh
+                      {% if "xfce" in title.lower %} 
                         {{ page.xfce_description }}
                       {% elif "plasma" in title.lower %}
                         {{ page.plasma_description }}
@@ -303,7 +303,7 @@
             <div class="w-full text-center">
               <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
             </div>
-            <p class="text-sm text-gray-900 max-h-0">
+            <p class="text-sm text-gray-900 max-h-0 overflow-hidden">
               {% if "xfce" in arm_title.lower %}
                 {{ page.xfce_description }}
               {% elif "plasma" in arm_title.lower %}
@@ -415,7 +415,7 @@
                       <div class="w-full text-center">
                         <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
                       </div>
-                      <p class="text-sm text-gray-900 desc max-h-0">
+                      <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden">
                         {% if "cinnamon" in title.lower %}
                           {{ page.cinnamon_description }}
                         {% elif "i3" in title.lower %}
@@ -539,7 +539,7 @@
                     <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
                   </div>
                   <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden">
-                    {{ page.docker_intro }}               ljljlj kjljl               
+                    {{ page.docker_intro }}                           
                   </p>
                 </span>
                 <div class="pl-2 pr-2 text-center text-3xl mt-6">
@@ -566,7 +566,7 @@
                 <button onclick="showDesc(this)" class="relative semi-bold text-sm">Description <i class="fa-solid fa-arrow-down-wide-short text-cyan-accent-700"></i></button>
               </div>
               <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden">
-                {{ page.manual_intro }} mlmlmlm lmlml lmlml                              
+                {{ page.manual_intro }}                              
               </p>
             </span>
             <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide.pdf" class="mt-4 px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Guide In English</a>
