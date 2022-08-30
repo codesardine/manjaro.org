@@ -130,8 +130,8 @@
                           <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
                       {% endif %}
                      </h4>
-                      <p class="text-sm text-gray-900 desc text-left mb-6 overflow-hidden transition-all duration-300 ease-in-out max-h-0">
-                      {% if "xfce" in title.lower %} 
+                      <p class="text-sm text-gray-900 desc text-left mb-6 overflow-hidden transition-{max-height} duration-300 ease-in-out max-h-0">
+                      {% if "xfce" in title.lower %} I3 is a tiling window manager, and not a complete desktop environment, I3 favors advanced users that prefer to interact with their computer via their keyboard. 
                         {{ page.xfce_description }}
                       {% elif "plasma" in title.lower %}
                         {{ page.plasma_description }}
@@ -295,7 +295,7 @@
                 <span class="text-xs p-1 float-right">Updated: <time>{{ arm_desktop.date }}</time></span>
             {% endif %}
           </h3>
-            <p class="text-sm text-gray-900 max-h-0 overflow-hidden">
+            <p class="text-sm text-gray-900 max-h-0 overflow-hidden transition-{max-height} duration-300 ease-in-out ">
               {% if "xfce" in arm_title.lower %}
                 {{ page.xfce_description }}
               {% elif "plasma" in arm_title.lower %}
@@ -402,7 +402,7 @@
                           <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
                       {% endif %}
                     </h4>
-                      <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden">
+                      <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden transition-{max-height} duration-300 ease-in-out ">
                         {% if "cinnamon" in title.lower %}
                           {{ page.cinnamon_description }}
                         {% elif "i3" in title.lower %}
@@ -522,7 +522,7 @@
                 <h3 class="font-semibold leading-5 uppercase text-center">Manjaro Docker
                   <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
                 </h3>
-                  <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden">
+                  <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden transition-{max-height} duration-300 ease-in-out">
                     {{ page.docker_intro }}                       
                   </p>
                 <div class="pl-2 pr-2 text-center text-2xl mt-6">
@@ -546,7 +546,7 @@
             <h3 class="font-semibold leading-5 uppercase text-center">Manjaro Manual
               <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
             </h3>
-              <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden">
+              <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden transition-{max-height} duration-300 ease-in-out ">
                 {{ page.manual_intro }}                          
               </p>
             <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide.pdf" class="mt-4 px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Guide In English</a>
