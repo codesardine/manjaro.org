@@ -395,6 +395,15 @@
     & input:checked ~ .dot {
         transform: translateX(100%);
     }
+
+    & .editions p {
+        padding: 10px 5px;
+        text-align: justify;
+    }
+
+    & .editions p.max-h-0 {
+        padding: 0;
+    }
 }
 
 #error {
