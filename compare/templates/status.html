@@ -32,7 +32,7 @@ Package database last update status.
         Repository Status
     </h2><br>
     {% for arch in archs %}
-    <table class="w-full">
+    <table class="w-full bg-cyan-200">
           <tr class="text-md font-semibold tracking-wide text-center text-gray-800 bg-gray-50 uppercase border-b">
             <th class="px-4 py-3">{{ arch.name }}</th>
             <th class="px-4 py-3 text-center">Stable</th>
@@ -44,29 +44,29 @@ Package database last update status.
           <td class="px-4 py-3 border text-center">
                 <p class="text-xs text-gray-800 pr-4">{{ repo.repo }}</p>
           </td>
-          <td class="text-sm border-b text-center">
+          <td class="text-sm border text-center">
             <p class="text-xs text-gray-800 pr-4">{{ repo.stable }}</p>
         </td>
-        <td class="text-sm border-b text-center">
+        <td class="text-sm border text-center">
             <p class="text-xs text-gray-800 pr-4">{{ repo.testing }}</p>
         </td>
-        <td class="text-sm border-b text-center">
+        <td class="text-sm border text-center">
             <p class="text-xs text-gray-800 pr-4">{{ repo.unstable }}</p>
         </td>
         </tr>
         {% endfor %}
         {% with total=report|report_total:arch %}
         <tr class="text-sm">
-          <td>
-            <p class="text-md font-semibold tracking-wide text-center text-gray-800 bg-gray-50 uppercase border-b pr-4">total</p>
+          <td class="p-0">
+            <p class="text-md font-semibold tracking-wide text-center text-gray-800 bg-gray-50 uppercase pr-4">total</p>
         </td>
-          <td class="text-sm border-b text-center">
+          <td class="text-sm border text-center">
               <p class="text-xs text-gray-900 pr-4" style="{% if total.stables < 10000 %}color:red;{% endif %}">{{ total.stables }}</p>
           </td>
-          <td class="text-sm border-b text-center">
+          <td class="text-sm border text-center">
               <p class="text-xs text-gray-900 pr-4" style="{% if total.stables < 10000 %}color:red;{% endif %}">{{ total.testings }}</p>
           </td>
-          <td class="text-sm border-b text-center">
+          <td class="text-sm border text-center">
               <p class="text-xs text-gray-900 pr-4" style="{% if total.stables < 10000 %}color:red;{% endif %}">{{ total.unstables }}</p>
           </td>
         </tr>
@@ -79,7 +79,7 @@ Package database last update status.
     <h2 class="text-lg text-gray-800 md:text-lg text-center font-bold mb-6">
         Database Update Status
     </h2></br>
-    <table class="w-full">
+    <table class="w-full bg-cyan-200">
           <tr class="text-sm tracking-wide text-left text-gray-800 bg-gray-50 uppercase border-b">
             <th class="px-4 py-3 text-center">Arch</th>
             <th class="px-4 py-3 text-center">Branch</th>
