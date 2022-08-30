@@ -103,7 +103,7 @@
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
                       <li>
-                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="w-full px-10 py-4 block font-medium tracking-wide bg-blue-gray-700 hover:bg-gray-100 hover:text-gray-700 text-teal-50">{{ subitem.title }}</a> 
+                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="w-full px-10 py-4 block font-medium tracking-wide bg-blue-gray-700 hover:bg-gray-50 hover:text-gray-700 text-teal-50">{{ subitem.title }}</a> 
                       </li>
                       {% endwith %}
                   {% endfor %}
@@ -136,7 +136,7 @@
                   </a>
                 </div>
                 <div>
-                  <button id="btn-close-menu" aria-label="Close Menu" title="Close Menu" class="p-2 -mt-2 -mr-2 rounded bg-gray-300 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:shadow-outline">
+                  <button id="btn-close-menu" aria-label="Close Menu" title="Close Menu" class="p-2 -mt-2 -mr-2 rounded bg-gray-300 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:shadow-outline">
                     <svg class="w-5 text-gray-900" viewBox="0 0 24 24">
                       <path
                         fill="currentColor"
