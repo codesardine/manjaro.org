@@ -99,14 +99,14 @@
                   <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[1px] text-teal-100 hover:text-gray-200">{{ item.title }}</a>
                 {% else %}
                   <button class="{{ item.title }} font-bold inline-flex capitalize tracking-wide border-b-[1px] border-transparent hover:border-gray-50 hover:border-b-[1px] text-teal-100 hover:text-gray-50"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
-                  <ul id="submenu{{ item.title }}" class="mt-[5px] text-sm dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl p-4 bg-gray-50">
+                  <ul id="submenu{{ item.title }}" class="mt-[5px] dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl p-4 bg-gray-50">
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
-                      <li class="relative">
-                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="ml-4 w-full px-10 py-4 block text-lg tracking-wide text-gray-700">
+                      <li class="relative text-sm">
+                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="ml-8 w-full px-10 py-4 block text-lg tracking-wide text-gray-700">
                             {{ subitem.icon|safe }}
                             {{ subitem.title }}
-                            <span class="block text-sm text-gray-500">{{ subitem.description }}</span>
+                            <span class="block text-xs text-gray-500">{{ subitem.description }}</span>
                           </a> 
                       </li>
                       {% endwith %}
