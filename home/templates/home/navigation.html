@@ -103,7 +103,7 @@
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
                       <li class="relative text-sm">
-                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="ml-8 w-full px-10 py-4 block text-lg tracking-wide text-gray-700">
+                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="ml-8 w-full pl-10 pr-5 py-4 block text-lg tracking-wide text-gray-700">
                             {{ subitem.icon|safe }}
                             {{ subitem.title }}
                             <span class="block text-xs text-gray-500">{{ subitem.description }}</span>
