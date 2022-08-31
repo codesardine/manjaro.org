@@ -12,6 +12,13 @@
     }
 }
 
+.dropdown i {
+    font-size: 2.5rem;
+    margin-left: -48px;
+    margin-top: 4px;
+    position: absolute;
+}
+
 .brand { 
     font-family: 'Comfortaa', cursive;
 }

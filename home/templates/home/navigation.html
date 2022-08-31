@@ -92,25 +92,29 @@
         </div>
       </div>
       <div class="nav relative flex items-center justify-between lg:justify-start lg:ml-40 lg:space-x-16">
-        <ul class="items-center hidden space-x-8 lg:flex text-md font-bold capitalize">
+        <ul class="items-center hidden lg:flex text-md font-bold capitalize">
           {% for item in left_navigation.menu_items.all %}
             <li>
                 {% if not item.submenu %}
                   <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[1px] text-teal-100 hover:text-gray-200">{{ item.title }}</a>
                 {% else %}
                   <button class="{{ item.title }} font-bold inline-flex capitalize tracking-wide border-b-[1px] border-transparent hover:border-gray-50 hover:border-b-[1px] text-teal-100 hover:text-gray-50"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
-                  <ul id="submenu{{ item.title }}" class="text-sm dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
+                  <ul id="submenu{{ item.title }}" class="mt-[5px] text-sm dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl p-4 bg-gray-50">
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
-                      <li>
-                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="w-full px-10 py-4 block font-medium tracking-wide bg-blue-gray-700 hover:bg-gray-50 hover:text-gray-700 text-teal-50">{{ subitem.title }}</a> 
+                      <li class="relative">
+                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="ml-4 w-full px-10 py-4 block text-lg tracking-wide text-gray-700">
+                            {{ subitem.icon|safe }}
+                            {{ subitem.title }}
+                            <span class="block text-sm text-gray-500">{{ subitem.description }}</span>
+                          </a> 
                       </li>
                       {% endwith %}
                   {% endfor %}
                   </ul>
                 {% endif %}
               </li>
-          {% endfor %}
+          {% endfor %} 
         </ul>  
         <ul class="justify-end w-full hidden lg:flex">
           <a href="https://manjaro.org/download/" class="inline-block self-end text-sm px-4 py-2 leading-none border font-semibold rounded text-gray-50 border-gray-50 hover:border-transparent hover:text-teal-500 hover:bg-gray-50 mt-4 lg:mt-0">
