@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     btnCloseMenu.addEventListener("click", function() {
         const menu = document.getElementById("menu")
-        menu.classList.add("hidden")
+        menu.classList.add("translate-x-[-150%]")
     })
 
     btnOpenMenu.addEventListener("click", function() {
         const menu = document.getElementById("menu")
-        menu.classList.remove("hidden")
+        menu.classList.remove("translate-x-[-150%]")
     })
 
     document.querySelectorAll('code').forEach((el) => {

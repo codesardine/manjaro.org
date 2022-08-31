@@ -5,6 +5,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@media all and (max-width: 480px) {
+    #menu{
+      width: 100%;
+    }
+}
+
 .brand { 
     font-family: 'Comfortaa', cursive;
 }
