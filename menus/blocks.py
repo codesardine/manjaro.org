@@ -13,7 +13,7 @@ class SubmenuBlock(blocks.StructBlock):
                     )
                 ),
                 ("icon", blocks.CharBlock(
-                    max_length=50,
+                    max_length=150,
                     blank=True
                     )
                 ),
@@ -24,7 +24,7 @@ class SubmenuBlock(blocks.StructBlock):
                 ),
                 ("url", blocks.CharBlock(
                     max_length=500,
-                    default='<i class="fa-brands fa-fonticons"></i>'
+                    blank=True
                     )
                 ),
                 ("open_in_new_tab", blocks.BooleanBlock(required=False))
