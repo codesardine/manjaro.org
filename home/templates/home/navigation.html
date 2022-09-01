@@ -162,7 +162,7 @@
                         {% with subitem=block.value.submenu_item %}
                           {%  if subitem.title %}
                             <li>
-                                <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="py-4 px-6 text-ellipsis whitespace-nowrap h-12 capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{ subitem.title }}</a>
+                                <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="py-4 px-6 text-ellipsis whitespace-nowrap h-12 capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{ subitem.title }}</a>
                             </li>
                           {% endif %}
                         {% endwith %}
@@ -178,7 +178,7 @@
                       {% with subitem=block.value.submenu_item %}
                         {%  if subitem.title %}
                           <li>
-                              <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.link }}" title="{{ subitem.title }}" class="py-4 px-6 text-ellipsis whitespace-nowrap h-12 capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{ subitem.title }}</a>
+                              <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="py-4 px-6 text-ellipsis whitespace-nowrap h-12 capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{ subitem.title }}</a>
                           </li>
                         {% endif %}
                       {% endwith %}
