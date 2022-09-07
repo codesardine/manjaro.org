@@ -198,7 +198,7 @@
         </div>
       </div>
     </div>
-    <a href="#shells" class="arrow-links text-6xl hidden xl:block" aria-label="shells">
+    <a href="#software" class="arrow-links text-6xl hidden xl:block" aria-label="shells">
       <div class="chevron-container">
         <div class="chevron"></div>
         <div class="chevron"></div>
@@ -207,48 +207,40 @@
     </a>
   </div>
 
-  <div id="shells" class="relative lg:min-h-screen flex items-center justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-    <div class="grid gap-2 lg:grid-cols-2">
-      <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
-        <div class="flex items-center justify-center">
-          <div class="flex-col items-end hidden lg:flex">
-            <picture>
-              <source srcset="{% static 'img/cloud.webp' %}" type="image/webp">
-              <source srcset="{% static 'img/cloud.png' %}" type="image/png"> 
-              <img
-              class="object-cover mb-6"
-              style="filter: drop-shadow(4px 4px 6px black);"
-              src="{% static 'img/cloud.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-              alt="{{ page.shells_title }}" width="512" height="254"
-            />
-            </picture>
-          </div>
-        </div>
-      </div>
-        <div class="max-w-xl mb-6 text-center">
-          <div class="w-full flex items-center justify-center mb-2">
-            <picture>
-              <source srcset="{% static 'img/shells.webp' %}" type="image/webp">
-              <source srcset="{% static 'img/shells.png' %}" type="image/png"> 
-              <img src="{% static 'img/shells.png' %}" width="170" height="72">
-            </picture>
-        </div>
-          <h2 class="mb-6 uppercase font-sans text-3xl font-bold tracking-tight w-full text-gray-200 sm:text-4xl sm:leading-none">
-            <span class="inline-block text-teal-600">cloud solution</span><br class="hidden md:block">
-            <span class="text-yellow-accent-700">{{ page.shells_title }}</span>
-            
-          </h2>  
-          <p class="text-base text-gray-200 md:text-lg mb-2">
-            <span class="text-gray-200 font-semibold"><span class="brand">manjaro</span> running in the cloud with Shells</span> {{ page.shells_intro }}
-          </p>
-          <a href="{{ page.shells_url }}" aria-label="{{ page.shells_title }}" class="font-semibold  text-cyan-accent-700 hover:text-cyan-accent-400">
-              <i class="text-sm fa-solid fa-link w-5 h-5"></i>
-            Learn More
-        </a>
-        </div>
-        <div>
-      </div>
+  <div id="software" class="relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
+    <h2 class="w-full uppercase mb-2 font-sans text-center text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl sm:leading-none">
+      {{ page.partners_title }}<br class="hidden md:block" />
+      <span class="inline-block text-teal-600">Linux</span>
+      <span class="inline-block text-yellow-accent-700">Software</span>
+    </h2>
+    <p class="text-gray-300 mb-5 text-center text-2xl font-semibold p-2">
+      {{ page.software_intro }}
+    </p>
+    <div class="flex items-center justify-center ">
+    {% with blocks=page.software %}
+    <div class="flex flex-wrap gap-4 items-baseline justify-center">
+      {% for block in blocks %}
+        {% if not block.value.software.hidden %}
+          <div class="overflow-hidden transition-shadow duration-300 bg-white rounded p-4 max-w-full md:max-w-sm">
+            {% image block.value.software.image original as soft_image %}
+            <img src="{{ soft_image.url }}" class="object-contain w-full h-64 rounded" alt="" />
+
+            <div class="py-5 text-center">
+              <h3 class="inline-block mb-3 text-black capitalize transition-colors duration-200 text-2xl font-bold leading-5">{{ block.value.software.title }}</h3>
+              <p class="mb-4 text-gray-700 min-h-[155px]">
+                {{ block.value.software.description }}
+              </p>
+              <div class="text-center">
+                <a target="_blank" href="{{ block.value.software.url }}" class="inline-block mb-3 transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
+                  <i class="text-sm fa-solid fa-link w-5 h-5 mr-2"></i>Get <span class="capitalize">{{ block.value.software.title }}</span></a>
+              </div>
+            </div>
+          </div>    
+        {% endif %}        
+      {% endfor %}
     </div>
+    {% endwith %}  
+    </div> 
   </div>
 
   <div id="error" class="fixed bg-orange-900 p-4 hidden">

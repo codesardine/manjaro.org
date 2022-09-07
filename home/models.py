@@ -622,9 +622,7 @@ class HomePage(Page):
     partners_intro = models.TextField(blank=True, max_length=350)
     partners_url = models.URLField(blank=True)
 
-    shells_title = models.CharField(default='', blank=True, max_length=50)
-    shells_intro = models.TextField(blank=True, max_length=350)
-    shells_url = models.URLField(blank=True)
+    software_intro = models.TextField(blank=True, max_length=350)
 
     content_panels = Page.content_panels + [
         FieldPanel("manjaro_title"),
@@ -632,9 +630,6 @@ class HomePage(Page):
         FieldPanel("partners_title"),
         FieldPanel("partners_intro"),
         FieldPanel("partners_url"),
-        FieldPanel("shells_title"),
-        FieldPanel("shells_intro"),
-        FieldPanel("shells_url"),
         StreamFieldPanel("content"),
     ]
 
@@ -646,8 +641,21 @@ class HomePage(Page):
         blank=True,
     )
 
+    software = StreamField(
+        [
+            ("software", blocks.SoftwareBlock()),
+        ],
+        null=True,
+        blank=True,
+    )
+
     affiliate_panels = [
         StreamFieldPanel("affiliate"),
+    ]
+
+    software_panels = [
+        FieldPanel("software_intro"),
+        StreamFieldPanel("software"),
     ]
 
     keywords = models.CharField(default='', blank=True, max_length=100)
@@ -655,6 +663,7 @@ class HomePage(Page):
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading=('Content')),
         ObjectList(affiliate_panels, heading=('Affiliate')),
+        ObjectList(software_panels, heading=('Software')),
         ObjectList(Page.promote_panels, heading=('Promote')),
         ObjectList(Page.settings_panels, heading=('Settings')),
         YoastPanel(

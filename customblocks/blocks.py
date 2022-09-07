@@ -1,4 +1,3 @@
-from email.policy import default
 from wagtail.core import blocks
 from wagtail.core.templatetags.wagtailcore_tags import richtext
 from wagtail.images.blocks import ImageChooserBlock
@@ -69,6 +68,23 @@ class AffiliateBlock(blocks.StructBlock):
         template = "affiliate-component.html"
         icon = "user"
         label = "Affiliate"
+
+
+class SoftwareBlock(blocks.StructBlock):
+
+    software = blocks.StructBlock(
+            [   ("title", blocks.CharBlock(required=True)),
+                ("hidden", blocks.BooleanBlock(required=False, default=False, help_text="hide this promotion")),
+                ("url", blocks.URLBlock(required=True)),
+                ("description", blocks.TextBlock(required=True)),
+                ("image", ImageChooserBlock(required=True)),
+            ]
+          )
+
+    class Meta:
+        template = "software-component.html"
+        icon = "user"
+        label = "Software"
 
 
 
