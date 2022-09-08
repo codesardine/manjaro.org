@@ -59,16 +59,12 @@
                     <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
                         <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" 
                         class="w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 hover:text-gray-900 hover:border-gray-900">
-                          {% if "donate" in item.title %}
-                            <i class="fa-solid fa-hand-holding-dollar"></i>
-                          {% elif "merchandise" in item.title.lower %}
+                          {% if "merchandise" in item.title.lower %}
                             <i class="fa-solid fa-gifts"></i>
                           {% elif "hardware" in item.title.lower %}
                             <i class="fa-solid fa-microchip"></i>
-                          {% elif "partner with us" in item.title.lower %}
-                            <i class="fa-solid fa-handshake-simple"></i>
-                          {% elif "cloud" in item.title.lower %}
-                            <i class="fa-solid fa-cloud"></i>
+                          {% elif "linux" in item.title.lower %}
+                            <i class="fa-brands fa-linux"></i>
                           {% endif %}
                         {{ item.title }}
                       </a>
