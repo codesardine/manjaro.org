@@ -87,4 +87,20 @@ class SoftwareBlock(blocks.StructBlock):
         label = "Software"
 
 
+class UrlBlock(blocks.StructBlock):
+
+    video = blocks.StructBlock(
+            [   ("title", blocks.CharBlock(required=True)),
+                ("hidden", blocks.BooleanBlock(required=False, default=False, help_text="hide this video")),
+                ("url", blocks.URLBlock(required=True)),
+                ("description", blocks.TextBlock(required=True)),
+            ]
+          )
+
+    class Meta:
+        template = "url-component.html"
+        icon = "user"
+        label = "Videos"
+
+
 

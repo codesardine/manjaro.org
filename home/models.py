@@ -319,10 +319,23 @@ class Hardware(Page):
         StreamFieldPanel("content"),
     ]
 
+    reviews = StreamField(
+        [
+            ("reviews", blocks.UrlBlock()),        
+        ],
+        null=True,
+        blank=True,
+    )
+
+    reviews_panels = [
+        StreamFieldPanel("reviews"),
+    ]
+
     keywords = models.CharField(default='', blank=True, max_length=150)
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading=('Content')),
+        ObjectList(reviews_panels, heading=('Video Reviews')),
         ObjectList(Page.promote_panels, heading=('Promote')),
         ObjectList(Page.settings_panels, heading=('Settings')),
         YoastPanel(
