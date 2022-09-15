@@ -255,10 +255,6 @@
         width: 100%;
         height: 250px;
     }
-
-    & p a {
-        position:absolute;
-    }
 }
 
  #avatar {
