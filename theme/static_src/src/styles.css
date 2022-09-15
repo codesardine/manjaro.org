@@ -261,6 +261,17 @@
      max-width: 80px;
  }
 
+ /* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
 .hover-neon:hover {
     & .hover-red {
     filter: drop-shadow(1px 1px 2px #ff4081) drop-shadow(-1px -1px 2px #ff4081)

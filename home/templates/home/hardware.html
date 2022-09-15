@@ -32,7 +32,7 @@
           {% include_block block %}
     </div>
 {% endfor %}
-<div class="overflow-hidden mx-auto sm:max-w-[370px] md:max-w-[746px] lg:max-w-[1104px]">
+<div class="overflow-hidden mx-auto max-w-[360px] md:max-w-[720px] lg:max-w-[1084px]">
     <div class="max-w-xl md:mx-auto sm:text-center px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
       <div>
         <span class="relative inline-block">
@@ -49,10 +49,11 @@
         What are media reviewers saying about manjaro hardware
       </p>
     </div>
-    <div class="flex justify-center">
-        <div class="grid grid-flow-col auto-cols-max gap-4 mb-8 overflow-y-auto touch-auto p-4 mx-auto">
+    <div class="flex justify-center relative">
+        <i class="fa-solid fa-arrow-left text-2xl mt-[13.4rem] pt-[6px] px-2 left-4 h-[37px] bg-red-400 absolute rounded-full text-gray-100"></i>
+        <div id="scroll" class="grid grid-flow-col auto-cols-max gap-4 mb-8 overflow-y-auto touch-auto scroll-smooth no-scrollbar py-6 mx-auto">
             {% for block in page.reviews %}
-            <div target="_blank" class="inline-block overflow-hidden bg-white rounded-xl shadow-sm w-[350px]">
+            <div class="inline-block overflow-hidden bg-white rounded-xl shadow-sm max-w-[350px]">
                 <div class="flex flex-col h-full">
                     <iframe width="100%" height="210" src="https://www.youtube-nocookie.com/embed/{{ block.value.video.embed_code }}?enablejsapi=1&origin=https://manjaro.org" frameborder="0" allow="encrypted-media" allowfullscreen>
                     </iframe>          
@@ -68,6 +69,20 @@
             </div>  
         {% endfor %}    
         </div>
+        <i class="fa-solid fa-arrow-right text-2xl mt-[13.4rem] pt-[6px] px-2 h-[37px] right-4 bg-red-400 absolute rounded-full text-gray-100"></i>
     </div>
 </div>
+<script>
+    const right = document.querySelector(".fa-arrow-right")
+    const left = document.querySelector(".fa-arrow-left")
+
+    right.addEventListener("click", function() {
+        document.querySelector("#scroll").scrollLeft += 366;
+        event.preventDefault();
+    })
+    left.addEventListener("click", function() {
+        document.querySelector("#scroll").scrollLeft -= 366;
+        event.preventDefault();
+    })
+</script>
 {% endblock %}
