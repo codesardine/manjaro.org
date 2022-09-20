@@ -362,7 +362,7 @@ class Features(Page):
     testing_intro =  models.TextField(blank=True, max_length=350)
     stable_intro =  models.TextField(blank=True, max_length=350)
 
-    pamac_intro =  models.TextField(blank=True, max_length=350)
+    pamac_intro =  models.TextField(blank=True, max_length=500)
     package_formats_intro =  models.TextField(blank=True, max_length=350)
     updates_intro =  models.TextField(blank=True, max_length=350)
     aur_intro =  models.TextField(blank=True, max_length=450)
