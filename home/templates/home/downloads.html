@@ -124,8 +124,17 @@
               </picture>
               <div class="flex-grow border border-t-0 rounded-b bg-gray-50">
                   <div class="p-5">
-                    <h4 class="font-semibold leading-5 relative uppercase text-center">
-                      {{ title }} Desktop <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
+                    <h4 class="font-semibold leading-5 relative uppercase text-center text-deep-purple-accent-400 hover:text-deep-purple-800">
+                      <a target="_blank cursor-pointer"
+                      {% if "xfce" in title.lower %}  
+                        href="https://www.xfce.org/"
+                      {% elif "plasma" in title.lower %}
+                        href="https://kde.org/plasma-desktop/"
+                      {% elif "gnome" in title.lower %}
+                        href="https://www.gnome.org/"
+                      {% endif %}
+                      >
+                      {{ title }} Desktop </a><button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
                       {% if desktop.date %}
                           <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
                       {% endif %}
@@ -285,11 +294,28 @@
       <div class="flex-grow border border-t-0 rounded-b bg-gray-50">
           <div class="p-5">
           <h3 class="font-semibold leading-5 relative uppercase text-center">
+            
+            {% if "xfce" in arm_title.lower %}  
+            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://www.xfce.org/">
+            {% elif "plasma" in arm_title.lower %}
+            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://kde.org/plasma-desktop/">
+            {% elif "gnome" in arm_title.lower %}
+            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://www.gnome.org/">
+            {% elif "phosh" in arm_title.lower %}
+            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://gitlab.gnome.org/World/Phosh/phosh">
+            {% elif "mobile" in arm_title.lower %}
+            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://plasma-mobile.org/">
+            {% elif "mate" in arm_title.lower %}
+            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://mate-desktop.org/">
+            {% elif "sway" in arm_title.lower %}
+            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://swaywm.org/">
+            {% endif %}
+
             {{ arm_title }}
             {% if "phosh" in arm_title.lower or "mobile" in arm_title.lower%}
             {% elif "minimal" in arm_title.lower or "sway" in arm_title.lower %}            
             {% else %}
-            Desktop
+            Desktop </a>
             {% endif %} <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
             {% if arm_desktop.date %}
                 <span class="text-xs p-1 float-right">Updated: <time>{{ arm_desktop.date }}</time></span>
@@ -393,10 +419,21 @@
               <div class="flex-grow border border-t-0 rounded-b bg-gray-50">
                   <div class="p-5">
                     <h4 class="font-semibold leading-5 uppercase text-center">
+                      {% if "cinnamon" in title.lower %}
+                      <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://en.wikipedia.org/wiki/Cinnamon_(desktop_environment)">
+                      {% elif "i3" in title.lower %}
+                      <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://i3wm.org/">
+                      {% elif "budgie" in title.lower %}
+                      <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://github.com/BuddiesOfBudgie/budgie-desktop">
+                      {% elif "mate" in title.lower %}
+                      <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://mate-desktop.org/">
+                      {% elif "sway" in title.lower %}
+                        <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://swaywm.org/">
+                      {% endif %}
                       {{ title }}
                       {% if "i3" in title.lower or "sway" in title.lower %}            
                       {% else %}
-                      Desktop
+                      Desktop </a>
                       {% endif %} <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
                       {% if desktop.date %}
                           <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
