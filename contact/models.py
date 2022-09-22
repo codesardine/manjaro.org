@@ -1,4 +1,6 @@
 from django.db import models
+from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
+
 
 from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import (
@@ -26,8 +28,6 @@ class FormField(AbstractFormField):
 class ContactPage(WagtailCaptchaEmailForm):
 
     template = "contact.html"
-    # This is the default path.
-    # If ignored, Wagtail adds _landing.html to your template name
     landing_page_template = "contact-landing.html"
 
     intro = RichTextField(blank=True)
@@ -46,3 +46,26 @@ class ContactPage(WagtailCaptchaEmailForm):
             FieldPanel("subject"),
         ], heading="Email"),
     ]
+
+
+    no_html = models.BooleanField(default=False, help_text="Do not allow html")
+    allowed_languages = models.BooleanField(help_text="Only allow German and English", default=False)
+    min_message_characters = models.IntegerField(help_text="allowed characters", default=200)
+    no_links = models.BooleanField(default=False, help_text="Do not allow links")
+    only_bussiness_addresses = models.BooleanField(default=False, help_text="Only allow Bussiness Addresses in company contact")
+    min_name_characters = models.IntegerField(help_text="allowed characters", default=7)
+
+
+    security_panels = [
+        FieldPanel('no_links'),
+        FieldPanel('no_html'),
+        FieldPanel('allowed_languages'),
+        FieldPanel('only_bussiness_addresses'),
+        FieldPanel('min_message_characters'),
+        FieldPanel('min_name_characters'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading=('Content')),
+        ObjectList(security_panels, heading=('Security')),
+    ]) 
