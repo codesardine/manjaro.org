@@ -1,6 +1,6 @@
 from django.db import models
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
-
+from wagtail.core.models import Page
 
 from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import (
@@ -68,4 +68,6 @@ class ContactPage(WagtailCaptchaEmailForm):
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading=('Content')),
         ObjectList(security_panels, heading=('Security')),
+        ObjectList(Page.promote_panels, heading=('Promote')),
+        ObjectList(Page.settings_panels, heading=('Settings')),
     ]) 
