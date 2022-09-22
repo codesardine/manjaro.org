@@ -9,6 +9,18 @@
     textarea {
         height: auto;
     }
+
+    form ul ul {
+        margin-bottom: 3rem;
+    }
+
+    form * {
+        text-transform: capitalize;
+    }
+
+    .loading * {
+       cursor: progress;
+    }
   </style>
 {% endblock %}
 
@@ -16,7 +28,7 @@
 <div class="relative max-w-screen-md px-4 mx-auto xl:max-w-screen-lg sm:px-8">
     <div class="relative bg-gray-50">
         <div class="sm:px-12 ">
-            <form>
+            <form class="py-4">
                 <ul>
                     {{ form }}
                 </ul>
@@ -27,6 +39,16 @@
             </form>            
         </div>
     </div>
+</div>
+
+<div id="error-msg" class="bg-red-100 text-red-700 p-4 fixed bottom-0 w-full z-10 hidden" role="alert">
+    <p class="font-bold">Warning</p>
+    <p></p>
+  </div>
+
+<div id="info-msg" class="bg-blue-100 text-blue-700 p-4 fixed bottom-0 w-full z-10 hidden" role="alert">
+<p class="font-bold">Validating information</p>
+<p></p>
 </div>
 <script>
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -66,30 +88,110 @@ window.addEventListener('DOMContentLoaded', (event) => {
             )
 
         const form = document.querySelector('form')
-        const token = '{% csrf_token %}'
-        console.log(token)
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            let text = form.querySelector("textarea")
-            let parser = new DOMParser();
-            let doc = parser.parseFromString(text.value, 'text/html');
-            let en_or_gb = /^[a-zA-Z-äöüÄÖÜß+@!%?.’,'(): \r\n]+$/
+            let error = document.querySelector("#error-msg").getElementsByTagName("p")[0]
+            let info = document.querySelector("#info-msg").getElementsByTagName("p")[0]
+            error.parentElement.classList.add("hidden")
+            info.parentElement.classList.remove("hidden")
+            document.getElementsByTagName("body")[0].classList.add("loading")
+            setTimeout( function() {
+                let message = form.querySelector("#id_message")
+                let company = document.querySelector("#id_contact_0")
+                let project = document.querySelector("#id_contact_1")
+                let errors = [0,0,0,0,0,0]
 
-            if (text.value.length < 200) {
-                alert("A minimum of 200 characters is needed.")
-            } else if (doc.body.children.length != 0) {
-                alert("HTML not allowed.")
-            } else if (!text.value.match(en_or_gb)) {
-                alert("There is some invalid characters, only English or German languange is accepted.")
-            } else {
-                const btn = form.querySelector("button")
-                btn.insertAdjacentHTML("beforebegin", token)
-                form.method="POST"
-                form.action="{% pageurl page %}"
-                form.submit()
-            }
-        });
+                if (company.checked) {
+                    let companyName = form.querySelector("#id_company")
+                    if (companyName.value.length < 4) {
+                        error.parentElement.classList.remove("hidden")
+                        error.textContent = "Company name needs more than 3 characters"
+                        errors[3] = 1
+                    }
+
+                    {% if page.only_bussiness_addresses %}
+                    let freeMailProviders = ["yahoo", "gmail", "proton.me", "protonmail", "aol", "mail.ru", "hotmail", "yandex"]
+                    let email = document.querySelector("#id_email")
+                    for (let name of freeMailProviders) {
+                        if (email.value.includes(name)) {
+                            error.parentElement.classList.remove("hidden")
+                            error.textContent = "Please insert a Business Email Address"
+                            errors[4] = 1
+                            break;
+                        }
+                    }
+                    {% endif %}
+                    
+                }
+
+                {% if page.allowed_languages %}
+                let en_or_gb = /^[a-zA-Z-äöüÄÖÜß+@!%?.’,'(): \r\n]+$/
+                if (!message.value.match(en_or_gb)) {
+                    error.parentElement.classList.remove("hidden")
+                    error.textContent = "Invalid characters, only English or German characters are allowed"
+                    errors[0] = 1
+                } else {
+                    errors[0] = 0
+                }
+                {% endif %}
+
+                {% if page.min_message_characters %}
+                if (message.value.length < "{{ page.characters }}") {
+                    error.parentElement.classList.remove("hidden")
+                    error.textContent = "A minimum of 200 characters is needed in the Message field"
+                    errors[1] = 1
+                } else {
+                    errors[1] = 0
+                }
+                {% endif %}
+
+                {% if page.min_name_characters %}
+                let name = document.querySelector("#id_name") || document.querySelector("#id_full_name")
+                if (name.value.length < "{{ page.min_name_characters }}") {
+                    error.parentElement.classList.remove("hidden")
+                    error.textContent = "A minimum of {{ page.min_name_characters }} characters is needed in the Name field"
+                    errors[1] = 1
+                } else {
+                    errors[1] = 0
+                }
+                {% endif %}
+                
+                {% if page.no_html %}
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(message.value, 'text/html');
+                if (doc.body.children.length != 0) {
+                    error.textContent = "HTML not allowed"
+                    errors[2] = 1
+                } else {
+                    errors[2] = 0
+                }
+                {% endif %}
+
+                {% if page.no_links %}
+                if (message.value.includes("http") || message.value.includes("/")) {
+                    error.textContent = "Links or slashes not allowed"
+                    errors[5] = 1
+                } else {
+                    errors[5] = 0
+                }
+                {% endif %}
+            
+                if (!errors.includes(1)) {
+                    error.parentElement.classList.add("hidden")
+                    setTimeout(
+                        function() {
+                            const btn = form.querySelector("button")
+                            btn.insertAdjacentHTML("beforebegin", '{% csrf_token %}')
+                            form.method="POST"
+                            form.action="{% pageurl page %}"
+                            form.submit()
+                        }, 2000)
+                } 
+                document.getElementsByTagName("body")[0].classList.remove("loading")  
+                info.parentElement.classList.add("hidden") 
+        }, 4000) 
     })
+})
 </script>
 {% endblock %}
 
