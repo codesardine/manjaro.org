@@ -176,7 +176,7 @@
           <p class="text-base text-gray-200 md:text-lg mb-2">
             {{ page.partners_intro }}
           </p>
-          <a href="/contact-for-partners/" aria-label="contact for partners" class="inline-flex items-center font-semibold  text-cyan-accent-700 hover:text-cyan-accent-400">
+          <a href="/contact/" aria-label="contact for partners" class="inline-flex items-center font-semibold  text-cyan-accent-700 hover:text-cyan-accent-400">
             <i class="text-sm fa-solid fa-link w-5 h-5 pt-[2px] mr-2"></i>Get in touch
           </a>
         </div>
@@ -245,7 +245,16 @@
   <div id="error" class="fixed bg-orange-900 p-4 hidden">
     <P class="text-gray-50">This page does not exist, you have been redirected to the home page.</P>
   </div>
-
+<div>
+  <a id="contact" class="text-3xl text-gray-100 bg-blue-600 fixed bottom-4 left-4 p-4 rounded-full h-[62px] z-20" href="/contact/" aria-label="General Contact" ><i class="fa-solid fa-comment"></i></a>
+</div>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+  tippy('#contact', {
+      content: "Contact Us"
+    });
+</script>
 <script>
   const links = document.querySelectorAll(".arrow-links");
   const links1 = document.querySelectorAll(".link");
