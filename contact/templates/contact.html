@@ -96,13 +96,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             info.parentElement.classList.remove("hidden")
             document.getElementsByTagName("body")[0].classList.add("loading")
             setTimeout( function() {
-                let message = form.querySelector("#id_message")
+                let message = document.querySelector("#id_message")
                 let company = document.querySelector("#id_contact_0")
                 let project = document.querySelector("#id_contact_1")
                 let errors = [0,0,0,0,0,0]
 
                 if (company.checked) {
-                    let companyName = form.querySelector("#id_company")
+                    let companyName = document.querySelector("#id_company")
                     if (companyName.value.length < 4) {
                         error.parentElement.classList.remove("hidden")
                         error.textContent = "Company name needs more than 3 characters"
@@ -136,7 +136,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 {% endif %}
 
                 {% if page.min_message_characters %}
-                if (message.value.length < "{{ page.characters }}") {
+                if (message.value.length < "{{ page.min_message_characters }}") {
                     error.parentElement.classList.remove("hidden")
                     error.textContent = "A minimum of 200 characters is needed in the Message field"
                     errors[1] = 1
@@ -184,12 +184,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                             btn.insertAdjacentHTML("beforebegin", '{% csrf_token %}')
                             form.method="POST"
                             form.action="{% pageurl page %}"
+                            info.parentElement.classList.add("hidden") 
                             form.submit()
                         }, 2000)
-                } 
+                } else {
+                    setTimeout(
+                        function() {
+                            info.parentElement.classList.add("hidden") 
+                        }, 2000)
+                }
                 document.getElementsByTagName("body")[0].classList.remove("loading")  
-                info.parentElement.classList.add("hidden") 
-        }, 4000) 
+        }, 2000) 
     })
 })
 </script>
