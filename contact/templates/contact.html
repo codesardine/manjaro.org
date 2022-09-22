@@ -95,61 +95,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
             error.parentElement.classList.add("hidden")
             info.parentElement.classList.remove("hidden")
             document.getElementsByTagName("body")[0].classList.add("loading")
+
             setTimeout( function() {
                 let message = document.querySelector("#id_message")
                 let company = document.querySelector("#id_contact_0")
                 let project = document.querySelector("#id_contact_1")
                 let errors = [0,0,0,0,0,0]
 
-                if (company.checked) {
-                    let companyName = document.querySelector("#id_company")
-                    if (companyName.value.length < 4) {
-                        error.parentElement.classList.remove("hidden")
-                        error.textContent = "Company name needs more than 3 characters"
-                        errors[3] = 1
-                    }
-
-                    {% if page.only_bussiness_addresses %}
-                    let freeMailProviders = ["yahoo", "gmail", "proton.me", "protonmail", "aol", "mail.ru", "hotmail", "yandex"]
-                    let email = document.querySelector("#id_email")
-                    for (let name of freeMailProviders) {
-                        if (email.value.includes(name)) {
-                            error.parentElement.classList.remove("hidden")
-                            error.textContent = "Please insert a Business Email Address"
-                            errors[4] = 1
-                            break;
-                        }
-                    }
-                    {% endif %}
-                    
-                }
-
-                {% if page.allowed_languages %}
-                let en_or_gb = /^[a-zA-Z-äöüÄÖÜß+@!%?.’,'(): \r\n]+$/
-                if (!message.value.match(en_or_gb)) {
+                {% if page.min_name_characters %}
+                let name = document.querySelector("#id_name") || document.querySelector("#id_full_name")
+                if (name.value.length < "{{ page.min_name_characters }}") {
                     error.parentElement.classList.remove("hidden")
-                    error.textContent = "Invalid characters, only English or German characters are allowed"
+                    error.textContent = "A minimum of {{ page.min_name_characters }} characters is needed in the Name field"
                     errors[0] = 1
                 } else {
                     errors[0] = 0
                 }
                 {% endif %}
 
-                {% if page.min_message_characters %}
-                if (message.value.length < "{{ page.min_message_characters }}") {
+                {% if page.allowed_languages %}
+                let en_or_gb = /^[a-zA-Z-äöüÄÖÜß+@!%?.’,'(): \r\n]+$/
+                if (!message.value.match(en_or_gb)) {
                     error.parentElement.classList.remove("hidden")
-                    error.textContent = "A minimum of 200 characters is needed in the Message field"
-                    errors[1] = 1
-                } else {
-                    errors[1] = 0
-                }
-                {% endif %}
-
-                {% if page.min_name_characters %}
-                let name = document.querySelector("#id_name") || document.querySelector("#id_full_name")
-                if (name.value.length < "{{ page.min_name_characters }}") {
-                    error.parentElement.classList.remove("hidden")
-                    error.textContent = "A minimum of {{ page.min_name_characters }} characters is needed in the Name field"
+                    error.textContent = "Invalid characters, only English or German characters are allowed"
                     errors[1] = 1
                 } else {
                     errors[1] = 0
@@ -170,12 +138,49 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 {% if page.no_links %}
                 if (message.value.includes("http") || message.value.includes("/")) {
                     error.textContent = "Links or slashes not allowed"
-                    errors[5] = 1
+                    errors[3] = 1
                 } else {
-                    errors[5] = 0
+                    errors[3] = 0
                 }
                 {% endif %}
-            
+
+                {% if page.min_message_characters %}
+                if (message.value.length < parseInt("{{ page.min_message_characters }}")) {
+                    error.parentElement.classList.remove("hidden")
+                    error.textContent = "A minimum of 200 characters is needed in the Message field"
+                    errors[4] = 1
+                } else {
+                    errors[4] = 0
+                }
+                {% endif %}
+
+                if (company.checked) {
+                    let companyName = document.querySelector("#id_company")
+                    if (companyName.value.length < 4) {
+                        error.parentElement.classList.remove("hidden")
+                        error.textContent = "Company name needs more than 3 characters"
+                        errors[5] = 1
+                    } else {
+                        errors[5] = 0                        
+                    }
+
+                    {% if page.only_bussiness_addresses %}
+                    let freeMailProviders = ["yahoo", "gmail", "proton.me", "protonmail", "aol", "mail.ru", "hotmail", "yandex"]
+                    let email = document.querySelector("#id_email")
+                    for (let name of freeMailProviders) {
+                        if (email.value.includes(name)) {
+                            error.parentElement.classList.remove("hidden")
+                            error.textContent = "Please insert a Business Email Address"
+                            errors[6] = 1
+                            break;
+                        } else {
+                            errors[6] = 0
+                        }
+                    }
+                    {% endif %} 
+                }
+
+                
                 if (!errors.includes(1)) {
                     error.parentElement.classList.add("hidden")
                     setTimeout(
