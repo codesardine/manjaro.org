@@ -97,7 +97,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             document.getElementsByTagName("body")[0].classList.add("loading")
 
             setTimeout( function() {
-                let message = document.querySelector("#id_message")
+                let message = document.querySelector("#id_message") || document.querySelector("#id_subject")
                 let company = document.querySelector("#id_contact_0")
                 let project = document.querySelector("#id_contact_1")
                 let errors = [0,0,0,0,0,0]
@@ -166,7 +166,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
                     {% if page.only_bussiness_addresses %}
                     let freeMailProviders = ["yahoo", "gmail", "proton.me", "protonmail", "aol", "mail.ru", "hotmail", "yandex"]
-                    let email = document.querySelector("#id_email")
+                    let email = document.querySelector("#id_email") || document.querySelector("#id_your_email")
                     for (let name of freeMailProviders) {
                         if (email.value.includes(name)) {
                             error.parentElement.classList.remove("hidden")
