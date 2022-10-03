@@ -12,6 +12,12 @@
     }
 }
 
+@media all and (min-width: 481px) {
+    #menu {
+      width: 50%;
+    }
+}
+
 .dropdown  {
         & i {
         font-size: 1.5rem;
