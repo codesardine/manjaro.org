@@ -140,6 +140,7 @@ cython_debug/
 # wagtail
 /.vagrant
 /manjaro/settings/local.py
+/manjaro/static
 /static
 *.pyc
 /media
