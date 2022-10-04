@@ -22,10 +22,10 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="preload" as="style" href="/static/css/dist/styles.css">
         <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-        <link rel="stylesheet" href="/static/css/dist/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        {% tailwind_preload_css %}
+        {% tailwind_css %}
         {% block head %}{% endblock %}
         <noscript>
             <div class="fixed bottom-0 left-0 p-5 bg-yellow-800 font-semibold text-white z-40">

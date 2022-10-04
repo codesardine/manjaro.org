@@ -178,6 +178,7 @@ NOCAPTCHA = True
 PUPUT_AS_PLUGIN = True
 
 TAILWIND_APP_NAME = 'theme'
+TAILWIND_CSS_PATH = 'css/styles.css'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
