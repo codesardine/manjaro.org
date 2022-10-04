@@ -142,6 +142,7 @@ cython_debug/
 /manjaro/settings/local.py
 /manjaro/static
 /static
+/theme/static
 *.pyc
 /media
 /Vagrantfile.local
