@@ -142,7 +142,7 @@ cython_debug/
 /manjaro/settings/local.py
 /manjaro/static
 /static
-theme/static/css/styles.css
+/manjaro/theme/static/css/styles.css
 *.pyc
 /media
 /Vagrantfile.local
