@@ -154,7 +154,7 @@
                     </div>
               {% endif %}
               <div class="slide-down flex justify-center border border-t-0 rounded-b absolute h-full w-full bg-blue-gray-900 translate-y-[110%] transition-all duration-300 ease-in-out">
-                  <div class="p-[14px] self-center">
+                  <div class="p-[14px] self-center  w-full">
                     <h4 class="font-semibold leading-5 relative uppercase text-center text-gray-400">
                       {{ title }} Downloads
                       {% if desktop.date %}
@@ -191,9 +191,9 @@
                         </div>
                       </label>
                     </div>                 
-                    <div class="pl-6 pr-2 text-md text-left">
+                    <div class="text-md text-left pt-2 w-full flex justify-center">
                       {% if desktop.minimal.image %}
-                      <ul id="of-minimal-{{ title }}" class="hidden mt-2">
+                      <ul id="of-minimal-{{ title }}" class="hidden">
                         {% if desktop.torrent %}
                         <li class="pb-2 pl-2">
                         <a id="btn-mt" href="{{ desktop.minimal.torrent }}" class="block text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i><span class="text-gray-400 font-semibold text-md pl-3">Torrent</span></a>
@@ -215,7 +215,7 @@
                       </ul>
                       {% endif %}
                       {% if desktop.image %}
-                      <ul id="of-full-{{ title }}" class="hidden mt-2">
+                      <ul id="of-full-{{ title }}" class="hidden">
                         {% if desktop.torrent %}
                         <li class="pb-2 pl-2">
                         <a id="btn-ft" href="{{ desktop.torrent }}" class="block text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i><span class="text-gray-400 font-semibold text-md pl-3">Torrent</span></a>
