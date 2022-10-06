@@ -6,6 +6,26 @@
 
 {% block head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+  .tippy-box {
+    background-color: #0097a7;
+    padding: 4px;
+    border-radius: 50px;
+    color: #fafafa;
+  }
+  .tippy-box[data-placement^='top'] > .tippy-arrow::before {
+    border-top-color: #0097a7;
+  }
+  .tippy-box[data-placement^='bottom'] > .tippy-arrow::before {
+    border-bottom-color: #0097a7;
+  }
+  .tippy-box[data-placement^='left'] > .tippy-arrow::before {
+    border-left-color: #0097a7;
+  }
+  .tippy-box[data-placement^='right'] > .tippy-arrow::before {
+    border-right-color: #0097a7;
+  }
+</style>
 {% endblock %}
 
 {% block title %}
@@ -123,9 +143,9 @@
                 <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
               </picture>
               <div class="bg-gray-100 text-center pt-3 pb-3 relative">
-                <h2 class="uppercase mb-6 font-semibold text-gray-800">{{ title }} Desktop</h2>
+                <h2 class="uppercase mb-4 font-semibold text-gray-800">{{ title }} Desktop</h2>
                 <div class="absolute bottom-[-24%] w-full text-xs">
-                <button onclick="slideDown(this)" class="bg-teal-200 hover:bg-teal-300 text-gray-800 py-2 px-4 rounded font-semibold inline-flex items-center">
+                <button onclick="slideDown(this)" class="mr-3 bg-teal-200 hover:bg-teal-300 text-gray-800 py-2 px-4 rounded font-semibold inline-flex items-center">
                   <i class="fa-solid fa-download mr-2"></i>
                   <span>Download</span>
                 </button>
@@ -179,15 +199,15 @@
                     <div class="flex items-center justify-center w-full mt-6 mb-12">
                       <label for="of-toggle-{{ title }}" class="flex items-center cursor-pointer">
                         <div class="text-right mr-3 text-gray-400 font-semibold">
-                          Full
+                          Minimal
                         </div>
                         <div class="relative">
-                          <input id="of-toggle-{{ title }}" type="checkbox" class="sr-only no-mouse-effect" />
+                          <input id="of-toggle-{{ title }}" type="checkbox" class="sr-only no-mouse-effect" checked/>
                           <div class="w-10 h-4 bg-gray-700 rounded-full shadow-inner ml-2"></div>
                           <div class="dot absolute w-6 h-6 bg-gray-500 rounded-full shadow -left-1 -top-1 ml-2"></div>
                         </div>
-                        <div id="of-toggle-text-{{ title }}" class="text-left ml-3 text-gray-400 font-semibold">
-                          Minimal
+                        <div class="text-left ml-3 text-gray-400 font-semibold">
+                          Full
                         </div>
                       </label>
                     </div>                 
@@ -195,8 +215,8 @@
                       {% if desktop.minimal.image %}
                       <ul id="of-minimal-{{ title }}" class="hidden">
                         {% if desktop.torrent %}
-                        <li class="pb-2 pl-2">
-                        <a id="btn-mt" href="{{ desktop.minimal.torrent }}" class="block text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i><span class="text-gray-400 font-semibold text-md pl-3">Torrent</span></a>
+                        <li class="pb-2 pl-2 pr-2">
+                        <a id="btn-mt" href="{{ desktop.minimal.torrent }}" class="block text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet pl-1"></i><span class="text-gray-400 font-semibold text-md pl-2">Torrent</span></a>
                         </li>
                         {% endif %} 
                         <li class="p-2">
@@ -209,7 +229,7 @@
                         {% endif %}
                         {% if desktop.minimal.checksum %}
                         <li class="p-2">
-                        <a id="btn-mc" href="{{ desktop.minimal.checksum }}" class="block text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double"></i><span class="text-gray-400 font-semibold text-md pl-3">Checksum</span></a>
+                        <a id="btn-mc" href="{{ desktop.minimal.checksum }}" class="block text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double pl-1"></i><span class="text-gray-400 font-semibold text-md pl-2">Checksum</span></a>
                         <li>
                         {% endif %}
                       </ul>
@@ -217,8 +237,8 @@
                       {% if desktop.image %}
                       <ul id="of-full-{{ title }}" class="hidden">
                         {% if desktop.torrent %}
-                        <li class="pb-2 pl-2">
-                        <a id="btn-ft" href="{{ desktop.torrent }}" class="block text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i><span class="text-gray-400 font-semibold text-md pl-3">Torrent</span></a>
+                        <li class="pb-2 pl-2 pr-2">
+                        <a id="btn-ft" href="{{ desktop.torrent }}" class="block text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet pl-1"></i><span class="text-gray-400 font-semibold text-md pl-2">Torrent</span></a>
                         </li>
                         {% endif %} 
                         <li class="p-2">
@@ -231,32 +251,26 @@
                         {% endif %}
                         {% if desktop.checksum %}
                         <li class="p-2">
-                        <a id="btn-fc" href="{{ desktop.checksum }}" class="block text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double"></i><span class="text-gray-400 font-semibold text-md pl-3">Checksum</span></a>
+                        <a id="btn-fc" href="{{ desktop.checksum }}" class="block text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double pl-1"></i><span class="text-gray-400 font-semibold text-md pl-2">Checksum</span></a>
                         <li>
                         {% endif %}
                       </ul>
                       {% endif %}
                     </div>
                     <br>
-                    <script>    
+                    <script>   
                         if (document.getElementById('of-toggle-{{ title }}').checked) {
-                          document.getElementById('of-minimal-{{ title }}').classList.remove("hidden") 
-                          document.getElementById('of-full-{{ title }}').classList.add("hidden")
-                        } else {
                           document.getElementById('of-full-{{ title }}').classList.remove("hidden") 
                           document.getElementById('of-minimal-{{ title }}').classList.add("hidden")
-                        }
-                      document.getElementById('of-toggle-{{ title }}').onchange = function(value) {
-                        if (document.getElementById('of-toggle-{{ title }}').checked) {
+                        } else {                          
                           document.getElementById('of-minimal-{{ title }}').classList.remove("hidden") 
                           document.getElementById('of-full-{{ title }}').classList.add("hidden")
-                        } else {
-                          document.getElementById('of-full-{{ title }}').classList.remove("hidden") 
-                          document.getElementById('of-minimal-{{ title }}').classList.add("hidden")
                         }
-                     };
+                        document.getElementById('of-toggle-{{ title }}').onchange = function(value) {                      
+                            document.getElementById('of-full-{{ title }}').classList.toggle("hidden") 
+                            document.getElementById('of-minimal-{{ title }}').classList.toggle("hidden")
+                        }
                     </script>
-                    
                   </div>
                   <button aria-label="Close" onclick="slideUp(this)" title="Close" class="absolute top-1 right-1 py-2 px-4 text-gray-300 hover:text-gray-100 focus:outline-none focus:outline-green-400">
                     <i class="fa-solid fa-xmark"></i>
@@ -269,15 +283,6 @@
     </div>
   </div>
   {% endfor %}
-  <script>
-    if (window.location.hash == "#official") {
-      let slides = document.querySelector("#official").querySelectorAll(".slide-down")
-      slides.forEach( function(slide){
-        slide.classList.remove("translate-y-[110%]")
-      })
-    }
-  </script>
-
 
 <div class="px-4 py-0 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-0">
     <div class="max-w-xl mb-5 md:mx-auto sm:text-center lg:max-w-2xl">
@@ -637,6 +642,23 @@
   <script src="https://unpkg.com/@popperjs/core@2"></script>
   <script src="https://unpkg.com/tippy.js@6"></script>
   <script>
+    function activateSlide(slides) {
+      slides.forEach( function(slide){
+        slide.classList.remove("translate-y-[110%]")
+      })
+    }
+    if (window.location.hash == "#official") {
+      let slides = document.querySelector("#official").querySelectorAll(".slide-down")
+      activateSlide(slides)
+
+    } if (window.location.hash == "#arm") {
+      let slides = document.querySelector("#arm").querySelectorAll(".slide-down")
+      activateSlide(slides)
+
+    } if (window.location.hash == "#community") {
+      let slides = document.querySelector("#community").querySelectorAll(".slide-down")
+      activateSlide(slides)
+    }
     function slideDown(btn) {
       let parent = btn.parentElement.parentElement.parentElement
       let slide = parent.querySelector(".slide-down")
