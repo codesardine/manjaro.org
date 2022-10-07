@@ -136,13 +136,13 @@
     <div class="editions grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
     {% for title, desktop in desktops.items %}        
         <div class="inline-block overflow-hidden rounded shadow-sm">
-            <div class="flex flex-col h-full relative">              
+            <div class="flex flex-col h-full relative bg-gray-50">              
               <picture>
                 <source srcset="/static/img/{{ title }}.webp" type="image/webp">
                 <source srcset="/static/img/{{ title }}.jpg" type="image/jpeg"> 
                 <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
               </picture>
-              <div class="bg-gray-100 text-center pt-3 pb-3 relative">
+              <div class="text-center pt-3 pb-3 relative">
                 <h2 class="uppercase mb-4 font-semibold text-gray-800">{{ title }} Desktop</h2>
                 <div class="absolute bottom-[-24%] w-full text-xs">
                 <button onclick="slideDown(this)" class="mr-2 bg-teal-200 hover:bg-teal-300 text-gray-800 py-2 px-3 rounded font-semibold inline-flex items-center">
@@ -163,7 +163,7 @@
                 </div>
              </div>
              {% if "download." in desktop.image %}
-                    <div class="text-sm text-gray-900 inline-block text-center w-full bg-gray-50 p-3 pt-8">
+                    <div class="text-sm text-gray-900 inline-block text-center w-full p-3 pt-8">
                       Download provided by 
                       <a href="https://www.cdn77.com">
                         <picture>
@@ -328,13 +328,13 @@
 <div id="{{ device.lower|clean_id }}" class="{% if not forloop.first %}hidden {% endif %}arm-grid editions grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2"> 
   {% for arm_title, arm_desktop in value.items %}
     <div class="inline-block overflow-hidden rounded shadow-sm">
-      <div class="flex flex-col h-full relative">
+      <div class="flex flex-col h-full relative bg-gray-50">
         <picture>
           <source srcset="/static/img/{{ arm_title }}.webp" type="image/webp">
           <source srcset="/static/img/{{ arm_title }}.jpg" type="image/jpeg"> 
           <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ arm_title }} Desktop" />
         </picture>
-        <div class="bg-gray-100 text-center pt-3 pb-16 relative">
+        <div class="text-center pt-3 pb-16 relative">
           <h2 class="uppercase mb-4 font-semibold text-gray-800">
             {{ arm_title }}
             {% if "sway" in arm_title.lower %} 
@@ -483,7 +483,7 @@
     <div class="grid editions gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
     {% for title, desktop in desktops.items %}
         <div class="inline-block overflow-hidden rounded shadow-sm">
-            <div class="flex flex-col h-full relative bg-gray-100">
+            <div class="flex flex-col h-full relative bg-gray-50">
               <picture>
                 <source srcset="/static/img/{{ title }}.webp" type="image/webp">
                 <source srcset="/static/img/{{ title }}.jpg" type="image/jpeg"> 
@@ -529,7 +529,7 @@
               </div>
               {% if not desktop.custom %}
                 {% if "download." in desktop.image %}
-                <div class="text-sm text-gray-900 inline-block text-center w-full bg-gray-50 p-3 pt-8">
+                <div class="text-sm text-gray-900 inline-block text-center w-full p-3 pt-8">
                   Download provided by 
                   <a href="https://www.cdn77.com">
                     <picture>
@@ -549,7 +549,7 @@
                    </h4>
                     <p class="text-sm text-gray-400 desc text-left mb-6 overflow-hidden transition-{max-height} duration-300 ease-in-out max-h-0">
                     {% if "xfce" in title.lower %}  
-                      {{ page.xfce_description }}
+                      {{ page.xfce_description }
                     {% elif "plasma" in title.lower %}
                       {{ page.plasma_description }}
                     {% elif "gnome" in title.lower %}
