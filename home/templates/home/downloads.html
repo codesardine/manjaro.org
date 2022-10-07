@@ -109,9 +109,9 @@
 
 {% for edition, desktops in data.items %}
   {% if edition == "arm" %}
-    <div id="{{ edition }}" class="px-4 pt-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div class="px-4 pt-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
   {% elif edition == "official" %}
-    <div id="{{ edition }}" class="px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div id="official" class="px-4 py-10 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
   {% endif %}
   {% if edition != "community" %}
     <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
@@ -145,19 +145,19 @@
               <div class="bg-gray-100 text-center pt-3 pb-3 relative">
                 <h2 class="uppercase mb-4 font-semibold text-gray-800">{{ title }} Desktop</h2>
                 <div class="absolute bottom-[-24%] w-full text-xs">
-                <button onclick="slideDown(this)" class="mr-3 bg-teal-200 hover:bg-teal-300 text-gray-800 py-2 px-4 rounded font-semibold inline-flex items-center">
-                  <i class="fa-solid fa-download mr-2"></i>
+                <button onclick="slideDown(this)" class="mr-2 bg-teal-200 hover:bg-teal-300 text-gray-800 py-2 px-3 rounded font-semibold inline-flex items-center">
+                  <i class="fa-solid fa-download mr-1"></i>
                   <span>Download</span>
                 </button>
-                <a target="_blank"
+                <a 
                 {% if "xfce" in title.lower %}  
                   href="https://www.xfce.org/"
                 {% elif "plasma" in title.lower %}
                   href="https://kde.org/plasma-desktop/"
                 {% elif "gnome" in title.lower %}
                   href="https://www.gnome.org/"
-                {% endif %} target="_blank" class="bg-cyan-200 hover:bg-cyan-300 text-gray-800 py-2 px-4 rounded font-semibold inline-flex items-center">
-                  <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>
+                {% endif %} target="_blank" class="bg-cyan-200 hover:bg-cyan-300 text-gray-800 py-2 px-3 rounded font-semibold inline-flex items-center">
+                  <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>
                   <span class="capitalize">Visit {{ title }}</span>
                 </a>
                 </div>
@@ -174,8 +174,8 @@
                     </div>
               {% endif %}
               <div class="slide-down flex justify-center border border-t-0 rounded-b absolute h-full w-full bg-blue-gray-900 translate-y-[110%] transition-all duration-300 ease-in-out">
-                  <div class="p-[14px] self-center  w-full">
-                    <h4 class="font-semibold leading-5 relative uppercase text-center text-gray-400">
+                  <div class="p-[14px] self-center w-full">
+                    <h4 class="font-semibold leading-5 relative uppercase text-center text-gray-400 mt-6">
                       {{ title }} Downloads
                       {% if desktop.date %}
                           <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
@@ -196,7 +196,7 @@
                     </span>                     
                     </p>
                     {% endif %}
-                    <div class="flex items-center justify-center w-full mt-6 mb-12">
+                    <div class="flex items-center justify-center w-full mt-4 mb-6">
                       <label for="of-toggle-{{ title }}" class="flex items-center cursor-pointer">
                         <div class="text-right mr-3 text-gray-400 font-semibold">
                           Minimal
@@ -324,90 +324,121 @@
   {% for iso, value in desktops.items %}
       {% if edition == "arm" %}
           {% with device=iso %}
+<div id="{{ edition }}">
 <div id="{{ device.lower|clean_id }}" class="{% if not forloop.first %}hidden {% endif %}arm-grid editions grid gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2"> 
   {% for arm_title, arm_desktop in value.items %}
     <div class="inline-block overflow-hidden rounded shadow-sm">
-      <div class="flex flex-col h-full">
+      <div class="flex flex-col h-full relative">
         <picture>
           <source srcset="/static/img/{{ arm_title }}.webp" type="image/webp">
           <source srcset="/static/img/{{ arm_title }}.jpg" type="image/jpeg"> 
           <img src="/static/img/{{ arm_title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ arm_title }} Desktop" />
         </picture>
-      <div class="flex-grow border border-t-0 rounded-b bg-gray-50">
-          <div class="p-5">
-          <h3 class="font-semibold leading-5 relative uppercase text-center">
-            
-            {% if "xfce" in arm_title.lower %}  
-            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://www.xfce.org/">
-            {% elif "plasma" in arm_title.lower %}
-            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://kde.org/plasma-desktop/">
-            {% elif "gnome" in arm_title.lower %}
-            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://www.gnome.org/">
-            {% elif "phosh" in arm_title.lower %}
-            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://gitlab.gnome.org/World/Phosh/phosh">
-            {% elif "mobile" in arm_title.lower %}
-            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://plasma-mobile.org/">
-            {% elif "mate" in arm_title.lower %}
-            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://mate-desktop.org/">
-            {% elif "sway" in arm_title.lower %}
-            <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://swaywm.org/">
-            {% endif %}
-
+        <div class="bg-gray-100 text-center pt-3 pb-16 relative">
+          <h2 class="uppercase mb-4 font-semibold text-gray-800">
             {{ arm_title }}
-            {% if "phosh" in arm_title.lower or "mobile" in arm_title.lower%}
-            {% elif "minimal" in arm_title.lower or "sway" in arm_title.lower %}            
+            {% if "sway" in arm_title.lower %} 
+                Window Manager 
+            {% elif "posh" in arm_title.lower or "mobile" in arm_title.lower %}         
             {% else %}
-            Desktop </a>
-            {% endif %} <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
-            {% if arm_desktop.date %}
-                <span class="text-xs p-1 float-right">Updated: <time>{{ arm_desktop.date }}</time></span>
-            {% endif %}
-          </h3>
-            <p class="text-sm text-gray-900 max-h-0 overflow-hidden transition-{max-height} duration-300 ease-in-out ">
-              {% if "xfce" in arm_title.lower %}
-                {{ page.xfce_description }}
-              {% elif "plasma" in arm_title.lower %}
-                {{ page.plasma_description }}
-              {% elif "gnome" in arm_title.lower %}
-                {{ page.gnome_description }}
-              {% elif "phosh" in arm_title.lower %}
-                {{ page.phosh_description }}
-              {% elif "mobile" in arm_title.lower %}
-                {{ page.plasma_mobile_description }}
-              {% elif "mate" in arm_title.lower %}
-                {{ page.mate_description }}
-              {% elif "sway" in arm_title.lower %}
-                {{ page.sway_description }}
-              {% elif "minimal" in arm_title.lower %}
-                {{ page.minimal_description }}
-              {% endif %}
-            <br>
-            {% if arm_desktop.notes %}
-                  {{ arm_desktop.notes }}  
-                  <br>                            
-            </p>
-            <br>
+                Desktop
+            {% endif %}</h2>
+          <div class="absolute bottom-8 w-full text-xs">
+          <button onclick="slideDown(this)" class="mr-2 bg-teal-200 hover:bg-teal-300 text-gray-800 py-2 px-3 rounded font-semibold inline-flex items-center">
+            <i class="fa-solid fa-download mr-1"></i>
+            <span>Download</span>
+          </button>
+          <a 
+          {% if "xfce" in arm_title.lower %}  
+            href="https://www.xfce.org/"
+          {% elif "plasma" in arm_title.lower %}
+            href="https://kde.org/plasma-desktop/"
+          {% elif "gnome" in arm_title.lower %}
+            href="https://www.gnome.org/"
+          {% elif "phosh" in arm_title.lower %}
+            href="https://gitlab.gnome.org/World/Phosh/phosh"
+          {% elif "mobile" in arm_title.lower %}
+            href="https://plasma-mobile.org/"
+          {% elif "mate" in arm_title.lower %}
+            href="https://mate-desktop.org/"
+          {% elif "sway" in arm_title.lower %}
+            href="https://swaywm.org/"
           {% endif %}
-          <div class="pl-2 pr-2 text-center text-2xl mt-4"> 
-            {% if arm_desktop.torrent %}
-            <a id="btn-at" href="{{ arm_desktop.torrent }}" class="mr-4 text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i></a>
-            {% endif %}
-            {% if arm_desktop.image %}          
-            <a id="btn-ai" href="{{ arm_desktop.image }}" class="mr-4 text-blue-300 hover:text-blue-500"><i class="fa-brands fa-usb"></i></i></a>
-            {% endif %}
-            {% if arm_desktop.signature %}
-            <a  id="btn-as" href="{{ arm_desktop.signature }}" class="mr-4 text-orange-300 hover:text-orange-500"><i class="fa-solid fa-signature"></i></a>
-            {% endif %}
-            {% if arm_desktop.checksum %}
-            <a  id="btn-ac" href="{{ arm_desktop.checksum }}" class="text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double"></i></a>
-            {% endif %}
+            target="_blank" class="bg-cyan-200 hover:bg-cyan-300 text-gray-800 py-2 px-3 rounded font-semibold inline-flex items-center">
+                  <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>
+                  <span class="capitalize">Visit {{ arm_title }}</span>
+            </a>
           </div>
-          </div>
-      </div>
+        </div>
+            <div class="slide-down flex justify-center border border-t-0 rounded-b absolute h-full w-full bg-blue-gray-900 translate-y-[110%] transition-all duration-300 ease-in-out">
+              <div class="p-[14px] self-center w-full">
+                <h4 class="font-semibold leading-5 relative uppercase text-center text-gray-400 mt-6">
+                  {{ device }}<br>
+                  {{ arm_title }} Downloads
+                  {% if desktop.date %}
+                      <span class="text-xs p-1 float-right">Updated: <time>{{ arm_desktop.date }}</time></span>
+                  {% endif %}
+                 </h4>
+                  <p class="text-sm text-gray-400 desc text-left mb-6 overflow-hidden transition-{max-height} duration-300 ease-in-out max-h-0">
+                  {% if "xfce" in arm_title.lower %}
+                    {{ page.xfce_description }}
+                  {% elif "plasma" in arm_title.lower %}
+                    {{ page.plasma_description }}
+                  {% elif "gnome" in arm_title.lower %}
+                    {{ page.gnome_description }}
+                  {% elif "phosh" in arm_title.lower %}
+                    {{ page.phosh_description }}
+                  {% elif "mobile" in arm_title.lower %}
+                    {{ page.plasma_mobile_description }}
+                  {% elif "mate" in arm_title.lower %}
+                    {{ page.mate_description }}
+                  {% elif "sway" in arm_title.lower %}
+                    {{ page.sway_description }}
+                  {% elif "minimal" in arm_title.lower %}
+                    {{ page.minimal_description }}
+                  {% endif %}
+                <br>
+                {% if arm_desktop.notes %}
+                <span class="text-sm text-gray-900 pl-1 pr-1">
+                    {{ arm_desktop.notes }}         
+                </span>                     
+                </p>
+                {% endif %}               
+                <div class="text-md text-left pt-2 w-full flex justify-center">
+                  {% if arm_desktop.image %}
+                  <ul>
+                    {% if arm_desktop.torrent %}
+                    <li class="pb-2 pl-2 pr-2">
+                    <a id="btn-at" href="{{ arm_desktop.torrent }}" class="block text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet pl-1"></i><span class="text-gray-400 font-semibold text-md pl-2">Torrent</span></a>
+                    </li>
+                    {% endif %} 
+                    <li class="p-2">
+                    <a id="btn-ai" href="{{ arm_desktop.image }}" class="block text-blue-300 hover:text-blue-500"><i class="fa-brands fa-usb"></i><span class="text-gray-400 font-semibold text-md pl-2">Image</span></a>
+                    </li>
+                    {% if arm_desktop.signature %}
+                    <li class="p-2">
+                    <a id="btn-as" href="{{ arm_desktop.signature }}" class="block text-orange-300 hover:text-orange-500"><i class="fa-solid fa-signature"></i><span class="text-gray-400 font-semibold text-md pl-2">Signature</span></a>
+                    </li>
+                    {% endif %}
+                    {% if arm_desktop.checksum %}
+                    <li class="p-2">
+                    <a id="btn-ac" href="{{ arm_desktop.checksum }}" class="block text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double pl-1"></i><span class="text-gray-400 font-semibold text-md pl-2">Checksum</span></a>
+                    <li>
+                    {% endif %}
+                  </ul>
+                  {% endif %}
+                </div>
+                <br>
+              </div>
+              <button aria-label="Close" onclick="slideUp(this)" title="Close" class="absolute top-1 right-1 py-2 px-4 text-gray-300 hover:text-gray-100 focus:outline-none focus:outline-green-400">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+          </div>  
       </div>
     </div>
-    {% endfor %}  
-    </div>
+  {% endfor %}  
+</div>
+</div>
       {% endwith %} 
     {% endif %}
   {% endfor %}
@@ -452,143 +483,172 @@
     <div class="grid editions gap-5 row-gap-5 mb-8 lg:grid-cols-3 sm:grid-cols-2">
     {% for title, desktop in desktops.items %}
         <div class="inline-block overflow-hidden rounded shadow-sm">
-            <div class="flex flex-col h-full">
+            <div class="flex flex-col h-full relative bg-gray-100">
               <picture>
                 <source srcset="/static/img/{{ title }}.webp" type="image/webp">
                 <source srcset="/static/img/{{ title }}.jpg" type="image/jpeg"> 
                 <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="{{ title }} Desktop" />
               </picture>
-              <div class="flex-grow border border-t-0 rounded-b bg-gray-50">
-                  <div class="p-5">
-                    <h4 class="font-semibold leading-5 uppercase text-center">
-                      {% if "cinnamon" in title.lower %}
-                      <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://en.wikipedia.org/wiki/Cinnamon_(desktop_environment)">
-                      {% elif "i3" in title.lower %}
-                      <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://i3wm.org/">
-                      {% elif "budgie" in title.lower %}
-                      <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://github.com/BuddiesOfBudgie/budgie-desktop">
-                      {% elif "mate" in title.lower %}
-                      <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://mate-desktop.org/">
-                      {% elif "sway" in title.lower %}
-                        <a target="_blank" class="cursor-pointer text-deep-purple-accent-400 hover:text-deep-purple-800" href="https://swaywm.org/">
-                      {% endif %}
-                      {{ title }}
-                      {% if "i3" in title.lower or "sway" in title.lower %}            
-                      {% else %}
-                      Desktop </a>
-                      {% endif %} <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
-                      {% if desktop.date %}
-                          <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
-                      {% endif %}
-                    </h4>
-                      <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden transition-{max-height} duration-300 ease-in-out ">
-                        {% if "cinnamon" in title.lower %}
-                          {{ page.cinnamon_description }}
-                        {% elif "i3" in title.lower %}
-                          {{ page.i3_description }}
-                        {% elif "budgie" in title.lower %}
-                          {{ page.budgie_description }}
-                        {% elif "mate" in title.lower %}
-                          {{ page.mate_description }}
-                        {% elif "sway" in title.lower %}
-                          {{ page.sway_description }}
-                        {% endif %}
-                      <br>
-                      {% if desktop.notes %}
-                          {{ desktop.notes }}                              
-                      </p>
+              <div class="text-center pt-3 pb-3 relative">
+                <h2 class="uppercase mb-4 font-semibold text-gray-800">
+                  {{ title }}
+                  {% if "i3" in title.lower or "sway" in title.lower %} 
+                  Window Manager          
+                  {% else %}
+                  Desktop
+                  {% endif %}</h2>
+                <div class="absolute bottom-[-24%] w-full text-xs">
+                {% if not desktop.custom %}
+                <button onclick="slideDown(this)" class="mr-2 bg-teal-200 hover:bg-teal-300 text-gray-800 py-2 px-3 rounded font-semibold inline-flex items-center">
+                  <i class="fa-solid fa-download mr-1"></i>
+                  <span>Download</span>
+                </button>
+                {% else %}
+                <a href="{{ desktop.custom }}" target="_blank" class="mr-2 bg-teal-200 hover:bg-teal-300 text-gray-800 py-2 px-3 rounded font-semibold inline-flex items-center">
+                  <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>
+                  <span>Download</span>
+                </a>
+                {% endif %}
+                <a 
+                  {% if "cinnamon" in title.lower %}
+                  href="https://en.wikipedia.org/wiki/Cinnamon_(desktop_environment)"
+                  {% elif "i3" in title.lower %}
+                  href="https://i3wm.org/"
+                  {% elif "budgie" in title.lower %}
+                  href="https://github.com/BuddiesOfBudgie/budgie-desktop"
+                  {% elif "mate" in title.lower %}
+                  href="https://mate-desktop.org/"
+                  {% elif "sway" in title.lower %}
+                    href="https://swaywm.org/"
+                  {% endif %}
+                    target="_blank" class="bg-cyan-200 hover:bg-cyan-300 text-gray-800 py-2 px-4 rounded font-semibold inline-flex items-center">
+                  <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>
+                  <span class="capitalize">Visit {{ title }}</span>
+                  </a>
+                  </div>
+              </div>
+              {% if not desktop.custom %}
+                {% if "download." in desktop.image %}
+                <div class="text-sm text-gray-900 inline-block text-center w-full bg-gray-50 p-3 pt-8">
+                  Download provided by 
+                  <a href="https://www.cdn77.com">
+                    <picture>
+                      <source srcset="{% static 'img/cdn77.webp' %}" type="image/webp">
+                      <source srcset="{% static 'img/cdn77.png' %}" type="image/png"> 
+                      <img id="cdn" class="inline-block" src="{% static 'img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
+                    </picture>
+                </div>
+                {% endif %}
+              <div class="slide-down flex justify-center border border-t-0 rounded-b absolute h-full w-full bg-blue-gray-900 translate-y-[110%] transition-all duration-300 ease-in-out">
+                <div class="p-[14px] self-center w-full">
+                  <h4 class="font-semibold leading-5 relative uppercase text-center text-gray-400 mt-4">
+                    {{ title }} Downloads
+                    {% if desktop.date %}
+                        <span class="text-xs p-1 float-right">Updated: <time>{{ desktop.date }}</time></span>
                     {% endif %}
-                    {% if desktop.minimal.image and desktop.image %}
-                    <div class="flex items-center justify-center w-full mt-6">
-                      <label for="co-toggle-{{ title }}" class="flex items-center cursor-pointer">
-                        <div class="relative">
-                          <input id="co-toggle-{{ title }}" type="checkbox" class="sr-only" />
-                          <div class="w-10 h-4 bg-gray-400 rounded-full shadow-inner"></div>
-                          <div class="dot absolute w-6 h-6 bg-gray-600 rounded-full shadow -left-1 -top-1"></div>
-                        </div>
-                        <div id="co-toggle-text-{{ title }}" class="text-center ml-3 text-gray-700 font-semibold w-20">
-                          Minimal
-                        </div>
-                      </label>
-                    </div>
-                    <br>
+                   </h4>
+                    <p class="text-sm text-gray-400 desc text-left mb-6 overflow-hidden transition-{max-height} duration-300 ease-in-out max-h-0">
+                    {% if "xfce" in title.lower %}  
+                      {{ page.xfce_description }}
+                    {% elif "plasma" in title.lower %}
+                      {{ page.plasma_description }}
+                    {% elif "gnome" in title.lower %}
+                      {{ page.gnome_description }}
                     {% endif %}
-                    <div class="pl-2 pr-2 text-center text-2xl">
-                      {% if desktop.minimal.image %}
-                      <ul id="co-minimal-{{ title }}" {% if desktop.image %}class="hidden"{% endif %}>
-                        {% if desktop.minimal.torrent %}
-                        <a id="btn-mt" href="{{ desktop.minimal.torrent }}" class="mr-4 text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i></a>
-                        {% endif %}
-                        <a id="btn-mi" href="{{ desktop.minimal.image }}" class="mr-4 text-blue-300 hover:text-blue-500"><i class="fa-brands fa-usb"></i></i></a>
-                        {% if desktop.minimal.signature %}
-                        <a id="btn-ms" href="{{ desktop.minimal.signature }}" class="mr-4 text-orange-300 hover:text-orange-500"><i class="fa-solid fa-signature"></i></a>
-                        {% endif %}
-                        {% if desktop.minimal.checksum %}
-                        <a id="btn-mc" href="{{ desktop.minimal.checksum }}" class="text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double"></i></a>
-                        {% endif %}
-                      </ul>
+                  <br>
+                  {% if desktop.notes %}
+                  <span class="text-sm text-gray-900 pl-1 pr-1">
+                      {{ desktop.notes }}         
+                  </span>                     
+                  </p>
+                  {% endif %}
+                  <div class="flex items-center justify-center w-full mt-4 mb-6">
+                    <label for="of-toggle-{{ title }}" class="flex items-center cursor-pointer">
+                      <div class="text-right mr-3 text-gray-400 font-semibold">
+                        Minimal
+                      </div>
+                      <div class="relative">
+                        <input id="of-toggle-{{ title }}" type="checkbox" class="sr-only no-mouse-effect" checked/>
+                        <div class="w-10 h-4 bg-gray-700 rounded-full shadow-inner ml-2"></div>
+                        <div class="dot absolute w-6 h-6 bg-gray-500 rounded-full shadow -left-1 -top-1 ml-2"></div>
+                      </div>
+                      <div class="text-left ml-3 text-gray-400 font-semibold">
+                        Full
+                      </div>
+                    </label>
+                  </div>                 
+                  <div class="text-md text-left pt-2 w-full flex justify-center">
+                    {% if desktop.minimal.image %}
+                    <ul id="of-minimal-{{ title }}" class="hidden">
+                      {% if desktop.minimal.torrent %}
+                      <li class="pb-2 pl-2 pr-2">
+                      <a id="btn-mt" href="{{ desktop.minimal.torrent }}" class="block text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet pl-1"></i><span class="text-gray-400 font-semibold text-md pl-2">Torrent</span></a>
+                      </li>
+                      {% endif %} 
+                      <li class="p-2">
+                      <a id="btn-mi" href="{{ desktop.minimal.image }}" class="block text-blue-300 hover:text-blue-500"><i class="fa-brands fa-usb"></i><span class="text-gray-400 font-semibold text-md pl-2">Image</span></a>
+                      </li>
+                      {% if desktop.minimal.signature %}
+                      <li class="p-2">
+                      <a id="btn-ms" href="{{ desktop.minimal.signature }}" class="block text-orange-300 hover:text-orange-500"><i class="fa-solid fa-signature"></i><span class="text-gray-400 font-semibold text-md pl-2">Signature</span></a>
+                      </li>
                       {% endif %}
-                      {% if desktop.custom %}
-                      <ul class="mt-6">
-                          <a id="btn-ed" target="_blank" href="{{ desktop.custom }}" class="mr-3 font-semibold text-deep-purple-accent-400 hover:text-deep-purple-800"><i class="fa-solid fa-file-export"></i></a>
-                      </ul>
+                      {% if desktop.minimal.checksum %}
+                      <li class="p-2">
+                      <a id="btn-mc" href="{{ desktop.minimal.checksum }}" class="block text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double pl-1"></i><span class="text-gray-400 font-semibold text-md pl-2">Checksum</span></a>
+                      <li>
                       {% endif %}
-                      {% if desktop.image %}
-                        <ul id="co-full-{{ title }}">
-                          {% if desktop.torrent %}
-                          <a id="btn-ft" href="{{ desktop.torrent }}" class="mr-4 text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet"></i></a>
-                          {% endif %}
-                          <a id="btn-fi" href="{{ desktop.image }}" class="mr-4 text-blue-300 hover:text-blue-500"><i class="fa-brands fa-usb"></i></i></a>
-                          {% if desktop.signature %}
-                          <a id="btn-fs" href="{{ desktop.signature }}" class="mr-4 text-orange-300 hover:text-orange-500"><i class="fa-solid fa-signature"></i></a>
-                          {% endif %}
-                          {% if desktop.checksum %}
-                          <a id="btn-fc" href="{{ desktop.checksum }}" class="text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double"></i></a>
-                          {% endif %}
-                        </ul>
+                    </ul>
+                    {% endif %}
+                    {% if desktop.image %}
+                    <ul id="of-full-{{ title }}" class="hidden">
+                      {% if desktop.torrent %}
+                      <li class="pb-2 pl-2 pr-2">
+                      <a id="btn-ft" href="{{ desktop.torrent }}" class="block text-pink-300 hover:text-pink-500"><i class="fa-solid fa-magnet pl-1"></i><span class="text-gray-400 font-semibold text-md pl-2">Torrent</span></a>
+                      </li>
+                      {% endif %} 
+                      <li class="p-2">
+                      <a id="btn-fi" href="{{ desktop.image }}" class="block text-blue-300 hover:text-blue-500"><i class="fa-brands fa-usb"></i><span class="text-gray-400 font-semibold text-md pl-2">Image</span></a>
+                      </li>
+                      {% if desktop.signature %}
+                      <li class="p-2">
+                      <a id="btn-fs" href="{{ desktop.signature }}" class="block text-orange-300 hover:text-orange-500"><i class="fa-solid fa-signature"></i><span class="text-gray-400 font-semibold text-md pl-2">Signature</span></a>
+                      </li>
                       {% endif %}
-                    </div>
-                    {% if desktop.minimal.image and desktop.image %}
-                    <script>    
-                      if (document.getElementById('co-toggle-{{ title }}').checked) {
-                          document.getElementById('co-toggle-text-{{ title }}').textContent = "Minimal"
-                          document.getElementById('co-minimal-{{ title }}').classList.remove("hidden") 
-                          document.getElementById('co-full-{{ title }}').classList.add("hidden")
-                        } else {
-                          document.getElementById('co-toggle-text-{{ title }}').textContent = "Full"
-                          document.getElementById('co-full-{{ title }}').classList.remove("hidden") 
-                          document.getElementById('co-minimal-{{ title }}').classList.add("hidden")
-                        }
-                      document.getElementById('co-toggle-{{ title }}').onchange = function(value) {
-                        if (document.getElementById('co-toggle-{{ title }}').checked) {
-                          document.getElementById('co-toggle-text-{{ title }}').textContent = "Minimal"
-                          document.getElementById('co-minimal-{{ title }}').classList.remove("hidden") 
-                          document.getElementById('co-full-{{ title }}').classList.add("hidden")
-                        } else {
-                          document.getElementById('co-toggle-text-{{ title }}').textContent = "Full"
-                          document.getElementById('co-full-{{ title }}').classList.remove("hidden") 
-                          document.getElementById('co-minimal-{{ title }}').classList.add("hidden")
-                        }
-                     };
-                      </script>
+                      {% if desktop.checksum %}
+                      <li class="p-2">
+                      <a id="btn-fc" href="{{ desktop.checksum }}" class="block text-teal-300 hover:text-teal-500"><i class="fa-solid fa-check-double pl-1"></i><span class="text-gray-400 font-semibold text-md pl-2">Checksum</span></a>
+                      <li>
                       {% endif %}
-                    {% if "download." in desktop.image %}
-                    <br>
-                    <div class="text-sm text-gray-900 inline-block text-center w-full">
-                      Download provided by 
-                      <a href="https://www.cdn77.com">
-                        <picture>
-                          <source srcset="{% static 'img/cdn77.webp' %}" type="image/webp">
-                          <source srcset="{% static 'img/cdn77.png' %}" type="image/png"> 
-                          <img id="cdn" class="inline-block" src="{% static 'img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
-                        </picture>
-                    </div>
+                    </ul>
                     {% endif %}
                   </div>
+                  <br>
+                  <script>   
+                      if (document.getElementById('of-toggle-{{ title }}').checked) {
+                        document.getElementById('of-full-{{ title }}').classList.remove("hidden") 
+                        document.getElementById('of-minimal-{{ title }}').classList.add("hidden")
+                      } else {                          
+                        document.getElementById('of-minimal-{{ title }}').classList.remove("hidden") 
+                        document.getElementById('of-full-{{ title }}').classList.add("hidden")
+                      }
+                      document.getElementById('of-toggle-{{ title }}').onchange = function(value) {                      
+                          document.getElementById('of-full-{{ title }}').classList.toggle("hidden") 
+                          document.getElementById('of-minimal-{{ title }}').classList.toggle("hidden")
+                      }
+                  </script>
                 </div>
+                <button aria-label="Close" onclick="slideUp(this)" title="Close" class="absolute top-1 right-1 py-2 px-4 text-gray-300 hover:text-gray-100 focus:outline-none focus:outline-green-400">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+              {% else %}
+                <div class="h-12 w-full"></div>
+              {% endif %}
             </div>
-          </div>            
+          </div>                     
       {% endfor %}
+      
       <div class="inline-block overflow-hidden rounded shadow-sm">
         <div class="flex flex-col h-full">
           <picture>
@@ -598,15 +658,16 @@
           </picture>
           <div class="flex-grow border border-t-0 rounded-b text-left bg-gray-50">
               <div class="p-5">
-                <h3 class="font-semibold leading-5 uppercase text-center">Manjaro Docker
-                  <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
-                </h3>
+                <h3 class="font-semibold leading-5 uppercase text-center">Manjaro Docker</h3>
                   <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden transition-{max-height} duration-300 ease-in-out">
                     {{ page.docker_intro }}                       
                   </p>
-                <div class="pl-2 pr-2 text-center text-2xl mt-6">
+                <div class="pl-2 pr-2 text-center text-2xl mt-2">
                   <ul>
-                    <a id="btn-ed" target="_blank" href="https://github.com/manjaro/manjaro-docker" class="mr-3 font-semibold text-deep-purple-accent-400 hover:text-deep-purple-800"><i class="fa-solid fa-file-export"></i></a>
+                    <a href="https://github.com/manjaro/manjaro-docker" target="_blank" class="text-gray-800 text-xs bg-teal-200 hover:bg-teal-300 py-2 px-4 rounded font-semibold inline-flex items-center">
+                      <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>
+                      <span>Download</span>
+                    </a>
                 </ul>
                 </div>
               </div>
@@ -620,17 +681,22 @@
             <source srcset="{% static 'img/manual.jpg' %}" type="image/jpeg"> 
             <img src="{% static 'img/manual.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-48" alt="Manjaro Manual" />
           </picture>
-        <div class="flex-grow border border-t-0 rounded-b text-left bg-gray-50">
+        <div class="flex-grow border border-t-0 rounded-b text-center bg-gray-50">
             <div class="p-5">
-            <h3 class="font-semibold leading-5 uppercase text-center">Manjaro Manual
-              <button id="btn-td" onclick="showDesc(this)" class="relative semi-bold text-md ml-1"><i class="fa-solid fa-circle-info text-cyan-accent-700"></i></button>
-            </h3>
+            <h3 class="font-semibold leading-5 uppercase text-center mb-2">Manjaro Manual</h3>
               <p class="text-sm text-gray-900 desc max-h-0 overflow-hidden transition-{max-height} duration-300 ease-in-out ">
                 {{ page.manual_intro }}                          
               </p>
-            <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide.pdf" class="mt-4 px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Guide In English</a>
-            <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide-French.pdf" class="px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Guide De L'utilisateur</a>
-            <a href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide-Turkish.pdf" class="px-2 h-12 inline-flex items-center justify-center w-full mb-2 font-medium tracking-wide text-white rounded shadow-md bg-pink-600 hover:bg-pink-700 focus:shadow-outline focus:outline-none">Manjaro Kullanici rehberi</a>
+              <a target="_blank" href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide.pdf" class="mb-1 text-gray-800 text-xs bg-teal-200 hover:bg-teal-300 py-2 px-4 rounded font-semibold inline-flex items-center">
+                <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>
+                <span>Manjaro Guide In English</span>
+              </a><a target="_blank" href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide-French.pdf" class="mb-1 text-gray-800 text-xs bg-teal-200 hover:bg-teal-300 py-2 px-4 rounded font-semibold inline-flex items-center">
+                <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>
+                <span>Manjaro Guide De L'utilisateur</span>
+              </a><a target="_blank" href="https://en.osdn.net/projects/manjaro/storage/Manjaro-User-Guide-Turkish.pdf" class="mb-1 text-gray-800 text-xs bg-teal-200 hover:bg-teal-300 py-2 px-4 rounded font-semibold inline-flex items-center">
+                <i class="fa-solid fa-arrow-up-right-from-square mr-2"></i>
+                <span>Manjaro Kullanici rehberi</span>
+              </a>
           </div>
         </div>
         </div>
@@ -643,32 +709,43 @@
   <script src="https://unpkg.com/tippy.js@6"></script>
   <script>
     function activateSlide(slides) {
-      slides.forEach( function(slide){
+      let nodes = slides.querySelectorAll(".slide-down")
+      console.log(slides)
+      nodes.forEach( function(slide) {
         slide.classList.remove("translate-y-[110%]")
       })
     }
     if (window.location.hash == "#official") {
-      let slides = document.querySelector("#official").querySelectorAll(".slide-down")
+      let slides = document.querySelector("#official")
       activateSlide(slides)
 
     } if (window.location.hash == "#arm") {
-      let slides = document.querySelector("#arm").querySelectorAll(".slide-down")
+      let slides = document.querySelector("#arm")
+      setTimeout(
+        function () {
+          window.scrollBy(0, -250);
+        }, 10
+      ) 
+
       activateSlide(slides)
 
     } if (window.location.hash == "#community") {
-      let slides = document.querySelector("#community").querySelectorAll(".slide-down")
+      let slides = document.querySelector("#community")
       activateSlide(slides)
     }
     function slideDown(btn) {
-      let parent = btn.parentElement.parentElement.parentElement
+      let parent = btn.parentElement.parentElement.parentElement 
       let slide = parent.querySelector(".slide-down")
+      let slides = parent.parentElement.parentElement.querySelectorAll(".slide-down")
+      slides.forEach( function(slide) {
+        slide.classList.add("translate-y-[110%]")
+      })
       slide.classList.remove("translate-y-[110%]")
     }
     function slideUp(btn) {
       let parent = btn.parentElement.parentElement.parentElement
       let slide = parent.querySelector(".slide-down")
       slide.classList.add("translate-y-[110%]")
-      console.log(slide)
     }
     function showDesc(btn) {
       let parent = btn.parentElement.parentElement
