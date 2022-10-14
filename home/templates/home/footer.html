@@ -5,34 +5,32 @@
 {% get_menu "footer-four" as footer_four %}
 {% block head %}
 <style>
-  footer {
-    background-image: url("/static/img/wall.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top;
-    background-color: transparent !important;
+footer {
+    background-image: url('{% static 'img/footer_bg_purple.png' %}');
     min-height: 550px;
-  }
+  
+}
 </style>
 {% endblock %}
-<footer class="relative mt-16 bg-teal-accent-400">
-    
+<footer class="relative mt-16 bg-cover bg-no-repeat bg-top">    
     <div class="px-4 pt-12 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-      <div class="grid gap-16 row-gap-10 lg:grid-cols-6 pt-12">
+      <div class="grid gap-16 row-gap-10 lg:grid-cols-6 pt-8 relative">
+        <img src="/static/img/rocket-down.png" class="absolute top-[-68px] left-[-40px]">
+
         <div class="md:max-w-md lg:col-span-2">
             <a id="inline-logo" href="https://manjaro.org" aria-label="Manjaro" title="Manjaro" class="inline-flex items-center">
               <img src="{% static 'img/inline-logo-light.svg' %}" alt="manjaro">
             </a>
-          <div class="lg:max-w-sm mt-6">
-            <p class="text-sm text-gray-100 mb-2 font-semibold">
+          <div class="lg:max-w-sm mt-10 lg:mt-24">
+            <p class="text-sm text-gray-100 mb-2 font-semibold 2xl:pt-2">
               Manjaro Linux Open Source operating system is, and always will be, provided free of charge.
             </p>
-            <p class="pt-1 text-sm text-gray-100 mb-6 font-semibold">
+            <p class="pt-1 text-sm text-gray-100 font-semibold">
               The Manjaro project is backed up by Manjaro Gmbh & Co, KG, an Open Source driven company.
             </p>
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4 mt-16 pt-2 mb-24">
+        <div class="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4 lg:mt-32 2xl:mt-40 pt-2 lg:mb-24">
           <div class="text-gray-100 p-2">
             <h4 class="font-semibold tracking-wide uppercase text-gray-200">
               {% get_menu_category_title "footer-one" %}
