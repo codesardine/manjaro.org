@@ -2,7 +2,7 @@
 
 {% load wagtailcore_tags static home_tags wagtailimages_tags %}
 
-{% block body_class %}homepage{% endblock %}
+{% block body_class %}homepage bg-gradient-to-b from-purple-900 to-indigo-600{% endblock %}
 
 {% block title %}
     {% if page.seo_title %}
@@ -27,8 +27,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="top" class="pt-6 lg:pt-0">
-    
+<div id="top" class="pt-6 lg:pt-0">    
     <img src="{% static 'img/mountain_bg_bottom.png' %}" class="fixed bottom-0 object-contain w-full" alt="page background">
 {% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
@@ -41,7 +40,7 @@
       <source srcset="{{ promo_img_1024.url }}" type="image/png" media="(max-width: 1024px)"> 
       {% image promo.background width-1280 as promo_img_1280 %}
       <source srcset="{{ promo_img_1280.url }}" type="image/png" media="(max-width: 1280px)">
-      {% image promo.background original class="fixed object-contain w-full h-full right-[-32%] top-[-8%]" %}
+      {% image promo.background original class="fixed h-full lg:right-[-34%] object-contain 2xl:right-[-28%]" %}
     </picture>
     {% endif %}
     
@@ -49,13 +48,14 @@
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
         <div id="promo" class="flex flex-col items-center justify-between xl:flex-row w-full">
           <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12 fixed">
-            <h1 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
+            <img src="/static/img/rocket.png" class="absolute -translate-x-36 -translate-y-32 transform-gpu rotate-[-30deg]">
+            <h1 class="max-w-lg mb-6 font-sans text-lg font-bold tracking-tight sm:leading-none text-left">
                 <span class="text-gray-50 uppercase">
-                  <span class="text-teal-accent-400 brand lowercase align-bottom">manjaro </span>
-                  {{ page.manjaro_title }}</span>
+                  <span class="brand lowercase inline-block w-full text-3xl">manjaro </span>
+                  <br><br>{{ page.manjaro_title }}Operating system for everyone</span>
             </h1>
-            <p class="max-w-xl mb-4 text-base text-gray-300 md:text-lg">
-              <span class="brand">manjaro</span> {{ page.manjaro_intro }}
+            <p class="max-w-xl mb-4 text-base text-gray-300 md:text-lg text-justify p-0">
+              <span class="brand">manjaro</span> {{ page.manjaro_intro }} manjaro has no adverts, licenses or fees, it respects user privacy and empowers them with full control over their hardware. It can be used for development, gaming, 3D, office or home, it can be installed on tablets, mobile, desktops, laptops and boards. 
             </p>
             <div class="grid gap-5 row-gap-10 mx-auto">
               <div class="flex flex-col justify-center">
@@ -116,8 +116,8 @@
               </div>
           </div>
           {% if not promo.hidden %}
-          <div class="w-full max-w-xl text-right fixed bottom-[200px] right-[200px]">
-              <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="text-white font-semibold text-2xl">
+          <div class="fixed right-[20%] arrow-bg bg-lime-accent-400 min-h-[8rem] hover:min-h-[9rem] transition-all duration-300">
+              <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="text-gray-700 hover:text-gray-800 hover:underline font-semibold text-2xl">
                 {{ promo.text }}
               </a>
           </div>
@@ -189,6 +189,7 @@
   </div>
 </div>
 
+<div class="bg-pink-500 w-full h-full relative mt-16">
   <div id="software" class="relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
     <h2 class="w-full uppercase mb-2 font-sans text-center text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl sm:leading-none">
       <span class="inline-block text-teal-600">Linux</span>
@@ -222,6 +223,7 @@
     </div>
     {% endwith %}  
     </div> 
+  </div>
   </div>
 
   <div id="error" class="fixed bg-orange-900 p-4 hidden">
