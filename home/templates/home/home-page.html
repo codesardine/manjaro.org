@@ -27,20 +27,9 @@
 {% endblock %}
 
 {% block content %}
-<div id="top" class="relative pt-6 lg:pt-0">
-  <picture>
-    <source srcset="{% static 'img/fixed-bg-640.webp' %}" type="image/webp" media="(max-width: 640px)">
-    <source srcset="{% static 'img/fixed-bg-640.jpg' %}" type="image/jpeg" media="(max-width: 640px)"> 
-    <source srcset="{% static 'img/fixed-bg-768.webp' %}" type="image/webp" media="(max-width: 768x)">
-    <source srcset="{% static 'img/fixed-bg-768.jpg' %}" type="image/jpeg" media="(max-width: 768px)"> 
-    <source srcset="{% static 'img/fixed-bg-1024.webp' %}" type="image/webp" media="(max-width: 1024px)">
-    <source srcset="{% static 'img/fixed-bg-1024.jpg' %}" type="image/jpeg" media="(max-width: 1024px)"> 
-    <source srcset="{% static 'img/fixed-bg-1280.webp' %}" type="image/webp" media="(max-width: 1280px)">
-    <source srcset="{% static 'img/fixed-bg-1280.jpg' %}" type="image/jpeg" media="(max-width: 1280px)"> 
-    <source srcset="{% static 'img/fixed-bg.webp' %}" type="image/webp" media="(min-width: 1281px)">
-    <source srcset="{% static 'img/fixed-bg.jpg' %}" type="image/jpeg" media="(min-width: 1281px)"> 
-    <img src="{% static 'img/fixed-bg.jpg' %}" class="fixed inset-0 object-cover w-full h-full" alt="page background">
-  </picture>
+<div id="top" class="pt-6 lg:pt-0">
+    
+    <img src="{% static 'img/mountain_bg_bottom.png' %}" class="fixed bottom-0 object-contain w-full" alt="page background">
 {% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
@@ -52,14 +41,14 @@
       <source srcset="{{ promo_img_1024.url }}" type="image/png" media="(max-width: 1024px)"> 
       {% image promo.background width-1280 as promo_img_1280 %}
       <source srcset="{{ promo_img_1280.url }}" type="image/png" media="(max-width: 1280px)">
-      {% image promo.background original class="absolute inset-0 object-cover w-full h-full" %}
+      {% image promo.background original class="fixed object-contain w-full h-full right-[-32%] top-[-8%]" %}
     </picture>
     {% endif %}
-    <div class="bg-gray-900 bg-opacity-[.6] w-full h-full fixed"></div>
+    
     <div class="relative">
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
         <div id="promo" class="flex flex-col items-center justify-between xl:flex-row w-full">
-          <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
+          <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12 fixed">
             <h1 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
                 <span class="text-gray-50 uppercase">
                   <span class="text-teal-accent-400 brand lowercase align-bottom">manjaro </span>
@@ -127,16 +116,10 @@
               </div>
           </div>
           {% if not promo.hidden %}
-          <div class="w-full max-w-xl xl:px-8 xl:w-5/12 lg:pt-32">
-              <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="w-[100%] lg:w-[80%] rounded-lg bg-blue-gray-900 text-center relative speech-bubble-rigth block font-semibold  text-cyan-accent-700 hover:text-cyan-accent-400">
-                <i class="text-sm fa-solid fa-link w-5 h-5"></i>
+          <div class="w-full max-w-xl text-right fixed bottom-[200px] right-[200px]">
+              <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="text-white font-semibold text-2xl">
                 {{ promo.text }}
               </a>
-              <picture>
-                <source srcset="{% static 'img/jaro-2.webp' %}" type="image/webp">
-                <source srcset="{% static 'img/jaro-2.png' %}" type="image/png"> 
-                <img src="{% static 'img/jaro-2.png' %}" class="xl:block w-60 ml-60 promo-img" alt="mascot" width="250" height="250">
-              </picture>
           </div>
           {% endif %}
         </div>
@@ -154,7 +137,8 @@
   </a>
   </div>
 
-  <div id="partner" class="relative lg:min-h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <div class="bg-gray-900 w-full h-full relative">
+  <div id="partner" class=" relative lg:min-h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <div class="grid gap-2 lg:grid-cols-2">
       <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
         <div class="max-w-xl mb-6 text-center">
@@ -203,6 +187,7 @@
       </div>
     </a>
   </div>
+</div>
 
   <div id="software" class="relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
     <h2 class="w-full uppercase mb-2 font-sans text-center text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl sm:leading-none">
