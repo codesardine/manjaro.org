@@ -352,6 +352,10 @@
   position: relative;
 }
 
+#partner-bg {
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 42% 100%, 71% 49%, 44% 0);
+}
+
 .promo-img {
     filter: drop-shadow(1px 1px #f6f6f6) drop-shadow(-1px -1px #f6f6f6);
     display: none;
