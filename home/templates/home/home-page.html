@@ -48,7 +48,7 @@
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
         <div id="promo" class="flex flex-col items-center justify-between xl:flex-row w-full">
           <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12 fixed">
-            <img src="/static/img/rocket.png" class="absolute -translate-x-36 -translate-y-32 transform-gpu rotate-[-30deg]">
+            <img src="/static/img/rocket.png" class="absolute -translate-x-28 -translate-y-20 transform-gpu rotate-[-30deg]">
             <h1 class="max-w-lg mb-6 font-sans text-lg font-bold tracking-tight sm:leading-none text-left">
                 <span class="text-gray-50 uppercase">
                   <span class="brand lowercase inline-block w-full text-3xl">manjaro </span>
@@ -116,8 +116,9 @@
               </div>
           </div>
           {% if not promo.hidden %}
-          <div class="fixed right-[20%] arrow-bg bg-lime-accent-400 min-h-[8rem] hover:min-h-[9rem] transition-all duration-300">
-              <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="text-gray-700 hover:text-gray-800 hover:underline font-semibold text-2xl">
+          <p class="fixed right-4 bottom-4 text-gray-200 bg-black bg-opacity-70 w-60 p-4 font-semibold">New manjaro hardware is crashing on planet Earth everyday get yours now</p>
+          <div class="fixed right-[20%] arrow-bg bg-lime-accent-400 min-h-[5rem] hover:min-h-[6rem] transition-all duration-300">
+              <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="text-gray-700 hover:text-gray-800 font-semibold text-2xl">
                 {{ promo.text }}
               </a>
           </div>
