@@ -3,19 +3,10 @@
 {% get_menu "footer-two" as footer_two %}
 {% get_menu "footer-three" as footer_three %}
 {% get_menu "footer-four" as footer_four %}
-{% block head %}
-<style>
-footer {
-    background-image: url('{% static 'img/mountain_ooter.png' %}');
-    min-height: 550px;
-  
-}
-</style>
-{% endblock %}
+
 <footer class="relative bg-cover bg-no-repeat bg-top bg-black">    
     <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div class="grid gap-16 row-gap-10 lg:grid-cols-6 pt-8 relative">
-        <img src="/static/img/rocet.png" class="absolute top-[-68px] left-[-40px]">
 
         <div class="md:max-w-md lg:col-span-2">
             <a id="inline-logo" href="https://manjaro.org" aria-label="Manjaro" title="Manjaro" class="inline-flex items-center">
