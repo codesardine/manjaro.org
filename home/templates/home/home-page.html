@@ -28,7 +28,7 @@
 
 {% block content %}
 <div id="top" class="pt-6 lg:pt-0">    
-    <img src="{% static 'img/mountain_bg_bottom.png' %}" class="fixed bottom-0 object-contain w-full" alt="page background">
+    <img src="{% static 'img/home-bg.png' %}" class="fixed object-cover w-full h-full" alt="page background">
 {% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
@@ -40,7 +40,7 @@
       <source srcset="{{ promo_img_1024.url }}" type="image/png" media="(max-width: 1024px)"> 
       {% image promo.background width-1280 as promo_img_1280 %}
       <source srcset="{{ promo_img_1280.url }}" type="image/png" media="(max-width: 1280px)">
-      {% image promo.background original class="fixed h-full lg:right-[-34%] object-contain 2xl:right-[-28%]" %}
+      {% image promo.background original class="fixed h-full w-[50%] right-[5%] object-contain test" %}
     </picture>
     {% endif %}
     
@@ -48,7 +48,6 @@
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
         <div id="promo" class="flex flex-col items-center justify-between xl:flex-row w-full">
           <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12 fixed">
-            <img src="/static/img/rocket.png" class="absolute -translate-x-28 -translate-y-20 transform-gpu rotate-[-30deg]">
             <h1 class="max-w-lg mb-6 font-sans text-lg font-bold tracking-tight sm:leading-none text-left">
                 <span class="text-gray-50 uppercase">
                   <span class="brand lowercase inline-block w-full text-3xl">manjaro </span>
@@ -116,8 +115,7 @@
               </div>
           </div>
           {% if not promo.hidden %}
-          <p class="fixed right-4 bottom-4 text-gray-200 bg-black bg-opacity-70 w-64 p-4 font-semibold">New manjaro hardware is crashing on planet Earth everyday get yours now</p>
-          <div class="fixed right-[20%] arrow-bg bg-lime-accent-400 min-h-[5rem] hover:min-h-[6rem] transition-all duration-300">
+          <div class="hidden arrow-bg bg-lime-accent-400 min-h-[5rem] hover:min-h-[6rem] transition-all duration-300">
               <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="text-gray-700 hover:text-gray-800 font-semibold text-2xl">
                 {{ promo.text }}
               </a>
@@ -138,11 +136,10 @@
   </a>
   </div>
 
-  <div class="bg-blue-gray-900 relative">
-  <img id="partner-bg" class="w-full h-full absolute object-cover" src='/static/img/partnership.jpg'>
-
-  <div id="partner" class="relative lg:min-h-screenflex h-[100vh] justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-    <div class="grid gap-2 lg:grid-cols-2">
+  <div class="bg-[url('/static/img/partnership.jpg')] relative">
+  <div class="bg-blue-600 opacity-75 absolute h-[100vh] w-full"></div>
+  <div id="partner" class="relative flex items-center h-[100vh] justify-center">
+    <div class="grid lg:grid-cols-1 text-center">
       <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
         <div class="max-w-xl mb-6 text-center">
           <div class="w-full flex items-center justify-center">
@@ -157,8 +154,8 @@
         </div>
           <h2 class="w-full uppercase mb-6 font-sans text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl sm:leading-none">
             {{ page.partners_title }}<br class="hidden md:block" />
-            <span class="inline-block text-teal-600">OS integration</span>
-            <span class="inline-block text-yellow-accent-700">partner with us</span>
+            <span class="inline-block">OS integration</span>
+            <span class="inline-block">partner with us</span>
           </h2>
           <p class="text-base text-gray-200 md:text-lg mb-2">
             {{ page.partners_intro }}
@@ -183,11 +180,12 @@
   </div>
 </div>
 
-<div class="bg-pink-500 w-full h-full relative mt-16">
+<div class="bg-[url('/static/img/production.jpg')] relative">
+  <div class="bg-red-600 opacity-75 absolute h-[100vh] w-full"></div>
   <div id="software" class="relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
     <h2 class="w-full uppercase mb-2 font-sans text-center text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl sm:leading-none">
-      <span class="inline-block text-teal-600">Linux</span>
-      <span class="inline-block text-yellow-accent-700">Software</span>
+      <span class="inline-block">Linux</span>
+      <span class="inline-block">Software</span>
     </h2>
     <p class="text-gray-300 mb-5 text-center text-2xl font-semibold p-2">
       {{ page.software_intro }}

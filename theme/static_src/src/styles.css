@@ -328,12 +328,21 @@
 }
 
 .arrow-bg {
-  display: flex;
   align-items: center;
   justify-content: center;
   width: 350px;
   clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 15% 50%, 0% 0%);
   will-change: min-height;
+}
+
+.test {
+    animation: mymove 5s infinite;
+}
+
+@keyframes mymove {
+  50% {
+    filter: drop-shadow(6px 5px 14px #e91e63);
+  }
 }
 
 .arrow-bg:before {
