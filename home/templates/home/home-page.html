@@ -40,7 +40,7 @@
       <source srcset="{{ promo_img_1024.url }}" type="image/png" media="(max-width: 1024px)"> 
       {% image promo.background width-1280 as promo_img_1280 %}
       <source srcset="{{ promo_img_1280.url }}" type="image/png" media="(max-width: 1280px)">
-      {% image promo.background original class="pt-28 pb-28 fixed h-full w-[50%] right-[5%] object-contain test" %}
+      {% image promo.background original class="pt-28 pb-28 fixed h-full w-[50%] right-[5%] object-contain" %}
     </picture>
     {% endif %}
     
@@ -100,15 +100,21 @@
                         Easily installed
                       </li>
                     </ul>
-                    <ul>
-                      <li>
-                        <a href="/features/" aria-label="manjaro features" class="font-semibold  text-cyan-accent-700 hover:text-cyan-accent-400">
-                          <span class="mr-1 float-left">
-                            <i class="text-sm fa-solid fa-link w-5 h-5"></i>
-                          </span>
-                          Learn More
-                      </a>
-                    </li>
+                    <ul class="pt-3 grid-cols-2 grid w-[400px]">
+                      <li class="w-[fit-content]">
+                        <a href="/features/" class="border leading-none border-gray-200 inline-block text-sm rounded py-2 px-4 capitalize font-medium tracking-wide text-gray-200 hover:text-teal-500 hover:bg-gray-50">
+                          <i class="fa-solid fa-circle-info"></i>
+                          More Features
+                        </a>
+                      </li>
+                      {% if not promo.hidden %}
+                      <li class="w-[fit-content]">
+                        <a href="{{ promo.url }}" class="-ml-6 relative border leading-none border-gray-200 inline-block text-sm rounded py-2 px-4 capitalize font-medium tracking-wide text-gray-200 hover:text-teal-500 hover:bg-gray-50">
+                          <i class="fa-solid fa-star"></i>
+                          {{ promo.text }}
+                        </a>
+                      </li>
+                      {% endif %}
                     </ul>
                   </div>
                 </div>
