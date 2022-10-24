@@ -141,7 +141,7 @@ cython_debug/
 /.vagrant
 /manjaro/settings/local.py
 /static
-/theme/static/css/styles.css
+/manjaro/static/css/styles.css
 *.pyc
 /media
 /Vagrantfile.local
