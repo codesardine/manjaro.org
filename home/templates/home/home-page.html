@@ -2,7 +2,7 @@
 
 {% load wagtailcore_tags static home_tags wagtailimages_tags %}
 
-{% block body_class %}homepage bg-gradient-to-b from-purple-900 to-indigo-600{% endblock %}
+{% block body_class %}homepage bg-gradient-to-l from-blue-gray-700 to-blue-gray-900{% endblock %}
 
 {% block title %}
     {% if page.seo_title %}
@@ -28,7 +28,7 @@
 
 {% block content %}
 <div id="top" class="pt-6 lg:pt-0">    
-    <img src="{% static 'img/home-bg.png' %}" class="fixed object-cover w-full h-full" alt="page background">
+    <img src="{% static 'img/home-bg.png' %}" class="fixed object-cover w-full h-full hidden" alt="page background">
 {% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
@@ -49,12 +49,11 @@
         <div id="promo" class="flex flex-col items-center justify-between xl:flex-row w-full">
           <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12 fixed">
             <h1 class="max-w-lg mb-6 font-sans text-lg font-bold tracking-tight sm:leading-none text-left">
-                <span class="text-gray-50 uppercase">
-                  <span class="brand lowercase inline-block w-full text-3xl">manjaro </span>
-                  <br><br>{{ page.manjaro_title }}</span>
+                <span class="text-gray-200 uppercase">
+                {{ page.manjaro_title }}</span>
             </h1>
             <p class="max-w-xl mb-4 text-base text-gray-300 md:text-lg text-justify p-0">
-              <span class="brand">manjaro</span> {{ page.manjaro_intro }} 
+              manjaro {{ page.manjaro_intro }} 
             </p>
             <div class="grid gap-5 row-gap-10 mx-auto">
               <div class="flex flex-col justify-center">
@@ -102,14 +101,14 @@
                     </ul>
                     <ul class="pt-3 grid-cols-2 grid w-[400px]">
                       <li class="w-[fit-content]">
-                        <a href="/features/" class="border leading-none border-gray-200 inline-block text-sm rounded py-2 px-4 capitalize font-medium tracking-wide text-gray-200 hover:text-teal-500 hover:bg-gray-50">
+                        <a href="/features/" class="border leading-none shadow inline-block text-sm rounded py-2 px-4 capitalize font-medium tracking-wide text-gray-100 border-blue-600 bg-blue-600 hover:border-blue-700 hover:bg-blue-700">
                           <i class="fa-solid fa-circle-info"></i>
                           More Features
                         </a>
                       </li>
                       {% if not promo.hidden %}
                       <li class="w-[fit-content]">
-                        <a href="{{ promo.url }}" class="-ml-6 relative border leading-none border-gray-200 inline-block text-sm rounded py-2 px-4 capitalize font-medium tracking-wide text-gray-200 hover:text-teal-500 hover:bg-gray-50">
+                        <a href="{{ promo.url }}" class="-ml-6 relative border leading-none shadow inline-block text-sm rounded py-2 px-4 capitalize font-medium tracking-wide text-gray-100 border-pink-800 hover:border-pink700 bg-pink-800 hover: hover:bg-pink-700">
                           <i class="fa-solid fa-star"></i>
                           {{ promo.text }}
                         </a>
@@ -120,13 +119,6 @@
                 </div>
               </div>
           </div>
-          {% if not promo.hidden %}
-          <div class="hidden arrow-bg bg-lime-accent-400 min-h-[5rem] hover:min-h-[6rem] transition-all duration-300">
-              <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="text-gray-700 hover:text-gray-800 font-semibold text-2xl">
-                {{ promo.text }}
-              </a>
-          </div>
-          {% endif %}
         </div>
       </div>
     </div>
