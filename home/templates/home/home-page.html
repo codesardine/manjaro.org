@@ -28,7 +28,10 @@
 
 {% block content %}
 <div id="top" class="pt-6 lg:pt-0">    
-    <img src="{% static 'img/home-bg.png' %}" class="fixed object-cover w-full h-full hidden" alt="page background">
+  <video autoplay muted loop id="myVideo" class="w-full h-full fixed bottom-0 right-0 object-cover hidden">
+    <source src="/static/img/video.mp4" type="video/mp4">
+  </video>
+    <img src="{% static 'img/2.jpg' %}" class="fixed object-cover w-full h-full hidden" alt="page background">
 {% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
@@ -47,9 +50,9 @@
     <div class="relative">
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
         <div id="promo" class="flex flex-col items-center justify-between xl:flex-row w-full">
-          <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12 fixed">
-            <h1 class="max-w-lg mb-6 font-sans text-lg font-bold tracking-tight sm:leading-none text-left">
-                <span class="text-gray-200 uppercase">
+          <div class="w-full max-w-xl mb-12 xl:mb-0 xl:w-7/12 fixed">
+            <h1 class="max-w-lg mb-6 font-extrabold text-[2.2rem] tracking-tight sm:leading-none text-left">
+                <span class="uppercase text-transparent bg-clip-text bg-gradient-to-r from-lime-accent-200 to-cyan-500">
                 {{ page.manjaro_title }}</span>
             </h1>
             <p class="max-w-xl mb-4 text-base text-gray-300 md:text-lg text-justify p-0">
@@ -137,7 +140,7 @@
   <div class="bg-[url('/static/img/partnership.jpg')] relative">
   <div class="bg-blue-600 opacity-75 absolute h-[100vh] w-full"></div>
   <div id="partner" class="relative flex items-center h-[100vh] justify-center">
-    <div class="grid lg:grid-cols-1 text-center">
+    <div class="grid lg:grid-cols-1 text-center p-2 blur-bg">
       <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
         <div class="max-w-xl mb-6 text-center">
           <div class="w-full flex items-center justify-center">
@@ -151,9 +154,7 @@
             </div>
         </div>
           <h2 class="w-full uppercase mb-6 font-sans text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl sm:leading-none">
-            {{ page.partners_title }}<br class="hidden md:block" />
-            <span class="inline-block">OS integration</span>
-            <span class="inline-block">partner with us</span>
+            {{ page.partners_title }}
           </h2>
           <p class="text-base text-gray-200 md:text-lg mb-2">
             {{ page.partners_intro }}
@@ -178,34 +179,29 @@
   </div>
 </div>
 
-<div class="bg-[url('/static/img/production.jpg')] relative">
-  <div class="bg-red-600 opacity-75 absolute h-[100vh] w-full"></div>
+<div class="bg-[url('/static/img/production.jpg')] relative h-[100vh]">
+  <div class="bg-red-600 opacity-75 absolute h-full w-full"></div>
   <div id="software" class="relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
     <h2 class="w-full uppercase mb-2 font-sans text-center text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl sm:leading-none">
-      <span class="inline-block">Linux</span>
-      <span class="inline-block">Software</span>
-    </h2>
-    <p class="text-gray-300 mb-5 text-center text-2xl font-semibold p-2">
       {{ page.software_intro }}
-    </p>
+    </h2>
     <div class="flex items-center justify-center ">
     {% with blocks=page.software %}
     <div class="flex flex-wrap gap-4 items-baseline justify-center">
       {% for block in blocks %}
         {% if not block.value.software.hidden %}
-          <div class="overflow-hidden transition-shadow duration-300 bg-white rounded p-4 max-w-full md:max-w-sm">
+          <div class="overflow-hidden transition-shadow duration-300 max-w-full md:max-w-sm">
             {% image block.value.software.image original as soft_image %}
             <img src="{{ soft_image.url }}" class="object-contain w-full h-64 rounded" alt="" />
-
             <div class="py-5 text-center">
-              <h3 class="inline-block mb-3 text-black capitalize transition-colors duration-200 text-2xl font-bold leading-5">{{ block.value.software.title }}</h3>
-              <p class="mb-4 text-gray-700 min-h-[155px]">
+              <a target="_blank" href="{{ block.value.software.url }}" class="inline-block mb-3 transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
+              <h3 class="inline-block mb-3 pb-2 text-gray-200 capitalize hover:text-gray-50 border-b-transparent border-b-2 hover:border-gray-50 text-2xl font-bold leading-5">
+                <i class="fa-solid fa-arrow-right"></i>
+                {{ block.value.software.title }}</h3>
+              </a>
+              <p class="p-2 text-gray-200 min-h-[155px] blur-bg">
                 {{ block.value.software.description }}
               </p>
-              <div class="text-center">
-                <a target="_blank" href="{{ block.value.software.url }}" class="inline-block mb-3 transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
-                  <i class="text-sm fa-solid fa-link w-5 h-5 mr-2"></i>Get <span class="capitalize">{{ block.value.software.title }}</span></a>
-              </div>
             </div>
           </div>    
         {% endif %}        
@@ -220,7 +216,7 @@
     <P class="text-gray-50">This page does not exist, you have been redirected to the home page.</P>
   </div>
 <div>
-  <a id="contact" class="text-3xl text-gray-100 bg-blue-600 shadow-md fixed bottom-4 left-4 p-4 rounded-full h-[62px] z-[2]" href="/contact/" aria-label="General Contact" >
+  <a id="contact" class="text-3xl text-gray-100 bg-deep-purple-500 shadow-md fixed bottom-6 left-6 p-4 rounded-full h-[62px] z-[2]" href="/contact/" aria-label="General Contact" >
     <i class="fa-solid fa-envelope align-top"></i></a>
 </div>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
