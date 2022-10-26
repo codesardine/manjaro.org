@@ -31,7 +31,7 @@
                     {% if not item.submenu %}
                     <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
                         <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" 
-                        class="w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-gray-200 hover:text-gray-50 hover:border-gray-50">
+                        class="w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[2px] border-b-[2px] pb-1 border-transparent tracking-wide font-semibold text-gray-100 hover:text-gray-50 hover:border-gray-50">
                           {% if "merchandise" in item.title.lower %}
                             <i class="fa-solid fa-gifts"></i>
                           {% elif "hardware" in item.title.lower %}
@@ -44,7 +44,7 @@
                     </li>
                     {% else %}
                     <li>
-                      <button class="{{ item.title }} flex-row hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 hover:text-gray-900 hover:border-gray-900"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
+                      <button class="{{ item.title }} flex-row hover:border-b-[2px] border-b-[2px] border-transparent font-medium tracking-wide text-gray-200 mb-2 hover:text-gray-50 hover:border-gray-50"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
                         <ul id="submenu{{ item.title }}" class="text-sm dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
                             {% for block in item.submenu %}
                                 {% with subitem=block.value.submenu_item %}
@@ -60,15 +60,15 @@
           </div>
         </div>
       </div>
-      <div class="nav relative flex items-center justify-between lg:justify-end lg:ml-40 lg:space-x-16">
+      <div class="nav relative flex items-center justify-between lg:justify-start lg:ml-40 lg:space-x-16">
         <ul class="items-center hidden lg:flex text-md font-bold capitalize space-x-8">
           {% for item in left_navigation.menu_items.all %}
             <li>
                 {% if not item.submenu %}
-                  <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[1px] text-teal-100 hover:text-gray-200">{{ item.title }}</a>
+                  <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[2px] text-gray-200 hover:text-gray-50">{{ item.title }}</a>
                 {% else %}
-                  <button class="{{ item.title }} font-bold inline-flex capitalize tracking-wide border-b-[1px] border-transparent hover:border-gray-50 hover:border-b-[1px] text-teal-100 hover:text-gray-50"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
-                  <ul id="submenu{{ item.title }}" class="mt-[5px] dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-50">
+                  <button class="{{ item.title }} font-bold inline-flex capitalize tracking-wide border-b-[2px] border-transparent hover:border-gray-50 hover:border-b-[2px] text-gray-100 hover:text-gray-50"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2 mb-2"></i> {{ item.title }}</button>
+                  <ul id="submenu{{ item.title }}" class="mt-2 dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-50">
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
                       <li class="relative text-sm py-2">
@@ -85,7 +85,7 @@
               </li>
           {% endfor %} 
         </ul>  
-        <ul class="justify-end hidden lg:flex">
+        <ul class="justify-end hidden lg:flex w-full">
           <a href="https://manjaro.org/download/" class="inline-block self-end text-sm px-4 py-2 leading-none border font-semibold rounded text-gray-50 border-gray-50 hover:border-transparent hover:text-teal-500 hover:bg-gray-50 mt-4 lg:mt-0">
             <i class="fa-solid fa-circle-arrow-down"></i>
             Download
