@@ -313,16 +313,16 @@
     scrollbar-width: none;  /* Firefox */
 }
 
-.hover-neon:hover {
-    & .hover-red {
+.h-neon {
+    & .h-red {
     filter: drop-shadow(1px 1px 2px #ff4081) drop-shadow(-1px -1px 2px #ff4081)
     }
 
-    & .hover-green {
+    & .h-green {
         filter: drop-shadow(1px 1px 2px #64ffda) drop-shadow(-1px -1px 2px #64ffda)
     }
 
-    & .hover-blue {
+    & .h-blue {
         filter: drop-shadow(1px 1px 2px #40c4ff) drop-shadow(-1px -1px 2px #40c4ff)
     }
 }

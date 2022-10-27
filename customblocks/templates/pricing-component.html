@@ -4,49 +4,49 @@
     <div class="grid max-w-md gap-4 row-gap-8 lg:max-w-screen-lg sm:row-gap-10 sm:max-w-screen-xl sm:grid-cols-2 lg:grid-cols-3 xl:gap-8 xl:max-w-screen-xl">
      {% for item in self.product_details %}
          {% if not item.hidden %}
-          <div class="hover-neon mb-52 lg:mb-30 relative bg-gray-900 flex flex-col bg-grey-50 rounded shadow-sm hover:shadow">
-            <div class="w-full">
+          <div class="mb-52 lg:mb-30 relative bg-gray-900 flex flex-col bg-grey-50 rounded shadow-sm hover:shadow">
+            <div class="w-full h-neon">
               {% if forloop.counter == 1 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-red" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-red" %}
               {% elif forloop.counter == 2 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-green" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-green" %}
               {% elif forloop.counter == 3 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-blue" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-blue" %}
               
               {% elif forloop.counter == 4 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-red" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-red" %}
               {% elif forloop.counter == 5 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-green" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-green" %}
               {% elif forloop.counter == 6 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-blue" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-blue" %}
 
-              {% elif forloop.counter == 7 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-red" %}
+              {% elif forloop.counter == 7 %
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-red" %}
               {% elif forloop.counter == 8 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-green" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-green" %}
               {% elif forloop.counter == 9 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-blue" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-blue" %}
 
               {% elif forloop.counter == 10 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-red" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-red" %}
               {% elif forloop.counter == 11 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-green" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-green" %}
               {% elif forloop.counter == 12 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-blue" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-blue" %}
 
               {% elif forloop.counter == 13 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-red" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-red" %}
               {% elif forloop.counter == 14 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-green" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-green" %}
               {% elif forloop.counter == 15 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-blue" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-blue" %}
 
               {% elif forloop.counter == 16 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-red" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-red" %}
               {% elif forloop.counter == 17 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-green" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-green" %}
               {% elif forloop.counter == 18 %}
-                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] hover-blue" %}
+                {% image item.image original class="object-contain max-w-[100%] w-full absolute -mt-[38%] h-blue" %}
 
               {% endif %}
             </div>
