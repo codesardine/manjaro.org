@@ -43,7 +43,7 @@
       <source srcset="{{ promo_img_1024.url }}" type="image/png" media="(max-width: 1024px)"> 
       {% image promo.background width-1280 as promo_img_1280 %}
       <source srcset="{{ promo_img_1280.url }}" type="image/png" media="(max-width: 1280px)">
-      {% image promo.background original class="pt-28 pb-28 fixed h-full w-[50%] right-[5%] object-contain" %}
+      {% image promo.background original class="pt-28 pb-28 fixed h-full w-[50%] right-[5%] object-contain promo-glow" %}
     </picture>
     {% endif %}
     
@@ -141,7 +141,7 @@
   <div class="bg-blue-600 opacity-75 absolute h-[100vh] w-full"></div>
   <div id="partner" class="relative flex items-center h-[100vh] justify-center">
     <div class="grid lg:grid-cols-1 text-center p-2 blur-bg">
-      <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
+      <div class="flex flex-col justify-center lg:max-w-lg">
         <div class="max-w-xl mb-6 text-center">
           <div class="w-full flex items-center justify-center">
             <div class="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-yellow-accent-700">
@@ -199,7 +199,7 @@
                 <i class="fa-solid fa-arrow-right"></i>
                 {{ block.value.software.title }}</h3>
               </a>
-              <p class="p-2 text-gray-200 min-h-[155px] blur-bg">
+              <p class="p-2 text-gray-200 blur-bg">
                 {{ block.value.software.description }}
               </p>
             </div>
