@@ -14,16 +14,16 @@
   }
 </style>
 {% endblock %}
-<div class="blur-bg fixed w-full top-0 z-10 h-[100px]"></div>
-<div class="fixed top-0 lg:top-[34px] left-0 right-0 z-10">  
-    <div class="z-40 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 relative">
+<div class="blur-bg fixed w-full top-0 z-10 h-[88px]"></div>
+<div class="fixed top-0 left-0 right-0 z-10">  
+    <div class="z-40 px-4 pb-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 relative">
       <a id="logo" href="https://manjaro.org" aria-label="Home" title="Home" class="z-30 absolute logo lg:inline-flex items-center hidden lg:mx-auto">
-        <img src="{% static 'img/block-logo.svg' %}" alt="manjaro logo" width="90" height="110">
+        <img src="{% static 'img/block-logo-dark.svg' %}" alt="manjaro logo" width="90" height="110">
       </a>
       <a id="inline-logo" href="https://manjaro.org" aria-label="Home" title="Home" class="absolute shadow top-4 lg:hidden flex justify-center">
-        <img src="{% static 'img/inline-logo-dark.svg' %}" alt="manjaro logo" width="150" height="42">
+        <img src="{% static 'img/inline-logo-light.svg' %}" alt="manjaro logo" width="150" height="42">
       </a>
-      <div class="fixed top-0 left-0 right-0 z-20">    
+      <div class="w-full pb-3">    
         <div class="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
           <div class="nav relative flex items-center justify-between lg:justify-end lg:space-x-16">
             <ul class="items-center hidden space-x-8 lg:flex text-sm capitalize">
@@ -31,7 +31,7 @@
                     {% if not item.submenu %}
                     <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
                         <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" 
-                        class="w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[2px] border-b-[2px] pb-1 border-transparent tracking-wide font-semibold text-gray-100 hover:text-gray-50 hover:border-gray-50">
+                        class="w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[2px] border-b-[2px] pb-1 border-transparent tracking-wide font-semibold text-gray-700 hover:text-gray-900 hover:border-gray-900">
                           {% if "merchandise" in item.title.lower %}
                             <i class="fa-solid fa-gifts"></i>
                           {% elif "hardware" in item.title.lower %}
@@ -44,7 +44,7 @@
                     </li>
                     {% else %}
                     <li>
-                      <button class="{{ item.title }} flex-row hover:border-b-[2px] border-b-[2px] border-transparent font-medium tracking-wide text-gray-200 mb-2 hover:text-gray-50 hover:border-gray-50"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
+                      <button class="{{ item.title }} flex-row hover:border-b-[2px] border-b-[2px] border-transparent font-medium tracking-wide text-gray-700 mb-2 hover:text-gray-50 hover:border-gray-50"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
                         <ul id="submenu{{ item.title }}" class="text-sm dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
                             {% for block in item.submenu %}
                                 {% with subitem=block.value.submenu_item %}
@@ -65,9 +65,9 @@
           {% for item in left_navigation.menu_items.all %}
             <li>
                 {% if not item.submenu %}
-                  <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[2px] text-gray-200 hover:text-gray-50">{{ item.title }}</a>
+                  <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[2px] text-gray-900 hover:text-gray-50">{{ item.title }}</a>
                 {% else %}
-                  <button class="{{ item.title }} font-bold inline-flex capitalize tracking-wide border-b-[2px] border-transparent hover:border-gray-50 hover:border-b-[2px] text-gray-100 hover:text-gray-50"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2 mb-2"></i> {{ item.title }}</button>
+                  <button class="{{ item.title }} inline-flex capitalize tracking-wide border-b-[2px] border-transparent hover:border-gray-800 hover:border-b-[2px] text-gray-800 font-bold"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2 mb-2"></i> {{ item.title }}</button>
                   <ul id="submenu{{ item.title }}" class="mt-2 dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-50">
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
