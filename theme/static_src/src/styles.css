@@ -80,9 +80,41 @@
     width: 120px;
 
     & img {
-        width: 73px;
-        margin: 0 auto;
+        width: 60px;
     }
+}
+.link:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -6px;
+    left: -4px;
+    z-index: -1;
+    border-radius: 30px;
+    pointer-events: none;
+    background: #009688;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-position: center;
+    transition: all ease 0.3s;
+
+}
+
+.link-lg:hover:before {
+    top: -2px;
+    left: -12px;
+    opacity: 1;
+    width: 30px;
+    height: 30px;    
+}
+
+.link-sm:hover:before {
+    top: -2px;
+    left: -12px;
+    opacity: 1;
+    width: 24px;
+    height: 24px;    
 }
 
 #inline-logo img {
