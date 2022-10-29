@@ -29,10 +29,7 @@
 {% block content %}
 <div class=" w-full h-full fixed top-0"></div>
 <div id="top" class="pt-6 lg:pt-0">    
-  <video autoplay muted loop id="myVideo" class="w-full h-full fixed bottom-0 right-0 object-cover z-[-2] hidden">
-    <source src="/static/img/7.mp4" type="video/mp4">
-  </video>
-    <img src="{% static 'img/b.png' %}" class="fixed object-cover w-full h-full" alt="page background">
+  
 {% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
