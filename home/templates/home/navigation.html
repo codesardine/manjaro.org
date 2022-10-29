@@ -49,8 +49,8 @@
         </svg>
       </div>
       
-      <div class="nav relative flex items-center justify-between lg:justify-start lg:ml-40 lg:space-x-16">
-        <ul class="items-center hidden lg:flex text-md font-bold capitalize space-x-8">
+      <div class="nav relative flex items-center justify-center pb-2 lg:space-x-16">
+        <ul class="items-center justify-center hidden lg:flex text-md font-bold capitalize space-x-8">
           {% for item in left_navigation.menu_items.all %}
             <li>
                 {% if not item.submenu %}
@@ -146,9 +146,9 @@
         </div> <!-- mobile menu -->
       </div>
       <div class="w-full text-gray-200">    
-        <div class="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-26 lg:px-8 pt-2">
-          <div class="nav relative flex ml-[8rem] lg:space-x-16">
-            <ul class="items-center relative hidden space-x-8 lg:flex text-sm capitalize w-full">
+        <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-26 lg:px-8">
+          <div class="nav relative flex justify-center lg:space-x-16">
+            <ul class="justify-center items-center relative hidden space-x-8 lg:flex text-sm capitalize w-full">
               {% for item in right_navigation.menu_items.all %}
                     {% if not item.submenu %}
                     <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %} relative">
@@ -179,7 +179,7 @@
                       </li>
                     {% endif %}
               {% endfor %}
-              <a href="https://manjaro.org/download/" class="shadow absolute right-0 text-sm px-4 py-2 leading-none font-semibold rounded text-teal-800 bg-teal-accent-400 hover:bg-teal-accent-700 hover:text-gray-100">
+              <a href="https://manjaro.org/download/" class="text-sm px-4 py-2 leading-none font-semibold rounded text-teal-800 bg-teal-accent-400 hover:bg-teal-accent-700 hover:text-gray-100">
                 <i class="fa-solid fa-circle-arrow-down"></i>
                 Download
               </a>
