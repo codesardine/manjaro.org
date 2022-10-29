@@ -103,7 +103,7 @@
 
 .link-lg:hover:before {
     top: -2px;
-    left: -12px;
+    left: -8px;
     opacity: 1;
     width: 30px;
     height: 30px;    
@@ -111,7 +111,7 @@
 
 .link-sm:hover:before {
     top: -2px;
-    left: -12px;
+    left: -8px;
     opacity: 1;
     width: 24px;
     height: 24px;    
