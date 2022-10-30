@@ -75,7 +75,7 @@
     font-family: 'Comfortaa', cursive;
 }
 
-.link:before {
+.link-decor:before {
     content: "";
     position: absolute;
     width: 0;
@@ -93,7 +93,7 @@
 
 }
 
-.link-lg:hover:before {
+.link-decor-lg:hover:before {
     top: -3px;
     left: -6px;
     opacity: 1;
@@ -101,7 +101,7 @@
     height: 30px;    
 }
 
-.link-sm:hover:before {
+.link-decor-sm:hover:before {
     top: -2px;
     left: -6px;
     opacity: 1;

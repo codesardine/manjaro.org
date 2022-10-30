@@ -30,7 +30,7 @@
                 {% if not item.submenu %}
                   <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[2px] hover:text-gray-50">{{ item.title }}</a>
                 {% else %}
-                  <button class="{{ item.title }} relative inline-flex capitalize tracking-wide text-gray-300 link link-lg font-bold"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2 mb-2"></i> {{ item.title }}</button>
+                  <button class="{{ item.title }} relative inline-flex capitalize tracking-wide text-gray-300 link-decor link-decor-lg font-bold"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2 mb-2"></i> {{ item.title }}</button>
                   <ul id="submenu{{ item.title }}" class="mt-2 bottom-10 dropdown w-max rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-50">
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
@@ -128,7 +128,7 @@
                     {% if not item.submenu %}
                     <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %} relative">
                         <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}"  
-                        class="w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} tracking-wide font-semibold link link-sm">
+                        class="{% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} tracking-wide font-semibold link-decor link-decor-sm">
                           {% if "merchandise" in item.title.lower %}
                             <i class="fa-solid fa-gifts"></i>
                           {% elif "hardware" in item.title.lower %}
