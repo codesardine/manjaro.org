@@ -34,49 +34,49 @@
         </div>
         <div class="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
           <div class="p-2">
-            <h4 class="font-semibold tracking-wide uppercase">
+            <h4 class="font-semibold tracking-wide uppercase text-teal-800">
               {% get_menu_category_title "footer-one" %}
             </h4>
             <ul class="mt-2 space-y-2">
                 {% for item in footer_one.menu_items.all %}
-                <li>
-                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="hover:border-b-[1px] border-b-[1px] border-transparent inline-block hover:border-white tracking-wide font-semibold hover:text-white">{{ item.title }}</a>
+                <li class="relative">
+                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">{{ item.title }}</a>
                 </li>
                 {% endfor %}
             </ul>
           </div>
           <div class="p-2">
-            <h4 class="font-semibold tracking-wide uppercase">
+            <h4 class="font-semibold tracking-wide uppercase text-teal-800">
               {% get_menu_category_title "footer-two" %}
             </h4>
             <ul class="mt-2 space-y-2">
                 {% for item in footer_two.menu_items.all %}
-                <li>
-                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="hover:border-b-[1px] border-b-[1px] border-transparent inline-block hover:border-white tracking-wide font-semibold hover:text-white">{{ item.title }}</a>
+                <li class="relative">
+                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">{{ item.title }}</a>
                 </li>
                 {% endfor %}
             </ul>
           </div>
           <div class="p-2">
-            <h4 class="font-semibold tracking-wide uppercase">
+            <h4 class="font-semibold tracking-wide uppercase text-teal-800">
               {% get_menu_category_title "footer-three" %}
             </h4>
             <ul class="mt-2 space-y-2">
                 {% for item in footer_three.menu_items.all %}
-                <li>
-                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="hover:border-b-[1px] border-b-[1px] border-transparent inline-block hover:border-white tracking-wide font-semibold hover:text-white">{{ item.title }}</a>
+                <li class="relative">
+                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">{{ item.title }}</a>
                 </li>
                 {% endfor %}
             </ul>
           </div>
           <div class="p-2">
-            <h4 class="font-semibold tracking-wide uppercase">
+            <h4 class="font-semibold tracking-wide uppercase text-teal-800">
               {% get_menu_category_title "footer-four" %}
             </h4>
             <ul class="mt-2 space-y-2">
                 {% for item in footer_four.menu_items.all %}
-                <li>
-                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" title="{{ item.title }}" class="hover:border-b-[1px] border-b-[1px] border-transparent inline-block hover:border-white tracking-wide font-semibold hover:text-white">{{ item.title }}</a>
+                <li class="relative">
+                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">{{ item.title }}</a>
                 </li>
                 {% endfor %}
             </ul>
@@ -88,8 +88,8 @@
         <p class="text-sm p-2 font-semibold">
           © Copyright {% now "Y" %} Manjaro GmbH & Co KG All rights reserved.
         </p>
-        <div class="flex items-center mt-4 space-x-4 sm:mt-0">
-          <a rel="nofollow" href="/admin/" aria-label="Log in" title="Sign in" class="hover:border-b-[1px] border-b-[1px] border-transparent hover:border-white tracking-wide font-semibold hover:text-white">Log in</a>
+        <div class="relative">
+          <a rel="nofollow" href="/admin/" aria-label="Log in" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">log in</a>
         </div>
       </div>
     </div>

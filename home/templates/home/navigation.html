@@ -14,7 +14,7 @@
   }
 </style>
 {% endblock %}
-<div id="top-nav" class="fixed bottom-2 left-[50%] rounded-2xl translate-x-[-50%] mx-auto z-10 drop-shadow-lg bg-blue-gray-800 border-[3px] border-teal-accent-700">  
+<div id="top-nav" class="fixed bottom-8 left-[50%] rounded-2xl translate-x-[-50%] mx-auto z-10 drop-shadow-lg bg-blue-gray-800 border-[3px] border-teal-accent-700">  
     <div class="z-40 p-2 relative">
       <a id="logo" href="https://manjaro.org" aria-label="Home" title="Home" class="z-30 w-[62px] drop-shadow-lg h-[62px] border-[3px] border-teal-accent-700 absolute justify-center rounded-full bg-blue-gray-800 logo lg:flex items-center ml-[-40px] hidden">
         <img src="{% static 'img/logo.svg' %}" alt="manjaro logo" width="28" height="28">
@@ -23,14 +23,14 @@
         <img src="{% static 'img/inline-logo-light.svg' %}" alt="manjaro logo" width="150" height="42">
       </a>
       
-      <div class="nav relative flex items-center justify-center pb-2 lg:space-x-16 px-10">
+      <div class="nav relative flex items-center justify-center lg:space-x-16 px-10">
         <ul class="items-center justify-center hidden lg:flex text-md font-bold capitalize space-x-8">
           {% for item in left_navigation.menu_items.all %}
             <li>
                 {% if not item.submenu %}
                   <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[2px] hover:text-gray-50">{{ item.title }}</a>
                 {% else %}
-                  <button class="{{ item.title }} relative inline-flex capitalize tracking-wide text-gray-300 link-decor link-decor-lg font-bold"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2 mb-2"></i> {{ item.title }}</button>
+                  <button class="{{ item.title }} p-1 relative inline-flex capitalize tracking-wide text-gray-300 link-decor link-decor-lg font-bold"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2 mb-2"></i> {{ item.title }}</button>
                   <ul id="submenu{{ item.title }}" class="mt-2 bottom-10 dropdown w-max rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-50">
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
@@ -126,7 +126,7 @@
             <ul class="justify-center items-center relative hidden space-x-8 lg:flex text-sm capitalize w-full">
               {% for item in right_navigation.menu_items.all %}
                     {% if not item.submenu %}
-                    <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %} relative">
+                    <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %} p-2 relative">
                         <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}"  
                         class="{% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} tracking-wide font-semibold link-decor link-decor-sm">
                           {% if "merchandise" in item.title.lower %}
