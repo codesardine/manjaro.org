@@ -27,9 +27,9 @@
 {% endblock %}
 
 {% block content %}
-<div class=" w-full h-full fixed top-0"></div>
-<div id="top" class="pt-6 lg:pt-0">    
-  
+<div class="absolute h-full w-full bg-[url('/static/img/home-bg.png')] bg-cover bg-no-repeat"></div>
+<div class=" opacity-60 absolute h-full w-full"></div>
+<div id="top" class="pt-6 lg:pt-0">      
 {% if page.affiliate %}
   {% with affiliate=page.affiliate|random_list %}
     {% with promo=affiliate.value.promotion %}
@@ -48,7 +48,7 @@
     <div class="relative">
       <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
         <div id="promo" class="flex flex-col items-center justify-between xl:flex-row w-full">
-          <div class="blur-bg p-2 w-full max-w-xl mb-12 xl:mb-0 xl:w-7/12 fixed text-gray-800">
+          <div class="blur-bg p-2 w-full max-w-xl mb-12 xl:mb-0 xl:w-7/12 fixed text-gray-200">
             <h1 class="max-w-lg mb-6 font-extrabold text-[2.2rem] tracking-tight sm:leading-none text-left">
                 <span class="uppercase text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-teal-500">
                 {{ page.manjaro_title }}</span>
@@ -128,7 +128,7 @@
 {% endif %}
    <a href="#software" class="arrow-links text-6xl hidden xl:block absolute bottom-1 right-0" aria-label="software">
     <div class="relative">
-    <span class="uppercase absolute font-bold text-sm right-6 p-2 pr-8 bottom-[-112px] text-gray-900">software</span>
+    <span class="uppercase absolute font-bold text-sm right-6 p-2 pr-8 bottom-[-112px] text-gray-200">software</span>
     </div>
     <div class="chevron-container">
       <div class="chevron"></div>
@@ -234,17 +234,7 @@
   <div id="error" class="fixed bg-orange-900 p-4 hidden">
     <P class="text-gray-50">This page does not exist, you have been redirected to the home page.</P>
   </div>
-<div>
-  <a id="contact" class="text-3xl text-gray-100 bg-deep-purple-500 shadow-md fixed top-6 left-6 p-4 rounded-full h-[62px] z-[2]" href="/contact/" aria-label="General Contact" >
-    <i class="fa-solid fa-envelope align-top"></i></a>
-</div>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/tippy.js@6"></script>
-<script>
-  tippy('#contact', {
-      content: "Contact Us"
-    });
-</script>
+
 <script>
   const links = document.querySelectorAll(".arrow-links");
   const links1 = document.querySelectorAll(".link");
