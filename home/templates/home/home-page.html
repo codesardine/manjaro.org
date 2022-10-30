@@ -126,7 +126,10 @@
     {% endwith %}
    {% endwith %}
 {% endif %}
-   <a href="#partner" class="arrow-links text-6xl hidden xl:block" aria-label="partner">
+   <a href="#software" class="arrow-links text-6xl hidden xl:block absolute bottom-1 right-0" aria-label="software">
+    <div class="relative">
+    <span class="uppercase absolute font-bold text-sm right-8 pr-6 bottom-[-105px] text-gray-900">software</span>
+    </div>
     <div class="chevron-container">
       <div class="chevron"></div>
       <div class="chevron"></div>
@@ -135,9 +138,9 @@
   </a>
   </div>
 
-<div class="bg-[url('/static/img/production.jpg')] relative h-[100vh]">
+<div id="software" class="bg-[url('/static/img/production.jpg')] relative h-[100vh]">
   <div class="bg-white opacity-60 absolute h-full w-full"></div>
-  <div id="software" class="text-gray-900 relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
+  <div class="text-gray-900 relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
     <div class="w-full flex items-center justify-center">
       <div class="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-yellow-accent-700 text-3xl text-teal-900">
         <i class="fa-brands fa-linux"></i>
@@ -171,11 +174,21 @@
     {% endwith %}  
     </div> 
   </div>
+  <a href="#partner" class="arrow-links text-6xl hidden xl:block absolute bottom-1 right-0" aria-label="partner">
+    <div class="relative">
+      <span class="uppercase absolute font-bold text-sm right-8 pr-6 bottom-[-105px] text-gray-900">partner</span>
+      </div>
+    <div class="chevron-container">
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+    </div>
+  </a>
   </div>
 
-  <div class="bg-[url('/static/img/partnership.jpg')] relative bg-fixed">
+  <div id="partner" class="bg-[url('/static/img/partnership.jpg')] relative bg-fixed">
     <div class="bg-white opacity-60 absolute h-[100vh] w-full"></div>
-    <div id="partner" class="relative flex items-center h-[100vh] justify-center">
+    <div class="relative flex items-center h-[100vh] justify-center">
       <div class="grid lg:grid-cols-1 text-center p-2">
         <div class="flex flex-col justify-center lg:max-w-lg">
           <div class="max-w-xl mb-6 text-center text-gray-900">
@@ -205,7 +218,10 @@
           </div>
         </div>
       </div>
-      <a href="#software" class="arrow-links text-6xl hidden xl:block" aria-label="shells">
+      <a href="#footer" class="arrow-links text-6xl hidden xl:block absolute bottom-1 right-0" aria-label="footer">
+        <div class="relative">
+          <span class="uppercase absolute font-bold text-sm right-8 pr-6 bottom-[-105px] text-gray-900">footer</span>
+          </div>
         <div class="chevron-container">
           <div class="chevron"></div>
           <div class="chevron"></div>

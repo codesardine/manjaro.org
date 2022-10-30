@@ -396,15 +396,10 @@
 }
 
 .arrow-links {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) !important;
     height: 0;
-    margin-bottom: 115px;
+    margin-bottom: 108px;
 
     &:hover {
-        transform: translateX(-50%) !important;
         cursor: pointer;
     }
 }
