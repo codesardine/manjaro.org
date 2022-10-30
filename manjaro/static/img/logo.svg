@@ -3,8 +3,8 @@
 
 <svg
    version="1.2"
-   width="345.45459"
-   height="419.49911"
+   width="199.99998"
+   height="200.00005"
    id="svg2"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
    sodipodi:docname="logo.svg"
@@ -34,8 +34,8 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="3.0730397"
-     inkscape:cx="219.48952"
-     inkscape:cy="250.72894"
+     inkscape:cx="147.24834"
+     inkscape:cy="152.45491"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -45,82 +45,82 @@
      inkscape:guide-bbox="true"
      inkscape:deskcolor="#585858">
     <sodipodi:guide
-       position="-31.223499,346.77181"
+       position="-103.9508,200.00003"
        orientation="0,-1"
        id="guide831"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="200.00003,292.2264"
+       position="127.27273,145.45462"
        orientation="0,-1"
        id="guide833"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="200.00003,274.04457"
+       position="127.27273,127.27279"
        orientation="0,-1"
        id="guide835"
        inkscape:locked="false" />
     <inkscape:grid
        type="xygrid"
        id="grid837"
-       originx="72.727301"
-       originy="72.727309" />
+       originx="-1e-06"
+       originy="1.8e-05" />
     <sodipodi:guide
-       position="218.18187,146.77179"
+       position="145.45457,1.1786133e-05"
        orientation="0,-1"
        id="guide669"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="72.727352,274.04457"
+       position="5e-05,127.27279"
        orientation="1,0"
        id="guide697"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="272.72729,274.04458"
+       position="199.99999,127.2728"
        orientation="1,0"
        id="guide699"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="290.90911,328.59005"
+       position="218.18181,181.81827"
        orientation="0,-1"
        id="guide766"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="127.2728,292.2264"
+       position="54.545498,145.45462"
        orientation="1,0"
        id="guide1876"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="145.4546,274.04457"
+       position="72.727298,127.27279"
        orientation="1,0"
        id="guide1878"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="200.00003,263.30198"
+       position="127.27273,116.5302"
        orientation="1,0"
        id="guide2088"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="218.18187,346.77183"
+       position="145.45457,200.00005"
        orientation="1,0"
        id="guide2090"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="145.4546,128.58996"
+       position="72.727298,-18.181818"
        orientation="0,-1"
        id="guide3038"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="54.545532,274.04457"
+       position="-18.18177,127.27279"
        orientation="1,0"
        id="guide3045"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="290.90912,274.04457"
+       position="218.18182,127.27279"
        orientation="1,0"
        id="guide3047"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="175.39059,72.727309"
+       position="102.66329,-74.044469"
        orientation="0,-1"
        id="guide3051"
        inkscape:locked="false" />
@@ -141,6 +141,6 @@
   <path
      id="rect1340-7"
      style="font-size:140.705px;line-height:1.25;letter-spacing:0px;word-spacing:0px;fill:#35bfa4;fill-rule:evenodd;stroke-width:9.09092;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
-     d="m 90.909102,72.727291 c -10.0727,0 -18.1818,8.10908 -18.1818,18.18184 V 254.5455 c 0,10.07275 8.1091,18.18183 18.1818,18.18183 H 127.2728 V 127.27272 h 72.72723 V 72.727291 Z m 127.272768,0 V 272.72733 h 36.36367 c 10.07267,0 18.18175,-8.10908 18.18175,-18.18183 V 90.909131 c 0,-10.07276 -8.10908,-18.18184 -18.18175,-18.18184 z M 145.4546,145.45455 v 127.27278 h 54.54543 V 145.45455 Z"
+     d="M 18.1818,0 C 8.1091,0 0,8.10908 0,18.18184 v 163.63637 c 0,10.07275 8.1091,18.18183 18.1818,18.18183 H 54.545498 V 54.545429 H 127.27273 V 0 Z m 127.27277,0 v 200.00004 h 36.36367 c 10.07267,0 18.18175,-8.10908 18.18175,-18.18183 V 18.18184 C 199.99999,8.10908 191.89091,0 181.81824,0 Z M 72.727298,72.727259 V 200.00004 H 127.27273 V 72.727259 Z"
      inkscape:label="M" />
 </svg>

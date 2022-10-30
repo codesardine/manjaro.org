@@ -12,44 +12,18 @@
   .blur-bg {
     backdrop-filter: blur(20px);
   }
-  #top-nav {
-    filter: drop-shadow(-2px 2px 10px #37474f);
-  }
 </style>
 {% endblock %}
-<div id="top-nav" class="fixed bottom-0 left-0 right-0 z-10 shadow-md bg-blue-gray-800 border-t-[3px] border-teal-accent-700">  
-    <div class="z-40 px-4 pb-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 relative">
-      <a id="logo" href="https://manjaro.org" aria-label="Home" title="Home" class="z-30 absolute logo lg:inline-flex items-center mt-[8px] hidden">
-        <img src="{% static 'img/logo.svg' %}" alt="manjaro logo" width="90" height="110">
+<div id="top-nav" class="fixed bottom-2 left-[50%] rounded-2xl translate-x-[-50%] mx-auto z-10 drop-shadow-lg bg-blue-gray-800 border-[3px] border-teal-accent-700">  
+    <div class="z-40 p-2 relative">
+      <a id="logo" href="https://manjaro.org" aria-label="Home" title="Home" class="z-30 w-[62px] drop-shadow-lg h-[62px] border-[3px] border-teal-accent-700 absolute justify-center rounded-full bg-blue-gray-800 logo lg:flex items-center ml-[-40px] hidden">
+        <img src="{% static 'img/logo.svg' %}" alt="manjaro logo" width="28" height="28">
       </a>
       <a id="inline-logo" href="https://manjaro.org" aria-label="Home" title="Home" class="absolute shadow top-4 lg:hidden flex justify-center">
         <img src="{% static 'img/inline-logo-light.svg' %}" alt="manjaro logo" width="150" height="42">
       </a>
-      <div class="w-full justify-center hidden lg:flex relative">
-        <svg
-          class="absolute z-[-5] top-[-25px] w-full h-16 text-blue-gray-800"
-          preserveAspectRatio="none"
-          viewBox="0 0 1440 54">         
-            <g
-            id="g9"
-            transform="matrix(1,0,0,-1,0,53.242358)">
-            <path
-              fill="currentColor"
-              d="m 1440,32.702533 -120,5.299375 C 1200,43.701235 960,53.700046 720,54 480,53.700046 240,43.701235 120,38.001908 L 0,32.702533 V 0.70630712 h 120 c 120,0 360,0 600,0 240,0 480,0 600,0 h 120 z"
-              id="path2"
-              style="stroke:#00bfa5;stroke-width:2;stroke-dasharray:none;stroke-opacity:1" />
-            <rect
-              style="fill:#37474f;fill-opacity:1;stroke:none;stroke-width:4.09874;stroke-dasharray:none;stroke-opacity:1"
-              id="rect1621"
-              width="1442.4209"
-              height="32.925549"
-              x="-1.4842514"
-              y="-1.2576423"/>
-          </g>
-        </svg>
-      </div>
       
-      <div class="nav relative flex items-center justify-center pb-2 lg:space-x-16">
+      <div class="nav relative flex items-center justify-center pb-2 lg:space-x-16 px-10">
         <ul class="items-center justify-center hidden lg:flex text-md font-bold capitalize space-x-8">
           {% for item in left_navigation.menu_items.all %}
             <li>
@@ -57,7 +31,7 @@
                   <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[2px] hover:text-gray-50">{{ item.title }}</a>
                 {% else %}
                   <button class="{{ item.title }} relative inline-flex capitalize tracking-wide text-gray-300 link link-lg font-bold"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2 mb-2"></i> {{ item.title }}</button>
-                  <ul id="submenu{{ item.title }}" class="mt-2 bottom-10 dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-50">
+                  <ul id="submenu{{ item.title }}" class="mt-2 bottom-10 dropdown w-max rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-50">
                   {% for block in item.submenu %}
                       {% with subitem=block.value.submenu_item %}
                       <li class="relative text-sm py-2">
@@ -145,8 +119,9 @@
           </div>
         </div> <!-- mobile menu -->
       </div>
+
       <div class="w-full text-gray-200">    
-        <div class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-26 lg:px-8">
+        <div class="px-10">
           <div class="nav relative flex justify-center lg:space-x-16">
             <ul class="justify-center items-center relative hidden space-x-8 lg:flex text-sm capitalize w-full">
               {% for item in right_navigation.menu_items.all %}
