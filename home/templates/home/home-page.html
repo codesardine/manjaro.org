@@ -25,6 +25,14 @@
         {{ page.search_description }}
     {% endif %}
 {% endblock %}
+{% block head %}
+<style>
+  .v-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+</style>
+{% endblock %}
 
 {% block content %}
 <div class="fixed h-full w-full bg-[url('/static/img/home-bg.png')] bg-cover bg-no-repeat"></div>
@@ -126,11 +134,11 @@
     {% endwith %}
    {% endwith %}
 {% endif %}
-   <a href="#software" class="arrow-links text-6xl hidden xl:block absolute bottom-1 right-0" aria-label="software">
+   <a href="#software" class="arrow-links text-6xl hidden xl:block absolute bottom-0 right-0" aria-label="scroll">
     <div class="relative">
-    <span class="uppercase absolute font-bold text-sm right-6 p-2 pr-8 bottom-[-112px] text-gray-200">software</span>
+    <span class="uppercase absolute font-bold text-sm right-0 p-2 pr-4 bottom-[-60px] text-gray-200 v-text blur-bg z-10">scroll</span>
     </div>
-    <div class="chevron-container">
+    <div class="chevron-container blur-bg pr-2">
       <div class="chevron"></div>
       <div class="chevron"></div>
       <div class="chevron"></div>
@@ -174,11 +182,11 @@
     {% endwith %}  
     </div> 
   </div>
-  <a href="#partner" class="arrow-links text-6xl hidden xl:block absolute bottom-1 right-0" aria-label="partner">
+  <a href="#partner" class="arrow-links text-6xl hidden xl:block absolute bottom-0 right-0" aria-label="scroll">
     <div class="relative">
-      <span class="uppercase absolute font-bold text-sm right-6 p-2 pr-8 bottom-[-112px] text-gray-900">partner</span>
-      </div>
-    <div class="chevron-container">
+    <span class="uppercase absolute font-bold text-sm right-0 p-2 pr-4 bottom-[-60px] text-gray-900 v-text blur-bg z-10">scroll</span>
+    </div>
+    <div class="chevron-container blur-bg pr-2">
       <div class="chevron"></div>
       <div class="chevron"></div>
       <div class="chevron"></div>
@@ -218,11 +226,11 @@
           </div>
         </div>
       </div>
-      <a href="#footer" class="arrow-links text-6xl hidden xl:block absolute bottom-1 right-0" aria-label="footer">
+      <a href="#footer" class="arrow-links text-6xl hidden xl:block absolute bottom-0 right-0" aria-label="scroll">
         <div class="relative">
-          <span class="uppercase absolute font-bold text-sm right-6 p-2 pr-8 bottom-[-112px] text-gray-900">footer</span>
-          </div>
-        <div class="chevron-container">
+        <span class="uppercase absolute font-bold text-sm right-0 p-2 pr-4 bottom-[-60px] text-gray-900 v-text blur-bg z-10">scroll</span>
+        </div>
+        <div class="chevron-container blur-bg pr-2">
           <div class="chevron"></div>
           <div class="chevron"></div>
           <div class="chevron"></div>
