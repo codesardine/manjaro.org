@@ -6,21 +6,25 @@
   .blur-bg {
     backdrop-filter: blur(20px);
   }
+
+  .logo-inset {
+    box-shadow: inset 0 0 30px #263238;
+  }
 </style>
 {% endblock %}
-<a id="inline-logo" href="https://manjaro.org" aria-label="Home" title="Home" class="fixed z-[40] top-2 left-2 p-1 bg-gray-100">
-  <img src="{% static 'img/inline-logo-light.svg' %}" alt="manjaro logo" width="150" height="42">
+<a href="https://manjaro.org" aria-label="Home" title="Home" class="logo-inset fixed z-[40] top-2 left-2 px-2 py-1 bg-blue-gray-800 hidden lg:block rounded-full">
+  <img src="{% static 'img/logo-light.svg' %}" alt="manjaro logo" width="" height="" class="w-[110px] ">
 </a>
  <!-- Mobile menu -->
  <div id="nav-mobile" class="lg:hidden">
-  <button id="btn-open-menu" aria-label="Open Menu" title="Open Menu" class="bottom-1 left-2 text-3xl z-[40] fixed w-[62px] drop-shadow-lg h-[62px] border-[3px] border-teal-accent-700 justify-center rounded-full bg-blue-gray-800 text-gray-200 flex items-center">
+  <button id="btn-open-menu" aria-label="Open Menu" title="Open Menu" class="logo-inset bottom-1 left-2 text-3xl z-[40] fixed w-[62px] drop-shadow-lg h-[62px] border-[3px] border-teal-accent-700 justify-center rounded-full bg-blue-gray-800 text-gray-200 flex items-center">
     <i class="fa-solid fa-bars"></i>
   </button>
-  <a id="logo" href="https://manjaro.org" aria-label="Home" class="z-30 shadow-inner fixed bottom-3 left-12 w-[100px] drop-shadow-lg h-[48px] border-[3px] border-teal-accent-700 justify-center bg-blue-gray-800 logo flex items-center">
-    <img src="{% static 'img/logo.svg' %}" alt="manjaro logo" width="26" height="26" class="absolute left-[19px] bottom-2 ml-[8px]">
+  <a id="logo" href="https://manjaro.org" aria-label="Home" class="z-30 logo-inset fixed bottom-4 left-12 w-[150px] drop-shadow-lg h-[38px] bg-blue-gray-800 logo flex justify-center items-center rounded-full">
+    <img src="{% static 'img/logo-light.svg' %}" alt="manjaro logo" width="100" height="26" class="ml-[8px]">
   </a>
   {% if 'home' in page.title.lower %}
-      <a id="contact" class="text-3xl fixed bottom-1 left-28 text-gray-200 bg-blue-gray-800 z-30 w-[62px] drop-shadow-lg h-[62px] border-[3px] border-teal-accent-700 justify-center rounded-full flex items-center" href="/contact/" aria-label="General Contact">
+      <a id="contact" class="text-2xl log-inset fixed bottom-16 left-12 text-gray-200 bg-blue-gray-800 z-30 w-[52px] drop-shadow-lg h-[52px] border-[3px] border-teal-accent-700 justify-center rounded-full flex items-center" href="/contact/" aria-label="General Contact">
         <i class="fa-solid fa-envelope align-top right-[-2px]"></i>
       </a>
     {% endif %}
@@ -86,14 +90,14 @@
   </div>
 </div> <!-- mobile menu -->
 
-<div id="nav-desktop" class="hidden lg:block fixed bottom-8 left-[50%] rounded-2xl translate-x-[-50%] z-10 drop-shadow-lg bg-blue-gray-800 border-[3px] border-teal-accent-700">  
+<div id="nav-desktop" class="hidden lg:block fixed logo-inset bottom-8 left-[50%] rounded-2xl translate-x-[-50%] z-10 drop-shadow-lg bg-blue-gray-800 border-[3px] border-teal-accent-700">  
   <div class="z-40 p-2 relative">
-      <a id="logo" href="https://manjaro.org" aria-label="Home" class="z-30 mt-[4px] w-[62px] drop-shadow-lg h-[62px] border-[3px] border-teal-accent-700 absolute justify-center rounded-full bg-blue-gray-800 logo flex items-center ml-[-40px]">
+      <a id="logo" href="https://manjaro.org" aria-label="Home" class="z-30 logo-inset mt-[4px] w-[62px] drop-shadow-lg h-[62px] border-[3px] border-teal-accent-700 absolute justify-center rounded-full bg-blue-gray-800 logo flex items-center ml-[-40px]">
         <img src="{% static 'img/logo.svg' %}" alt="manjaro logo" width="28" height="28">
       </a>
       
       {% if 'home' in page.title.lower %}
-      <a id="contact" class="text-3xl text-gray-200 bg-blue-gray-800 z-30 mt-[4px] w-[62px] drop-shadow-lg h-[62px] border-[3px] border-teal-accent-700 absolute justify-center rounded-full logo flex items-center right-[-32px]" href="/contact/" aria-label="General Contact">
+      <a id="contact" class="text-3xl logo-inset text-gray-200 bg-blue-gray-800 z-30 mt-[4px] w-[62px] drop-shadow-lg h-[62px] border-[3px] border-teal-accent-700 absolute justify-center rounded-full logo flex items-center right-[-32px]" href="/contact/" aria-label="General Contact">
         <i class="fa-solid fa-envelope align-top mr-[2px]"></i>
       </a>
       {% endif %}
