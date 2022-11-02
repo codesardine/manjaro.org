@@ -427,7 +427,6 @@
     justify-content: center;
     align-items: center;
     width: 44px;
-    height: 80px;
     padding-bottom: 40px;
     margin-top: 30px;
 }
@@ -539,3 +538,23 @@
         }
     }
 } 
+
+.tippy-box {
+    background-color: #00bfa5;
+    padding: 4px;
+    border-radius: 50px;
+    color: #fafafa;
+    margin-bottom: 2px;
+  }
+  .tippy-box[data-placement^='top'] > .tippy-arrow::before {
+    border-top-color: #00bfa5;
+  }
+  .tippy-box[data-placement^='bottom'] > .tippy-arrow::before {
+    border-bottom-color: #00bfa5;
+  }
+  .tippy-box[data-placement^='left'] > .tippy-arrow::before {
+    border-left-color: #00bfa5;
+  }
+  .tippy-box[data-placement^='right'] > .tippy-arrow::before {
+    border-right-color: #00bfa5;
+  }

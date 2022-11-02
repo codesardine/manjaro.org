@@ -12,7 +12,7 @@
   }
 </style>
 {% endblock %}
-<a href="https://manjaro.org" aria-label="Home" title="Home" class="fixed z-[40] top-2 left-2 px-2 py-1 bg-gray-100 hidden lg:block rounded-full">
+<a href="https://manjaro.org" aria-label="Home" class="home-btn fixed z-[40] top-2 left-2 px-2 py-1 bg-gray-100 hidden lg:block rounded-full">
   <img src="{% static 'img/logo-green-dark.svg' %}" alt="manjaro logo" width="" height="" class="w-[110px] ">
 </a>
  <!-- Mobile menu -->
@@ -92,7 +92,7 @@
 
 <div id="nav-desktop" class="hidden lg:block fixed logo-inset bottom-2 left-[50%] rounded-2xl translate-x-[-50%] z-10 drop-shadow-lg bg-blue-gray-800 border-[3px] border-teal-accent-700">  
   <div class="z-40 p-2 relative">
-      <a id="logo" href="https://manjaro.org" aria-label="Home" class="z-30 logo-inset mt-[4px] w-[62px] drop-shadow-lg h-[62px] border-[3px] border-teal-accent-700 absolute justify-center rounded-full bg-blue-gray-800 logo flex items-center ml-[-40px]">
+      <a id="logo" href="https://manjaro.org" aria-label="Home" class="home-btn z-30 logo-inset mt-[4px] w-[62px] drop-shadow-lg h-[62px] border-[3px] border-teal-accent-700 absolute justify-center rounded-full bg-blue-gray-800 logo flex items-center ml-[-40px]">
         <img src="{% static 'img/logo.svg' %}" alt="manjaro logo" width="28" height="28">
       </a>
       
@@ -163,7 +163,7 @@
                       </li>
                     {% endif %}
               {% endfor %}
-              <a href="https://manjaro.org/download/" class="text-sm px-4 py-2 leading-none font-semibold rounded text-teal-800 bg-teal-accent-400 hover:bg-teal-accent-700 hover:text-gray-100">
+              <a id="download-btn" href="https://manjaro.org/download/" class="text-sm px-4 py-2 leading-none font-semibold rounded text-teal-800 bg-teal-accent-400 hover:bg-teal-accent-700 hover:text-gray-100">
                 <i class="fa-solid fa-circle-arrow-down"></i>
                 Download
               </a>
@@ -172,6 +172,9 @@
       </div>
     </div>
   </div>
+
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/tippy.js@6"></script>
   <script>
     window.onclick = function (event) {
         let leftSubmenu = document.querySelectorAll('.dropdown')
@@ -183,23 +186,26 @@
             }
         });
     }
-  </script>
-  <script src="https://unpkg.com/@popperjs/core@2"></script>
-  <script src="https://unpkg.com/tippy.js@6"></script>
-  <script>
-    tippy('#logo', {
-        content: "HOME"
-      });
-  </script>
-  <script>
+
+    tooltipIcon = "<i class='fa-solid fa-comment ml-2'></i>"
     tippy('#btn-open-menu', {
-        content: "OPEN MENU"
+        content: "OPEN MENU" + tooltipIcon,
+        allowHTML: true,
       });
-  </script>
+
   {% if 'home' in page.title.lower %}
-  <script>
     tippy('#contact', {
-        content: "GET IN TOUCH"
+        content: "GET IN TOUCH" + tooltipIcon,
+        allowHTML: true,
+      });
+  {% endif %}
+  
+    tippy('.home-btn', {
+        content: "GO BACK TO HOME PAGE" + tooltipIcon,
+        allowHTML: true,
+      });
+    tippy('#download-btn', {
+        content: "GET MANJARO INSTALL MEDIA" + tooltipIcon,
+        allowHTML: true,
       });
   </script>
-  {% endif %}
