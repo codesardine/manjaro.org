@@ -35,26 +35,26 @@
 {% endblock %}
 
 {% block content %}
-<div class="block relative h-full w-full bg-[url('/static/img/bg.svg')] bg-contain bg-right-top bg-no-repeat bg-fixed">   
+<div class="block relative h-full w-full bg-[url('/static/img/bg.svg')] bg-cover bg-right-bottom bg-no-repeat bg-fixed">   
     <div class="relative">
       <div class="flex relative justify-items-center mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
         <div id="promo" class="flex flex-col gap-10 items-center justify-between lg:flex-row w-full">
           {% if page.affiliate %}
             {% with affiliate=page.affiliate|random_list %}
               {% with promo=affiliate.value.promotion %}
-          <div class="md:w-1/2 text-blue-gray-700 p-4 pt-8 lg:pt-0">
-            <h1 class="max-w-lg mb-6 font-extrabold text-[2.2rem] tracking-tight sm:leading-none text-left">
+          <div class="lg:w-1/2 text-blue-gray-700 p-4 pt-8 lg:pt-0">
+            <h1 class="mb-6 font-extrabold text-[2.2rem] tracking-tight leading-none p-2 text-left blur-bg">
                 <span class="uppercase">
                 {{ page.manjaro_title }}</span>
             </h1>
-            <p class="max-w-xl mb-4 text-lg font-semibold text-justify p-0">
+            <p class="mb-4 text-lg font-semibold text-left p-2 blur-bg">
               manjaro {{ page.manjaro_intro }} 
             </p>
             <div class="grid gap-5 row-gap-10 mx-auto">
               <div class="flex flex-col justify-center pb-8">
                 <h2 class="mb-4 font-bold text-blue-gray-700 uppercase">Features</h2>
                 <div class="flex flex-wrap gap-4 capitalize">
-                  <ul class="font-semibold">
+                  <ul class="font-semibold blur-bg p-2 pl-0">
                     <li class="flex p-1 pl-0">
                       <span class="mr-1">
                         <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-700"></i>
@@ -75,7 +75,7 @@
                       </li>
                     </ul>
 
-                    <ul class="font-semibold">
+                    <ul class="font-semibold blur-bg p-2 pl-0">
                       <li class="flex p-1 pl-0">
                         <span class="mr-1">
                           <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-700"></i>
@@ -136,7 +136,7 @@
 {% endif %}
    <a href="#software" class="arrow-links text-6xl hidden lg:block absolute bottom-0 right-0" aria-label="scroll">
     <div class="relative">
-    <span class="uppercase absolute font-bold text-sm right-0 p-2 pr-4 bottom-[-60px] text-blue-gray-800 v-text z-10">scroll</span>
+    <span class="uppercase absolute font-bold text-sm right-0 p-2 pr-4 bottom-[-60px] text-blue-gray-800 blur-bg v-text z-10">scroll</span>
     </div>
     <div class="chevron-container pr-2">
       <div class="chevron"></div>
