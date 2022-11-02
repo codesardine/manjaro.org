@@ -38,11 +38,11 @@
 <div class="block relative h-full w-full bg-[url('/static/img/bg.svg')] bg-contain bg-right-top bg-no-repeat bg-fixed">   
     <div class="relative">
       <div class="flex relative justify-items-center mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
-        <div id="promo" class="flex flex-col gap-8 items-center justify-between xl:flex-row w-full">
+        <div id="promo" class="flex flex-col gap-10 items-center justify-between lg:flex-row w-full">
           {% if page.affiliate %}
             {% with affiliate=page.affiliate|random_list %}
               {% with promo=affiliate.value.promotion %}
-          <div class="lg:w-1/2 text-blue-gray-700 p-4 pt-8 lg:pt-0">
+          <div class="md:w-1/2 text-blue-gray-700 p-4 pt-8 lg:pt-0">
             <h1 class="max-w-lg mb-6 font-extrabold text-[2.2rem] tracking-tight sm:leading-none text-left">
                 <span class="uppercase">
                 {{ page.manjaro_title }}</span>
