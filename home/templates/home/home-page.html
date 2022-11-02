@@ -35,26 +35,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="block relative h-full w-full bg-[url('/static/img/bg.svg')] bg-contain bg-right-top bg-no-repeat bg-fixed">
-{% if page.affiliate %}
-  {% with affiliate=page.affiliate|random_list %}
-    {% with promo=affiliate.value.promotion %}
-    {% if not promo.hidden %}
-    <picture class="hidden xl:block">
-      {% image promo.background width-640 as promo_img_640 %}
-      <source srcset="{{ promo_img_640.url }}" type="image/png" media="(max-width: 640px)">
-      {% image promo.background width-1024 as promo_img_1024 %}
-      <source srcset="{{ promo_img_1024.url }}" type="image/png" media="(max-width: 1024px)"> 
-      {% image promo.background width-1280 as promo_img_1280 %}
-      <source srcset="{{ promo_img_1280.url }}" type="image/png" media="(max-width: 1280px)">
-      {% image promo.background original class="absolute lg:fixed pt-28 pb-28 pl-8 pr-8 h-full w-[50%] right-[5%] object-contain promo-glow" %}
-    </picture>
-    {% endif %}
-    
+<div class="block relative h-full w-full bg-[url('/static/img/bg.svg')] bg-contain bg-right-top bg-no-repeat bg-fixed">   
     <div class="relative">
-      <div class="flex justify-items-center mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
-        <div id="promo" class="flex flex-col items-center justify-between xl:flex-row w-full">
-          <div class="relative lg:fixed p-6 w-full max-w-xl mb-12 xl:mb-0 xl:w-7/12 text-blue-gray-700">
+      <div class="flex relative justify-items-center mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
+        <div id="promo" class="flex flex-col gap-8 items-center justify-between xl:flex-row w-full">
+          {% if page.affiliate %}
+            {% with affiliate=page.affiliate|random_list %}
+              {% with promo=affiliate.value.promotion %}
+          <div class="lg:w-1/2 text-blue-gray-700 pt-8 lg:pt-0">
             <h1 class="max-w-lg mb-6 font-extrabold text-[2.2rem] tracking-tight sm:leading-none text-left">
                 <span class="uppercase">
                 {{ page.manjaro_title }}</span>
@@ -127,11 +115,24 @@
                 </div>
               </div>
           </div>
-        </div>
+         
+          {% if not promo.hidden %}
+          <picture class="hidden w-1/2 lg:flex justify-center items-center">
+            {% image promo.background width-640 as promo_img_640 %}
+            <source srcset="{{ promo_img_640.url }}" type="image/png" media="(max-width: 640px)">
+            {% image promo.background width-1024 as promo_img_1024 %}
+            <source srcset="{{ promo_img_1024.url }}" type="image/png" media="(max-width: 1024px)"> 
+            {% image promo.background width-1280 as promo_img_1280 %}
+            <source srcset="{{ promo_img_1280.url }}" type="image/png" media="(max-width: 1280px)">
+            {% image promo.background original class="object-contain promo-glow" %}
+          </picture>
+          {% endif %}
+        {% endwith %}
+      {% endwith %}
+          
       </div>
     </div>
-    {% endwith %}
-   {% endwith %}
+    </div>
 {% endif %}
    <a href="#software" class="arrow-links text-6xl hidden lg:block absolute bottom-0 right-0" aria-label="scroll">
     <div class="relative">
@@ -144,7 +145,6 @@
     </div>
   </a>
 </div>
-
 
 <div id="software" class="bg-[url('/static/img/production.jpg')] h-full xl:h-[100vh] bg-cover relative">
   <div class="bg-white opacity-60 absolute h-full w-full"></div>
