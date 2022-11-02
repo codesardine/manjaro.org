@@ -7,10 +7,6 @@
    viewBox="0 0 32 32"
    version="1.1"
    id="svg8"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04, custom)"
-   sodipodi:docname="Manjaro_email.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -18,28 +14,6 @@
    xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs2" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#525252"
-     bordercolor="#404040"
-     borderopacity="1"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="16"
-     inkscape:cx="16.40625"
-     inkscape:cy="17.4375"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     inkscape:window-width="1914"
-     inkscape:window-height="1047"
-     inkscape:window-x="1923"
-     inkscape:window-y="3"
-     inkscape:window-maximized="0"
-     inkscape:pagecheckerboard="0"
-     units="px"
-     showguides="true"
-     inkscape:guide-bbox="true" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -52,8 +26,6 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1">
     <rect
        style="opacity:0.2;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.983882;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
@@ -68,8 +40,7 @@
     <path
        style="fill:#027724;fill-opacity:1;stroke-width:1.67852"
        d="M 0.81980721,17.70314 24.139683,4.3823963 29.967487,14.584837 6.6476321,27.905585 Z"
-       id="path41409"
-       sodipodi:nodetypes="ccccc" />
+       id="path41409" />
     <path
        style="fill:#1a8e3c;fill-opacity:1;stroke-width:1.67852"
        d="M 7.3482776,2.3759526 C 6.6592841,2.7976161 6.5222101,3.566062 6.3508385,3.986504 L 0.81980721,17.70314 24.139683,4.3823963 9.5149097,2.1791299 c -0.449202,-0.065968 -1.180761,-0.3382319 -1.8939548,0.041072 -0.044579,0.02359 -0.088771,0.0547 -0.1329629,0.08369 -0.047512,0.023416 -0.096585,0.045752 -0.139617,0.072075 z"

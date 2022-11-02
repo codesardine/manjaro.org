@@ -6,125 +6,11 @@
    width="199.99998"
    height="200.00005"
    id="svg2"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
-   sodipodi:docname="logo.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:dc="http://purl.org/dc/elements/1.1/">
-  <sodipodi:namedview
-     pagecolor="#585858"
-     bordercolor="#424242"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1503"
-     inkscape:window-height="933"
-     id="namedview15"
-     showgrid="false"
-     inkscape:showpageshadow="false"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0"
-     inkscape:zoom="3.0730397"
-     inkscape:cx="147.24834"
-     inkscape:cy="152.45491"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg2"
-     inkscape:pagecheckerboard="0"
-     showguides="true"
-     inkscape:guide-bbox="true"
-     inkscape:deskcolor="#585858">
-    <sodipodi:guide
-       position="-103.9508,200.00003"
-       orientation="0,-1"
-       id="guide831"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="127.27273,145.45462"
-       orientation="0,-1"
-       id="guide833"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="127.27273,127.27279"
-       orientation="0,-1"
-       id="guide835"
-       inkscape:locked="false" />
-    <inkscape:grid
-       type="xygrid"
-       id="grid837"
-       originx="-1e-06"
-       originy="1.8e-05" />
-    <sodipodi:guide
-       position="145.45457,1.1786133e-05"
-       orientation="0,-1"
-       id="guide669"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="5e-05,127.27279"
-       orientation="1,0"
-       id="guide697"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="199.99999,127.2728"
-       orientation="1,0"
-       id="guide699"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="218.18181,181.81827"
-       orientation="0,-1"
-       id="guide766"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="54.545498,145.45462"
-       orientation="1,0"
-       id="guide1876"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="72.727298,127.27279"
-       orientation="1,0"
-       id="guide1878"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="127.27273,116.5302"
-       orientation="1,0"
-       id="guide2088"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="145.45457,200.00005"
-       orientation="1,0"
-       id="guide2090"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="72.727298,-18.181818"
-       orientation="0,-1"
-       id="guide3038"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="-18.18177,127.27279"
-       orientation="1,0"
-       id="guide3045"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="218.18182,127.27279"
-       orientation="1,0"
-       id="guide3047"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="102.66329,-74.044469"
-       orientation="0,-1"
-       id="guide3051"
-       inkscape:locked="false" />
-  </sodipodi:namedview>
   <defs
      id="defs4" />
   <metadata
@@ -141,6 +27,5 @@
   <path
      id="rect1340-7"
      style="font-size:140.705px;line-height:1.25;letter-spacing:0px;word-spacing:0px;fill:#35bfa4;fill-rule:evenodd;stroke-width:9.09092;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
-     d="M 18.1818,0 C 8.1091,0 0,8.10908 0,18.18184 v 163.63637 c 0,10.07275 8.1091,18.18183 18.1818,18.18183 H 54.545498 V 54.545429 H 127.27273 V 0 Z m 127.27277,0 v 200.00004 h 36.36367 c 10.07267,0 18.18175,-8.10908 18.18175,-18.18183 V 18.18184 C 199.99999,8.10908 191.89091,0 181.81824,0 Z M 72.727298,72.727259 V 200.00004 H 127.27273 V 72.727259 Z"
-     inkscape:label="M" />
+     d="M 18.1818,0 C 8.1091,0 0,8.10908 0,18.18184 v 163.63637 c 0,10.07275 8.1091,18.18183 18.1818,18.18183 H 54.545498 V 54.545429 H 127.27273 V 0 Z m 127.27277,0 v 200.00004 h 36.36367 c 10.07267,0 18.18175,-8.10908 18.18175,-18.18183 V 18.18184 C 199.99999,8.10908 191.89091,0 181.81824,0 Z M 72.727298,72.727259 V 200.00004 H 127.27273 V 72.727259 Z" />
 </svg>
