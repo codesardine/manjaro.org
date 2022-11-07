@@ -31,30 +31,38 @@
     writing-mode: vertical-rl;
     text-orientation: upright;
   }
+  @media only screen and (min-width: 1024px) {
+  .clip {
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
+  }
+}
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="block relative h-full w-full bg-[url('/static/img/bg.svg')] bg-cover bg-right-bottom bg-no-repeat bg-fixed">   
-    <div class="relative">
-      <div class="flex relative justify-items-center mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
-        <div id="promo" class="flex flex-col gap-10 items-center justify-between lg:flex-row w-full">
-          {% if page.affiliate %}
+{% if page.affiliate %}
             {% with affiliate=page.affiliate|random_list %}
               {% with promo=affiliate.value.promotion %}
+<div class="block relative h-full w-full bg-[url('/static/img/bg.svg')] bg-cover bg-right-top bg-no-repeat bg-fixed">
+  <div class="bg-teal-accent-100 opacity-60 absolute h-full clip z-[-1] w-full"></div>
+ 
+  <div class="relative">
+      <div class="flex relative justify-items-center mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
+        <div id="promo" class="flex flex-col gap-10 items-center justify-between lg:flex-row w-full z-[2] relative">
+          
           <div class="lg:w-1/2 text-blue-gray-700 p-4 pt-8 lg:pt-0">
-            <h1 class="mb-6 font-extrabold text-[2.2rem] tracking-tight leading-none p-2 text-left blur-bg">
+            <h1 class="mb-6 font-extrabold text-[2.2rem] tracking-tight leading-none p-2 text-left">
                 <span class="uppercase">
                 {{ page.manjaro_title }}</span>
             </h1>
-            <p class="mb-4 text-lg font-semibold text-left p-2 blur-bg">
+            <p class="mb-4 text-lg font-semibold text-left p-2">
               manjaro {{ page.manjaro_intro }} 
             </p>
             <div class="grid gap-5 row-gap-10 mx-auto">
               <div class="flex flex-col justify-center pb-8">
                 <h2 class="mb-4 font-bold text-blue-gray-700 uppercase">Features</h2>
                 <div class="flex flex-wrap gap-4 capitalize">
-                  <ul class="font-semibold blur-bg p-2 pl-0">
+                  <ul class="font-semibold p-2 pl-0">
                     <li class="flex p-1 pl-0">
                       <span class="mr-1">
                         <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-700"></i>
@@ -75,7 +83,7 @@
                       </li>
                     </ul>
 
-                    <ul class="font-semibold blur-bg p-2 pl-0">
+                    <ul class="font-semibold p-2 pl-0">
                       <li class="flex p-1 pl-0">
                         <span class="mr-1">
                           <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-700"></i>
@@ -117,38 +125,39 @@
           </div>
          
           {% if not promo.hidden %}
-          <picture class="hidden w-1/2 lg:flex justify-center items-center">
-            {% image promo.background width-500 format-webp class="object-contain promo-glow" %}
+          <picture class="hidden lg:w-1/2 lg:flex justify-center items-center xl:scale-125">
+            {% image promo.background width-750 format-webp class="object-contain w-full h-full promo-glow xl:pl-4" %}
           </picture>
           {% endif %}
-        {% endwith %}
-      {% endwith %}
+
           
       </div>
     </div>
     </div>
-{% endif %}
    <a href="#software" class="scroll-btn arrow-links text-6xl hidden lg:block absolute bottom-6 right-[50%] translate-x-[50%]" aria-label="scroll">
     <div class="relative">
     <span class="uppercase hidden  absolute font-bold text-sm right-0 p-2 pr-4 bottom-[-60px] text-blue-gray-800 blur-bg v-text z-10">scroll</span>
     </div>
-    <div class="chevron-container pr-2 h-24">
+    <div class="chevron-container h-24">
       <div class="chevron"></div>
       <div class="chevron"></div>
       <div class="chevron"></div>
     </div>
   </a>
 </div>
+{% endwith %}
+{% endwith %}
+{% endif %}
 
-<div id="software" class="bg-[url('/static/img/production.jpg')] h-full xl:h-[100vh] bg-cover relative">
-  <div class="bg-white opacity-60 absolute h-full w-full"></div>
-  <div class="text-gray-900 p-4 relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
+<div id="software" class="bg-[url('/static/img/production.webp')] h-full xl:h-[100vh] bg-cover relative z-0">
+  <div class="bg-white opacity-60 absolute h-full w-full z-[-1]"></div>
+  <div class="text-blue-gray-900 p-4 relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
     <div class="w-full flex items-center justify-center">
       <div class="flex items-center  mt-8 lg:mt-0 justify-center w-16 h-16 mb-4 rounded-full bg-yellow-accent-700 text-3xl text-teal-900">
         <i class="fa-brands fa-linux"></i>
       </div>
   </div>
-    <h2 class="w-full bg-clip-text text-gray-900 uppercase mb-2 font-sans text-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
+    <h2 class="w-full bg-clip-text text-blue-gray-900 uppercase mb-2 font-sans text-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
       {{ page.software_intro }}
     </h2>
     <div class="flex items-center justify-center ">
@@ -160,9 +169,8 @@
             {% image block.value.software.image width-380 format-webp as soft_image %}
             <img src="{{ soft_image.url }}" class="object-contain w-full h-64 rounded" alt="" />
             <div class="py-5 text-center">
-              <a target="_blank" href="{{ block.value.software.url }}" class="inline-block mb-3">
-              <h3 class="inline-block mb-3 pb-2 capitalize hover:text-gray-900 border-b-transparent border-b-2 hover:border-gray-900 text-2xl font-bold leading-5">
-                <i class="fa-solid fa-arrow-right"></i>
+              <a target="_blank" href="{{ block.value.software.url }}" class="inline-block mb-3 link-decor link-decor-xl relative">
+              <h3 class="inline-block mb-3 pb-2 capitalize text-2xl font-bold leading-5">
                 {{ block.value.software.title }}</h3>
               </a>
               <p class="p-2 blur-bg text-lg">
@@ -180,7 +188,7 @@
     <div class="relative">
     <span class="uppercase hidden  absolute font-bold text-sm right-0 p-2 pr-4 bottom-[-60px] text-blue-gray-800 blur-bg v-text z-10">scroll</span>
     </div>
-    <div class="chevron-container pr-2 h-24">
+    <div class="chevron-container h-24">
       <div class="chevron"></div>
       <div class="chevron"></div>
       <div class="chevron"></div>
@@ -188,12 +196,12 @@
   </a>
   </div>
 
-  <div id="partner" class="bg-[url('/static/img/partnership.jpg')] relative bg-fixed bg-cover lg:min-h-[100vh] flex justify-center items-center">
+  <div id="partner" class="bg-[url('/static/img/partnership.webp')] relative bg-fixed bg-cover lg:min-h-[100vh] flex justify-center items-center">
     <div class="bg-white opacity-60 absolute h-full w-full"></div>
     <div class="relative flex items-center h-full justify-center p-4">
       <div class="grid lg:grid-cols-1 text-center p-2">
         <div class="flex flex-col justify-center lg:max-w-lg">
-          <div class="max-w-xl mb-6 text-center text-gray-900 pb-8">
+          <div class="max-w-xl mb-6 text-center text-blue-gray-900 pb-8">
             <div class="w-full flex items-center justify-center">
               <div class="mt-8 lg:mt-0 flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-yellow-accent-700">
                 <svg class="text-teal-900 w-7 h-7" viewBox="0 0 24 24">

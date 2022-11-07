@@ -10,66 +10,23 @@
   .logo-inset {
     box-shadow: inset 0 0 30px #263238;
   }
+  
 </style>
 {% endblock %}
-<a href="https://manjaro.org" aria-label="Home" class="home-btn fixed z-[40] top-2 left-2 px-2 py-1 bg-gray-100 hidden rounded-full">
-  <img src="{% static 'img/logo-green-dark.svg' %}" alt="manjaro logo" width="" height="" class="w-[110px] ">
-</a>
-<div class="bg-teal-accent-400 lg:bg-teal-400 fixed top-0 lg:top-[34px] left-0 right-0 z-10 hidden lg:block">  
-  <div class="z-40 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 relative">
-    <div class="w-full justify-center hidden lg:flex relative">
-      <svg
-          class="absolute top-[12px] w-full px-[120px] h-16 text-teal-400"
-          preserveAspectRatio="none"
-          viewBox="0 0 1440 54"
-          version="1.1"
-          id="svg4"
-          sodipodi:docname="svg.svg"
-          inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
-          xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-          xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:svg="http://www.w3.org/2000/svg">
-          <defs
-            id="defs8" />
-          <sodipodi:namedview
-            id="namedview6"
-            pagecolor="#ffffff"
-            bordercolor="#000000"
-            borderopacity="0.25"
-            inkscape:showpageshadow="2"
-            inkscape:pageopacity="0.0"
-            inkscape:pagecheckerboard="0"
-            inkscape:deskcolor="#d1d1d1"
-            showgrid="false"
-            inkscape:zoom="0.95138889"
-            inkscape:cx="720"
-            inkscape:cy="27.328467"
-            inkscape:window-width="1512"
-            inkscape:window-height="939"
-            inkscape:window-x="0"
-            inkscape:window-y="32"
-            inkscape:window-maximized="1"
-            inkscape:current-layer="svg4" />
-          <path
-            fill="currentColor"
-            d="m 1440,32.702533 -120,5.299375 C 1200,43.701235 960,53.700046 720,54 480,53.700046 240,43.701235 120,38.001908 L 0,32.702533 V 0.70630712 h 120 c 120,0 360,0 600,0 240,0 480,0 600,0 h 120 z"
-            id="path2"
-            style="stroke-width:0.999941" />
-      </svg>
-    </div>
-    <div class="bg-teal-accent-400 fixed top-0 left-0 right-0 z-20">    
+<div class="h-0 z-10 hidden lg:block">  
+  <div class="z-40 px-4 py-1 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 relative">   
+    <div class="top-0 left-0 right-0 z-20">    
       <div class="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div class="nav relative flex items-center justify-between lg:justify-end lg:space-x-16">
-          <a id="inline-logo" href="https://manjaro.org" aria-label="Home" title="Home" class="absolute left-0 flex justify-center">
-            <img src="{% static 'img/logo-dark.svg' %}" alt="manjaro logo" width="150" height="42">
+          <a href="https://manjaro.org" aria-label="Home" class="top-[-18px] w-[80px] absolute left-[-20px] flex justify-center home-btn">
+            <img src="{% static 'img/block-logo.svg' %}" alt="manjaro logo" width="150" height="42">
           </a>
           <ul class="items-center hidden space-x-8 lg:flex text-sm capitalize">
             {% for item in right_navigation.menu_items.all %}
                   {% if not item.submenu %}
                   <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
                       <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" 
-                      class="w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 hover:text-gray-900 hover:border-gray-900">
+                      class="w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[1px] border-b-[1px] border-transparent font-bold tracking-wide relative link-decor-sm link-decor text-blue-gray-900">
                         {% if "merchandise" in item.title.lower %}
                           <i class="fa-solid fa-gifts"></i>
                         {% elif "hardware" in item.title.lower %}
@@ -82,7 +39,7 @@
                   </li>
                   {% else %}
                   <li>
-                    <button class="{{ item.title }} flex-row hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 hover:text-gray-900 hover:border-gray-900"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
+                    <button class="{{ item.title }} flex-row hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide link-decor-sm link-decor text-blue-gray-900"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
                       <ul id="submenu{{ item.title }}" class="text-sm dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
                           {% for block in item.submenu %}
                               {% with subitem=block.value.submenu_item %}
@@ -99,14 +56,14 @@
       </div>
     </div>
     <div class="nav relative flex items-center justify-between lg:justify-start lg:ml-40 lg:space-x-16">
-      <ul class="items-center hidden lg:flex text-md font-bold capitalize space-x-8">
+      <ul class="items-center hidden lg:flex text-md font-bold capitalize space-x-8 p-3">
         {% for item in left_navigation.menu_items.all %}
           <li>
               {% if not item.submenu %}
                 <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[1px] text-teal-100 hover:text-gray-200">{{ item.title }}</a>
               {% else %}
-                <button class="{{ item.title }} font-bold inline-flex capitalize tracking-wide border-b-[1px] border-transparent hover:border-gray-50 hover:border-b-[1px] text-teal-100 hover:text-gray-50"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
-                <ul id="submenu{{ item.title }}" class="mt-[5px] dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-50">
+                <button class="{{ item.title }} font-bold inline-flex capitalize tracking-wide text-blue-gray-900 link-decor-lg link-decor relative"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
+                <ul id="submenu{{ item.title }}" class="mt-[8px] dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-50">
                 {% for block in item.submenu %}
                     {% with subitem=block.value.submenu_item %}
                     <li class="relative text-sm py-2">
@@ -124,7 +81,7 @@
         {% endfor %} 
       </ul>  
       <ul class="justify-end w-full hidden lg:flex">
-        <a href="https://manjaro.org/download/" class="inline-block self-end text-sm px-4 py-2 leading-none border font-semibold rounded text-gray-50 border-gray-50 hover:border-transparent hover:text-teal-500 hover:bg-gray-50 mt-4 lg:mt-0">
+        <a id="download-btn" href="https://manjaro.org/download/" class="inline-block self-end text-sm px-4 py-2 leading-none font-semibold rounded bg-teal-accent-400 text-blue-gray-900 mt-0">
           <i class="fa-solid fa-circle-arrow-down"></i>
           Download
         </a>
@@ -224,7 +181,7 @@
         });
     }
 
-    tooltipIcon = "<i class='fa-solid fa-comment ml-2'></i>"
+    tooltipIcon = "<i class='fa-solid fa-circle-info ml-2'></i>"
     tippy('#btn-open-menu', {
         content: "OPEN MENU" + tooltipIcon,
         allowHTML: true,
