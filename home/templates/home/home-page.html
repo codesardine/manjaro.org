@@ -51,18 +51,18 @@
         <div id="promo" class="flex flex-col gap-10 items-center justify-between lg:flex-row w-full z-[2] relative">
           
           <div class="lg:w-1/2 text-blue-gray-700 p-4 pt-8 lg:pt-0">
-            <h1 class="mb-6 font-extrabold text-[2.2rem] tracking-tight leading-none p-2 text-left">
+            <h1 class="mb-6 font-extrabold text-[2.2rem] tracking-tight leading-none text-left">
                 <span class="uppercase">
                 {{ page.manjaro_title }}</span>
             </h1>
-            <p class="mb-4 text-lg font-semibold text-left p-2">
+            <p class="mb-4 text-lg font-semibold text-left">
               manjaro {{ page.manjaro_intro }} 
             </p>
             <div class="grid gap-5 row-gap-10 mx-auto">
               <div class="flex flex-col justify-center pb-8">
                 <h2 class="mb-4 font-bold text-blue-gray-700 uppercase">Features</h2>
                 <div class="flex flex-wrap gap-4 capitalize">
-                  <ul class="font-semibold p-2 pl-0">
+                  <ul class="font-semibold p-2 pl-0 lg:pt-0">
                     <li class="flex p-1 pl-0">
                       <span class="mr-1">
                         <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-700"></i>
@@ -83,7 +83,7 @@
                       </li>
                     </ul>
 
-                    <ul class="font-semibold p-2 pl-0">
+                    <ul class="font-semibold p-2 pl-0 lg:pt-0">
                       <li class="flex p-1 pl-0">
                         <span class="mr-1">
                           <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-700"></i>
@@ -259,15 +259,15 @@
     }, 10000)
   }
   tippy('#promo-btn', {
-      content: "NEW MANJARO HARDWARE" + tooltipIcon,
+      content: "GET NEW MANJARO HARDWARE" + tooltipIcon,
       allowHTML: true,
     });
     tippy('#features-btn', {
-      content: "MORE DETAILS ABOUT MANJARO" + tooltipIcon,
+      content: "EXPAND MANJARO FEATURES" + tooltipIcon,
       allowHTML: true,
     });
     tippy('.scroll-btn', {
-      content: "GO TO NEXT SECTION" + tooltipIcon,
+      content: "NEXT SECTION" + tooltipIcon,
       allowHTML: true,
     });
 </script>
