@@ -43,7 +43,7 @@
 {% if page.affiliate %}
             {% with affiliate=page.affiliate|random_list %}
               {% with promo=affiliate.value.promotion %}
-<div class="block relative h-full w-full bg-[url('/static/img/bg.svg')] bg-cover bg-right-bottom bg-no-repeat bg-fixed">
+<div class="block relative h-full w-full bg-cover bg-right-bottom bg-no-repeat bg-fixed">
   <div class="bg-teal-accent-100 opacity-60 absolute h-full clip z-[-1] w-full"></div>
  
   <div class="relative">
@@ -125,11 +125,10 @@
           </div>
          
           {% if not promo.hidden %}
-          <picture class="hidden  justify-center items-center xl:scale-125">
-            {% image promo.background width-750 format-webp class="object-contain w-full h-full promo-glow xl:pl-4" %}
-          </picture>
-          <video width="70%" height="100%" class="" autoplay muted loop>
+          {% image promo.background width-950 as image %}
+          <video width="70%" height="100%" poster="{{ image.url }}" autoplay muted loop>
             <source src="/static/videos/mini.mp4" type="video/mp4">
+              {% image promo.background width-750 format-webp class="object-contain w-full h-full promo-glow xl:pl-4" %}
           </video> 
           {% endif %}
 
@@ -152,8 +151,8 @@
 {% endwith %}
 {% endif %}
 
-<div id="software" class="bg-[url('/static/img/production.webp')] h-full xl:h-[100vh] bg-cover relative z-0">
-  <div class="bg-white opacity-60 absolute h-full w-full z-[-1]"></div>
+<div id="software" class="h-full xl:h-[100vh] bg-cover relative z-0">
+  <div class="opacity-60 absolute h-full w-full z-[-1]"></div>
   <div class="text-blue-gray-900 p-4 relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
     <div class="w-full flex items-center justify-center">
       <div class="flex items-center  mt-8 lg:mt-0 justify-center w-16 h-16 mb-4 rounded-full bg-yellow-accent-700 text-3xl text-teal-900">
@@ -199,8 +198,8 @@
   </a>
   </div>
 
-  <div id="partner" class="bg-[url('/static/img/partnership.webp')] relative bg-fixed bg-cover lg:min-h-[100vh] flex justify-center items-center">
-    <div class="bg-white opacity-60 absolute h-full w-full"></div>
+  <div id="partner" class="relative bg-fixed bg-cover lg:min-h-[100vh] flex justify-center items-center">
+    <div class="opacity-60 absolute h-full w-full"></div>
     <div class="relative flex items-center h-full justify-center p-4">
       <div class="grid lg:grid-cols-1 text-center p-2">
         <div class="flex flex-col justify-center lg:max-w-lg">
