@@ -44,13 +44,12 @@
             {% with affiliate=page.affiliate|random_list %}
               {% with promo=affiliate.value.promotion %}
 <div class="block relative h-full w-full bg-cover bg-right-bottom bg-no-repeat bg-fixed">
-  <div class="bg-teal-accent-100 opacity-60 absolute h-full clip z-[-1] w-full"></div>
+  <div class="bg-teal-accent-400 opacity-60 absolute h-full clip z-[-1] w-full"></div>
  
-  <div class="relative">
       <div class="flex relative justify-items-center mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
         <div id="promo" class="flex flex-col gap-10 items-center justify-between lg:flex-row w-full z-[2] relative">
           
-          <div class="lg:w-1/2 text-blue-gray-700 p-4 pt-8 lg:pt-0 lg:pl-0">
+          <div class="lg:w-1/2 text-blue-gray-700 p-4 pb-0 lg:p-0 ">
             <h1 class="mb-6 font-extrabold text-[2.2rem] tracking-tight leading-none text-left">
                 <span class="uppercase">
                 {{ page.manjaro_title }}</span>
@@ -59,7 +58,7 @@
               manjaro {{ page.manjaro_intro }} 
             </p>
             <div class="grid gap-5 row-gap-10 mx-auto">
-              <div class="flex flex-col justify-center pb-8">
+              <div class="flex flex-col justify-center">
                 <h2 class="mb-4 font-bold text-blue-gray-700 uppercase">Features</h2>
                 <div class="flex flex-wrap gap-4 capitalize">
                   <ul class="font-semibold p-2 pl-0 lg:pt-0">
@@ -113,10 +112,7 @@
                     </li>
                     {% if not promo.hidden %}
                     <li>
-                      <a id="promo-btn" href="{{ promo.url }}" class="border leading-none shadow inline-block text-sm rounded py-2 px-4 capitalize font-medium tracking-wide text-gray-100 border-pink-800 hover:border-pink700 bg-pink-800 hover: hover:bg-pink-700">
-                        <i class="fa-solid fa-star"></i>
-                        {{ promo.text }}
-                      </a>
+                      
                     </li>
                     {% endif %}
                   </ul>
@@ -125,17 +121,22 @@
           </div>
          
           {% if not promo.hidden %}
-          {% image promo.background width-950 as image %}
-          <video width="70%" height="100%" poster="{{ image.url }}" autoplay muted loop>
-            <source src="/static/videos/mini.mp4" type="video/mp4">
-              {% image promo.background width-750 format-webp class="object-contain w-full h-full promo-glow xl:pl-4" %}
-          </video> 
+          {% image promo.image width-950 as image %}
+          <picture class="lg:justify-center items-center w-full lg:w-2/3 bg-gray-900 relative p-4 pt-8">
+            {% image promo.image width-750 format-webp class="object-contain promo-glow p-6" %}
+            <a id="promo-btn" href="{{ promo.url }}" class="tracking-wider absolute top-2 right-2 shadow-md text-sm rounded py-2 px-4 capitalize font-medium text-gray-100 border-pink-800 hover:border-pink700 bg-pink-800 hover: hover:bg-pink-700">
+              <i class="fa-solid fa-circle-info"></i>
+              details
+            </a>
+            <h4 class="absolute top-3 left-6 text-gray-200 font-bold text-lg capitalize">{{ promo.model }}</h4>
+            <p class="text-gray-200 font-bold text-xs">
+              {{ promo.description }}
+            </p>
+          </picture>
           {% endif %}
-
-          
       </div>
     </div>
-    </div>
+
    <a href="#software" class="scroll-btn arrow-links text-6xl hidden lg:block absolute bottom-0 h-[56px] right-[50%] translate-x-[50%]" aria-label="scroll">
     <div class="relative hidden">
     <span class="uppercase absolute font-bold text-sm right-0 p-2 pr-4 bottom-[-60px] text-blue-gray-800 v-text z-10">scroll</span>
@@ -155,16 +156,16 @@
   <div class="opacity-60 absolute h-full w-full z-[-1]"></div>
   <div class="text-blue-gray-900 p-4 relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
     <div class="w-full flex items-center justify-center">
-      <div class="flex items-center  mt-8 lg:mt-0 justify-center w-16 h-16 mb-4 rounded-full bg-yellow-accent-700 text-3xl text-teal-900">
+      <div class="flex items-center  mt-8 lg:mt-0 justify-center w-16 h-16 mb-10 rounded-full bg-yellow-accent-700 text-3xl text-teal-900">
         <i class="fa-brands fa-linux"></i>
       </div>
   </div>
-    <h2 class="w-full bg-clip-text text-blue-gray-900 uppercase mb-2 font-sans text-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
+    <h2 class="w-full bg-clip-text text-blue-gray-900 uppercase mb-4 font-sans text-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
       {{ page.software_intro }}
     </h2>
     <div class="flex items-center justify-center ">
     {% with blocks=page.software %}
-    <div class="flex flex-wrap gap-4 items-baseline justify-center pb-8">
+    <div class="flex flex-wrap gap-12 items-baseline justify-center pb-8">
       {% for block in blocks %}
         {% if not block.value.software.hidden %}
           <div class="overflow-hidden transition-shadow duration-300 max-w-full md:max-w-sm">
@@ -175,7 +176,7 @@
               <h3 class="inline-block mb-3 pb-2 capitalize text-2xl font-bold leading-5">
                 {{ block.value.software.title }}</h3>
               </a>
-              <p class="p-2 blur-bg text-lg">
+              <p class="blur-bg text-sm font-semibold">
                 {{ block.value.software.description }}
               </p>
             </div>
@@ -217,7 +218,7 @@
             <h2 class="w-full uppercase mb-6 font-sans text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
               {{ page.partners_title }}
             </h2>
-            <p class="text-lg mb-2 blur-bg p-2">
+            <p class="text-sm font-semibold blur-bg">
               {{ page.partners_intro }}
             </p>
           </div>
@@ -261,7 +262,7 @@
     }, 10000)
   }
   tippy('#promo-btn', {
-      content: "GET NEW MANJARO HARDWARE" + tooltipIcon,
+      content: "WERE TO BUY AND SPECS" + tooltipIcon,
       allowHTML: true,
     });
     tippy('#features-btn', {
