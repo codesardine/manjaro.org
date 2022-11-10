@@ -43,13 +43,20 @@
 {% if page.affiliate %}
             {% with affiliate=page.affiliate|random_list %}
               {% with promo=affiliate.value.promotion %}
-<div class="block relative h-full w-full bg-cover bg-right-bottom bg-no-repeat lg:fixed top-0">
+<div class="block relative h-full w-full bg-cover bg-right-bottom bg-no-repeat lg:fixed top-0 overflow-hidden">
   <div class="bg-teal-accent-400 absolute h-full clip w-full"></div>
+  <svg viewBox="0 0 88 88" class="max-w-screen-xl text-teal-200 absolute hidden md:block right-0">
+    <circle fill="currentColor" cx="44" cy="44" r="15.5"></circle>
+    <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="44"></circle>
+    <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="37.5"></circle>
+    <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="29.5"></circle>
+    <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="22.5"></circle>
+  </svg>
  
       <div class="flex relative justify-items-center mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:min-h-screen">
         <div id="promo" class="flex flex-col gap-10 items-center justify-between lg:flex-row w-full z-[2] relative">
           
-          <div class="lg:w-1/2 text-blue-gray-700 p-4 pb-0 lg:p-0 ">
+          <div class="lg:w-1/2 text-teal-900 p-4 pb-0 lg:p-0 ">
             <h1 class="mb-6 font-extrabold text-[2.2rem] tracking-tight leading-none text-left">
                 <span class="uppercase">
                 {{ page.manjaro_title }}</span>
@@ -59,24 +66,24 @@
             </p>
             <div class="grid gap-5 row-gap-10 mx-auto">
               <div class="flex flex-col justify-center">
-                <h2 class="mb-4 font-bold text-blue-gray-700 uppercase">Features</h2>
+                <h2 class="mb-4 font-bold text-teal-900 uppercase">Features</h2>
                 <div class="flex flex-wrap gap-4 capitalize">
                   <ul class="font-semibold p-2 pl-0 lg:pt-0">
                     <li class="flex p-1 pl-0">
                       <span class="mr-1">
-                        <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-700"></i>
+                        <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
                       </span>
                       Plug & Play Hardware
                     </li>
                       <li class="flex p-1 pl-0">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
                         </span>
                         Rolling release
                       </li>
                       <li class="flex p-1 pl-0">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
                         </span>
                         Wide range of software
                       </li>
@@ -85,19 +92,19 @@
                     <ul class="font-semibold p-2 pl-0 lg:pt-0">
                       <li class="flex p-1 pl-0">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
                         </span>
                         Secure by default
                       </li>
                       <li class="flex p-1 pl-0">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
                         </span>
                         Lightning fast
                       </li>
                       <li class="flex p-1 pl-0">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
                         </span>
                         Easily installed
                       </li>
@@ -111,12 +118,12 @@
           {% image promo.image width-950 as image %}
           <picture class="lg:justify-center items-center w-full lg:w-2/3 text-gray-200">
             {% image promo.image width-750 format-webp class="object-contain promo-glow p-10" %}
-            <div class="relative bg-blue-gray-800 p-3 rounded-md">
-            <a id="promo-btn" href="{{ promo.url }}" class="tracking-wide leading-none absolute top-2 right-2 shadow-md text-sm rounded py-2 px-4 capitalize font-medium border-pink-800 hover:border-pink700 bg-pink-800 hover: hover:bg-pink-700">
+            <div class="relative bg-blue-gray-800 p-5 rounded-md">
+            <a id="promo-btn" href="{{ promo.url }}" class="tracking-wide leading-none absolute top-4 right-5 shadow-md text-sm rounded py-2 px-4 capitalize font-medium border-pink-800 hover:border-pink700 bg-pink-800 hover: hover:bg-pink-700">
               <i class="fa-solid fa-circle-info"></i>
               details
             </a>
-            <h4 class="pb-2 font-bold capitalize">{{ promo.model }}</h4>
+            <h4 class="pb-4 font-bold capitalize"> <i class="fa-solid fa-star"></i> {{ promo.model }}</h4>
             <p class="font-bold text-xs">
               {{ promo.description }}
             </p>
@@ -139,26 +146,21 @@
 {% endif %}
 
 <div id="manjaro" class="h-full bg-cover relative z-0 bg-blue-gray-800 lg:mt-[100vh]">
-  <div class="absolute h-full w-full">
-    <div class="bg-blue-gray-800 absolute h-full w-full">
+  
       <div class="w-full justify-center lg:flex relative">
-        <svg
-        class="absolute top-[-24px] w-full h-16 text-blue-gray-800 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl"
-        preserveAspectRatio="none"
-        viewBox="0 0 1440 54">         
-        <path
-        fill="currentColor"
-        d="M 1440,20.539825 1320,15.24045 C 1200,9.541123 960,-0.457688 720,-0.757642 480,-0.457688 240,9.541123 120,15.24045 L 0,20.539825 v 31.996226 h 120 c 120,0 360,0 600,0 240,0 480,0 600,0 h 120 z"
-        id="path2"
-        style="stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;fill:#37474f;fill-opacity:1" />
-   </svg>
-        </div>
-    </div>
-  </div>
-
+         <img src="/static/img/dark-woble.svg" class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl">
+      </div>
+        <svg viewBox="0 0 88 88" class="max-w-screen-xl text-teal-200 absolute hidden md:block top-4 right-4 w-3/4">
+          <circle fill="currentColor" cx="44" cy="44" r="15.5"></circle>
+          <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="44"></circle>
+          <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="37.5"></circle>
+          <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="29.5"></circle>
+          <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="22.5"></circle>
+        </svg>
+  
   <div class="text-gray-200 relative flex justify-center flex-col lg:min-h-[100vh] w-full">
     <div class="w-full flex items-center justify-center text-2xl text-teal-900">
-      <div class="mt-8 lg:mt-0 flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-yellow-accent-700">
+      <div class="flex items-center justify-center w-16 h-16 mb-10 rounded-full bg-yellow-accent-700">
         <i class="fa-solid fa-list-check"></i>
       </div>
   </div>
@@ -166,29 +168,80 @@
       Do any task
     </h2>
     <div id="manjaro" class="flex flex-col gap-10 lg:flex-row w-full px-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
-          
-      <div class="lg:w-1/2 font-bold text-sm h-full relative">
-        <p class="p-2">Use your favorit operating system desktop enviroment from our wide choice, install your favorit open source software as a native package, flatpak or snap or build your own packages using the AUR</p>
-        <p class="p-2 ">Easily accomplish any office task with the available office software suites with any of the available office software suites, multiple document formats are supported, get your email on check with availble email clients</p>
-          <p class="p-2">Play native games or Windows games using Steam proton or wine, emulate other game platforms and get your favorit games all in one place, play any media, video content or setup a media center</p>
-          <p class="p-2">Design with inkscape or gimp, do 3d using blender</p>
-          <p class="p-2 ">Communicate with your team using mattermost, slack, telegram or any other available tool</p>
-          <p class="p-2 ">Build software or user interfaces with your favorit programming languages and test on top of the latest software, use visual studio code, pycharm or any other IDE you like</p>
-          <a id="features-btn" href="/features/" class=" absolute -bottom-16 mt-4 mb-4 border-2 font-bold leading-none inline-block text-sm rounded py-2 px-4 capitalize tracking-wide text-gray-100 border-gray-200 bg-transparent">
+
+      <div class="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+       
+        <div class="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-4 text-gray-800">
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-brands fa-osi mr-4 text-teal-400"></i>Open Source</p>
+              <p class="text-sm leading-5">
+                Use your favorit operating system desktop enviroment from our wide choice, install your favorit open source software as a native package, flatpak or snap or build your own packages using the AUR              </p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-plug mr-4 text-teal-400"></i>Compability</p>
+              <p class="text-sm leading-5">
+                Works on computers independetely of their age, boost older Hardware or super boost new one, powered by the Linux kernel lets you use touchscreens sound cards, graphic cards and peripherals out of the box</p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-envelopes-bulk mr-4 text-teal-400"></i>Office</p>
+              <p class="text-sm leading-5">
+                Easily accomplish any office task with the available office suites, multiple document formats are supported, get your email on check with the best email clients              </p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-gamepad mr-4 text-teal-400"></i>Gaming</p>
+              <p class="text-sm leading-5">
+                Play native games using Steam or lutris emulate other game platforms with proton or retro emulators and get all your games in one place, play any media or video content or setup a media center              </p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-pen mr-4 text-teal-400"></i>Design</p>
+              <p class="text-sm leading-5">
+                Design with inkscape or gimp, do 3d with blender or freecad and bring them to life on your 3d printer              </p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-server mr-4 text-teal-400"></i>DevOps</p>
+              <p class="text-sm leading-5">
+                Use git version control, deploy and run virtual machines, docker or kurbenetes instances              </p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-code mr-4 text-teal-400"></i>Development</p>
+              <p class="text-sm leading-5">
+                Build software or user interfaces with any programming languages and test on top of the latest software, use visual studio code, pycharm or any other IDE you like              </p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-walkie-talkie mr-4 text-teal-400"></i>Communication</p>
+              <p class="text-sm leading-5">
+                Communicate with your team using mattermost, slack, telegram or any other available tool</p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <a id="features-btn" href="/features/" class="mb-12 border font-bold leading-none inline-block text-sm rounded py-2 px-4 capitalize tracking-wide text-gray-200 shadow bg-transparent border-gray-200 w-max hover:border-teal-accent-400">
             <i class="fa-solid fa-circle-info"></i>
             More Features
           </a>
         </div>
-     <div class="lg:w-1/2 lg:p-0">
-      <div class="text-sm font-bold">
-        <p class="p-2 ">Use git version control, deploy and run virtual machines, docker or kurbenetes instances</p>
-        <p class="p-2">Build software or user interfaces with your favorit programming languages and test on top of the latest software, use visual studio code, pycharm or any other IDE you like</p>
-        <p class="p-2 ">Works on computers independetely of their age, boost older Hardware or super boost a new one</p>
       </div>
-      <video width="100%" height="100%"  autoplay muted loop>
-        <source src="/static/videos/mini.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-      </video> 
     </div>
       </div>
       
@@ -204,28 +257,24 @@
 
 <div id="software" class="h-full xl:h-[100vh] bg-cover relative z-0">
   <div class="bg-teal-accent-400 absolute h-full w-full z-[-1]">
-    <div class="absolute h-full w-full">
-      <div class="w-full justify-center lg:flex relative">
-        <svg
-        class="absolute top-[-24px] w-full h-16 text-teal-accent-400 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl"
-        preserveAspectRatio="none"
-        viewBox="0 0 1440 54">         
-        <path
-        fill="currentColor"
-        d="M 1440,20.539825 1320,15.24045 C 1200,9.541123 960,-0.457688 720,-0.757642 480,-0.457688 240,9.541123 120,15.24045 L 0,20.539825 v 31.996226 h 120 c 120,0 360,0 600,0 240,0 480,0 600,0 h 120 z"
-        id="path2"
-        style="stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;fill:#1de9b6;fill-opacity:1" />
-   </svg>
-        </div>
-    </div>
+    <svg viewBox="0 0 88 88" class="max-w-screen-xl text-teal-200 absolute hidden md:block top-4 left-4 w-3/4">
+      <circle fill="currentColor" cx="44" cy="44" r="15.5"></circle>
+      <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="44"></circle>
+      <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="37.5"></circle>
+      <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="29.5"></circle>
+      <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="22.5"></circle>
+    </svg>
+    <div class="w-full justify-center lg:flex relative">
+      <img src="/static/img/green-woble.svg" class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl z-[-1]">
+   </div>
   </div>
-  <div class="text-blue-gray-900 p-4 relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
+  <div class="text-teal-900 px-4 relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
     <div class="w-full flex items-center justify-center">
-      <div class="flex items-center  mt-8 lg:mt-0 justify-center w-16 h-16 mb-10 rounded-full bg-yellow-accent-700 text-3xl text-teal-900">
+      <div class="flex items-center justify-center w-16 h-16 mb-10 rounded-full bg-yellow-accent-700 text-3xl">
         <i class="fa-brands fa-linux"></i>
       </div>
   </div>
-    <h2 class="w-full bg-clip-text text-blue-gray-900 uppercase mb-4 font-sans text-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
+    <h2 class="w-full bg-clip-text uppercase mb-4 font-sans text-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
       {{ page.software_intro }}
     </h2>
     <div class="flex items-center justify-center ">
@@ -233,15 +282,16 @@
     <div class="flex flex-wrap gap-12 items-baseline justify-center pb-8">
       {% for block in blocks %}
         {% if not block.value.software.hidden %}
-          <div class="overflow-hidden transition-shadow duration-300 max-w-full md:max-w-sm">
+          <div class="overflow-hidden max-w-full md:max-w-sm">
             {% image block.value.software.image width-380 format-webp as soft_image %}
-            <img src="{{ soft_image.url }}" class="object-contain w-full h-64 rounded" alt="" />
+            <img src="{{ soft_image.url }}" class="object-contain w-full h-64" alt="{{ block.value.software.title }}" />
             <div class="py-5 text-center">
               <a target="_blank" href="{{ block.value.software.url }}" class="inline-block mb-3 link-decor link-decor-xl relative">
               <h3 class="inline-block mb-3 pb-2 capitalize text-2xl font-bold leading-5">
+                <i class="fa fa-link text-sm align-bottom mr-2"></i>
                 {{ block.value.software.title }}</h3>
               </a>
-              <p class="blur-bg text-sm font-semibold">
+              <p class="font-semibold">
                 {{ block.value.software.description }}
               </p>
             </div>
@@ -265,23 +315,21 @@
       
     <div class="bg-blue-gray-800 absolute h-full w-full">
       <div class="w-full justify-center lg:flex relative">
-        <svg
-        class="absolute top-[-24px] w-full h-16 text-blue-gray-800 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl"
-        preserveAspectRatio="none"
-        viewBox="0 0 1440 54">         
-        <path
-        fill="currentColor"
-        d="M 1440,20.539825 1320,15.24045 C 1200,9.541123 960,-0.457688 720,-0.757642 480,-0.457688 240,9.541123 120,15.24045 L 0,20.539825 v 31.996226 h 120 c 120,0 360,0 600,0 240,0 480,0 600,0 h 120 z"
-        id="path2"
-        style="stroke:none;stroke-width:1;stroke-dasharray:none;stroke-opacity:1;fill:#37474f;fill-opacity:1" />
-   </svg>
-        </div>
+        <img src="/static/img/dark-woble.svg" class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl">
+     </div>
+     <svg viewBox="0 0 88 88" class="max-w-screen-xl text-teal-200 absolute hidden md:block left-0 right-0 top-0 h-[140vh]">
+      <circle fill="currentColor" cx="44" cy="44" r="15.5"></circle>
+      <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="44"></circle>
+      <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="37.5"></circle>
+      <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="29.5"></circle>
+      <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="22.5"></circle>
+    </svg>
     </div>
-    <div class="relative flex flex-col items-center w-full justify-center p-4">
+    <div class="relative flex flex-col items-center w-full justify-center">
         <div class="flex flex-col justify-center">
-          <div class="mb-6 text-gray-200 pb-8">
+          <div class=" text-gray-200">
             <div class="w-full flex items-center justify-center">
-              <div class="mt-8 lg:mt-0 flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-yellow-accent-700">
+              <div class="flex items-center justify-center w-16 h-16 mb-10 rounded-full bg-yellow-accent-700">
                 <svg class="text-teal-900 w-7 h-7" viewBox="0 0 24 24">
                   <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points=" 8,5 8,1 16,1 16,5" stroke-linejoin="round"></polyline>
                   <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="9,15 1,15 1,5 23,5 23,15 15,15" stroke-linejoin="round"></polyline>
@@ -293,11 +341,18 @@
             <h2 class="text-center w-full uppercase mb-16 font-sans text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none max-w-lg mx-auto">
               {{ page.partners_title }}
             </h2>
-            <div class="flex flex-col lg:flex-row gap-8 md:max-w-screen-lg lg:max-w-screen-xl items-center justify-center">
-              <img src="/static/img/partner.jpg" class="w-1/3">
-              <p class="text-sm font-semibold blur-bg w-1/3">
-                {{ page.partners_intro }}
-              </p>
+            <div class="flex flex-col lg:flex-row md:gap-8 md:max-w-screen-lg lg:max-w-screen-xl justify-center items-center lg:items-start">
+              <div class="md:w-3/4 lg:w-1/3 md:shadow-md md:rounded">
+                <img src="/static/img/partner.jpg" class="">
+              </div>
+              
+              <div class="w-full h-full md:w-3/4 lg:w-1/3 xl:1/4 flex flex-col justify-between overflow-hidden text-left bg-gray-50 rounded shadow-xl text-gray-800 hover:shadow-2xl">
+                <div class="p-5">
+                  <p class="mb-2 font-bold"><i class="fa-solid fa-plug mr-4 text-teal-400"></i>Compability</p>
+                  <p class="text-sm leading-5 pb-6 lg:pb-0">
+                    {{ page.partners_intro }}
+                  </p></div>
+              </div>
             </div>
             
           </div>
