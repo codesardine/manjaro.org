@@ -1,0 +1,11 @@
+<svg class="text-teal-200 absolute hidden md:block left-0 -right-32 top-0 h-[140vh]" version="1.1" viewBox="0 0 140 135" xmlns="http://www.w3.org/2000/svg">
+ <g transform="matrix(-1,0,0,1,140,0)" fill="CurrentColor">
+  <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748"/>
+  <g fill-opacity=".4">
+   <path d="m140 80v-70l-45.252 45-84.748 80h75z"/>
+   <path d="m140 70v-50l-45 45-75 70h55z"/>
+   <path d="m140 60v-30l-45.252 45-64.748 60h35z"/>
+   <path d="m140 50v-10l-45.252 45-49.748 50h10z"/>
+  </g>
+ </g>
+</svg>

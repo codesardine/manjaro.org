@@ -1,0 +1,7 @@
+<svg viewBox="0 0 88 88" class="text-teal-200 absolute hidden md:block left-0 -right-32 top-0 h-[140vh]">
+        <circle fill="currentColor" cx="44" cy="44" r="15.5"></circle>
+        <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="44"></circle>
+        <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="37.5"></circle>
+        <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="29.5"></circle>
+        <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="22.5"></circle>
+      </svg>

@@ -4,7 +4,7 @@
 {% get_menu "footer-three" as footer_three %}
 {% get_menu "footer-four" as footer_four %}
 
-<footer id="footer" class="relative text-teal-500 bg-teal-accent-400 pb-32 shadow-md">    
+<footer id="footer" class="relative text-teal-900 bg-teal-accent-400 pb-32 lg:pb-0 shadow-md">    
   <a id="top-btn" href="#top" class="scroll-btn rotate-180 arrow-links p-1 text-6xl hidden h-[56px] lg:block absolute -top-14 left-0" aria-label="back to top">
     <div class="relative hidden">
     <span class="uppercase absolute font-bold text-sm right-0 bottom-[-60px] text-blue-gray-800 v-text z-10">scroll</span>
@@ -35,49 +35,65 @@
         </div>
         <div class="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
           <div class="p-2">
-            <h4 class="font-semibold tracking-wide uppercase text-teal-800">
+            <h4 class="font-semibold tracking-wide uppercase">
+              <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
               {% get_menu_category_title "footer-one" %}
             </h4>
             <ul class="mt-2 space-y-2">
                 {% for item in footer_one.menu_items.all %}
                 <li class="relative">
-                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">{{ item.title }}</a>
+                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" class="z-0 relative tracking-wide font-semibold text-teal-800 link-decor link-decor-ft">
+                      <i class="text-sm fa-solid fa-link w-5 h-5 mt-px text-teal-700"></i>
+                      {{ item.title }}
+                    </a>
                 </li>
                 {% endfor %}
             </ul>
           </div>
           <div class="p-2">
-            <h4 class="font-semibold tracking-wide uppercase text-teal-800">
+            <h4 class="font-semibold tracking-wide uppercase">
+              <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
               {% get_menu_category_title "footer-two" %}
             </h4>
             <ul class="mt-2 space-y-2">
                 {% for item in footer_two.menu_items.all %}
                 <li class="relative">
-                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">{{ item.title }}</a>
+                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">
+                      <i class="text-sm fa-solid fa-link w-5 h-5 mt-px text-teal-700"></i>
+                      {{ item.title }}
+                    </a>
                 </li>
                 {% endfor %}
             </ul>
           </div>
           <div class="p-2">
-            <h4 class="font-semibold tracking-wide uppercase text-teal-800">
+            <h4 class="font-semibold tracking-wide uppercase">
+              <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
               {% get_menu_category_title "footer-three" %}
             </h4>
             <ul class="mt-2 space-y-2">
                 {% for item in footer_three.menu_items.all %}
                 <li class="relative">
-                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">{{ item.title }}</a>
+                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">
+                      <i class="text-sm fa-solid fa-link w-5 h-5 mt-px text-teal-700"></i>
+                      {{ item.title }}
+                    </a>
                 </li>
                 {% endfor %}
             </ul>
           </div>
           <div class="p-2">
-            <h4 class="font-semibold tracking-wide uppercase text-teal-800">
+            <h4 class="font-semibold tracking-wide uppercase">
+              <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
               {% get_menu_category_title "footer-four" %}
             </h4>
             <ul class="mt-2 space-y-2">
                 {% for item in footer_four.menu_items.all %}
                 <li class="relative">
-                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">{{ item.title }}</a>
+                    <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" aria-label="{{ item.title }}" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">
+                      <i class="text-sm fa-solid fa-link w-5 h-5 mt-px text-teal-700"></i>
+                      {{ item.title }}
+                    </a>
                 </li>
                 {% endfor %}
             </ul>
@@ -90,7 +106,7 @@
           © Copyright {% now "Y" %} Manjaro GmbH & Co KG All rights reserved.
         </p>
         <div class="relative">
-          <a rel="nofollow" href="/admin/" aria-label="Log in" class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">log in</a>
+          <a rel="nofollow" href="/admin/" aria-label="Log in" class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft text-teal-700">log in</a>
         </div>
       </div>
     </div>

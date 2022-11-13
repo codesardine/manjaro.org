@@ -43,9 +43,9 @@
 {% if page.affiliate %}
             {% with affiliate=page.affiliate|random_list %}
               {% with promo=affiliate.value.promotion %}
-<div class="block relative h-full w-full bg-cover bg-right-bottom bg-no-repeat lg:fixed top-0 overflow-hidden">
+<div class="relative h-full w-full bg-cover bg-right-bottom bg-no-repeat overflow-hidden">
   <div class="bg-teal-accent-400 absolute h-full clip w-full"></div>
-  <svg viewBox="0 0 88 88" class="max-w-screen-xl text-teal-200 absolute hidden md:block right-0">
+  <svg viewBox="0 0 88 88" class="text-teal-200 absolute w-full md:block right-0">
     <circle fill="currentColor" cx="44" cy="44" r="15.5"></circle>
     <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="44"></circle>
     <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="37.5"></circle>
@@ -56,19 +56,19 @@
       <div class="flex relative justify-items-center mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:min-h-screen">
         <div id="promo" class="flex flex-col gap-10 items-center justify-between lg:flex-row w-full z-[2] relative">
           
-          <div class="lg:w-1/2 text-teal-900 p-4 pb-0 lg:p-0 ">
+          <div class="lg:w-1/2 text-teal-900 p-4 pb-0 lg:p-0 font-bold">
             <h1 class="mb-6 font-extrabold text-[2.2rem] tracking-tight leading-none text-left">
                 <span class="uppercase">
                 {{ page.manjaro_title }}</span>
             </h1>
-            <p class="mb-4 text-lg font-semibold text-left">
+            <p class="mb-4 text-left font-semibold">
               manjaro {{ page.manjaro_intro }} 
             </p>
             <div class="grid gap-5 row-gap-10 mx-auto">
               <div class="flex flex-col justify-center">
                 <h2 class="mb-4 font-bold text-teal-900 uppercase">Features</h2>
-                <div class="flex flex-wrap gap-4 capitalize">
-                  <ul class="font-semibold p-2 pl-0 lg:pt-0">
+                <div class="flex flex-wrap md:gap-4 capitalize">
+                  <ul class="font-semibold pr-6">
                     <li class="flex p-1 pl-0">
                       <span class="mr-1">
                         <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
@@ -89,7 +89,7 @@
                       </li>
                     </ul>
 
-                    <ul class="font-semibold p-2 pl-0 lg:pt-0">
+                    <ul class="font-semibold">
                       <li class="flex p-1 pl-0">
                         <span class="mr-1">
                           <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
@@ -116,19 +116,27 @@
          
           {% if not promo.hidden %}
           {% image promo.image width-950 as image %}
-          <picture class="lg:justify-center items-center w-full lg:w-2/3 text-gray-200">
-            {% image promo.image width-750 format-webp class="object-contain promo-glow p-10" %}
-            <div class="relative bg-blue-gray-800 p-5 rounded-md">
-            <a id="promo-btn" href="{{ promo.url }}" class="tracking-wide leading-none absolute top-4 right-5 shadow-md text-sm rounded py-2 px-4 capitalize font-medium border-pink-800 hover:border-pink700 bg-pink-800 hover: hover:bg-pink-700">
-              <i class="fa-solid fa-circle-info"></i>
-              details
-            </a>
-            <h4 class="pb-4 font-bold capitalize"> <i class="fa-solid fa-star"></i> {{ promo.model }}</h4>
-            <p class="font-bold text-xs">
-              {{ promo.description }}
-            </p>
+          <div class="relative flex flex-col w-full lg:w-2/3 lg:h-[60%] justify-end pb-6">
+                <picture class="self-start px-[15%] pb-4">
+                  {% image promo.image width-750 format-webp class="object-contain promo-glow" %}
+                </picture>
+                <div>
+              <div class="p-5 relative text-gray-200 bg-blue-gray-800 px-4 md:rounded shadow-xl group hover:shadow-2xl">
+                <a id="promo-btn" href="{{ promo.url }}" class="tracking-wide leading-none absolute top-4 right-5 shadow-md text-sm rounded py-2 px-4 capitalize font-medium border-pink-800 hover:border-pink700 bg-pink-800 hover: hover:bg-pink-700">
+                  <i class="fa-solid fa-circle-info"></i>
+                  details
+                </a>
+                <h4 class="pb-4 font-bold capitalize"> <i class="fa-solid fa-star"></i> {{ promo.model }}</h4>
+                <p class="font-bold text-xs">
+                  {{ promo.description }}
+                </p>
+            </div>
+            <div class="slef-end w-11/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-75"></div>
+            <div class="w-10/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-50"></div>
+            <div class="w-9/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-25 lg:mb-6"></div>
+                </div>
           </div>
-          </picture>
+          
           {% endif %}
       </div>
     </div>
@@ -145,18 +153,23 @@
 {% endwith %}
 {% endif %}
 
-<div id="manjaro" class="h-full bg-cover relative z-0 bg-blue-gray-800 lg:mt-[100vh]">
+<div id="manjaro" class="h-full bg-cover relative z-0 bg-blue-gray-800">
   
       <div class="w-full justify-center lg:flex relative">
          <img src="/static/img/dark-woble.svg" class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl">
       </div>
-        <svg viewBox="0 0 88 88" class="max-w-screen-xl text-teal-200 absolute hidden md:block top-4 right-4 w-3/4">
-          <circle fill="currentColor" cx="44" cy="44" r="15.5"></circle>
-          <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="44"></circle>
-          <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="37.5"></circle>
-          <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="29.5"></circle>
-          <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="22.5"></circle>
+      <div class="absolute overflow-hidden h-full w-full">
+        <svg class="text-teal-300 absolute hidden md:block left-0 h-full top-0" version="1.1" viewBox="0 0 140 135" xmlns="http://www.w3.org/2000/svg">
+         <g transform="matrix(-1,0,0,1,140,0)" fill="CurrentColor">
+           <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748"/>
+           <g fill-opacity=".4">
+            <path d="m140 80v-70l-45.252 45-84.748 80h75z"/>
+            <path d="m140 70v-50l-45 45-75 70h55z"/>
+            <path d="m140 60v-30l-45.252 45-64.748 60h35z"/>
+            <path d="m140 50v-10l-45.252 45-49.748 50h10z"/>
+           </g>
         </svg>
+       </div>
   
   <div class="text-gray-200 relative flex justify-center flex-col lg:min-h-[100vh] w-full">
     <div class="w-full flex items-center justify-center text-2xl text-teal-900">
@@ -236,14 +249,14 @@
             </div>
             <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
           </div>
-          <a id="features-btn" href="/features/" class="mb-12 border font-bold leading-none inline-block text-sm rounded py-2 px-4 capitalize tracking-wide text-gray-200 shadow bg-transparent border-gray-200 w-max hover:border-teal-accent-400">
+          <a id="features-btn" href="/features/" class="self-end mb-12 border font-bold leading-none inline-block text-sm rounded py-2 px-4 capitalize tracking-wide text-gray-200 shadow bg-transparent border-gray-200 w-max hover:text-teal-accent-400 hover:border-teal-accent-400">
             <i class="fa-solid fa-circle-info"></i>
             More Features
           </a>
         </div>
       </div>
     </div>
-      </div>
+      
       
       </div>
   <a href="#software" class="scroll-btn z-10 arrow-links text-6xl hidden lg:block absolute bottom-0 h-[56px] left-0 " aria-label="scroll">
@@ -257,16 +270,22 @@
 
 <div id="software" class="h-full xl:h-[100vh] bg-cover relative z-0">
   <div class="bg-teal-accent-400 absolute h-full w-full z-[-1]">
-    <svg viewBox="0 0 88 88" class="max-w-screen-xl text-teal-400 absolute hidden md:block top-4 left-4 w-3/4">
-      <circle fill="currentColor" cx="44" cy="44" r="15.5"></circle>
-      <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="44"></circle>
-      <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="37.5"></circle>
-      <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="29.5"></circle>
-      <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="22.5"></circle>
-    </svg>
     <div class="w-full justify-center lg:flex relative">
       <img src="/static/img/green-woble.svg" class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl z-[-1]">
    </div>
+    <div class="relative overflow-hidden h-full w-full">
+      <svg class="text-gray-300 absolute hidden md:block right-0 h-full top-0" version="1.1" viewBox="0 0 140 135" xmlns="http://www.w3.org/2000/svg">
+       <g fill="CurrentColor">
+         <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748"/>
+         <g fill-opacity=".4">
+          <path d="m140 80v-70l-45.252 45-84.748 80h75z"/>
+          <path d="m140 70v-50l-45 45-75 70h55z"/>
+          <path d="m140 60v-30l-45.252 45-64.748 60h35z"/>
+          <path d="m140 50v-10l-45.252 45-49.748 50h10z"/>
+         </g>
+      </svg>
+     </div>
+   
   </div>
   <div class="text-teal-900 px-4 relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
     <div class="w-full flex items-center justify-center">
@@ -291,9 +310,12 @@
                 <i class="fa fa-link text-sm align-bottom mr-2"></i>
                 {{ block.value.software.title }}</h3>
               </a>
-              <p class="mb-6 font-bold text-left text-sm bg-blue-gray-800 p-5 text-gray-200 leading-5 md:min-h-[160px] shadow-md rounded">
+              <p class="font-bold text-left text-sm bg-blue-gray-800 p-5 text-gray-200 leading-5 md:min-h-[160px] shadow-md rounded">
                 {{ block.value.software.description }}
               </p>
+              <div class="w-11/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-75"></div>
+              <div class="w-10/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-50"></div>
+              <div class="w-9/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-25 mb-6"></div>
             </div>
           </div>    
         {% endif %}        
@@ -311,19 +333,25 @@
   </a>
   </div>
 
-  <div id="partner" class="relative bg-fixed bg-cover lg:min-h-[100vh] flex justify-center items-center">
+  <div id="partner" class="relative lg:min-h-[100vh] flex justify-center items-center">
       
     <div class="bg-blue-gray-800 absolute h-full w-full">
       <div class="w-full justify-center lg:flex relative">
         <img src="/static/img/dark-woble.svg" class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl">
      </div>
-     <svg viewBox="0 0 88 88" class="max-w-screen-xl text-teal-200 absolute hidden md:block left-0 right-0 top-0 h-[140vh]">
-      <circle fill="currentColor" cx="44" cy="44" r="15.5"></circle>
-      <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="44"></circle>
-      <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="37.5"></circle>
-      <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="29.5"></circle>
-      <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="22.5"></circle>
-    </svg>
+     <div class="relative overflow-hidden h-full w-full">
+     <svg class="text-teal-300 absolute hidden md:block left-0 h-full top-0" version="1.1" viewBox="0 0 140 135" xmlns="http://www.w3.org/2000/svg">
+      <g transform="matrix(-1,0,0,1,140,0)" fill="CurrentColor">
+        <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748"/>
+        <g fill-opacity=".4">
+         <path d="m140 80v-70l-45.252 45-84.748 80h75z"/>
+         <path d="m140 70v-50l-45 45-75 70h55z"/>
+         <path d="m140 60v-30l-45.252 45-64.748 60h35z"/>
+         <path d="m140 50v-10l-45.252 45-49.748 50h10z"/>
+        </g>
+     </svg>
+    </div>
+     
     </div>
     <div class="relative flex flex-col items-center w-full justify-center">
         <div class="flex flex-col justify-center">
@@ -345,7 +373,7 @@
               <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
                 <img src="/static/img/partner.jpg" class="object-cover">
               </div>
-              <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
+              <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white md:rounded shadow-xl group hover:shadow-2xl">
                 <div class="p-5">
                   <p class="mb-2 font-bold"><i class="fa-solid fa-microchip mr-4 text-teal-400"></i>Manjaro on devices</p>
                   <p class="text-sm leading-5 pb-8 lg:pb-0">
