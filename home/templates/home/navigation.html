@@ -1,155 +1,133 @@
 {% load static menu_tags wagtailcore_tags %}
 {% get_menu "top-left" as left_navigation %}
 {% get_menu "top-right" as right_navigation %}
-<div class="hidden lg:block bg-teal-accent-400 lg:bg-teal-400 fixed top-0 lg:top-[34px] left-0 right-0 z-10">  
-    <div class="z-40 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 relative">
-      <a id="logo" href="https://manjaro.org" aria-label="Home" title="Home" class="z-30 absolute bg-blue-gray-700 logo lg:inline-flex items-center hidden lg:mx-auto">
-        <img src="{% static 'img/block-logo.svg' %}" alt="manjaro logo" width="90" height="110">
-      </a>
-      <a id="inline-logo" href="https://manjaro.org" aria-label="Home" title="Home" class="absolute top-4 lg:hidden flex justify-center">
-        <img src="{% static 'img/inline-logo-dark.svg' %}" alt="manjaro logo" width="150" height="42">
-      </a>
-      <div class="w-full justify-center hidden lg:flex relative">
-        <svg
-            class="absolute top-[12px] w-full px-[120px] h-16 text-teal-400"
-            preserveAspectRatio="none"
-            viewBox="0 0 1440 54"
-            version="1.1"
-            id="svg4"
-            sodipodi:docname="svg.svg"
-            inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
-            xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-            xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:svg="http://www.w3.org/2000/svg">
-            <defs
-              id="defs8" />
-            <sodipodi:namedview
-              id="namedview6"
-              pagecolor="#ffffff"
-              bordercolor="#000000"
-              borderopacity="0.25"
-              inkscape:showpageshadow="2"
-              inkscape:pageopacity="0.0"
-              inkscape:pagecheckerboard="0"
-              inkscape:deskcolor="#d1d1d1"
-              showgrid="false"
-              inkscape:zoom="0.95138889"
-              inkscape:cx="720"
-              inkscape:cy="27.328467"
-              inkscape:window-width="1512"
-              inkscape:window-height="939"
-              inkscape:window-x="0"
-              inkscape:window-y="32"
-              inkscape:window-maximized="1"
-              inkscape:current-layer="svg4" />
-            <path
-              fill="currentColor"
-              d="m 1440,32.702533 -120,5.299375 C 1200,43.701235 960,53.700046 720,54 480,53.700046 240,43.701235 120,38.001908 L 0,32.702533 V 0.70630712 h 120 c 120,0 360,0 600,0 240,0 480,0 600,0 h 120 z"
-              id="path2"
-              style="stroke-width:0.999941" />
-        </svg>
-      </div>
-      <div class="bg-teal-accent-400 fixed top-0 left-0 right-0 z-20">    
-        <div class="px-4 py-2 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-          <div class="nav relative flex items-center justify-between lg:justify-end lg:space-x-16">
-            <ul class="items-center hidden space-x-8 lg:flex text-sm capitalize">
-              {% for item in right_navigation.menu_items.all %}
-                    {% if not item.submenu %}
-                    <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
-                        <a {% if item.open_in_new_tab %}  target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" 
-                        class="w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 hover:text-gray-900 hover:border-gray-900">
-                          {% if "merchandise" in item.title.lower %}
-                            <i class="fa-solid fa-gifts"></i>
-                          {% elif "hardware" in item.title.lower %}
-                            <i class="fa-solid fa-microchip"></i>
-                          {% elif "linux" in item.title.lower %}
-                            <i class="fa-solid fa-rocket"></i>
-                          {% endif %}
-                        {{ item.title }}
-                      </a>
-                    </li>
-                    {% else %}
-                    <li>
-                      <button class="{{ item.title }} flex-row hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 hover:text-gray-900 hover:border-gray-900"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
-                        <ul id="submenu{{ item.title }}" class="text-sm dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
-                            {% for block in item.submenu %}
-                                {% with subitem=block.value.submenu_item %}
-                                <li>
-                                    <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="w-full px-10 py-4 block font-medium tracking-wide bg-gray-50 hover:bg-blue-gray-700 text-gray-700 hover:text-teal-50">{{ subitem.title }}</a> 
-                                </li>
-                                {% endwith %}
-                            {% endfor %}
-                        </ul>
-                      </li>
-                    {% endif %}
-              {% endfor %}
-          </div>
-        </div>
-      </div>
-      <div class="nav relative flex items-center justify-between lg:justify-start lg:ml-40 lg:space-x-16">
-        <ul class="items-center hidden lg:flex text-md font-bold capitalize space-x-8">
-          {% for item in left_navigation.menu_items.all %}
+<div id="dim-screen" class="z-[10] fixed transition-all duration-700 bg-black opacity-0" onclick="toggleDmenu()"></div>
+<div class="hidden fixed top-0 lg:flex flex-row max-w-screen-xl left-0 right-0 z-10 mx-auto">
+  <div class="flex flex-row shadow w-[102px] h-[80px]">
+    <a href="https://manjaro.org" aria-label="Home" class=" bg-white rounded-b-md home-btn">
+      <img src="{% static 'img/block-logo.svg' %}" alt="manjaro logo" width="72" height="80" class="w-[72px]">
+    </a>
+    <span id="menu-btn" role="button" onclick="toggleDmenu()"
+      class="v-text uppercase bg-blue-gray-900 text-gray-200 text-sm font-bold p-1 rounded-b-md cursor-pointer">menu</span>
+  </div>
+
+  <div id="desktop-menu"
+    class="pb-2 bg-gradient-to-t from-teal-accent-400 to-teal-accent-700 translate-y-[-110%] grid grid-row-2 shadow rounded-b-md pl-6 pr-1 py-1 w-full flex-wrap text-gray-800 transition-transform duration-500">
+    <div class="nav relative flex gap-4 w-full justify-end">
+      <ul class="items-center flex capitalize">
+        {% for item in right_navigation.menu_items.all %}
+        {% if not item.submenu %}
+        <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
+          <a {% if item.open_in_new_tab %} target="_blank" {% endif %} href="{{ item.link }}"
+            class="w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} font-bold tracking-wide link-decor-right link-decor relative z-0 p-2">
+            {% if "merchandise" in item.title.lower %}
+            <i class="fa-solid fa-gifts pr-2 align-text-top"></i>
+            {% elif "hardware" in item.title.lower %}
+            <i class="fa-solid fa-microchip pr-2 align-text-top"></i>
+            {% endif %}
+            <i class="fa-solid fa-gifts pr-2 align-text-top"></i>
+            {{ item.title }}
+          </a>
+        </li>
+        {% else %}
+        <li>
+          <button
+            class="{{ item.title }} flex-row hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 hover:text-gray-900 hover:border-gray-900"><i
+              class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
+          <ul id="submenu{{ item.title }}"
+            class="text-sm dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
+            {% for block in item.submenu %}
+            {% with subitem=block.value.submenu_item %}
             <li>
-                {% if not item.submenu %}
-                  <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="tracking-wide hover:border-b-[1px] text-teal-100 hover:text-gray-200">{{ item.title }}</a>
-                {% else %}
-                  <button class="{{ item.title }} font-bold inline-flex capitalize tracking-wide border-b-[1px] border-transparent hover:border-gray-50 hover:border-b-[1px] text-teal-100 hover:text-gray-50"><i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
-                  <ul id="submenu{{ item.title }}" class="mt-[5px] dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-50">
-                  {% for block in item.submenu %}
-                      {% with subitem=block.value.submenu_item %}
-                      <li class="relative text-sm py-2">
-                          <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" class="w-full pl-14 pr-3 py-2 block tracking-wide text-gray-700 hover:text-teal-800 hover:bg-teal-accent-400">
-                            {{ subitem.icon|safe }}
-                            {{ subitem.title }}
-                            <span class="block text-xs text-gray-500">{{ subitem.description }}</span>
-                          </a> 
-                      </li>
-                      {% endwith %}
-                  {% endfor %}
-                  </ul>
-                {% endif %}
-              </li>
-          {% endfor %} 
-        </ul>  
-        <ul class="justify-end w-full hidden lg:flex">
-          <a id="download-btn" href="https://manjaro.org/download/" class="inline-block self-end text-sm px-4 py-2 leading-none border font-semibold rounded text-gray-50 border-gray-50 hover:border-transparent hover:text-teal-500 hover:bg-gray-50 mt-4 lg:mt-0">
+              <a {% if subitem.open_in_new_tab %}target="_blank" {% endif %} href="{{ subitem.url }}"
+                title="{{ subitem.title }}"
+                class="w-full px-10 py-4 block font-medium tracking-wide bg-gray-50 hover:bg-blue-gray-700 text-gray-700 hover:text-teal-50">{{
+                subitem.title }}</a>
+            </li>
+            {% endwith %}
+            {% endfor %}
+          </ul>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="nav relative flex items-center gap-4">
+      <ul class="items-center hidden lg:flex text-md font-bold capitalize space-x-4 w-full">
+        {% for item in left_navigation.menu_items.all %}
+        <li>
+          {% if not item.submenu %}
+          <a {% if item.open_in_new_tab %}target="_blank" {% endif %} href="{{ item.link }}"
+            class="tracking-wide">{{ item.title }}</a>
+          {% else %}
+          <button class="{{ item.title }} font-bold inline-flex capitalize tracking-wide link-decor link-decor-left relative z-0"><i
+              class="fa-solid fa-ellipsis-vertical pt-1 pr-4"></i> {{ item.title }}</button>
+          <ul id="submenu{{ item.title }}"
+            class="mt-[5px] dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-50">
+            {% for block in item.submenu %}
+            {% with subitem=block.value.submenu_item %}
+            <li class="relative text-sm py-2">
+              <a {% if subitem.open_in_new_tab %}target="_blank" {% endif %} href="{{ subitem.url }}"
+                class="w-full pl-14 pr-3 py-2 block tracking-wide text-gray-700 hover:text-teal-800 hover:bg-teal-accent-400">
+                {{ subitem.icon|safe }}
+                {{ subitem.title }}
+                <span class="block text-xs text-gray-500">{{ subitem.description }}</span>
+              </a>
+            </li>
+            {% endwith %}
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </li>
+        {% endfor %}
+        <li class="ml-4 w-full flex justify-end pr-2">
+          <a id="download-btn" href="https://manjaro.org/download/"
+            class="inline-block text-sm px-4 py-2 leading-none border font-semibold rounded text-teal-500 bg-white">
             <i class="fa-solid fa-circle-arrow-down"></i>
             Download
           </a>
-        </ul>       
-      </div>
+        </li>
+      </ul>
+
     </div>
   </div>
 
-   <!-- Mobile menu -->
- <div id="nav-mobile" class="lg:hidden relative">
-  <button id="btn-open-menu" aria-label="Open Menu" title="Open Menu" class="logo-inset bottom-1 left-1 text-2xl z-[40] fixed w-[52px] drop-shadow-lg h-[52px] border-[3px] border-teal-accent-700 justify-center rounded-full bg-blue-gray-800 text-gray-200 flex items-center">
+</div>
+
+<!-- Mobile menu -->
+<div id="nav-mobile" class="lg:hidden relative">
+  <button id="btn-open-menu" aria-label="Open Menu" title="Open Menu"
+    class="logo-inset bottom-1 left-1 text-2xl z-[40] fixed w-[52px] drop-shadow-lg h-[52px] border-[3px] border-teal-accent-700 justify-center rounded-full bg-blue-gray-800 text-gray-200 flex items-center">
     <i class="fa-solid fa-bars"></i>
   </button>
-  <a id="logo" href="https://manjaro.org" aria-label="Home" class="border-[3px] border-teal-accent-700 fixed z-30 logo-inset bottom-[11px] left-8 pl-3 w-[130px] drop-shadow-lg h-[38px] bg-blue-gray-800 logo flex justify-center items-center rounded-full">
+  <a id="logo" href="https://manjaro.org" aria-label="Home"
+    class="border-[3px] border-teal-accent-700 fixed z-30 logo-inset bottom-[11px] left-8 pl-3 w-[130px] drop-shadow-lg h-[38px] bg-blue-gray-800 logo flex justify-center items-center rounded-full">
     <img src="{% static 'img/logo-light.svg' %}" alt="manjaro logo" width="100" height="26" class="ml-[8px]">
   </a>
   {% if 'home' in page.title.lower %}
-      <a id="contact" class="fixed text-2xl log-inset bottom-[3.5rem] left-8 text-gray-200 bg-blue-gray-800 z-30 w-[52px] drop-shadow-lg h-[52px] border-[3px] border-teal-accent-700 justify-center rounded-full flex items-center" href="/contact/" aria-label="General Contact">
-        <i class="fa-solid fa-envelope align-top right-[-2px]"></i>
-      </a>
-    {% endif %}
-  <div id="menu" class="z-[40] fixed top-0 left-0 h-[100vh] lg:h-auto translate-x-[-150%] lg:translate-x-0 transition-transform duration-200 shadow-md lg:shadow-none">
+  <a id="contact"
+    class="fixed text-2xl log-inset bottom-[3.5rem] left-8 text-gray-200 bg-blue-gray-800 z-30 w-[52px] drop-shadow-lg h-[52px] border-[3px] border-teal-accent-700 justify-center rounded-full flex items-center"
+    href="/contact/" aria-label="General Contact">
+    <i class="fa-solid fa-envelope align-top right-[-2px]"></i>
+  </a>
+  {% endif %}
+  <div id="menu"
+    class="z-[40] fixed top-0 left-0 h-[100vh] lg:h-auto translate-x-[-150%] lg:translate-x-0 transition-transform duration-200 shadow-md lg:shadow-none">
     <div class="p-5 rounded shadow-sm bg-teal-accent-400 h-[100vh]">
       <div class="flex items-center justify-between mb-4">
         <div>
-          <a id="inline-logo" href="https://manjaro.org" aria-label="Home" title="Home" class="inline-flex items-center">
+          <a id="inline-logo" href="https://manjaro.org" aria-label="Home" title="Home"
+            class="inline-flex items-center">
             <img src="{% static 'img/logo-dark.svg' %}" alt="manjaro logo" width="150" height="42">
           </a>
         </div>
         <div>
-          <button id="btn-close-menu" aria-label="Close Menu" title="Close Menu" class="p-2 -mt-2 -mr-2 ml-8 rounded bg-gray-300 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:outline-gray-700">
+          <button id="btn-close-menu" aria-label="Close Menu" title="Close Menu"
+            class="p-2 -mt-2 -mr-2 ml-8 rounded bg-gray-300 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:outline-gray-700">
             <svg class="w-5 text-gray-900" viewBox="0 0 24 24">
-              <path
-                fill="currentColor"
-                d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
-              ></path>
+              <path fill="currentColor"
+                d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z">
+              </path>
             </svg>
           </button>
         </div>
@@ -157,76 +135,109 @@
       <nav class="overflow-y-scroll h-[90vh]">
         <ul>
           {% for item in left_navigation.menu_items.all %}
-            {% if not item.submenu %}
-              <li>
-                  <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{ item.title }}</a>
-              </li>
-            {% endif %}
-            {% for block in item.submenu %}
-                {% with subitem=block.value.submenu_item %}
-                  {%  if subitem.title %}
-                    <li>
-                        <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{ subitem.title }}</a>
-                    </li>
-                  {% endif %}
-                {% endwith %}
-            {% endfor %}
+          {% if not item.submenu %}
+          <li>
+            <a {% if item.open_in_new_tab %}target="_blank" {% endif %} href="{{ item.link }}" title="{{ item.title }}"
+              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{
+              item.title }}</a>
+          </li>
+          {% endif %}
+          {% for block in item.submenu %}
+          {% with subitem=block.value.submenu_item %}
+          {% if subitem.title %}
+          <li>
+            <a {% if subitem.open_in_new_tab %}target="_blank" {% endif %} href="{{ subitem.url }}"
+              title="{{ subitem.title }}"
+              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{
+              subitem.title }}</a>
+          </li>
+          {% endif %}
+          {% endwith %}
+          {% endfor %}
           {% endfor %}
           {% for item in right_navigation.menu_items.all %}
           {% if not item.submenu %}
-              <li>
-                  <a {% if item.open_in_new_tab %}target="_blank"{% endif %} href="{{ item.link }}" title="{{ item.title }}" class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{ item.title }}</a>
-              </li>
+          <li>
+            <a {% if item.open_in_new_tab %}target="_blank" {% endif %} href="{{ item.link }}" title="{{ item.title }}"
+              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{
+              item.title }}</a>
+          </li>
           {% endif %}
           {% for block in item.submenu %}
-              {% with subitem=block.value.submenu_item %}
-                {%  if subitem.title %}
-                  <li>
-                      <a {% if subitem.open_in_new_tab %}target="_blank"{% endif %} href="{{ subitem.url }}" title="{{ subitem.title }}" class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{ subitem.title }}</a>
-                  </li>
-                {% endif %}
-              {% endwith %}
+          {% with subitem=block.value.submenu_item %}
+          {% if subitem.title %}
+          <li>
+            <a {% if subitem.open_in_new_tab %}target="_blank" {% endif %} href="{{ subitem.url }}"
+              title="{{ subitem.title }}"
+              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">{{
+              subitem.title }}</a>
+          </li>
+          {% endif %}
+          {% endwith %}
           {% endfor %}
           {% endfor %}
           <li>
-            <a href="https://manjaro.org/download/" class="inline-block text-ellipsis whitespace-nowrap py-4 px-6 capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">download</a>
-        </li>
+            <a href="https://manjaro.org/download/"
+              class="inline-block text-ellipsis whitespace-nowrap py-4 px-6 capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">download</a>
+          </li>
         </ul>
       </nav>
     </div>
   </div>
 </div> <!-- mobile menu -->
 
-  <script src="https://unpkg.com/@popperjs/core@2"></script>
-  <script src="https://unpkg.com/tippy.js@6"></script>
-  <script>
-    window.onclick = function (event) {
-        let leftSubmenu = document.querySelectorAll('.dropdown')
-        leftSubmenu.forEach(function(el) {
-            if (el.id === "submenu" + event.target.textContent.trim()) {
-              el.classList.toggle("hidden")
-            } else {
-              el.classList.add("hidden")
-            }
-        });
-    }
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+  window.onclick = function (event) {
+    let leftSubmenu = document.querySelectorAll('.dropdown')
+    leftSubmenu.forEach(function (el) {
+      if (el.id === "submenu" + event.target.textContent.trim()) {
+        el.classList.toggle("hidden")
+      } else {
+        el.classList.add("hidden")
+      }
+    });
+  }
 
-    tooltipIcon = "<i class='fa-solid fa-circle-info ml-2'></i>"
-    
+  tooltipIcon = "<i class='fa-solid fa-circle-info ml-2'></i>"
+  function toggleDmenu(ev) {
+    let menu = document.querySelector("#desktop-menu")
+    let footer = document.querySelector("#footer")
+    let screen = document.querySelector("#dim-screen")
+
+    menu.classList.toggle("translate-y-[-110%]")
+    footer.classList.toggle("lg:translate-y-[110%]")
+    screen.classList.toggle("h-full")
+    screen.classList.toggle("w-full")
+    screen.classList.toggle("opacity-0")
+    screen.classList.toggle("opacity-50")
+  }
+
+  document.onkeyup = function (e) {
+    if (e.which == 77) {
+      toggleDmenu()
+    }
+  }
+
 
   {% if 'home' in page.title.lower %}
-    tippy('#contact', {
-        content: "GET IN TOUCH" + tooltipIcon,
-        allowHTML: true,
-      });
+  tippy('#contact', {
+    content: "GET IN TOUCH" + tooltipIcon,
+    allowHTML: true,
+  });
   {% endif %}
-  
-    tippy('.home-btn', {
-        content: "GO BACK HOME" + tooltipIcon,
-        allowHTML: true,
-      });
-    tippy('#download-btn', {
-        content: "GET MANJARO INSTALL MEDIA" + tooltipIcon,
-        allowHTML: true,
-      });
-  </script>
+
+  tippy('.home-btn', {
+    content: "GO BACK HOME" + tooltipIcon,
+    allowHTML: true,
+  });
+  tippy('#download-btn', {
+    content: "GET MANJARO INSTALL MEDIA" + tooltipIcon,
+    allowHTML: true,
+  });
+  tippy('#menu-btn', {
+    content: "TOGGLE MENU -> M" + tooltipIcon,
+    allowHTML: true,
+  });
+</script>

@@ -4,20 +4,8 @@
 {% get_menu "footer-three" as footer_three %}
 {% get_menu "footer-four" as footer_four %}
 
-<footer id="footer" class="relative text-teal-900 bg-teal-accent-400 pb-32 lg:pb-0 shadow-md">
-  <a id="top-btn" href="#top"
-    class="scroll-btn rotate-180 arrow-links p-1 text-6xl hidden h-[56px] lg:block absolute -top-14 left-0"
-    aria-label="back to top">
-    <div class="relative hidden">
-      <span
-        class="uppercase absolute font-bold text-sm right-0 bottom-[-60px] text-blue-gray-800 v-text z-10">scroll</span>
-    </div>
-    <div class="chevron-container">
-      <div class="chevron"></div>
-      <div class="chevron"></div>
-      <div class="chevron"></div>
-    </div>
-  </a>
+<footer id="footer" class="lg:transition-transform lg:duration-500 lg:fixed lg:bottom-0 lg:right-0 lg:left-0 lg:z-30 lg:translate-y-[110%] text-teal-900 bg-teal-accent-400 pb-32 lg:pb-0 shadow-md">
+  
   <div class="px-4 mx-auto relative sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
     <div class="w-full justify-center lg:flex relative">
       <img src="{% static 'img/green-woble.svg' %}"
