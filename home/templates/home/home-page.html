@@ -25,201 +25,296 @@
         {{ page.search_description }}
     {% endif %}
 {% endblock %}
+{% block head %}
+<style>
+  .v-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+  @media only screen and (min-width: 1024px) {
+  .clip {
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
+  }
+}
+</style>
+{% endblock %}
 
 {% block content %}
-<div id="top" class="relative pt-6 lg:pt-0">
-  <picture>
-    <img src="{% static 'img/fixed-bg.jpg' %}" class="fixed inset-0 object-cover w-full h-full" alt="page background">
-  </picture>
 {% if page.affiliate %}
-  {% with affiliate=page.affiliate|random_list %}
-    {% with promo=affiliate.value.promotion %}
-    {% if not promo.hidden %}
-    <picture>
-      {% image promo.background width-640 as promo_img_640 %}
-      <source srcset="{{ promo_img_640.url }}" type="image/png" media="(max-width: 640px)">
-      {% image promo.background width-1024 as promo_img_1024 %}
-      <source srcset="{{ promo_img_1024.url }}" type="image/png" media="(max-width: 1024px)"> 
-      {% image promo.background width-1280 as promo_img_1280 %}
-      <source srcset="{{ promo_img_1280.url }}" type="image/png" media="(max-width: 1280px)">
-      {% image promo.background original class="absolute inset-0 object-cover w-full h-full" %}
-    </picture>
-    {% endif %}
-    <div class="bg-gray-900 bg-opacity-[.6] w-full h-full fixed"></div>
-    <div class="relative">
-      <div class="flex justify-items-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-40 lg:min-h-screen">
-        <div id="promo" class="flex flex-col items-center justify-between xl:flex-row w-full">
-          <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
-            <h1 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
-                <span class="text-gray-50 uppercase">
-                  <span class="text-teal-accent-400 brand lowercase align-bottom">manjaro </span>
-                  {{ page.manjaro_title }}</span>
+            {% with affiliate=page.affiliate|random_list %}
+              {% with promo=affiliate.value.promotion %}
+<div class="relative h-full w-full bg-cover bg-right-bottom bg-no-repeat overflow-hidden">
+  <div class="bg-teal-accent-400 absolute h-full clip w-full"></div>
+  <svg viewBox="0 0 88 88" class="text-teal-200 absolute w-full hidden lg:block right-0">
+    <circle fill="currentColor" cx="44" cy="44" r="15.5"></circle>
+    <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="44"></circle>
+    <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="37.5"></circle>
+    <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="29.5"></circle>
+    <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="22.5"></circle>
+  </svg>
+ 
+      <div class="flex relative justify-items-center mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:min-h-screen">
+        <div id="promo" class="flex flex-col gap-10 items-center justify-between lg:flex-row w-full z-[2] relative">
+          
+          <div class="lg:w-1/2 text-teal-900 p-4 pb-0 lg:p-0 font-bold">
+            <h1 class="mb-6 font-extrabold text-[2.2rem] tracking-tight leading-none text-left">
+                <span class="uppercase">
+                {{ page.manjaro_title }}</span>
             </h1>
-            <p class="max-w-xl mb-4 text-base text-gray-300 md:text-lg">
-              <span class="brand">manjaro</span> {{ page.manjaro_intro }}
+            <p class="mb-4 text-left font-semibold">
+              manjaro {{ page.manjaro_intro }} 
             </p>
             <div class="grid gap-5 row-gap-10 mx-auto">
               <div class="flex flex-col justify-center">
-                <h2 class="mb-4 text-sm font-bold text-gray-50 tracking-widest uppercase">Features</h2>
-                <div class="grid space-y-3 sm:gap-2 sm:grid-cols-2 sm:space-y-0">
-                  <ul class="space-y-3">
-                    <li class="flex text-gray-50">
+                <h2 class="mb-4 font-bold text-teal-900 uppercase">Features</h2>
+                <div class="flex flex-wrap md:gap-4 capitalize">
+                  <ul class="font-semibold pr-6">
+                    <li class="flex p-1 pl-0">
                       <span class="mr-1">
-                        <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-accent-700"></i>
+                        <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
                       </span>
-                      No drivers, Plug & Play
-                      </li>
-                      <li class="flex text-gray-50">
+                      Plug & Play Hardware
+                    </li>
+                      <li class="flex p-1 pl-0">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-accent-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
                         </span>
                         Rolling release
                       </li>
-                      <li class="flex text-gray-50">
+                      <li class="flex p-1 pl-0">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-accent-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
                         </span>
                         Wide range of software
                       </li>
                     </ul>
-                    <ul class="space-y-3">
-                      <li class="flex text-gray-50">
+
+                    <ul class="font-semibold">
+                      <li class="flex p-1 pl-0">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-accent-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
                         </span>
                         Secure by default
                       </li>
-                      <li class="flex text-gray-50">
+                      <li class="flex p-1 pl-0">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-accent-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
                         </span>
                         Lightning fast
                       </li>
-                      <li class="flex text-gray-50">
+                      <li class="flex p-1 pl-0">
                         <span class="mr-1">
-                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-yellow-accent-700"></i>
+                          <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
                         </span>
                         Easily installed
                       </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="/features/" aria-label="manjaro features" class="font-semibold  text-cyan-accent-700 hover:text-cyan-accent-400">
-                          <span class="mr-1 float-left">
-                            <i class="text-sm fa-solid fa-link w-5 h-5"></i>
-                          </span>
-                          Learn More
-                      </a>
-                    </li>
                     </ul>
                   </div>
                 </div>
               </div>
           </div>
+         
           {% if not promo.hidden %}
-          <div class="w-full max-w-xl xl:px-8 xl:w-5/12 lg:pt-32">
-              <a target="_blank" href="{{ promo.url }}" aria-label="{{ promo.text }}" class="w-[100%] lg:w-[80%] rounded-lg bg-blue-gray-900 text-center relative speech-bubble-rigth block font-semibold  text-cyan-accent-700 hover:text-cyan-accent-400">
-                <i class="text-sm fa-solid fa-link w-5 h-5"></i>
-                {{ promo.text }}
-              </a>
-              <picture>
-                <source srcset="{% static 'img/jaro-2.webp' %}" type="image/webp">
-                <source srcset="{% static 'img/jaro-2.png' %}" type="image/png"> 
-                <img src="{% static 'img/jaro-2.png' %}" class="xl:block w-60 ml-60 promo-img" alt="mascot" width="250" height="250">
-              </picture>
+          {% image promo.image width-950 as image %}
+          <div class="relative flex flex-col w-full lg:w-2/3 justify-end pb-12 lg:pb-0">
+                <picture class="self-start px-[15%] pb-4">
+                  {% image promo.image width-750 format-webp class="object-contain promo-glow" %}
+                </picture>
+                <div>
+              <div class="p-5 relative text-gray-200 bg-blue-gray-800 px-4 md:rounded shadow-xl group hover:shadow-2xl">
+                <a id="promo-btn" href="{{ promo.url }}" class="tracking-wide leading-none absolute top-4 right-5 shadow-md text-sm rounded py-2 px-4 capitalize font-medium border-pink-800 hover:border-pink700 bg-pink-800 hover: hover:bg-pink-700">
+                  <i class="fa-solid fa-circle-info"></i>
+                  details
+                </a>
+                <h4 class="pb-4 font-bold capitalize"> <i class="fa-solid fa-star"></i> {{ promo.model }}</h4>
+                <p class="font-bold text-xs">
+                  {{ promo.description }}
+                </p>
+            </div>
+            <div class="slef-end w-11/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-75"></div>
+            <div class="w-10/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-50"></div>
+            <div class="w-9/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-25"></div>
+                </div>
           </div>
           {% endif %}
-        </div>
       </div>
     </div>
-    {% endwith %}
-   {% endwith %}
-{% endif %}
-   <a href="#partner" class="arrow-links text-6xl hidden xl:block" aria-label="partner">
+
+   <a href="#manjaro" class="scroll-btn z-10 arrow-links text-6xl hidden lg:block absolute bottom-0 h-[56px] left-0 " aria-label="scroll">
     <div class="chevron-container">
       <div class="chevron"></div>
       <div class="chevron"></div>
       <div class="chevron"></div>
     </div>
   </a>
-  </div>
+</div>
+{% endwith %}
+{% endwith %}
+{% endif %}
 
-  <div id="partner" class="relative lg:min-h-screen flex justify-center px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-    <div class="grid gap-2 lg:grid-cols-2">
-      <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
-        <div class="max-w-xl mb-6 text-center">
-          <div class="w-full flex items-center justify-center">
-            <div class="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-yellow-accent-700">
-              <svg class="text-teal-900 w-7 h-7" viewBox="0 0 24 24">
-                <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points=" 8,5 8,1 16,1 16,5" stroke-linejoin="round"></polyline>
-                <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="9,15 1,15 1,5 23,5 23,15 15,15" stroke-linejoin="round"></polyline>
-                <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="22,18 22,23 2,23 2,18" stroke-linejoin="round"></polyline>
-                <rect x="9" y="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" width="6" height="4" stroke-linejoin="round"></rect>
-              </svg>
-            </div>
-        </div>
-          <h2 class="w-full uppercase mb-6 font-sans text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl sm:leading-none">
-            {{ page.partners_title }}<br class="hidden md:block" />
-            <span class="inline-block text-teal-accent-400">OS integration</span>
-            <span class="inline-block text-yellow-accent-700">partner with us</span>
-          </h2>
-          <p class="text-base text-gray-200 md:text-lg mb-2">
-            {{ page.partners_intro }}
-          </p>
-        </div>
-        <div>
-        </div>
+<div id="manjaro" class="h-full bg-cover relative z-0 bg-blue-gray-800">
+  
+      <div class="w-full justify-center lg:flex relative">
+        <img src="{% static 'img/dark-woble.svg' %}" class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl">
       </div>
-      <div class="flex items-center justify-center">
-        <div class="flex-col items-end hidden lg:flex">
-          <picture>
-            <source srcset="{% static 'img/partner.webp' %}" type="image/webp">
-            <source srcset="{% static 'img/partner.png' %}" type="image/png"> 
-            <img
-            class="object-cover mb-6"
-            style="filter: drop-shadow(4px 4px 6px black);"
-            src="{% static 'img/partner.png' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-            alt="{{ page.partners_title }}" width="600" height="408"
-          />
-          </picture>
+      <div class="absolute overflow-hidden h-full w-full">
+        <svg class="text-teal-300 absolute hidden md:block left-0 h-full top-0" version="1.1" viewBox="0 0 140 135" xmlns="http://www.w3.org/2000/svg">
+         <g transform="matrix(-1,0,0,1,140,0)" fill="CurrentColor">
+           <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748"/>
+           <g fill-opacity=".4">
+            <path d="m140 80v-70l-45.252 45-84.748 80h75z"/>
+            <path d="m140 70v-50l-45 45-75 70h55z"/>
+            <path d="m140 60v-30l-45.252 45-64.748 60h35z"/>
+            <path d="m140 50v-10l-45.252 45-49.748 50h10z"/>
+           </g>
+        </svg>
+       </div>
+  
+  <div class="text-gray-200 relative flex justify-center flex-col lg:min-h-[100vh] w-full">
+    <div class="w-full flex items-center justify-center text-2xl text-teal-900">
+      <div class="flex items-center justify-center w-16 h-16 mb-6 mt-4 rounded-full bg-yellow-accent-700">
+        <i class="fa-solid fa-list-check"></i>
+      </div>
+  </div>
+    <h2 class="w-full bg-clip-text uppercase mb-6 font-sans text-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
+      Do any task
+    </h2>
+    <div id="manjaro" class="flex flex-col gap-5 lg:flex-row w-full mx-auto md:max-w-full lg:max-w-screen-xl">
+
+      <div class="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:p-4">
+       
+        <div class="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-4 text-gray-800">
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-brands fa-osi mr-4 text-teal-400"></i>Open Source</p>
+              <p class="text-sm leading-5">
+                Use your favorit operating system desktop enviroment from our wide choice, install your favorit open source software as a native package, flatpak or snap or build your own packages using the AUR              </p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-plug mr-4 text-teal-400"></i>Compability</p>
+              <p class="text-sm leading-5">
+                Works on computers independetely of their age, boost older Hardware or super boost new one, powered by the Linux kernel lets you use touchscreens sound cards, graphic cards and peripherals out of the box</p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-envelopes-bulk mr-4 text-teal-400"></i>Office</p>
+              <p class="text-sm leading-5">
+                Easily accomplish any office task with the available office suites, multiple document formats are supported, get your email on check with the best email clients              </p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-gamepad mr-4 text-teal-400"></i>Gaming</p>
+              <p class="text-sm leading-5">
+                Play native games using Steam or lutris emulate other game platforms with proton or retro emulators and get all your games in one place, play any media or video content or setup a media center              </p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-pen mr-4 text-teal-400"></i>Design</p>
+              <p class="text-sm leading-5">
+                Design with inkscape or gimp, do 3d with blender or freecad and bring them to life on your 3d printer              </p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-server mr-4 text-teal-400"></i>DevOps</p>
+              <p class="text-sm leading-5">
+                Use git version control, deploy and run virtual machines, docker or kurbenetes instances              </p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-code mr-4 text-teal-400"></i>Development</p>
+              <p class="text-sm leading-5">
+                Build software or user interfaces with any programming languages and test on top of the latest software, use visual studio code, pycharm or any other IDE you like              </p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow-xl group hover:shadow-2xl">
+            <div class="p-5">
+              <p class="mb-2 font-bold"><i class="fa-solid fa-walkie-talkie mr-4 text-teal-400"></i>Communication</p>
+              <p class="text-sm leading-5">
+                Communicate with your team using mattermost, slack, telegram or any other available tool</p>
+            </div>
+            <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100"></div>
+          </div>
+          <a href="/features/" class="self-end mb-12 border font-bold leading-none inline-block text-sm rounded py-2 px-4 capitalize tracking-wide text-gray-200 shadow bg-transparent border-gray-200 w-max hover:text-teal-accent-400 hover:border-teal-accent-400">
+            <i class="fa-solid fa-circle-info"></i>
+            More Features
+          </a>
         </div>
       </div>
     </div>
-    <a href="#software" class="arrow-links text-6xl hidden xl:block" aria-label="shells">
-      <div class="chevron-container">
-        <div class="chevron"></div>
-        <div class="chevron"></div>
-        <div class="chevron"></div>
+      
+      
       </div>
-    </a>
-  </div>
+  <a href="#software" class="scroll-btn z-10 arrow-links text-6xl hidden lg:block absolute bottom-0 h-[56px] left-0 " aria-label="scroll">
+    <div class="chevron-container">
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+    </div>
+  </a>
+</div>
 
-  <div id="software" class="relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-36">
-    <h2 class="w-full uppercase mb-2 font-sans text-center text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl sm:leading-none">
-      <span class="inline-block text-teal-accent-400">Linux</span>
-      <span class="inline-block text-yellow-accent-700">Software</span>
-    </h2>
-    <p class="text-gray-300 mb-5 text-center text-2xl font-semibold p-2">
+<div id="software" class="h-full xl:h-[100vh] bg-cover relative z-0">
+  <div class="bg-teal-accent-400 absolute h-full w-full z-[-1]">
+    <div class="w-full justify-center lg:flex relative">
+      <img src="{% static 'img/green-woble.svg' %}" class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl z-[-1]">
+   </div>
+    <div class="relative overflow-hidden h-full w-full">
+      <svg class="text-gray-300 absolute hidden md:block right-0 h-full top-0" version="1.1" viewBox="0 0 140 135" xmlns="http://www.w3.org/2000/svg">
+       <g fill="CurrentColor">
+         <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748"/>
+         <g fill-opacity=".4">
+          <path d="m140 80v-70l-45.252 45-84.748 80h75z"/>
+          <path d="m140 70v-50l-45 45-75 70h55z"/>
+          <path d="m140 60v-30l-45.252 45-64.748 60h35z"/>
+          <path d="m140 50v-10l-45.252 45-49.748 50h10z"/>
+         </g>
+      </svg>
+     </div>
+   
+  </div>
+  <div class="text-teal-900 px-4 relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
+    <div class="w-full flex items-center justify-center">
+      <div class="flex items-center justify-center w-16 h-16 mt-4 mb-6 rounded-full bg-yellow-accent-700 text-3xl">
+        <i class="fa-brands fa-linux"></i>
+      </div>
+  </div>
+    <h2 class="w-full bg-clip-text uppercase mb-4 font-sans text-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
       {{ page.software_intro }}
-    </p>
+    </h2>
     <div class="flex items-center justify-center ">
     {% with blocks=page.software %}
-    <div class="flex flex-wrap gap-4 items-baseline justify-center">
+    <div class="flex flex-wrap gap-12 items-baseline justify-center pb-8">
       {% for block in blocks %}
         {% if not block.value.software.hidden %}
-          <div class="overflow-hidden transition-shadow duration-300 bg-white rounded p-4 max-w-full md:max-w-sm">
-            {% image block.value.software.image original as soft_image %}
-            <img src="{{ soft_image.url }}" class="object-contain w-full h-64 rounded" alt="" />
-
-            <div class="py-5 text-center">
-              <h3 class="inline-block mb-3 text-black capitalize transition-colors duration-200 text-2xl font-bold leading-5">{{ block.value.software.title }}</h3>
-              <p class="mb-4 text-gray-700 min-h-[155px]">
+          <div class="overflow-hidden max-w-full md:max-w-sm">
+            {% image block.value.software.image width-380 format-webp as soft_image %}
+            <img src="{{ soft_image.url }}" class="object-contain w-full h-64" alt="{{ block.value.software.title }}" />
+            <div class="w-full text-center">
+              <a target="_blank" href="{{ block.value.software.url }}" class="inline-block mb-3 link-decor link-decor-xl relative">
+              <h3 class="inline-block mb-3 pb-2 capitalize text-2xl font-bold leading-5 text-center">
+                <i class="fa fa-link text-sm align-bottom mr-2"></i>
+                {{ block.value.software.title }}</h3>
+              </a>
+              <p class="font-bold text-left text-sm bg-blue-gray-800 p-5 text-gray-200 leading-5 md:min-h-[160px] shadow-md rounded">
                 {{ block.value.software.description }}
               </p>
-              <div class="text-center">
-                <a target="_blank" href="{{ block.value.software.url }}" class="inline-block mb-3 transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
-                  <i class="text-sm fa-solid fa-link w-5 h-5 mr-2"></i>Get <span class="capitalize">{{ block.value.software.title }}</span></a>
-              </div>
+              <div class="w-11/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-75"></div>
+              <div class="w-10/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-50"></div>
+              <div class="w-9/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-25 mb-6"></div>
             </div>
           </div>    
         {% endif %}        
@@ -228,21 +323,75 @@
     {% endwith %}  
     </div> 
   </div>
+  <a href="#partner" class="scroll-btn z-10 arrow-links text-6xl hidden lg:block absolute bottom-0 h-[56px] left-0 " aria-label="scroll">
+    <div class="chevron-container">
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+    </div>
+  </a>
+  </div>
 
+  <div id="partner" class="relative lg:min-h-[100vh] flex justify-center items-center">
+      
+    <div class="bg-blue-gray-800 absolute h-full w-full">
+      <div class="w-full justify-center lg:flex relative">
+        <img src="{% static 'img/dark-woble.svg' %}" class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl">
+     </div>
+     <div class="relative overflow-hidden h-full w-full">
+     <svg class="text-teal-300 absolute hidden md:block left-0 h-full top-0" version="1.1" viewBox="0 0 140 135" xmlns="http://www.w3.org/2000/svg">
+      <g transform="matrix(-1,0,0,1,140,0)" fill="CurrentColor">
+        <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748"/>
+        <g fill-opacity=".4">
+         <path d="m140 80v-70l-45.252 45-84.748 80h75z"/>
+         <path d="m140 70v-50l-45 45-75 70h55z"/>
+         <path d="m140 60v-30l-45.252 45-64.748 60h35z"/>
+         <path d="m140 50v-10l-45.252 45-49.748 50h10z"/>
+        </g>
+     </svg>
+    </div>
+     
+    </div>
+    <div class="relative flex flex-col items-center w-full justify-center">
+        <div class="flex flex-col justify-center">
+          <div class=" text-gray-200">
+            <div class="w-full flex items-center justify-center">
+              <div class="flex items-center justify-center w-16 h-16 mb-6 mt-4 rounded-full bg-yellow-accent-700">
+                <svg class="text-teal-900 w-7 h-7" viewBox="0 0 24 24">
+                  <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points=" 8,5 8,1 16,1 16,5" stroke-linejoin="round"></polyline>
+                  <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="9,15 1,15 1,5 23,5 23,15 15,15" stroke-linejoin="round"></polyline>
+                  <polyline fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="22,18 22,23 2,23 2,18" stroke-linejoin="round"></polyline>
+                  <rect x="9" y="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" width="6" height="4" stroke-linejoin="round"></rect>
+                </svg>
+              </div>
+          </div>
+            <h2 class="text-center w-full uppercase mb-6 font-sans text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none max-w-lg mx-auto">
+              {{ page.partners_title }}
+            </h2>
+            <div class="relative grid md:gap-5 sm:grid-cols-1 lg:grid-cols-2 text-gray-800 md:max-w-screen-sm lg:max-w-screen-md">
+              <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
+                <img src="/static/img/partner.jpg" class="object-cover">
+              </div>
+              <div class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white md:rounded shadow-xl group hover:shadow-2xl">
+                <div class="p-5">
+                  <p class="mb-2 font-bold"><i class="fa-solid fa-microchip mr-4 text-teal-400"></i>Manjaro on devices</p>
+                  <p class="text-sm leading-5 pb-8 lg:pb-0">
+                    {{ page.partners_intro }} </p>
+                  </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div>
+          </div>
+        </div>
+    </div>
+  </div>
+  
   <div id="error" class="fixed bg-orange-900 p-4 hidden">
     <P class="text-gray-50">This page does not exist, you have been redirected to the home page.</P>
   </div>
-<div>
-  <a id="contact" class="text-3xl text-gray-100 bg-blue-600 shadow-md fixed bottom-4 left-4 p-4 rounded-full h-[62px] z-[2]" href="/contact/" aria-label="General Contact" >
-    <i class="fa-solid fa-envelope align-top"></i></a>
-</div>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/tippy.js@6"></script>
-<script>
-  tippy('#contact', {
-      content: "Contact Us"
-    });
-</script>
+
 <script>
   const links = document.querySelectorAll(".arrow-links");
   const links1 = document.querySelectorAll(".link");
@@ -271,5 +420,13 @@
       error.classList.add("hidden")
     }, 10000)
   }
+  tippy('#promo-btn', {
+      content: "WERE TO BUY AND SPECS" + tooltipIcon,
+      allowHTML: true,
+    });
+    tippy('.scroll-btn', {
+      content: "NEXT SECTION" + tooltipIcon,
+      allowHTML: true,
+    });
 </script>
 {% endblock %}
