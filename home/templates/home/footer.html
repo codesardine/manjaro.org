@@ -4,32 +4,28 @@
 {% get_menu "footer-three" as footer_three %}
 {% get_menu "footer-four" as footer_four %}
 
-<footer id="footer" class="lg:transition-transform lg:duration-500 lg:fixed lg:bottom-0 lg:right-0 lg:left-0 lg:z-30 lg:translate-y-[110%] text-teal-900 bg-teal-accent-400 pb-32 lg:pb-0 shadow-md">
+<footer id="footer" class="max-w-screen-xl mx-auto lg:rounded-t-3xl lg:transition-transform lg:duration-500 lg:fixed lg:bottom-0 lg:right-0 lg:left-0 lg:z-30 lg:translate-y-[120%] text-teal-900 bg-gradient-to-b via-teal-accent-400 from-teal-accent-400 to-teal-accent-700 pb-32 lg:pb-0 shadow-md">
   
   <div class="px-4 mx-auto relative sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
     <div class="w-full justify-center lg:flex relative">
       <img src="{% static 'img/green-woble.svg' %}"
-        class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl" />
+        class="absolute top-[-24px] lg:top-[-20px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl" />
     </div>
-    <div class="grid gap-16 row-gap-10 lg:grid-cols-6 pt-2 relative text-sm">
+    <div class="grid gap-16 row-gap-10 lg:grid-cols-6 pt-6 relative text-sm">
       <div class="md:max-w-md lg:col-span-2">
-        <a id="inline-logo" href="https://manjaro.org" aria-label="Manjaro" title="Manjaro"
-          class="inline-flex items-center">
-          <img src="{% static 'img/logo-dark.svg' %}" alt="manjaro" />
-        </a>
-        <div class="lg:max-w-sm mt-10">
-          <p class="text-sm mb-2 font-semibold 2xl:pt-2">
+        <div class="lg:max-w-sm">
+          <p class="text-sm font-semibold mb-6">
             Manjaro Linux Open Source operating system is, and always will be,
             provided free of charge.
           </p>
-          <p class="pt-1 font-semibold">
+          <p class="font-semibold">
             The Manjaro project is backed up by Manjaro Gmbh & Co, KG, an Open
             Source driven company.
           </p>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
-        <div class="p-2">
+        <div class="">
           <h4 class="font-semibold tracking-wide uppercase">
             <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
             {% get_menu_category_title "footer-one" %}
@@ -46,7 +42,7 @@
             {% endfor %}
           </ul>
         </div>
-        <div class="p-2">
+        <div class="">
           <h4 class="font-semibold tracking-wide uppercase">
             <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
             {% get_menu_category_title "footer-two" %}
@@ -63,8 +59,9 @@
             {% endfor %}
           </ul>
         </div>
-        <div class="p-2">
+        <div class="">
           <h4 class="font-semibold tracking-wide uppercase">
+            <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
             {% get_menu_category_title "footer-three" %}
           </h4>
           <ul class="mt-2 space-y-2">
@@ -79,7 +76,7 @@
             {% endfor %}
           </ul>
         </div>
-        <div class="p-2">
+        <div class="">
           <h4 class="font-semibold tracking-wide uppercase">
             <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
             {% get_menu_category_title "footer-four" %}
