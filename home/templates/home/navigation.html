@@ -224,7 +224,7 @@
   }
 
   document.onkeyup = function (e) {
-    if (e.which == 77) {
+    if (event.ctrlKey && e.which == 77) {
       toggleDmenu()
     }
   }
@@ -246,7 +246,7 @@
     allowHTML: true,
   });
   tippy('#menu-btn', {
-    content: "TOGGLE MENU -> M" + tooltipIcon,
+    content: "TOGGLE MENU - CTRL + M" + tooltipIcon,
     allowHTML: true,
   });
 </script>
