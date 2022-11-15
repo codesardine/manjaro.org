@@ -3,7 +3,7 @@
 {% get_menu "top-right" as right_navigation %}
 <div id="dim-screen" class="z-[10] hidden lg:block fixed transition-all duration-700 bg-black opacity-0"
   onclick="toggleDmenu()"></div>
-<div class="hidden fixed top-0 lg:flex flex-row max-w-screen-xl left-0 right-0 z-10 mx-auto px-8">
+<div class="hidden fixed top-0 lg:flex flex-row max-w-screen-xl left-0 right-0 z-10 mx-auto px-4">
   <div class="flex flex-row shadow w-[102px] h-[80px]">
     <a href="https://manjaro.org" aria-label="Home" class=" bg-white rounded-b-md home-btn">
       <img src="{% static 'img/block-logo.svg' %}" alt="manjaro logo" width="72" height="80" class="w-[72px]">
@@ -13,14 +13,14 @@
   </div>
 
   <div id="desktop-menu"
-    class="pb-2 relative bg-gradient-to-t from-teal-accent-400 to-teal-accent-700 translate-y-[-110%] grid grid-row-2 shadow rounded-b-md pl-6 pr-1 w-full flex-wrap text-teal-900 transition-transform duration-500">
-    <div class="nav relative flex gap-4 w-full justify-end">
-      <ul class="items-center flex capitalize text-sm pb-1">
+    class="pb-2 relative bg-gradient-to-t from-teal-accent-400 to-teal-accent-700 translate-y-[-110%] grid grid-row-2 shadow rounded-b-md px-4 w-full flex-wrap text-teal-900 transition-transform duration-500">
+    <div class="nav relative flex gap-4 w-full">
+      <ul class="items-center flex capitalize text-sm pb-1 gap-4">
         {% for item in right_navigation.menu_items.all %}
         {% if not item.submenu %}
         <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
           <a {% if item.open_in_new_tab %} target="_blank" {% endif %} href="{{ item.link }}"
-            class="flex items-center justify-center w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} font-bold tracking-wide link-decor-right link-decor relative z-0 px-2 h-[36px]">
+            class="flex items-center justify-center w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} font-bold tracking-wide link-decor-right link-decor relative z-0 h-[36px]">
             {% if "merchandise" in item.title.lower %}
             <i class="fa-solid fa-gifts mr-2"></i>
             {% elif "hardware" in item.title.lower %}
@@ -89,7 +89,7 @@
           {% endif %}
         </li>
         {% endfor %}
-        <li class="ml-4 w-full flex justify-end pr-2">
+        <li class="ml-4 w-full flex justify-end">
           <a id="download-btn" href="https://manjaro.org/download/"
             class="inline-block text-sm px-4 py-2 leading-none border font-semibold rounded text-teal-500 bg-white">
             <i class="fa-solid fa-circle-arrow-down"></i>
