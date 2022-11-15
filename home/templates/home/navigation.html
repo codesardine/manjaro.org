@@ -3,7 +3,7 @@
 {% get_menu "top-right" as right_navigation %}
 <div id="dim-screen" class="z-[10] hidden lg:block fixed transition-all duration-700 bg-black opacity-0"
   onclick="toggleDmenu()"></div>
-<div class="hidden fixed top-0 lg:flex flex-row max-w-screen-xl left-0 right-0 z-10 mx-auto">
+<div class="hidden fixed top-0 lg:flex flex-row max-w-screen-xl left-0 right-0 z-10 mx-auto px-8">
   <div class="flex flex-row shadow w-[102px] h-[80px]">
     <a href="https://manjaro.org" aria-label="Home" class=" bg-white rounded-b-md home-btn">
       <img src="{% static 'img/block-logo.svg' %}" alt="manjaro logo" width="72" height="80" class="w-[72px]">
@@ -216,7 +216,7 @@
     let screen = document.querySelector("#dim-screen")
 
     menu.classList.toggle("translate-y-[-110%]")
-    footer.classList.toggle("lg:translate-y-[120%]")
+    footer.classList.toggle("translate-footer")
     screen.classList.toggle("h-full")
     screen.classList.toggle("w-full")
     screen.classList.toggle("opacity-0")

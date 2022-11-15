@@ -4,12 +4,19 @@
 {% get_menu "footer-three" as footer_three %}
 {% get_menu "footer-four" as footer_four %}
 
-<footer id="footer" class="max-w-screen-xl mx-auto lg:rounded-t-3xl lg:transition-transform lg:duration-500 lg:fixed lg:bottom-0 lg:right-0 lg:left-0 lg:z-30 lg:translate-y-[120%] text-teal-900 bg-gradient-to-b via-teal-accent-400 from-teal-accent-400 to-teal-accent-700 pb-32 lg:pb-0 shadow-md">
+<footer id="footer" class="translate-footer shadow-footer max-w-screen-xl mx-auto lg:transition-transform lg:duration-500 lg:fixed lg:bottom-0 lg:right-0 lg:left-0 lg:z-30 text-teal-900 lg:px-8">
   
-  <div class="px-4 mx-auto relative sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-    <div class="w-full justify-center lg:flex relative">
-      <img src="{% static 'img/green-woble.svg' %}"
-        class="absolute top-[-24px] lg:top-[-20px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl" />
+  <div class="lg:rounded-t-3xl px-4 pb-32 lg:pb-0 mx-auto relative sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 bg-gradient-to-b via-teal-accent-400 from-teal-accent-400 to-teal-accent-700">
+    
+    
+    <div class="flex flex-col justify-between sm:flex-row text-sm pt-2">
+      <p class="font-semibold pb-4">
+        © Copyright {% now "Y" %} Manjaro GmbH & Co KG All rights reserved.
+      </p>
+      <div class="relative">
+        <a rel="nofollow" href="https://manjaro.org/imprint/" aria-label="Log in"
+          class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft text-teal-700 capitalize">imprint</a>
+      </div>
     </div>
     <div class="grid gap-16 row-gap-10 lg:grid-cols-6 pt-6 relative text-sm">
       <div class="md:max-w-md lg:col-span-2">
@@ -18,10 +25,14 @@
             Manjaro Linux Open Source operating system is, and always will be,
             provided free of charge.
           </p>
-          <p class="font-semibold">
+          <p class="font-semibold mb-6">
             The Manjaro project is backed up by Manjaro Gmbh & Co, KG, an Open
             Source driven company.
           </p>
+          <div class="relative">
+            <a rel="nofollow" href="/admin/" aria-label="Log in"
+              class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft text-teal-700">log in</a>
+          </div>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
@@ -93,16 +104,6 @@
             {% endfor %}
           </ul>
         </div>
-      </div>
-    </div>
-    <hr class="mb-3 mt-3 border-teal-500" />
-    <div class="flex flex-col justify-between pb-2 sm:flex-row text-sm">
-      <p class="font-semibold">
-        © Copyright {% now "Y" %} Manjaro GmbH & Co KG All rights reserved.
-      </p>
-      <div class="relative">
-        <a rel="nofollow" href="/admin/" aria-label="Log in"
-          class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft text-teal-700">log in</a>
       </div>
     </div>
   </div>
