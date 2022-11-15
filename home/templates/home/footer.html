@@ -6,16 +6,20 @@
 
 <footer id="footer" class="translate-footer shadow-footer max-w-screen-xl mx-auto lg:transition-transform lg:duration-500 lg:fixed lg:bottom-0 lg:right-0 lg:left-0 lg:z-30 text-teal-900 lg:px-4">
   
-  <div class="lg:rounded-t-3xl px-4 pb-32 lg:pb-0 mx-auto relative md:max-w-full lg:max-w-screen-xl bg-gradient-to-b via-teal-accent-400 from-teal-accent-400 to-teal-accent-700">
+  <div class="lg:rounded-t-lg px-4 py-2 pb-32 lg:pb-2 mx-auto relative md:max-w-full lg:max-w-screen-xl bg-gradient-to-b via-teal-accent-400 from-teal-accent-400 to-teal-accent-700">
     
     
-    <div class="flex flex-col justify-between sm:flex-row text-sm pt-2">
-      <p class="font-semibold">
+    <div class="flex flex-col justify-between sm:flex-row text-sm">
+      <p class="font-semibold pb-4 md:pb-0">
         © Copyright {% now "Y" %} Manjaro GmbH & Co KG All rights reserved.
       </p>
-      <div class="relative">
+      <div class="relative text-teal-700 capitalize flex gap-6">
         <a rel="nofollow" href="https://manjaro.org/imprint/" aria-label="Log in"
-          class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft text-teal-700 capitalize">imprint</a>
+          class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft"></i>imprint</a>
+        <a rel="nofollow" href="https://staging.manjaro.org/privacy-policy/" aria-label="Log in"
+          class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft"></i>privacy policy</a>
+        <a rel="nofollow" href="https://staging.manjaro.org/terms-of-use/" aria-label="Log in"
+          class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft"></i>terms of use</a>
       </div>
     </div>
     <div class="grid gap-16 row-gap-10 lg:grid-cols-6 pt-6 relative text-sm">
@@ -29,10 +33,6 @@
             The Manjaro project is backed up by Manjaro Gmbh & Co, KG, an Open
             Source driven company.
           </p>
-          <div class="relative">
-            <a rel="nofollow" href="/admin/" aria-label="Log in"
-              class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft text-teal-700">log in</a>
-          </div>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
@@ -105,6 +105,10 @@
           </ul>
         </div>
       </div>
+    </div>
+    <div class="relative w-full text-right">
+      <a rel="nofollow" href="/admin/" aria-label="Log in"
+        class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft text-teal-700">log in</a>
     </div>
   </div>
 </footer>
