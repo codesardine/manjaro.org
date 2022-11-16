@@ -486,7 +486,7 @@
 
 .link-decor-right:hover:before {
     top: 5px;
-    left: 2px;
+    left: -2px;
     opacity: 1;
     width: 26px;
     height: 26px;    
@@ -504,8 +504,20 @@
     background: #a7ffeb; 
 }
 
+.link-decor-ft-darker:before, .link-decor-left:before {
+    background: #009688; 
+}
+
 .link-decor-ft:hover:before {
     top: -5px;
+    left: -4px;
+    opacity: 1;
+    width: 26px;
+    height: 26px;    
+}
+
+.link-decor-ft-darker:hover:before {
+    top: -3px;
     left: -4px;
     opacity: 1;
     width: 26px;
@@ -597,7 +609,7 @@
 
 @media screen and (min-width: 1024px) {
     .translate-footer {
-    transform: translateY(calc(100% - 36px));
+      transform: translateY(calc(100% - 36px));
     }
 
     .shadow-footer {

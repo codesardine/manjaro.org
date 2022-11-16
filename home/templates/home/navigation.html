@@ -13,9 +13,9 @@
   </div>
 
   <div id="desktop-menu"
-    class="pb-2 relative bg-gradient-to-t from-teal-accent-400 to-teal-accent-700 translate-y-[-110%] grid grid-row-2 shadow rounded-b-md px-4 w-full flex-wrap text-teal-900 transition-transform duration-500">
-    <div class="nav relative flex gap-4 w-full">
-      <ul class="items-center flex capitalize text-sm pb-1 gap-4">
+    class="relative bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 translate-y-[-110%] grid grid-row-2 shadow rounded-b-md w-full flex-wrap text-teal-900 transition-transform duration-500">
+    <div class="nav relative flex gap-4 w-full px-4 h-[34px]">
+      <ul class="items-center flex capitalize text-sm gap-4">
         {% for item in right_navigation.menu_items.all %}
         {% if not item.submenu %}
         <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
@@ -60,7 +60,7 @@
       </ul>
     </div>
 
-    <div class="nav relative flex items-center gap-4">
+    <div class="nav relative flex items-center gap-4 bg-gradient-to-b from-blue-gray-800 to-blue-gray-900 pl-4 pr-2 rounded-b-md text-gray-200 h-[46px]">
       <ul class="items-center hidden lg:flex text-md font-bold capitalize space-x-4 w-full">
         {% for item in left_navigation.menu_items.all %}
         <li>
@@ -97,10 +97,8 @@
           </a>
         </li>
       </ul>
-
     </div>
   </div>
-
 </div>
 
 <!-- Mobile menu -->

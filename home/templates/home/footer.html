@@ -4,22 +4,23 @@
 {% get_menu "footer-three" as footer_three %}
 {% get_menu "footer-four" as footer_four %}
 
-<footer id="footer" class="translate-footer shadow-footer max-w-screen-xl mx-auto lg:transition-transform lg:duration-500 lg:fixed lg:bottom-0 lg:right-0 lg:left-0 lg:z-30 text-teal-900 lg:px-4">
-  <div class="lg:rounded-t-lg px-4 py-2 pb-32 lg:pb-2 mx-auto relative md:max-w-full lg:max-w-screen-xl bg-gradient-to-b via-teal-accent-400 from-teal-accent-400 to-teal-accent-700">
-    <div class="flex flex-col justify-between sm:flex-row text-sm">
-      <p class="font-semibold pb-4 md:pb-0">
+<footer id="footer" class="translate-footer shadow-footer max-w-screen-xl mx-auto lg:transition-transform lg:duration-500 lg:fixed lg:bottom-0 lg:right-0 lg:left-0 lg:z-30 text-teal-900">
+  <div class="lg:rounded-t-lg pb-32 lg:pb-2 mx-auto relative md:max-w-full lg:max-w-screen-xl bg-gradient-to-b via-teal-accent-400 from-teal-accent-400 to-teal-accent-700">
+    <div class="flex flex-col justify-between sm:flex-row text-sm bg-blue-gray-900 text-gray-200 px-4 py-2 lg:rounded-t-md">
+      <p class="font-semibold pb-4 md:pb-0 ">
         © Copyright {% now "Y" %} Manjaro GmbH & Co KG All rights reserved.
       </p>
-      <div class="relative text-teal-700 capitalize flex gap-6">
-        <a rel="nofollow" href="https://manjaro.org/imprint/" aria-label="Log in"
-          class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft"></i>imprint</a>
-        <a rel="nofollow" href="https://staging.manjaro.org/privacy-policy/" aria-label="Log in"
-          class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft"></i>privacy policy</a>
-        <a rel="nofollow" href="https://staging.manjaro.org/terms-of-use/" aria-label="Log in"
-          class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft"></i>terms of use</a>
+      <div class="relative capitalize flex gap-6">
+        <a href="https://manjaro.org/imprint/" aria-label="imprint"
+          class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft-darker"></i>imprint</a>
+        <a href="https://staging.manjaro.org/privacy-policy/" aria-label="privacy policy"
+          class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft-darker"></i>privacy policy</a>
+        <a href="https://staging.manjaro.org/terms-of-use/" aria-label="terms of use"
+          class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft-darker"></i>terms of use</a>
       </div>
     </div>
-    <div class="grid gap-16 row-gap-10 lg:grid-cols-6 pt-6 relative text-sm">
+    <div class="px-4">
+    <div class="grid gap-6 lg:gap-8 row-gap-10 lg:grid-cols-6 pt-2 relative text-sm">
       <div class="md:max-w-md lg:col-span-2">
         <div class="lg:max-w-sm">
           <p class="text-sm font-semibold mb-6">
@@ -32,9 +33,9 @@
           </p>
         </div>
       </div>
-      <div class="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
+      <div class="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4 capitalize">
         {% if footer_one.menu_items.all %}
-        <div>
+        <div class="lg:pl-4">
           <h4 class="font-semibold tracking-wide uppercase">
             <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
             {% get_menu_category_title "footer-one" %}
@@ -44,7 +45,7 @@
             <li class="relative">
               <a {% if item.open_in_new_tab %} target="_blank" {% endif %} href="{{ item.link }}"
                 aria-label="{{ item.title }}"
-                class="z-0 relative tracking-wide font-semibold text-teal-800 link-decor link-decor-ft">
+                class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft">
                 {{ item.title }}
               </a>
             </li>
@@ -53,7 +54,7 @@
         </div>
         {% endif %}
         {% if footer_two.menu_items.all %}
-        <div>
+        <div class="lg:pl-4">
           <h4 class="font-semibold tracking-wide uppercase">
             <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
             {% get_menu_category_title "footer-two" %}
@@ -63,7 +64,7 @@
             <li class="relative">
               <a {% if item.open_in_new_tab %} target="_blank" {% endif %} href="{{ item.link }}"
                 aria-label="{{ item.title }}"
-                class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">
+                class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft">
                 {{ item.title }}
               </a>
             </li>
@@ -71,8 +72,8 @@
           </ul>
         </div>
         {% endif %}
-        {% if footer_two.menu_items.all %}
-        <div>
+        {% if footer_three.menu_items.all %}
+        <div class="lg:pl-4">
           <h4 class="font-semibold tracking-wide uppercase">
             <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
             {% get_menu_category_title "footer-three" %}
@@ -82,7 +83,7 @@
             <li class="relative">
               <a {% if item.open_in_new_tab %} target="_blank" {% endif %} href="{{ item.link }}"
                 aria-label="{{ item.title }}"
-                class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">
+                class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft">
                 {{ item.title }}
               </a>
             </li>
@@ -91,7 +92,7 @@
         </div>
         {% endif %}
         {% if footer_four.menu_items.all %}
-        <div>
+        <div class="lg:pl-4">
           <h4 class="font-semibold tracking-wide uppercase">
             <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
             {% get_menu_category_title "footer-four" %}
@@ -101,7 +102,7 @@
             <li class="relative">
               <a {% if item.open_in_new_tab %} target="_blank" {% endif %} href="{{ item.link }}"
                 aria-label="{{ item.title }}"
-                class="z-0 relative tracking-wide font-semibold text-teal-700 link-decor link-decor-ft">
+                class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft">
                 {{ item.title }}
               </a>
             </li>
@@ -111,9 +112,10 @@
         {% endif %}
       </div>
     </div>
-    <div class="relative w-full text-right">
+    <div class="relative w-full text-right mt-2">
       <a rel="nofollow" href="/admin/" aria-label="Log in"
-        class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft text-teal-700">log in</a>
+        class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft">log in</a>
+    </div>
     </div>
   </div>
 </footer>
