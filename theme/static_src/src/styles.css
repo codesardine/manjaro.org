@@ -609,3 +609,12 @@
         filter: drop-shadow(0 -4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 -2px 2px rgb(0 0 0 / 0.06));
     }
 }
+
+/* talwind filters not working when building with sass */
+.backdrop-grayscale-0 {
+    backdrop-filter: grayscale(0);
+}
+
+.backdrop-grayscale	{
+    backdrop-filter: grayscale(100%);
+}
