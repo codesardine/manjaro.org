@@ -435,8 +435,6 @@
         </div>
       </div>
     </div>
-    <div>
-    </div>
   </div>
 </div>
 </div>
@@ -444,28 +442,12 @@
 <div id="error" class="fixed bg-orange-900 p-4 hidden">
   <P class="text-gray-50">This page does not exist, you have been redirected to the home page.</P>
 </div>
+{% endblock %}
 
+{% block footer_js %}
 <script>
-  const links = document.querySelectorAll(".arrow-links");
-  const links1 = document.querySelectorAll(".link");
-  for (const link of links) {
-    link.addEventListener("click", clickHandler);
-  }
-  for (const link of links1) {
-    link.addEventListener("click", clickHandler);
-  }
-
-  function clickHandler(e) {
-    e.preventDefault();
-    const href = this.getAttribute("href");
-    const offsetTop = document.querySelector(href).offsetTop;
-
-    scroll({
-      top: offsetTop,
-      behavior: "smooth"
-    });
-  }
-  if (window.location.href.includes("?404")) {
+  document.addEventListener("DOMContentLoaded", (event) => {  
+    if (window.location.href.includes("?404")) {
     console.log(window.location.href)
     let error = document.querySelector("#error")
     error.classList.remove("hidden")
@@ -481,5 +463,6 @@
     content: "NEXT SECTION" + tooltipIcon,
     allowHTML: true,
   });
+  })
 </script>
 {% endblock %}
