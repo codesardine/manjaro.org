@@ -29,15 +29,9 @@
         {% block head %}{% endblock %}
         <noscript>
             <div class="fixed bottom-0 left-0 p-5 bg-yellow-800 font-semibold text-white z-40">
-                manjaro.org needs JavaScript to function properly
+                manjaro.org needs JavaScript on to function properly
             </div>
         </noscript>
-        <style>
-            .grid.from-purple-900 {
-                border-bottom-left-radius: 80px;
-                border-bottom-right-radius: 40%;
-            }
-        </style>
     </head>
 
     <body class="{% block body_class %}{% endblock %} bg-gradient-to-r from-gray-100 to-gray-200">
@@ -76,8 +70,10 @@
         </article>
 
         {% include "home/footer.html" %}
-
-        <script type="text/javascript" src="{% static 'js/manjaro.js' %}"></script>
+        
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="https://unpkg.com/tippy.js@6"></script>
+        <script async type="text/javascript" src="{% static 'js/manjaro.js' %}"></script>
 
         {% block footer_js %}{% endblock %}
     </body>

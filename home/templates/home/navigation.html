@@ -14,7 +14,7 @@
 
   <div id="desktop-menu"
     class="relative bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 translate-y-[-110%] grid grid-row-2 shadow rounded-b-md w-full flex-wrap text-teal-900 transition-transform duration-500">
-    <div class="nav relative flex gap-4 w-full px-4 h-[34px]">
+    <div class="nav relative flex gap-4 w-full px-4 h-[34px] text-right">
       <ul class="items-center flex capitalize text-sm gap-4">
         {% for item in right_navigation.menu_items.all %}
         {% if not item.submenu %}
@@ -103,43 +103,18 @@
 
 <!-- Mobile menu -->
 <div id="nav-mobile" class="lg:hidden relative">
-  <button id="btn-open-menu" aria-label="Open Menu" title="Open Menu"
-    class="logo-inset bottom-1 left-1 text-2xl z-[40] fixed w-[52px] drop-shadow-lg h-[52px] border-[3px] border-teal-accent-700 justify-center rounded-full bg-blue-gray-800 text-gray-200 flex items-center">
+  <button id="toggle-mobile-btn" aria-label="Open Menu" title="Open Menu"
+    class="logo-inset bottom-1 left-1 text-2xl z-[41] fixed w-[52px] shadow h-[52px] justify-center rounded-full bg-blue-gray-900 text-gray-200 flex items-center">
     <i class="fa-solid fa-bars"></i>
   </button>
-  <a id="logo" href="https://manjaro.org" aria-label="Home"
-    class="border-[3px] border-teal-accent-700 fixed z-30 logo-inset bottom-[11px] left-8 pl-3 w-[130px] drop-shadow-lg h-[38px] bg-blue-gray-800 logo flex justify-center items-center rounded-full">
+  <a href="https://manjaro.org" aria-label="Home"
+    class="fixed z-40 logo-inset bottom-1 left-6 pl-8 pr-3 w-[150px] shadow h-[52px] bg-white logo flex justify-center items-center rounded-md">
     <img src="{% static 'img/logo-light.svg' %}" alt="manjaro logo" width="100" height="26" class="ml-[8px]">
   </a>
-  {% if 'home' in page.title.lower %}
-  <a id="contact"
-    class="fixed text-2xl log-inset bottom-[3.5rem] left-8 text-gray-200 bg-blue-gray-800 z-30 w-[52px] drop-shadow-lg h-[52px] border-[3px] border-teal-accent-700 justify-center rounded-full flex items-center"
-    href="/contact/" aria-label="General Contact">
-    <i class="fa-solid fa-envelope align-top right-[-2px]"></i>
-  </a>
-  {% endif %}
   <div id="menu"
-    class="z-[40] fixed top-0 left-0 h-[100vh] lg:h-auto translate-x-[-150%] lg:translate-x-0 transition-transform duration-200 shadow-md lg:shadow-none">
+    class="z-[30] fixed top-0 left-0 h-[100vh] lg:h-auto translate-x-[-150%] lg:translate-x-0 transition-transform duration-200 shadow-md lg:shadow-none">
     <div class="p-5 rounded shadow-sm bg-teal-accent-400 h-[100vh]">
-      <div class="flex items-center justify-between mb-4">
-        <div>
-          <a id="inline-logo" href="https://manjaro.org" aria-label="Home" title="Home"
-            class="inline-flex items-center">
-            <img src="{% static 'img/logo-dark.svg' %}" alt="manjaro logo" width="150" height="42">
-          </a>
-        </div>
-        <div>
-          <button id="btn-close-menu" aria-label="Close Menu" title="Close Menu"
-            class="p-2 -mt-2 -mr-2 ml-8 rounded bg-gray-300 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:outline-gray-700">
-            <svg class="w-5 text-gray-900" viewBox="0 0 24 24">
-              <path fill="currentColor"
-                d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z">
-              </path>
-            </svg>
-          </button>
-        </div>
-      </div>
-      <nav class="overflow-y-scroll h-[90vh]">
+      <nav class="overflow-y-scroll h-[90vh] pb-16">
         <ul>
           {% for item in left_navigation.menu_items.all %}
           {% if not item.submenu %}
@@ -187,64 +162,12 @@
             <a href="https://manjaro.org/download/"
               class="inline-block text-ellipsis whitespace-nowrap py-4 px-6 capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">download</a>
           </li>
+          <li>
+            <a href="https://manjaro.org/contact/"
+              class="inline-block text-ellipsis whitespace-nowrap py-4 px-6 capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">get in touch</a>
+          </li>
         </ul>
       </nav>
     </div>
   </div>
 </div> <!-- mobile menu -->
-
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/tippy.js@6"></script>
-<script>
-  window.onclick = function (event) {
-    let leftSubmenu = document.querySelectorAll('.dropdown')
-    leftSubmenu.forEach(function (el) {
-      if (el.id === "submenu" + event.target.textContent.trim()) {
-        el.classList.toggle("hidden")
-      } else {
-        el.classList.add("hidden")
-      }
-    });
-  }
-
-  tooltipIcon = "<i class='fa-solid fa-circle-info ml-2'></i>"
-  function toggleDmenu(ev) {
-    let menu = document.querySelector("#desktop-menu")
-    let footer = document.querySelector("#footer")
-    let screen = document.querySelector("#dim-screen")
-
-    menu.classList.toggle("translate-y-[-110%]")
-    footer.classList.toggle("translate-footer")
-    screen.classList.toggle("h-full")
-    screen.classList.toggle("w-full")
-    screen.classList.toggle("opacity-0")
-    screen.classList.toggle("opacity-50")
-  }
-
-  document.onkeyup = function (e) {
-    if (event.ctrlKey && e.which == 77) {
-      toggleDmenu()
-    }
-  }
-
-
-  {% if 'home' in page.title.lower %}
-  tippy('#contact', {
-    content: "GET IN TOUCH" + tooltipIcon,
-    allowHTML: true,
-  });
-  {% endif %}
-
-  tippy('.home-btn', {
-    content: "GO BACK HOME" + tooltipIcon,
-    allowHTML: true,
-  });
-  tippy('#download-btn', {
-    content: "GET MANJARO INSTALL MEDIA" + tooltipIcon,
-    allowHTML: true,
-  });
-  tippy('#menu-btn', {
-    content: "TOGGLE MENU - CTRL + M" + tooltipIcon,
-    allowHTML: true,
-  });
-</script>
