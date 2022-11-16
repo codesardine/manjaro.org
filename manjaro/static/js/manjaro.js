@@ -1,4 +1,4 @@
-function toggleDmenu(ev) {
+function toggleDmenu() {
     let menu = document.querySelector("#desktop-menu")
     let footer = document.querySelector("#footer");
     let screen = document.querySelector("#dim-screen")
@@ -7,9 +7,15 @@ function toggleDmenu(ev) {
     footer.classList.toggle("translate-footer")
     screen.classList.toggle("h-full")
     screen.classList.toggle("w-full")
-    screen.classList.toggle("opacity-0")
-    screen.classList.toggle("opacity-50")
+    screen.classList.toggle("backdrop-grayscale-0")
+    screen.classList.toggle("backdrop-grayscale")
   }
+
+document.onkeyup = function (e) {
+    if (event.ctrlKey && e.which == 77) {
+        toggleDmenu();
+    }
+}
 
 const tooltipIcon = "<i class='fa-solid fa-circle-info ml-2'></i>"
  
@@ -30,13 +36,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       } else {
         el.classList.add("hidden");
       }
-    });
-  };
-
-  document.onkeyup = function (e) {
-    if (event.ctrlKey && e.which == 77) {
-      toggleDmenu();
-    }
+    })
   }
 
   tippy(".home-btn", {
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   tippy("#menu-btn", {
-    content: "TOGGLE MENU - CTRL + M" + tooltipIcon,
+    content: "TOGGLE MENU _ CTRL + M" + tooltipIcon,
     allowHTML: true,
   });
 
