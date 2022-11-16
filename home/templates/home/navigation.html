@@ -113,24 +113,24 @@
   </a>
   <div id="menu"
     class="z-[30] fixed top-0 left-0 h-[100vh] lg:h-auto translate-x-[-150%] lg:translate-x-0 transition-transform duration-200 shadow-md lg:shadow-none">
-    <div class="p-5 rounded shadow-sm bg-teal-accent-400 h-[100vh]">
+    <div class="px-6 shadow-sm bg-teal-accent-400 h-[100vh] font-bold text-gray-200 capitalize text-center">
       <nav class="overflow-y-scroll h-[90vh] pb-16">
-        <ul>
+        <ul class="py-2">
           {% for item in left_navigation.menu_items.all %}
           {% if not item.submenu %}
-          <li>
+          <li class="py-2">
             <a {% if item.open_in_new_tab %}target="_blank" {% endif %} href="{{ item.link }}" title="{{ item.title }}"
-              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">
+              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
               {{ item.title }}</a>
           </li>
           {% endif %}
           {% for block in item.submenu %}
           {% with subitem=block.value.submenu_item %}
           {% if subitem.title %}
-          <li>
+          <li class="py-2">
             <a {% if subitem.open_in_new_tab %}target="_blank" {% endif %} href="{{ subitem.url }}"
               title="{{ subitem.title }}"
-              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">
+              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
               {{ subitem.title }}</a>
           </li>
           {% endif %}
@@ -139,32 +139,32 @@
           {% endfor %}
           {% for item in right_navigation.menu_items.all %}
           {% if not item.submenu %}
-          <li>
+          <li class="py-2">
             <a {% if item.open_in_new_tab %}target="_blank" {% endif %} href="{{ item.link }}" title="{{ item.title }}"
-              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">
+              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
               {{ item.title }}</a>
           </li>
           {% endif %}
           {% for block in item.submenu %}
           {% with subitem=block.value.submenu_item %}
           {% if subitem.title %}
-          <li>
+          <li class="py-2">
             <a {% if subitem.open_in_new_tab %}target="_blank" {% endif %} href="{{ subitem.url }}"
               title="{{ subitem.title }}"
-              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">
+              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
               {{ subitem.title }}</a>
           </li>
           {% endif %}
           {% endwith %}
           {% endfor %}
           {% endfor %}
-          <li>
+          <li class="py-2">
             <a href="https://manjaro.org/download/"
-              class="inline-block text-ellipsis whitespace-nowrap py-4 px-6 capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">download</a>
+              class="inline-block text-ellipsis whitespace-nowrap py-4 px-6 bg-blue-gray-800 w-full rounded-full">download</a>
           </li>
-          <li>
+          <li class="py-2">
             <a href="https://manjaro.org/contact/"
-              class="inline-block text-ellipsis whitespace-nowrap py-4 px-6 capitalize font-medium tracking-wide text-teal-900 hover:text-teal-700">get in touch</a>
+              class="inline-block text-ellipsis whitespace-nowrap py-4 px-6 bg-blue-gray-800 w-full rounded-full">get in touch</a>
           </li>
         </ul>
       </nav>
