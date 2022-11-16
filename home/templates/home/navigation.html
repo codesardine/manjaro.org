@@ -104,23 +104,23 @@
 <!-- Mobile menu -->
 <div id="nav-mobile" class="lg:hidden relative">
   <button id="toggle-mobile-btn" aria-label="Open Menu" title="Open Menu"
-    class="logo-inset bottom-1 left-1 text-2xl z-[41] fixed w-[52px] shadow h-[52px] justify-center rounded-full bg-blue-gray-900 text-gray-200 flex items-center">
+    class="bottom-1 left-1 text-2xl z-[41] fixed w-[52px] shadow h-[52px] justify-center rounded-full bg-blue-gray-900 text-gray-200 flex items-center">
     <i class="fa-solid fa-bars"></i>
   </button>
   <a href="https://manjaro.org" aria-label="Home"
-    class="fixed z-40 logo-inset bottom-1 left-6 pl-8 pr-3 w-[150px] shadow h-[52px] bg-white logo flex justify-center items-center rounded-md">
+    class="fixed z-40 bottom-3 left-6 pl-8 pr-3 w-[150px] shadow py-1 bg-white flex justify-center items-center rounded-2xl">
     <img src="{% static 'img/logo-light.svg' %}" alt="manjaro logo" width="100" height="26" class="ml-[8px]">
   </a>
   <div id="menu"
     class="z-[30] fixed top-0 left-0 h-[100vh] lg:h-auto translate-x-[-150%] lg:translate-x-0 transition-transform duration-500 shadow-md">
-    <div class="px-6 shadow-sm bg-teal-accent-400 h-[100vh] font-bold text-gray-200 capitalize text-center">
-      <nav class="overflow-y-scroll h-[90vh] pb-16">
+    <div class="px-6 shadow-sm bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 h-[100vh] font-bold text-gray-200 capitalize text-center">
+      <nav class="overflow-y-scroll h-[100vh] pb-16">
         <ul class="py-2">
           {% for item in left_navigation.menu_items.all %}
           {% if not item.submenu %}
           <li class="py-2">
             <a {% if item.open_in_new_tab %}target="_blank" {% endif %} href="{{ item.link }}" title="{{ item.title }}"
-              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
+              class="shadow-inset-blue-gray-900inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
               {{ item.title }}</a>
           </li>
           {% endif %}
@@ -130,7 +130,7 @@
           <li class="py-2">
             <a {% if subitem.open_in_new_tab %}target="_blank" {% endif %} href="{{ subitem.url }}"
               title="{{ subitem.title }}"
-              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
+              class="shadow-inset-blue-gray-900 inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
               {{ subitem.title }}</a>
           </li>
           {% endif %}
@@ -141,7 +141,7 @@
           {% if not item.submenu %}
           <li class="py-2">
             <a {% if item.open_in_new_tab %}target="_blank" {% endif %} href="{{ item.link }}" title="{{ item.title }}"
-              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
+              class="shadow-inset-blue-gray-900 inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
               {{ item.title }}</a>
           </li>
           {% endif %}
@@ -151,7 +151,7 @@
           <li class="py-2">
             <a {% if subitem.open_in_new_tab %}target="_blank" {% endif %} href="{{ subitem.url }}"
               title="{{ subitem.title }}"
-              class="inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
+              class="shadow-inset-blue-gray-900 inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
               {{ subitem.title }}</a>
           </li>
           {% endif %}
@@ -160,11 +160,11 @@
           {% endfor %}
           <li class="py-2">
             <a href="https://manjaro.org/download/"
-              class="inline-block text-ellipsis whitespace-nowrap py-4 px-6 bg-blue-gray-800 w-full rounded-full">download</a>
+              class="shadow-inset-blue-gray-900 shadow-inset-blue-gray-900 inline-block text-ellipsis whitespace-nowrap py-4 px-6 bg-blue-gray-800 w-full rounded-full">download</a>
           </li>
           <li class="py-2">
             <a href="https://manjaro.org/contact/"
-              class="inline-block text-ellipsis whitespace-nowrap py-4 px-6 bg-blue-gray-800 w-full rounded-full">get in touch</a>
+              class="shadow-inset-blue-gray-900 inline-block text-ellipsis whitespace-nowrap py-4 px-6 bg-blue-gray-800 w-full rounded-full">get in touch</a>
           </li>
         </ul>
       </nav>
