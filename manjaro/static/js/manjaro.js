@@ -13,11 +13,14 @@ function toggleMmenu() {
 
 function toggleDmenu() {
     let menu = document.querySelector("#desktop-menu")
-    let footer = document.querySelector("#footer");
+    let footer = document.querySelector("#footer")
+    
     
     menu.classList.toggle("translate-y-[-110%]")
     footer.classList.toggle("translate-footer")
     dimScreen()
+    let intro = document.querySelector("#intro")
+    intro.classList.toggle("translate-y-[-110%]")
   }
 
 document.onkeyup = function (e) {
@@ -44,6 +47,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
       desktopMenu.classList.add("translate-y-[-110%]")
       let footer = document.querySelector("#footer")
       footer.classList.add("translate-footer")
+      let intro = document.querySelector("#intro")
+      intro.classList.remove("translate-y-[-110%]")
   }
 
   window.onclick = function (event) {
