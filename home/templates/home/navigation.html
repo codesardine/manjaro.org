@@ -7,8 +7,10 @@
     <a href="https://manjaro.org" aria-label="Home" class=" bg-white rounded-b-md home-btn">
       <img src="{% static 'img/block-logo.svg' %}" alt="manjaro logo" width="72" height="80" class="w-[72px]">
     </a>
-    <span id="menu-btn" role="button" onclick="toggleDmenu()"
-      class="v-text uppercase bg-blue-gray-900 text-gray-200 text-sm font-bold p-1 rounded-b-md cursor-pointer">menu</span>
+    <div id="menu-btn" role="button" onclick="toggleDmenu()"
+      class="v-text uppercase bg-blue-gray-900 text-gray-200 text-sm font-bold p-1 rounded-b-md cursor-pointer flex justify-center items-center">
+      <span>menu</span>
+    </div>
   </div>
 
   <div id="desktop-menu"
@@ -31,8 +33,8 @@
         {% else %}
         <li>
           <button
-            class="{{ item.title }} flex-row hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 hover:text-gray-900 hover:border-gray-900"><i
-              class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
+            class="{{ item.title }} flex-row hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 hover:text-gray-900 hover:border-gray-900">
+            <i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
           <ul id="submenu{{ item.title }}"
             class="text-sm dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
             {% for block in item.submenu %}
