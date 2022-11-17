@@ -1,19 +1,28 @@
-function toggleDmenu() {
-    let menu = document.querySelector("#desktop-menu")
-    let footer = document.querySelector("#footer");
+function dimScreen() {
     let screen = document.querySelector("#dim-screen")
-
-    menu.classList.toggle("translate-y-[-110%]")
-    footer.classList.toggle("translate-footer")
     screen.classList.toggle("h-full")
     screen.classList.toggle("w-full")
     screen.classList.toggle("backdrop-grayscale-0")
     screen.classList.toggle("backdrop-grayscale")
+}
+
+function toggleMmenu() {
+  let mobileMenu = document.getElementById("mobile-menu")
+  mobileMenu.classList.toggle("translate-x-[-150%]")
+}
+
+function toggleDmenu() {
+    let menu = document.querySelector("#desktop-menu")
+    let footer = document.querySelector("#footer");
+    
+    menu.classList.toggle("translate-y-[-110%]")
+    footer.classList.toggle("translate-footer")
+    dimScreen()
   }
 
 document.onkeyup = function (e) {
     if (event.ctrlKey && e.which == 77) {
-        toggleDmenu();
+        toggleDmenu()
     }
 }
 
@@ -23,10 +32,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   const toggleMobileBtn = document.getElementById("toggle-mobile-btn")
   toggleMobileBtn.addEventListener("click", function () {
-    const menu = document.getElementById("menu")
-    menu.classList.toggle("translate-x-[-150%]")
+    toggleMmenu()
+    dimScreen()
+  })
 
-  });
+  document.querySelector("#dim-screen").onclick = function () {
+    dimScreen()
+    let mobileMenu = document.getElementById("mobile-menu")
+    let desktopMenu = document.getElementById("desktop-menu")
+      mobileMenu.classList.add("translate-x-[-150%]")
+      desktopMenu.classList.add("translate-y-[-110%]")
+      let footer = document.querySelector("#footer")
+      footer.classList.add("translate-footer")
+  }
 
   window.onclick = function (event) {
     let leftSubmenu = document.querySelectorAll(".dropdown")
