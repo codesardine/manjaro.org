@@ -113,12 +113,12 @@
 
       {% if not promo.hidden %}
       {% image promo.image width-950 as image %}
-      <div class="relative flex flex-col w-full lg:w-2/3 justify-end pb-12 lg:pb-0">
-        <picture class="self-start px-[15%] pb-4">
+      <div class="relative flex flex-col w-full lg:w-2/3 justify-end pb-52 lg:pb-0 -mb-40">
+        <picture class="self-start px-[20%] pb-8 mt-20 lg:mt-0">
           {% image promo.image width-750 format-webp class="object-contain promo-glow" %}
         </picture>
         <div>
-          <div class="p-5 relative text-gray-200 bg-blue-gray-800 px-4 md:rounded shadow-xl group hover:shadow-2xl">
+          <div class="p-5 relative text-gray-200 bg-blue-gray-800 px-4 md:rounded shadow-xl group hover:shadow-2xl mt-20">
             <a id="promo-btn" href="{{ promo.url }}"
               class="tracking-wide leading-none absolute top-4 right-5 shadow-md text-sm rounded py-2 px-4 capitalize font-medium border-pink-800 hover:border-pink700 bg-pink-800 hover: hover:bg-pink-700">
               <i class="fa-solid fa-circle-info"></i>
