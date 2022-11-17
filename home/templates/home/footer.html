@@ -4,6 +4,7 @@
 {% get_menu "footer-three" as footer_three %}
 {% get_menu "footer-four" as footer_four %}
 
+
 <footer id="footer" class="translate-footer lg:px-4 shadow-footer max-w-screen-xl mx-auto lg:transition-transform lg:duration-500 lg:fixed lg:bottom-0 lg:right-0 lg:left-0 lg:z-30 text-teal-900">
   <div class="lg:rounded-t-lg pb-20 lg:pb-2 mx-auto relative md:max-w-full lg:max-w-screen-xl bg-gradient-to-b via-teal-accent-400 from-teal-accent-400 to-teal-accent-700">
     <div class="flex flex-col justify-between sm:flex-row text-sm bg-blue-gray-900 text-gray-200 px-4 py-2 lg:rounded-t-md">
@@ -27,8 +28,15 @@
             Manjaro Linux Open Source operating system is and always will be
             provided free of charge.
           </p>
-          <p class="font-semibold mb-6">
-            The Manjaro project is backed up by Manjaro Gmbh & Co, KG, an Open
+          <p class="bg-gray-200 rounded-2xl shadow-inner">
+            <a class="twitter-timeline" 
+            href="https://twitter.com/ManjaroLinux?ref_src=https://manjaro.org" 
+            data-tweet-limit="1" data-chrome="nofooter noborders transparent noheader"
+            data-aria-polite="assertive"></a>
+           <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+          </p>
+          <p class="font-semibold mb-6 mt-6">
+            The Manjaro project is backed up by Manjaro Gmbh & Co, KG an Open
             Source driven company.
           </p>
         </div>
@@ -36,7 +44,7 @@
       <div class="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4 capitalize">
         {% if footer_one.menu_items.all %}
         <div class="lg:pl-4">
-          <h4 class="font-semibold tracking-wide uppercase">
+          <h4 class="font-semibold tracking-wide uppercase mb-4">
             <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
             {% get_menu_category_title "footer-one" %}
           </h4>
@@ -55,7 +63,7 @@
         {% endif %}
         {% if footer_two.menu_items.all %}
         <div class="lg:pl-4">
-          <h4 class="font-semibold tracking-wide uppercase">
+          <h4 class="font-semibold tracking-wide uppercase mb-4">
             <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
             {% get_menu_category_title "footer-two" %}
           </h4>
@@ -74,7 +82,7 @@
         {% endif %}
         {% if footer_three.menu_items.all %}
         <div class="lg:pl-4">
-          <h4 class="font-semibold tracking-wide uppercase">
+          <h4 class="font-semibold tracking-wide uppercase mb-4">
             <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
             {% get_menu_category_title "footer-three" %}
           </h4>
@@ -93,7 +101,7 @@
         {% endif %}
         {% if footer_four.menu_items.all %}
         <div class="lg:pl-4">
-          <h4 class="font-semibold tracking-wide uppercase">
+          <h4 class="font-semibold tracking-wide uppercase mb-4">
             <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
             {% get_menu_category_title "footer-four" %}
           </h4>
