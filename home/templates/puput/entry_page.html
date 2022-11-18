@@ -44,7 +44,7 @@
 {% endblock social_share %}
 
 {% block content %}
-<header class="px-4 mx-auto mt-16 lg:mt-24 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+<header class="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
     <div class="flex flex-col max-w-screen-lg bg-gray-50 border rounded shadow-sm lg:flex-row sm:mx-auto pt-2">
       <div class="relative lg:w-1/2">
         {% if self.header_image %}
@@ -80,7 +80,7 @@
         </ul>
         <div class="mt-3 text-xs font-semibold tracking-wide text-right">
             Writen By 
-            <span class="text-teal-accent-700 capitalize text-deep-purple-accent-400">
+            <span class="text-teal-accent-700 capitalize">
                 {{ self.owner.first_name }} {{ self.owner.last_name }}
             </span>
         </div>
