@@ -293,15 +293,15 @@
 
 .h-neon {
     & .h-red {
-    filter: drop-shadow(1px 1px 2px #ff4081) drop-shadow(-1px -1px 2px #ff4081)
+        filter: drop-shadow(4px 2px 10px #ff4081) drop-shadow(1px 1px 1px #37474f);
     }
 
     & .h-green {
-        filter: drop-shadow(1px 1px 2px #64ffda) drop-shadow(-1px -1px 2px #64ffda)
+        filter: drop-shadow(4px 2px 10px #651fff) drop-shadow(1px 1px 1px #37474f);
     }
 
     & .h-blue {
-        filter: drop-shadow(1px 1px 2px #40c4ff) drop-shadow(-1px -1px 2px #40c4ff)
+        filter: drop-shadow(4px 2px 10px #eeff41) drop-shadow(1px 1px 1px #37474f); 
     }
 }
 
@@ -389,20 +389,6 @@
         }
     }
 } 
-
-.hover-neon:hover {
-    & .hover-red {
-    filter: drop-shadow(1px 1px 2px #ff4081) drop-shadow(-1px -1px 2px #ff4081)
-    }
-
-    & .hover-green {
-        filter: drop-shadow(1px 1px 2px #64ffda) drop-shadow(-1px -1px 2px #64ffda)
-    }
-
-    & .hover-blue {
-        filter: drop-shadow(1px 1px 2px #40c4ff) drop-shadow(-1px -1px 2px #40c4ff) 
-    }
-}
 
 .promo-glow {
     animation: glow 5s infinite;
