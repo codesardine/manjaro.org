@@ -3,7 +3,7 @@
   {% for item in self.product_details %}
          {% if not item.hidden %}
          <div class="grid grid-rows-1">
-          <div class="relative bg-gray-200 grid grid-cols-1 gap-8 rounded-b rounded-t-[60px] shadow w-full">
+          <div class="relative bg-gray-200 grid grid-cols-1 gap-8 rounded-[60px] shadow w-full">
             <div class="h-neon absolute w-full">
               <svg class="text-teal-accent-400 absolute w-full right-0 -mt-[34%] z-[-1]" version="1.1" viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg">
                 <g fill="currentColor">
@@ -46,7 +46,7 @@
               </div>
                 <div class="relative">
                   <a target="_blank" href="{{ item.button_url }}"
-                  class="text-sm rounded-b inline-flex items-center justify-self-end self-end justify-center w-full h-12 px-6 font-bold tracking-wide text-white bg-pink-700 hover:bg-pink-500 focus:shadow-outline focus:outline-none"
+                  class="text-sm rounded-b-[60px] inline-flex items-center justify-self-end self-end justify-center w-full h-12 px-6 font-bold tracking-wide text-white bg-pink-700 hover:bg-pink-500 focus:shadow-outline focus:outline-none"
                 >         
                   Where to buy
                 </a>
@@ -54,9 +54,9 @@
             </div>
           </div>  
           <div class="h-6 w-full mb-40">
-            <div class="w-11/12 h-2 mx-auto bg-black rounded-b opacity-40"></div>
-            <div class="w-10/12 h-2 mx-auto bg-black rounded-b opacity-30"></div>
-            <div class="w-9/12 h-2 mx-auto bg-black rounded-b opacity-20"></div>
+            <div class="w-9/12 h-2 mx-auto bg-black rounded-b opacity-40"></div>
+            <div class="w-8/12 h-2 mx-auto bg-black rounded-b opacity-30"></div>
+            <div class="w-7/12 h-2 mx-auto bg-black rounded-b opacity-20"></div>
           </div>
          </div>
           {% endif %}
