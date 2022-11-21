@@ -3,82 +3,50 @@
   {% for item in self.product_details %}
          {% if not item.hidden %}
          <div class="grid grid-rows-1">
-          <div class="relative bg-white grid grid-cols-1 gap-8 rounded shadow w-full">
-            <div class="w-full h-neon relative">
-              <svg viewBox="0 0 88 88" class="text-black absolute w-full right-0 -mt-[34%] z-[-1]">
-                <circle fill="currentColor" cx="44" cy="44" r="15.5"></circle>
-                <circle fill-opacity="0.1" fill="currentColor" cx="44" cy="44" r="44"></circle>
-                <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="37.5"></circle>
-                <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="29.5"></circle>
-                <circle fill-opacity="0.2" fill="currentColor" cx="44" cy="44" r="22.5"></circle>
-              </svg>
-              {% if forloop.counter == 1 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-red" %}
-              {% elif forloop.counter == 2 %}
-                {% image item.image original class="object-contain  w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-green" %}
-              {% elif forloop.counter == 3 %}
-                {% image item.image original class="object-contain  w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-blue" %}
-              
-              {% elif forloop.counter == 4 %}
-                {% image item.image original class="object-contain  w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-red" %}
-              {% elif forloop.counter == 5 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-green" %}
-              {% elif forloop.counter == 6 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-blue" %}
-
-              {% elif forloop.counter == 7 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-red" %}
-              {% elif forloop.counter == 8 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-green" %}
-              {% elif forloop.counter == 9 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-blue" %}
-
-              {% elif forloop.counter == 10 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-red" %}
-              {% elif forloop.counter == 11 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-green" %}
-              {% elif forloop.counter == 12 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-blue" %}
-
-              {% elif forloop.counter == 13 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-red" %}
-              {% elif forloop.counter == 14 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-green" %}
-              {% elif forloop.counter == 15 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-blue" %}
-
-              {% elif forloop.counter == 16 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-red" %}
-              {% elif forloop.counter == 17 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-green" %}
-              {% elif forloop.counter == 18 %}
-                {% image item.image original class="object-contain w-full md:p-10 p-[10%] -mt-[38%] md:-mb-[12%] h-blue" %}
-
-              {% endif %}
+          <div class="relative bg-gray-200 grid grid-cols-1 gap-8 rounded-b rounded-t-[18%] shadow w-full">
+            <div class="h-neon absolute w-full">
+              <svg class="text-teal-accent-400 absolute w-full right-0 -mt-[34%] z-[-1]" version="1.1" viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg">
+                <g fill="currentColor">
+                 <circle cx="44" cy="44" r="15.5"/>
+                 <circle cx="44" cy="44" r="44" fill-opacity=".1"/>
+                 <g fill-opacity=".2">
+                  <circle cx="44" cy="44" r="37.5"/>
+                  <circle cx="44" cy="44" r="29.5"/>
+                  <circle cx="44" cy="44" r="22.5"/>
+                 </g>
+                </g>
+               </svg>
+               <picture>
+                {% image item.image original class="object-contain  w-full p-10 -mt-[28%] md:-mt-[32%] lg:-mt-[38%] h-[300px]" %}
+              </picture>
             </div>
-            <div class="flex flex-col text-white justify-between flex-grow rounded-b text-sm">
-              <div class="px-6">
+            <div class="flex flex-col justify-between text-blue-gray-900 rounded-b text-xs">
+              <div class="px-6 mt-[150px] capitalize">
                 <ul>
-                  <li><h3 class="pb-4 text-blue-gray-800 uppercase text-center">
+                  <h3 class="pb-4 uppercase text-center text-sm">
                     {{ item.model }}
-                  </h3></li>
-                  <li class="pb-2 text-teal-400"><span class="text-blue-gray-800">Processor </span>{{ item.processor }}</li>
-                  <li class="pb-2 text-teal-400"><span class="text-blue-gray-800">Screen </span>{{ item.screen }}</li>
-                  <li class="pb-2 text-teal-400"><span class="text-blue-gray-800">Memory </span>{{ item.memory }}</li>
-                  <li class="pb-2 text-teal-400"><span class="text-blue-gray-800">Storage </span>{{ item.storage }}</li>
-                  <li class="pb-2 text-teal-400"><span class="text-blue-gray-800">Ports </span>{{ item.ports }}</li>
-                  <li class="pb-2 text-teal-400"><span class="text-blue-gray-800">Graphics </span>{{ item.graphics }}</li>
+                  </h3>
+                  <li class="pb-2"><i class="fa-solid fa-circle pr-1 text-teal-accent-700"></i>{{ item.processor }}</li>
+                  {% if item.screen %}
+                  <li class="pb-2"><i class="fa-solid fa-circle pr-1 text-teal-accent-700"></i>{{ item.screen }}</li>
+                  {% endif %}
+                  <li class="pb-2"><i class="fa-solid fa-circle pr-1 text-teal-accent-700"></i>{{ item.memory }}</li>
+                  <li class="pb-2"><i class="fa-solid fa-circle pr-1 text-teal-accent-700"></i>{{ item.storage }}</li>
+                  <li class="pb-2"><i class="fa-solid fa-circle pr-1 text-teal-accent-700"></i>{{ item.ports }}</li>
+                  <li class="pb-2"><i class="fa-solid fa-circle pr-1 text-teal-accent-700"></i>{{ item.graphics }}</li>
                 </ul>
+                {% if item.description %}
                 <p class="text-sm pb-4 text-teal-400">
                   {{ item.description }}
                 </p>
+                {% endif %}
                 {% if item.certified %}
                     <img id="certified" class="pb-4" src="{% static 'img/certified.png' %}">
                   {% endif %}
               </div>
                 <div class="relative">
                   <a target="_blank" href="{{ item.button_url }}"
-                  class="border-t-2 border-blue-gray-500 rounded-b inline-flex items-center justify-center w-full h-12 px-6 font-bold tracking-wide text-teal-800 hover:text-white bg-cyan-accent-400 hover:bg-cyan-accent-700 focus:shadow-outline focus:outline-none"
+                  class="text-sm rounded-b inline-flex items-center justify-self-end self-end justify-center w-full h-12 px-6 font-bold tracking-wide text-white bg-pink-700 hover:bg-pink-500 focus:shadow-outline focus:outline-none"
                 >         
                   Where to buy
                 </a>

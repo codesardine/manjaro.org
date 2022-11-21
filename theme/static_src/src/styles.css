@@ -291,20 +291,6 @@
     scrollbar-width: none;  /* Firefox */
 }
 
-.h-neon {
-    & .h-red {
-        filter: drop-shadow(4px 2px 10px #ff4081) drop-shadow(1px 1px 1px #37474f);
-    }
-
-    & .h-green {
-        filter: drop-shadow(4px 2px 10px #651fff) drop-shadow(1px 1px 1px #37474f);
-    }
-
-    & .h-blue {
-        filter: drop-shadow(4px 2px 10px #eeff41) drop-shadow(1px 1px 1px #37474f); 
-    }
-}
-
 .promo-img {
     filter: drop-shadow(1px 1px #f6f6f6) drop-shadow(-1px -1px #f6f6f6);
     display: none;
