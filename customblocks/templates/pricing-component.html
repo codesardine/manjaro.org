@@ -22,18 +22,18 @@
             </div>
             <div class="flex flex-col justify-between text-blue-gray-900 rounded-b text-xs">
               <div class="px-6 mt-[150px] capitalize">
-                <ul>
-                  <h3 class="pb-4 uppercase text-center text-sm">
+                <ul class="text-xs font-semibold">
+                  <h3 class="pb-4 uppercase text-center text-sm font-bold">
                     {{ item.model }}
                   </h3>
-                  <li class="pb-2"><i class="fa-solid fa-circle pr-1 text-teal-accent-700"></i>{{ item.processor }}</li>
+                  <li class="pb-2"><i class="fa-solid fa-circle pr-2 text-teal-accent-700"></i>{{ item.processor }}</li>
                   {% if item.screen %}
-                  <li class="pb-2"><i class="fa-solid fa-circle pr-1 text-teal-accent-700"></i>{{ item.screen }}</li>
+                  <li class="pb-2"><i class="fa-solid fa-circle pr-2 text-teal-accent-700"></i>{{ item.screen }}</li>
                   {% endif %}
-                  <li class="pb-2"><i class="fa-solid fa-circle pr-1 text-teal-accent-700"></i>{{ item.memory }}</li>
-                  <li class="pb-2"><i class="fa-solid fa-circle pr-1 text-teal-accent-700"></i>{{ item.storage }}</li>
-                  <li class="pb-2"><i class="fa-solid fa-circle pr-1 text-teal-accent-700"></i>{{ item.ports }}</li>
-                  <li class="pb-2"><i class="fa-solid fa-circle pr-1 text-teal-accent-700"></i>{{ item.graphics }}</li>
+                  <li class="pb-2"><i class="fa-solid fa-circle pr-2 text-teal-accent-700"></i>{{ item.memory }}</li>
+                  <li class="pb-2"><i class="fa-solid fa-circle pr-2 text-teal-accent-700"></i>{{ item.storage }}</li>
+                  <li class="pb-2"><i class="fa-solid fa-circle pr-2 text-teal-accent-700"></i>{{ item.ports }}</li>
+                  <li class="pb-2"><i class="fa-solid fa-circle pr-2 text-teal-accent-700"></i>{{ item.graphics }}</li>
                 </ul>
                 {% if item.description %}
                 <p class="text-xs pb-4">
