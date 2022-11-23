@@ -174,18 +174,13 @@
        font-weight: 600;
        transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,-webkit-text-decoration-color;
        transition-timing-function: cubic-bezier(.4,0,.2,1);
-       color: rgba(101,31,255,1);  
-       
-       &:before {
-        content: "\f0c1";
-        font-family: "Font Awesome 6 Free";
-        margin-right: 3px;
-        font-size: 00.75rem;
-       }
+       color: #009688;  
+       text-decoration: underline;
+       font-weight: bold;
     }
    
     & a:hover, a:active, a:focus {
-        color: rgba(69,39,160,1);
+        color: #26a69a;
     }
    
     & blockquote:before {
