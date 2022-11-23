@@ -39,7 +39,7 @@
 
         {% include "home/navigation.html" %}
       
-        {% if page.intro or "Blog" in self.title %}
+        {% if page.intro or "blog" in self.title.lower %}
             <div class="grid gap-10 lg:grid-cols-1 relative">
                 <div class="lg:col-span-3">
                     <div class="mx-auto md:max-w-full lg:max-w-screen-xl mb-4">

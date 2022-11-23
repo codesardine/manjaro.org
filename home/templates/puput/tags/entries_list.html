@@ -1,13 +1,13 @@
 {% load i18n wagtailimages_tags puput_tags %}
 
 {% for entry in entries %}
-    <div class="text-xs font-semibold tracking-wide text-gray-600 uppercase">
+    <div class="text-xs font-semibold tracking-wide text-blue-gray-800 uppercase mb-1">
         {{ entry.date|date:"SHORT_DATE_FORMAT" }}
     </div>
     <div>
         <a href="{{ entry.url }}" aria-label="Article"
-            class="inline-block  text-deep-purple-accent-400 hover:text-deep-purple-800">
-            <h3 class="font-sans font-extrabold leading-none tracking-tight text-base">
+            class="text-teal-600 hover:text-teal-400">
+            <h3 class="font-sans font-extrabold leading-none tracking-tight text-base underline">
                 {{ entry.title }}
             </h3>
         </a>

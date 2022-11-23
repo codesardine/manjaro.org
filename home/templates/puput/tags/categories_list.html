@@ -1,9 +1,9 @@
 {% load i18n wagtailroutablepage_tags %}
 
-<ul>
+<ul class="text-blue-gray-800">
     {% for category in categories %}
         <li>
-            <a class="inline-block font-extrabold  text-deep-purple-accent-400 hover:text-deep-purple-800" href="{% routablepageurl blog_page "entries_by_category" category.slug %}">{{ category.name }}</a>
+            <a class="inline-block font-extrabold text-teal-600 hover:text-teal-400 underline hover:underline" href="{% routablepageurl blog_page "entries_by_category" category.slug %}">{{ category.name }}</a>
         </li>
     {% empty %}
         {% trans 'No categories yet' %}

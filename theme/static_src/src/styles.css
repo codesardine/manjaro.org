@@ -291,11 +291,6 @@
     display: none;
 }
 
-.blog-page a:not(#inline-logo):not(#logo),
-.blog-entry-page a:not(#inline-logo):not(#logo) {
-    display: inline-block;
-}
-
 #content {
     min-height: calc(100vh - 495px);
 }
