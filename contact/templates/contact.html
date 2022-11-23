@@ -1,92 +1,108 @@
 {% extends 'base.html' %}
 {% load wagtailcore_tags static %}
 
-{% block body_class %}contact-form{% endblock %} 
+{% block body_class %}contact-form bg-blue-gray-800{% endblock %} 
 
 {% block head %}
   <meta name="robots" content="noindex, nofollow">
   <style>
-    textarea {
-        height: auto;
+    #id_wagtailcaptcha {
+        margin-top: 12px;
+        width: 302px;
+        float: left;
+        margin-right: 1rem;
+        border: none;
     }
 
-    form ul ul {
-        margin-bottom: 3rem;
-    }
-
-    form * {
+    .contact-form form {
         text-transform: capitalize;
     }
 
     .loading * {
        cursor: progress;
+    }  
+
+    .contact-form form label {
+        margin-bottom: 24px;
+        display: block;
     }
+
+    .contact-form form input, .contact-form form textarea {
+        color: #263238;
+        border-radius: .25rem;
+    }
+
+    .contact-form form input:checked {
+        color: #1de9b6;
+    }
+
+    .contact-form form input:focus {
+        box-shadow: none;
+    }
+
+    .contact-form form input {
+        margin-bottom: 12px;
+    }
+
+    .contact-form  form ul label {
+        margin-bottom: 12px;
+        font-weight: bold;
+    }
+
+    .contact-form form ul:first-of-type {
+        margin-bottom: 24px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content:space-between;
+        align-items: center;
+    }
+    .contact-form form ul ul li {
+        float: left;
+        margin-right: 10px;
+    }
+    .contact-form form ul ul input {
+        margin-bottom: 0;
+        margin-right: 5px;
+    }
+    .contact-form form ul ul {
+        height: 48px;
+        margin-bottom: 0;
+        justify-content: flex-start !important;
+    }
+
+    .contact-form form p textarea,
+    .contact-form form ul p:nth-of-type(6) {
+        width: 100%;
+    }
+    
+    
   </style>
 {% endblock %}
 
 {% block content %}
-<div class="relative max-w-screen-md px-4 mx-auto xl:max-w-screen-lg sm:px-8">
-    <div class="relative bg-gray-50">
-        <div class="sm:px-12 ">
-            <form class="py-4">
-                <ul>
-                    {{ form }}
-                </ul>
-                <button id="submitBtn" type="submit" class="mt-4 px-2 h-12 inline-flex items-center justify-center mb-2 font-medium tracking-wide text-white rounded shadow-md bg-blue-gray-700 focus:shadow-outline focus:outline-none">
-                    <img class="mr-2 w-10" src="{% static 'img/manjaro-email.svg' %}">
-                    Send
-                </button>
-            </form>            
-        </div>
-    </div>
+<div class="relative max-w-screen-xl px-4 mx-auto text-gray-200 font-bold pt-4">
+    <form class="flex flex-wrap gap-4">
+        <ul>
+            {{ form.as_p }}
+            <button id="submitBtn" type="submit" class="mt-2 float-right text-teal-900 px-4 h-12 inline-flex items-center justify-center tracking-wide rounded shadow-md bg-teal-accent-700 focus:shadow-outline focus:outline-none">
+                Send
+            </button>  
+        </ul>
+    </form>          
 </div>
 
 <div id="error-msg" class="bg-red-100 text-red-700 p-4 fixed bottom-0 w-full z-10 hidden" role="alert">
     <p class="font-bold">Warning</p>
-    <p></p>
-  </div>
+</div>
 
 <div id="info-msg" class="bg-blue-100 text-blue-700 p-4 fixed bottom-0 w-full z-10 hidden" role="alert">
-<p class="font-bold">Validating information</p>
-<p></p>
+    <p class="font-bold">Validating information</p>
 </div>
+
 <script>
 window.addEventListener('DOMContentLoaded', (event) => {
-        document.querySelectorAll("label").forEach((el) => {
-        el.classList.add('block', 'mb-2', 'font-semibold')
-        })
-        document.querySelectorAll("textarea").forEach((el) => {
-        el.classList.add(
-            'flex-grow',
-            'w-full',
-            'h-full',
-            'px-4',
-            'mb-4',
-            'transition',
-            'duration-200',
-            'bg-white',
-            'border',
-            'border-gray-400',
-            'rounded',
-            'shadow-sm',
-            'appearance-none',
-            'focus:outline-none',
-            'focus:shadow-outline',
-            'focus:border-indigo-500'
-            )
-        })
-        document.querySelector('p:first-of-type').style.display = "none"
-        document.querySelector('textarea').rows = 10
-        document.querySelector('p:nth-of-type(2)').classList.add(
-                'text-base',
-                'text-gray-700',
-                'sm:text-base',
-                'md:text-lg',
-                'lg:text-base',
-                'xl:text-lg',
-                'w-full'
-            )
-
+        
         const form = document.querySelector('form')
         form.addEventListener('submit', (event) => {
             event.preventDefault();
