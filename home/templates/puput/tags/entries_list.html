@@ -6,13 +6,13 @@
     </div>
     <div>
         <a href="{{ entry.url }}" aria-label="Article"
-            class="text-teal-600 hover:text-teal-400">
-            <h3 class="font-sans font-extrabold leading-none tracking-tight text-base underline">
+            class="text-teal-600 hover:text-teal-400 mb-1">
+            <h4 class="font-sans font-semibold leading-none tracking-tight text-sm capitalize underline mb-2">
                 {{ entry.title }}
-            </h3>
+            </h4>
         </a>
     </div>
-    <span class="mb-4 text-base text-gray-700 md:text-lg">
+    <span class="mb-4 text-sm text-gray-700 md:text-lg">
         {% empty %}
           {% trans 'No entries yet' %}
     </span>
