@@ -1,29 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   width="16"
-   height="16"
-   version="1.1"
-   id="svg7"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <defs
-     id="defs3">
-    <style
-       id="current-color-scheme"
-       type="text/css">
-   .ColorScheme-Text { color:#dfdfdf; } .ColorScheme-Highlight { color:#4285f4; } .ColorScheme-NeutralText { color:#ff9800; } .ColorScheme-PositiveText { color:#4caf50; } .ColorScheme-NegativeText { color:#f44336; }
-  </style>
-  </defs>
-  <path
-     style="fill:#ffe082;fill-opacity:1"
-     class="ColorScheme-Text"
-     d="M 2.7902825,1.1668457 C 2.2365783,1.1849476 1.9811568,1.6689519 1.8234915,2.1989867 L 0.92205036,5.2300597 1.1834501,13.225788 c 0.018102,0.553704 0.4784369,0.984893 1.032141,0.966791 l 11.9935919,-0.3921 c 0.553705,-0.0181 0.984893,-0.478436 0.966792,-1.032141 L 14.914575,4.7726101 13.817084,1.806887 C 13.625003,1.2872858 13.338647,0.82199401 12.784943,0.84009594 Z M 3.5251748,3.1438888 12.180651,2.8609202 12.547147,3.8494728 3.2221291,4.1543303 Z M 6.9515215,6.0334759 8.9504536,5.968126 9.0484785,8.9665241 10.797544,8.9093429 8.1470374,11.997597 5.3004809,9.0890552 7.0495464,9.031874 Z"
-     id="path5" />
-  <rect
-     style="fill:#ffe082;fill-opacity:1"
-     id="rect340"
-     width="9.7199125"
-     height="7.2029223"
-     x="3.5316308"
-     y="5.1679564" />
+<svg version="1.1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <style type="text/css">.ColorScheme-Text { color:#dfdfdf; } .ColorScheme-Highlight { color:#4285f4; } .ColorScheme-NeutralText { color:#ff9800; } .ColorScheme-PositiveText { color:#4caf50; } .ColorScheme-NegativeText { color:#f44336; }</style>
+ </defs>
+ <path class="ColorScheme-Text" d="m3.037 0.9703c-0.55399-0.0030941-0.82774 0.47078-1.0056 0.9944l-1.0167 2.9944-0.04468 7.9999c-0.003094 0.55399 0.44041 1.0025 0.9944 1.0056l12 0.06702c0.55399 0.0031 1.0025-0.44041 1.0056-0.9944l0.044679-7.9999-0.98323-3.0055c-0.17206-0.52657-0.44041-1.0025-0.9944-1.0056zm0.65872 2.0037 8.66 0.048366 0.32841 1.0018-9.3299-0.052108zm3.3133 3.0186 2 0.01117-0.016755 3 1.75 0.00977-2.7667 2.9846-2.7332-3.0153 1.75 0.00977z" fill="#004d40"/>
+ <rect x="3.14" y="5.3978" width="9.7199" height="7.2029" fill="#004d40"/>
 </svg>
