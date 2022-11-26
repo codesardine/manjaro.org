@@ -58,13 +58,13 @@
     </button>
     <img class="w-8 absolute left-3 top-3" src="/static/img/package-light.svg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="package" />
   </div>
-    <a href="/status/" target="_blank" role="button"
-    class="bg-light-blue-800 hover:bg-light-blue-700 w-40 md:w-1/4 lg:1/6 px-4 py-4 flex justify-center items-center text-gray-200 font-bold rounded shadow uppercase focus:outline-none">
+    <a href="/status/" target="_blank" role="button" id="status-btn"
+    class="bg-light-blue-800 w-40 md:w-1/4 lg:1/6 px-4 py-4 flex justify-center items-center text-gray-200 font-bold rounded shadow uppercase focus:outline-none">
     <i class="fa-solid fa-circle-info mr-2"></i>Status
     </a>
   </form>
   {% if packages %}   
-  <section class="relative mx-auto lg:pb-1 pt-6 md:pt-10 lg:pt-10 lg:p-4 md:max-w-screen-md text-sm">
+  <section class="relative mx-auto lg:pb-1 pt-6 lg:pt-6 lg:p-4 md:max-w-screen-md text-sm">
     <div class="flex items-center justify-center px-4 py-2 md:w-1/3 bg-blue-gray-900 rounded-t">
       <label for="of-toggle-arm" class="flex items-center cursor-pointer font-bold">
         <div id="btn" class="text-center mr-4 w-20">x86-64</div>
@@ -178,5 +178,16 @@
       alert("Details not available.")
       })
     })
+    document.addEventListener("DOMContentLoaded", (event) => {      
+      tippy('#status-btn', {
+        content: "PACKAGES REPOSITORY STATUS REPORT" + tooltipIcon,
+        allowHTML: true,
+      });
+      tippy('#search', {
+        content: "CMDS -> #MANJARO #KERNELS #EOL #ERROR" + tooltipIcon,
+        allowHTML: true,
+      });
+  })
   </script>
   {% endblock %}
+ 
