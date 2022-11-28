@@ -81,7 +81,7 @@ class UpdateStatus(Page):
 
         # doc: https://docs.discourse.org/#tag/Categories
         topics = json.loads(req)['topic_list']['topics']
-        post_limit = 3
+        post_limit = 4
         topics = [t for t in topics if not t['title'].startswith('About')][0:post_limit]  # limit 12 / 30
 
         futures = []
