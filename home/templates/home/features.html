@@ -42,16 +42,24 @@
 </div>
 <div class="md:max-w-screen-xl font-bold text-gray-200 text-sm lg:pb-14 px-4 mx-auto">
 <div>
-    <h2 class="text-center mb-6 text-2xl">
-        What are <span class="inline-block text-yellow-600">Branches</span><br>
-        and why do we need them?
-      </h2>
-      <p class="mb-20 bg-gray-200 p-4 text-blue-gray-800 rounded font-normal">
-         {{ page.branches_intro }} <a href="https://wiki.manjaro.org/index.php/Switching_Branches" 
-         class="text-teal-500 underline">Switching Branches</a>.
-       </p>
-    <div class="grid gap-4 lg:grid-cols-2 mx-auto">
-      <div class="">        
+    <div class="flex gap-20 flex-wrap lg:flex-nowrap mx-auto">
+      <div class="lg:w-2/3">  
+        <div class="flex">
+          <div class="flex flex-col items-center mr-4">
+            <div>
+              <div class="flex items-center justify-center w-10 h-10 border rounded-full">
+                <i class="fa-solid fa-info"></i>
+              </div>
+            </div>
+            <div class="w-px h-full bg-gray-200"></div>
+          </div>
+          <div class="mt-3">
+            <h3 class="mb-2 text-yellow-600">Manjaro Branches</h3>
+            <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal">
+             {{ page.branches_intro }}
+            </p>
+          </div>
+        </div>      
         <div class="flex">
           <div class="flex flex-col items-center mr-4">
             <div>
@@ -64,8 +72,8 @@
             </div>
             <div class="w-px h-full bg-gray-200"></div>
           </div>
-          <div class="pt-1 pb-8">
-            <h3 class="mb-2 text-yellow-600">Arch Linux</h3>
+          <div class="mt-3">
+            <h3 class="mb-2 text-yellow-600">Upstream Arch Linux</h3>
             <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal">
              {{ page.arch_linux_intro }}
             </p>
@@ -83,8 +91,8 @@
             </div>
             <div class="w-px h-full bg-gray-200"></div>
           </div>
-          <div class="pt-1 pb-8">
-            <h3 class="mb-2 text-yellow-600">Unstable</h3>
+          <div class="mt-3">
+            <h3 class="mb-2 text-yellow-600">Manjaro Unstable</h3>
             <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal">
              {{ page.unstable_intro }}
             </p>
@@ -102,8 +110,8 @@
             </div>
             <div class="w-px h-full bg-gray-200"></div>
           </div>
-          <div class="pt-1 pb-8">
-            <h3 class="mb-2 text-yellow-600">Testing</h3>
+          <div class="mt-3">
+            <h3 class="mb-2 text-yellow-600">Manjaro Testing</h3>
             <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal">
                 {{ page.testing_intro }}
             </p>
@@ -119,15 +127,15 @@
               </div>
             </div>
           </div>
-          <div class="pt-1">
-            <h3 class="mb-2 text-yellow-600">Stable</h3>
+          <div class="mt-3">
+            <h3 class="mb-2 text-yellow-600">Manjaro Stable</h3>
             <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal">
                 {{ page.stable_intro }}
             </p>
           </div>
         </div>
       </div>
-      <div class="flex items-center justify-center mt-20 lg:mt-0">
+      <div class="flex items-center justify-center mb-20 lg:mb-0 w-full lg:w-1/3">
         <div class="flex flex-col items-end px-3">
           <div class="green-circle flex items-center justify-center text-2xl shadow">Stable</div>
           <div class="red-circle flex items-center justify-center text-2xl shadow">Unstable</div>
@@ -139,15 +147,12 @@
     </div>
   </div>
 
-  <div class="mt-20">
-    <div class="mb-10 md:mb-12">
-      <h2 class="mb-6 text-2xl">
+  <div class="lg:mt-52">
+    <div class="">
+      <h2 class="py-4 text-2xl">
         <span class="inline-block text-yellow-600">Pamac</span>
          Software Center
       </h2>
-      <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal">
-          {{ page.pamac_intro }}
-       </p>
     </div>
     <div class="grid gap-4 lg:grid-cols-2">
       <div class="grid grid-rows-1 gap-5">
@@ -158,7 +163,10 @@
         </picture>
       </div>
       <div class="flex flex-col justify-center">
-        <div class="pb-4 mb-4">
+        <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal mb-4">
+          {{ page.pamac_intro }}
+       </p>
+        <div class="mb-4">
           <h3 class="mb-2 text-yellow-600">
             Multiple package formats support
           </h3>
@@ -166,7 +174,7 @@
             {{ page.package_formats_intro }}
           </p>
         </div>
-        <div class="pb-4 mb-4">
+        <div class="mb-4">
           <h3 class="mb-2 text-yellow-600">
             Update in a breeze
           </h3>
@@ -174,7 +182,7 @@
             {{ page.updates_intro }}
           </p>
         </div>
-        <div>
+        <div class="pb-4">
           <h3 class="mb-2 text-yellow-600">
             Arch User Repository
           </h3>
@@ -186,18 +194,30 @@
     </div>
   </div>
 
-  <div class="mt-20">
+  <div class="lg:mt-52">
     <div class="grid gap-4 lg:grid-cols-2">
+      <div class="grid gap-4 lg:grid-rows-2 place-items-center">
+        <picture>
+          <source srcset="{% static 'img/layout1.webp' %}" type="image/webp">
+          <source srcset="{% static 'img/layout1.jpg' %}" type="image/jpeg"> 
+          <img class="object-contain w-[85%] rounded shadow-lg mx-auto" src="{% static 'img/layout1.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="Gnome Layout Switcher" />
+        </picture>
+        <picture>
+          <source srcset="{% static 'img/layout2.webp' %}" type="image/webp">
+          <source srcset="{% static 'img/layout2.jpg' %}" type="image/jpeg"> 
+          <img class="object-contain w-[85%] rounded shadow-lg mx-auto" src="{% static 'img/layout2.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="Gnome Layout Switcher" />
+        </picture>
+      </div>
       <div class="flex flex-col">
-        <div class="mb-4">
-          <h2 class="mb-6 text-2xl">
+        <div class="py-4 lg:pt-0">
+          <h2 class="text-2xl">
             Gnome <span class="inline-block text-yellow-600">Layout Switcher</span>
           </h2>
+        </div>
+        <div class="grid gap-4 row-gap-2 sm:grid-rows-4">
           <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal">
             {{ page.gnome_layout_switcher_intro }}
           </p>
-        </div>
-        <div class="grid gap-4 row-gap-2 sm:grid-rows-4">
             <div class="">
               <h3 class="mb-2 text-yellow-600">
                 Manjaro
@@ -232,29 +252,14 @@
           </div>
         </div>
       </div>
-      <div class="grid gap-8 lg:grid-rows-2 place-items-center">
-        <picture>
-          <source srcset="{% static 'img/layout1.webp' %}" type="image/webp">
-          <source srcset="{% static 'img/layout1.jpg' %}" type="image/jpeg"> 
-          <img class="object-contain w-[85%] rounded shadow-lg mx-auto" src="{% static 'img/layout1.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="Gnome Layout Switcher" />
-        </picture>
-        <picture>
-          <source srcset="{% static 'img/layout2.webp' %}" type="image/webp">
-          <source srcset="{% static 'img/layout2.jpg' %}" type="image/jpeg"> 
-          <img class="object-contain w-[85%] rounded shadow-lg mx-auto" src="{% static 'img/layout2.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="Gnome Layout Switcher" />
-        </picture>
-      </div>
     </div>
   </div>
 
-  <div class="mt-20">
-    <div class="mb-6">
-      <h2 class="mb-6 text-2xl">
+  <div class="lg:mt-52">
+    <div class="">
+      <h2 class="py-4 text-2xl">
         Manjaro <span class="inline-block text-yellow-600">Settings Manager</span>
       </h2>
-      <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal">
-        {{ page.msm_intro }}
-      </p>
     </div>
     <div class="grid gap-4 lg:grid-cols-2">
       <div class="grid grid-cols-1 gap-5">
@@ -265,7 +270,10 @@
         </picture>
       </div>
       <div class="flex flex-col">
-        <div class="pb-4 mb-4">
+        <div class="mb-4">
+          <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal mb-4">
+            {{ page.msm_intro }}
+          </p>
           <h6 class="mb-2 text-yellow-600">
             Manage your Kernels
           </h6>
@@ -273,7 +281,7 @@
             {{ page.kernels_intro }}
           </p>
         </div>
-        <div class="pb-4 mb-4">
+        <div class="mb-4">
           <h6 class="mb-2  text-yellow-600">
             Easily change the most common settings
           </h6>
@@ -282,7 +290,7 @@
           </p>
         </div>
         <div>
-          <h6 class="mb-2  text-yellow-600">
+          <h6 class="mb-2 text-yellow-600">
             Graphic Drivers
           </h6>
           <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal">
@@ -292,10 +300,10 @@
       </div>
     </div>
   </div>
-
   <div>
-    <div class="mt-20">
-        <h5 class="mb-4 text-2xl">
+
+    <div class="lg:mt-52">
+        <h5 class="py-4 text-2xl">
             The <span class="inline-block text-yellow-600">WebApp</span>
             Manager
           </h5>
@@ -343,24 +351,22 @@
     </div>
   </div>
 
-  <div class="mt-20">
-    <div class="grid gap-10 lg:grid-cols-2 items-center">
-      <div class="lg:pr-10">
-        <h5 class="mb-4 text-2xl">
-          The <span class="inline-block text-yellow-600">Calamares</span>
-          Installer
-        </h5>
-        <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal">
-          {{ page.calamares_intro }}
-        </p>
-      </div>
-      <div>
-        <picture>
+  <div class="mt-20 lg:mt-52">
+    <h5 class="mb-4 text-2xl">
+      The <span class="inline-block text-yellow-600">Calamares</span>
+      Installer
+    </h5>
+    <div class="flex gap-4 flex-wrap lg:flex-nowrap">
+        <picture class="lg:w-1/2 mx-auto">
           <source srcset="{% static 'img/calamares.webp' %}" type="image/webp">
           <source srcset="{% static 'img/calamares.jpg' %}" type="image/jpeg"> 
           <img class="object-contain w-full rounded shadow-lg" src="{% static 'img/calamares.jpg' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260" alt="" />
         </picture>
-      </div>
+        <div class="lg:w-1/2 lg:max-h-[324px] overflow-hidden">
+          <p class="bg-gray-200 p-4 text-blue-gray-800 rounded font-normal h-full">
+            {{ page.calamares_intro }}
+          </p>
+        </div>
     </div>
   </div>
 </div>
