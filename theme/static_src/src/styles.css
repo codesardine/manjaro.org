@@ -68,11 +68,6 @@
     font-family: 'Comfortaa', cursive;
 }
 
-#inline-logo img {
-    width: 150px;
-    height: auto;
-}
-
 .circle {
     z-index: -1;
     border-radius: 100%;
@@ -292,12 +287,6 @@
 
 #content {
     min-height: calc(100vh - 495px);
-}
-
-#cdn {
-    width: 65px;
-    height: auto;
-    padding-left: 5px;
 }
 
 .downloads select:hover {

@@ -129,19 +129,9 @@ class Downloads(RoutablePageMixin, Page):
 
     intro = models.TextField(default='', blank=True, max_length=700)
 
-    question_one = models.CharField(default='', blank=True, max_length=50)
-    answer_one = models.TextField(default='', blank=True, max_length=200)
-
-    question_two = models.CharField(default='', blank=True, max_length=50)
-    answer_two = models.TextField(default='', blank=True, max_length=200)
-
-    question_three = models.CharField(default='', blank=True, max_length=50)
-    answer_three = models.TextField(default='', blank=True, max_length=200)
-
     manjaro_team_intro = models.TextField(default='', blank=True, max_length=200)
     community_intro = models.TextField(default='', blank=True, max_length=200)
     manjaro_arm_team_intro = models.TextField(default='', blank=True, max_length=200)
-    manual_intro = models.TextField(default='', blank=True, max_length=200)
 
     xfce_description = models.TextField(default='', blank=True, max_length=350)
     plasma_description = models.TextField(default='', blank=True, max_length=350)
@@ -177,30 +167,16 @@ class Downloads(RoutablePageMixin, Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
-        FieldPanel("question_one"),
-        FieldPanel("answer_one"),
-        FieldPanel("question_two"),
-        FieldPanel("answer_two"),
-        FieldPanel("question_three"),
-        FieldPanel("answer_three"),
         FieldPanel("manjaro_team_intro"),
         FieldPanel("community_intro"),
         FieldPanel("manjaro_arm_team_intro"),
-        FieldPanel("manual_intro"),
     ]
 
     search_fields = Page.search_fields + [
         index.SearchField("intro"),
-        index.SearchField("question_one"),
-        index.SearchField("answer_one"),
-        index.SearchField("question_two"),
-        index.SearchField("answer_two"),
-        index.SearchField("question_three"),
-        index.SearchField("answer_three"),
         index.SearchField("manjaro_team_intro"),
         index.SearchField("community_intro"),
         index.SearchField("manjaro_arm_team_intro"),
-        index.SearchField("manual_intro"),
         index.SearchField("docker_intro")
     ]
     
