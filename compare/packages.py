@@ -1,6 +1,5 @@
 from dataclasses import dataclass, field, fields
 from pathlib import Path
-import re
 from typing import IO, Iterator
 import requests
 import tarfile

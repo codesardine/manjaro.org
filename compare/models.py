@@ -173,10 +173,12 @@ class Packages(RoutablePageMixin, Page):
         context = super().get_context(request)
         search_query = request.GET.get('query', None)
         arm = request.GET.get('arm', None)
-        model = x86_64
         if arm:
             model = aarch64
-            context['arm_query'] = True
+            pattern = r"^linux-([a-z0-9]{1,9}(?!.))"
+        else:
+            model = x86_64
+            pattern = r"linux([0-9].{1,3})(?!.)"
 
         all = model.objects.all()
         total_packages = all.count()
@@ -189,9 +191,6 @@ class Packages(RoutablePageMixin, Page):
                 if "all" in search_query:
                     search_results = all
                 elif "kernels" in search_query:
-                    pattern = r"linux([0-9].{1,3})(?!.)"
-                    if arm:
-                        pattern = r"^linux-([a-z0-9]{1,9}(?!.))"
                     search_results = model.objects.filter(name__iregex=pattern)
                 elif "new" in search_query:
                     search_results = model.objects.filter(stable__exact='')

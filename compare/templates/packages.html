@@ -62,7 +62,7 @@
     <label for="of-toggle-arm" class="flex items-center cursor-pointer font-bold">
       <div id="btn" class="mr-4"><i class="fa-solid fa-computer"></i></div>
       <div class="relative form-check form-switch">
-        <input id="of-toggle-arm" type="checkbox" class="sr-only no-mouse-effect" role="switch" name="arm" {% if arm or arm_query %}checked{% endif %}>
+        <input id="of-toggle-arm" type="checkbox" class="sr-only no-mouse-effect" role="switch" name="arm" {% if arm %}checked{% endif %}>
         <div class="w-10 h-4 bg-gray-200 rounded-full shadow-inner"></div>
         <div class="dot absolute w-6 h-6 bg-blue-gray-500 rounded-full shadow -left-1 -top-1 transition"></div>
       </div>
