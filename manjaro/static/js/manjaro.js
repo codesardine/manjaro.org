@@ -11,16 +11,20 @@ function toggleMmenu() {
   mobileMenu.classList.toggle("translate-x-[-150%]")
 }
 
+function hideIntro() {
+  let intro = document.querySelector("#intro")
+  if (intro !=null) {
+    intro.classList.toggle("translate-y-[-110%]")
+  }
+}
+
 function toggleDmenu() {
     let menu = document.querySelector("#desktop-menu")
     let footer = document.querySelector("#footer")
-    
-    
     menu.classList.toggle("translate-y-[-110%]")
     footer.classList.toggle("translate-footer")
     dimScreen()
-    let intro = document.querySelector("#intro")
-    intro.classList.toggle("translate-y-[-110%]")
+    hideIntro()
   }
 
 document.onkeyup = function (e) {
@@ -45,8 +49,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       desktopMenu.classList.add("translate-y-[-110%]")
       let footer = document.querySelector("#footer")
       footer.classList.add("translate-footer")
-      let intro = document.querySelector("#intro")
-      intro.classList.remove("translate-y-[-110%]")
+      hideIntro()
   }
 
   window.onclick = function (event) {
