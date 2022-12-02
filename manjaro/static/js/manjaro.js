@@ -28,8 +28,6 @@ document.onkeyup = function (e) {
         toggleDmenu()
     }
 }
-
-const tooltipIcon = "<i class='fa-solid fa-circle-info ml-2'></i>"
  
 document.addEventListener("DOMContentLoaded", (event) => {
 

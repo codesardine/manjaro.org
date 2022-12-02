@@ -1,121 +1,89 @@
 {% load docs_tags %}
 
-<div class="lg:border-gray-300 lg:border-r-2 left-sidebar flex">
-  <button aria-label="Open Menu" title="Open Menu" class="btn-toggle-menu z-[1] lg:hidden absolute text-xl w-12 h-12 bottom-5 left-5 bg-blue-600 text-gray-100 shadow-md rounded-full">
-    <i aria-label="Open Menu" class="fa-solid fa-bars btn-toggle-menu"></i>
-  </button>
-    <aside id="docs-nav" class="pt-12 px-8 lg:pt-0 lg:pl-2 lg-pr-4 z-10 lg:z-auto top-0 h-[100vh] lg:h-auto bg-gray-50 lg:bg-transparent translate-x-[-150%] lg:translate-x-0 fixed lg:relative transition-transform duration-200 shadow-md lg:shadow-none">
-      <button id="btn-close-toggle-menu" aria-label="Close Menu" title="Close Menu" class="lg:hidden absolute top-3 right-3 p-2 -mt-2 -mr-2 rounded bg-gray-300 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:shadow-outline">
-        <svg class="w-5 text-gray-900" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"></path>
-        </svg>
-      </button>
-      <ul>
-        {% for category in categories %}
-          {% if category|is_internal and not user.is_authenticated %}
-                {% else %}
-                <ul>
-                  <h4 class="inline-block px-3 py-px text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-yellow-accent-700">{{ category }}</h4>               
-                  {% for url in nav %}
-                    {% if url.category == category %}
-                      {% if page.title == url.title %}
-                        <li class="relative py-1">
-                            <a href="{{ url.url }}" class="flex items-center text-sm py-1 px-3 h-8 overflow-hidden text-ellipsis whitespace-nowrap rounded text-teal-800 bg-teal-accent-400">
-                              <h1 class="capitalize">{{ url.title }}</h1>
+<div id="menu-docs" class="transition-transform z-[5] duration-500 translate-x-[-120%] lg:translate-x-0 bg-blue-gray-800 lg:bg-transparent fixed top-0 bottom-0 left-0 right-0 lg:relative lg:flex lg:w-2/3">
+  <ul class="w-full" id="tabs-tab" role="tablist">
+  {% for category in categories %}
+      {% if not user.is_authenticated and category != "internal" %}
+          <button id="{{ category }}" class="btn-tab text-2xl rounded-t py-2 px-6 w-24 text-blue-gray-800
+          {% if category == 'usage' %}bg-teal-accent-700{% else %}bg-gray-200{% endif %}">
+            {% if "usage" in category %}
+            <i class="fa-solid fa-user"></i>
+            <script>
+              tippy('#{{ category }}', {
+                content: "DCUMETATION FOR USERS" + tooltipIcon,
+                allowHTML: true,
+              });
+            </script>
+            {% elif category == "development" %}
+            <i class="fa-solid fa-code"></i>
+            <script>
+              tippy('#{{ category }}', {
+                content: "DCUMETATION FOR DEVELOPERS" + tooltipIcon,
+                allowHTML: true,
+              });
+            </script>
+            {% elif category == "internal" %}
+            <i class="fa-solid fa-user-plus"></i>
+            {% endif %}
+          </button>  
+      {% endif %}             
+  {% endfor %}
+  {% for category in categories %}
+            <ul id="tab-{{ category }}" 
+            class="h-[100vh] lg:h-auto pb-28 lg:pb-4 bg-teal-accent-700 tab p-4 lg:rounded-bl {% if not 'usage' in category %}hidden{% endif %}" 
+            role="tabpanel" 
+            aria-labelledby="tabs-{{ category }}-tab">
+              {% for url in nav %}
+              {% if url.category|to_string == category %}
+                  {% if not user.is_authenticated and category != "internal" %}
+                        <li>
+                            <a href="{{ url.url }}" class="block py-2 lg:py-1 text-sm text-ellipsis whitespace-nowrap text-blue-gray-800 underline font-bold">
+                              {{ url.title }}
                             </a>
                         </li>
-                      {% endif %}
-                    {% endif %}
-                  {% endfor %}
-                  {% for url in nav %}
-                    {% if url.category == category %}
-                      {% if page.title != url.title %}
-                        <li class="relative py-1">
-                          <a href="{{ url.url }}" class="flex items-center text-sm py-1 px-3 h-8 overflow-hidden text-ellipsis whitespace-nowrap rounded text-blue-900 bg-cyan-accent-400 hover:text-teal-800 hover:bg-teal-accent-400">
-                            <span class="capitalize">{{ url.title }}</span>
-                          </a>
-                      </li>
-                      {% endif %}
-                    {% endif %}
-                  {% endfor %}
-                </ul>
-          {% endif %}
-      {% endfor %}
-      </ul>
-    </aside>
-  </div>
+                {% endif %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+  {% endfor %}
+</ul>
+</div>
 
-{% block head %}
-<style>
-  h1 {
-      height: min-content;
+<script>
+  function tabs(tab) {
+    console.log(tab)
+      tab.addEventListener("click", function(el) {
+        console.log()
+      })
   }
-
-  #content > div {
-      display: flex;
-      flex-direction: column;
-  }   
-
-  .container {
-    padding: 0;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
-  .container p:first-child {
-      padding-top: 16px !important;
-    }
-
-  @media all and (max-width: 480px) {
-    #docs-nav {
-      width: 100%;
-    }
-  }
-
-  @media all and (min-width: 1024px) {
-    .left-sidebar {
-        order: 1;
-        flex: 1;
-        max-width: min-content;
-    }
-
-    .content div:last-child {
-        flex: 2;
-        order: 2;
-    }
-  }
-
-  @media all and (min-width: 768px) {
-    #content > div {
-        flex-direction: row;
-        flex-wrap: wrap;    
-    } 
-  }
-
-  .toggle-menu {
-    transform: translateX(0) !important;
-  }
-</style>
-<script async>
-  let docsNav = document.querySelectorAll(".btn-toggle-menu")
-  docsNav.forEach( function (element) {
-    element.addEventListener("click", function(el) {
-      let menu = document.getElementById("menu")
-      if (!menu.classList.contains("translate-x-[-150%]")) {
-        menu.classList.add("translate-x-[-150%]")
-      }
-      document.getElementById("docs-nav").classList.remove("translate-x-[-150%]")
-    })
-  });
-
-  document.getElementById("btn-close-toggle-menu").addEventListener("click", function(el) {
-    document.getElementById("docs-nav").classList.add("translate-x-[-150%]")
-  })
-
-  window.addEventListener("click", function(ev) {
-    if (ev.target.id != "docs-nav" && !ev.target.classList.contains("btn-toggle-menu")) {
-      document.getElementById("docs-nav").classList.add("translate-x-[-150%]")
-    }
+  let btnTab = document.getElementsByClassName("btn-tab")
+  Array.from(btnTab).forEach(function(tab) {
+    tab.addEventListener("click", function(el) {
+      Array.from(btnTab).forEach(function(btn) {
+        btn.classList.remove("bg-teal-accent-700")
+        btn.classList.add("bg-gray-200")
+      })
+      tab.classList.remove("bg-gray-200")
+      tab.classList.add("bg-teal-accent-700")
+      let tabs = document.getElementsByClassName("tab")
+      Array.from(tabs).forEach(function(tab) {
+        tab.classList.add("hidden")
+      })
+        document.getElementById("tab-" + tab.id).classList.remove("hidden")
+      })
   })
 </script>
-{% endblock %}
+
+  <button id="menu-docs-btn" aria-label="Open Menu" title="Open Menu" class="z-40 lg:hidden fixed text-3xl w-12 h-12 bottom-14 left-8 bg-blue-gray-900 text-gray-200 shadow-md rounded-full">
+    <i class="fa-solid fa-ellipsis"></i>
+  </button>
+  <script>
+    function toggleDocsMenu () {
+      let menuDocs = document.getElementById("menu-docs")
+      menuDocs.classList.toggle("translate-x-[-120%]")
+    }
+    const btnMenuDocs = document.getElementById("menu-docs-btn")
+    btnMenuDocs.addEventListener("click", function() {
+      toggleDocsMenu()
+    })
+  </script>

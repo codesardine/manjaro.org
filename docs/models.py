@@ -4,12 +4,9 @@ from django.db import models
 from wagtail.snippets.models import register_snippet
 from modelcluster.fields import ParentalManyToManyField
 from django import forms
-from customblocks import blocks
 from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel, MultiFieldPanel
-from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
-from wagtail.search import index
 from django.utils.text import slugify
 
 
@@ -47,11 +44,8 @@ class DocsListing(CustomPage):
 
     def get_context(self, request):
         context = super().get_context(request)
-        if request.user.is_authenticated:
-            context['nav'] = self.get_children().live().specific()
-        else:
-            context['nav'] = self.get_children().live().specific().public()
-        context['categories'] = DocsCategory.objects.all()
+        context['nav'] = self.get_children().live().specific().public()
+        context['categories'] = DocsCategory.objects.all().values_list('category', flat=True)
         return context
 
 
@@ -92,10 +86,7 @@ class Document(CustomPage):
 
     def get_context(self, request):
         context = super().get_context(request)
-        if request.user.is_authenticated:
-            context['nav'] = self.get_parent().get_children().live().specific()
-        else:
-            context['nav'] = self.get_parent().get_children().live().specific().public()
-        context['categories'] = DocsCategory.objects.all()
+        context['nav'] = self.get_parent().get_children().live().specific().public()
+        context['categories'] = DocsCategory.objects.all().values_list('category', flat=True)
         return context
 
