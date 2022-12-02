@@ -27,10 +27,24 @@
 {% endblock %}
 
 {% block content %}
-<div class="px-4 mx-auto lg:max-w-screen-xl mt-28">
+<div class="overflow-hidden h-full w-full bg-blue-gray-800 fixed top-0 z-[-1]">
+    <svg class="fixed text-teal-300 hidden md:block left-0 h-full top-0" version="1.1" viewBox="0 0 140 135"
+      xmlns="http://www.w3.org/2000/svg">
+      <g transform="matrix(-1,0,0,1,140,0)" fill="CurrentColor">
+        <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748" />
+        <g fill-opacity=".4">
+          <path d="m140 80v-70l-45.252 45-84.748 80h75z" />
+          <path d="m140 70v-50l-45 45-75 70h55z" />
+          <path d="m140 60v-30l-45.252 45-64.748 60h35z" />
+          <path d="m140 50v-10l-45.252 45-49.748 50h10z" />
+        </g>
+    </svg>
+  </div>
+<h1 class="mt-4 lg:mt-28 w-full text-center capitalize text-2xl px-4 text-gray-200 font-bold">{{ page.title }}</h1>
+<div class="mx-auto md:max-w-screen-xl px-4 flex gap-0 mt-12">
     {% include "docs-nav.html" %}
         {% for block in page.content %}
-             {% include_block block %}
+            {% include_block block %}
         {% endfor %}
 </div>
 {% endblock %}

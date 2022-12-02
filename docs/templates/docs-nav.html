@@ -1,7 +1,15 @@
 {% load docs_tags %}
 
-<div id="menu-docs" class="transition-transform z-[5] duration-500 translate-x-[-120%] lg:translate-x-0 bg-blue-gray-800 lg:bg-transparent fixed top-0 bottom-0 left-0 right-0 lg:relative lg:flex lg:w-2/3">
-  <ul class="w-full" id="tabs-tab" role="tablist">
+{% block head %}
+<style>
+  .richtext {
+     border-bottom-left-radius:0%;
+  }
+</style>
+{% endblock %}
+
+<div id="menu-docs" class="transition-transform z-[5] duration-500 translate-x-[-120%] lg:translate-x-0 bg-blue-gray-800 lg:bg-transparent fixed top-0 bottom-0 left-0 right-0 lg:relative lg:flex">
+  <ul class="lg:w-[350px] overflow-hidden" id="tabs-tab" role="tablist">
   {% for category in categories %}
       {% if not user.is_authenticated and category != "internal" %}
           <button id="{{ category }}" class="btn-tab text-2xl rounded-t py-2 px-6 w-24 text-blue-gray-800
@@ -10,7 +18,7 @@
             <i class="fa-solid fa-user"></i>
             <script>
               tippy('#{{ category }}', {
-                content: "DCUMETATION FOR USERS" + tooltipIcon,
+                content: "DOCUMENTATION FOR USERS" + tooltipIcon,
                 allowHTML: true,
               });
             </script>
@@ -18,7 +26,7 @@
             <i class="fa-solid fa-code"></i>
             <script>
               tippy('#{{ category }}', {
-                content: "DCUMETATION FOR DEVELOPERS" + tooltipIcon,
+                content: "DOCUMENTATION FOR DEVELOPERS" + tooltipIcon,
                 allowHTML: true,
               });
             </script>
@@ -30,14 +38,14 @@
   {% endfor %}
   {% for category in categories %}
             <ul id="tab-{{ category }}" 
-            class="h-[100vh] lg:h-auto pb-28 lg:pb-4 bg-teal-accent-700 tab p-4 lg:rounded-bl {% if not 'usage' in category %}hidden{% endif %}" 
+            class="h-full pb-28 lg:pb-4 bg-teal-accent-700 tab p-4 lg:rounded-bl {% if not 'usage' in category %}hidden{% endif %}" 
             role="tabpanel" 
             aria-labelledby="tabs-{{ category }}-tab">
               {% for url in nav %}
               {% if url.category|to_string == category %}
                   {% if not user.is_authenticated and category != "internal" %}
                         <li>
-                            <a href="{{ url.url }}" class="block py-2 lg:py-1 text-sm text-ellipsis whitespace-nowrap text-blue-gray-800 underline font-bold">
+                            <a href="{{ url.url }}" class="block py-2 lg:py-1 text-sm text-blue-gray-800 underline font-bold">
                               {{ url.title }}
                             </a>
                         </li>
