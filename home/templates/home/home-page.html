@@ -50,10 +50,10 @@
   </svg>
 
   <div
-    class="flex relative justify-items-center mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-4 lg:min-h-screen">
+    class="flex relative justify-items-center mx-auto max-w-screen-xl px-4 lg:min-h-screen">
     <div id="promo" class="flex flex-col gap-10 items-center justify-between lg:flex-row w-full z-[2] relative">
 
-      <div class="lg:w-1/2 text-teal-900 p-4 pb-0 lg:p-0 font-bold">
+      <div class="lg:w-1/2 text-teal-900 font-bold">
         <h1 class="mb-6 font-extrabold text-[2.2rem] tracking-tight leading-none text-left">
           <span class="uppercase">
             {{ page.manjaro_title }}</span>
@@ -182,10 +182,8 @@
       class="w-full bg-clip-text uppercase mb-6 font-sans text-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
       Do any task
     </h3>
-    <div id="manjaro" class="flex flex-col gap-5 lg:flex-row w-full mx-auto md:max-w-full lg:max-w-screen-xl">
-
-      <div class="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:p-4">
-
+    <div id="manjaro" class="flex flex-col gap-5 lg:flex-row">
+      <div class="mx-auto w-full lg:max-w-screen-xl md:p-4">
         <div class="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-4 text-gray-800">
           <div
             class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow-xl group hover:shadow-2xl">
@@ -329,8 +327,7 @@
     </div>
 
   </div>
-  <div
-    class="text-teal-900 px-4 relative flex justify-center flex-col lg:min-h-screen mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
+  <div class="text-teal-900 px-4 relative flex justify-center flex-col lg:min-h-screen mx-auto w-full max-w-screen-xl">
     <div class="w-full flex items-center justify-center">
       <div class="flex items-center justify-center w-16 h-16 mt-4 mb-6 rounded-full bg-yellow-accent-700 text-3xl">
         <i class="fa-brands fa-linux"></i>
@@ -381,8 +378,7 @@
   </a>
 </div>
 
-<div id="partner" class="relative lg:min-h-[100vh] flex justify-center items-center">
-
+<div id="partner" class="relative lg:min-h-[100vh] flex justify-center">
   <div class="bg-blue-gray-800 absolute h-full w-full">
     <div class="w-full justify-center lg:flex relative">
       <img src="{% static 'img/dark-woble.svg' %}" alt="wobble"
@@ -403,7 +399,7 @@
     </div>
 
   </div>
-  <div class="relative flex flex-col items-center w-full justify-center">
+  <div class="relative flex flex-col items-center justify-center px-4 mx-auto w-full lg:max-w-screen-xl">
     <div class="flex flex-col justify-center">
       <div class="text-gray-200">
         <div class="w-full flex items-center justify-center">
@@ -425,7 +421,7 @@
           {{ page.partners_title }}
         </h3>
         <div
-          class="relative grid md:gap-5 sm:grid-cols-1 lg:grid-cols-2 text-gray-800 md:max-w-screen-sm lg:max-w-screen-md">
+          class="relative grid md:gap-4 grid-cols-1 md:grid-cols-2 text-gray-800">
           <div
             class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-white rounded shadow-xl group hover:shadow-2xl">
             <img src="{% static 'img/partner.jpg' %}" class="object-cover" width="auto" height="auto" alt="partners">
@@ -442,7 +438,6 @@
       </div>
     </div>
   </div>
-</div>
 </div>
 
 <div id="error" class="fixed bg-orange-900 p-4 hidden">

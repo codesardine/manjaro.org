@@ -5,7 +5,7 @@ module.exports = {
     "postcss-nested": {},
     "autoprefixer": {},
     "postcss-preset-env": {},
-    "postcss-combine-media-query":{},
+    //"postcss-combine-media-query":{}, not working with breakpoints
     "cssnano": { preset: 'default' }
   },
 }
