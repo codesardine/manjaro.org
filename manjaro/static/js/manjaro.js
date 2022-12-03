@@ -82,4 +82,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     content: "BACK TO TOP" + tooltipIcon,
     allowHTML: true,
   });
+  const node = document.getElementById("link-grid")
+  const twiter = document.getElementsByClassName("twitter-timeline")
+  twiter[0].setAttribute("height", node.offsetHeight)
 });
