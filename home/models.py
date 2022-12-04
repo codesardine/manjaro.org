@@ -662,4 +662,12 @@ class HomePage(Page):
             slug='slug'
         ),
     ])
+
+    def get_context(self, request):   
+        from puput.models import EntryPage 
+        context = super(HomePage, self).get_context(request)
+        from wagtail.core.models import Page
+        context['blog'] = EntryPage.objects.all().order_by('-date')[0:3]
+        return context
+
     
