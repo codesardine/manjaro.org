@@ -46,6 +46,10 @@
     }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .dropdown  {
         & i {
         font-size: 1.5rem;

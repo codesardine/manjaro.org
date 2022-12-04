@@ -481,9 +481,9 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-6 mb-4 lg:mb-12">
     {% for entry in blog %}
     <div class="text-gray-200 flex flex-wrap justify-center mb-8">
-      <a href="{{ entry.url }}" aria-label="Article"v class="bg-blue-gray-800 rounded overflow-hidden h-full w-full">  
-            {% image entry.header_image width-400 as header_image %}
-            <img src="{{ header_image.url }}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-64 rounded" 
+      <a href="{{ entry.url }}" aria-label="Article"v class="bg-blue-gray-800 rounded overflow-hidden h-full w-full rounded-t">  
+            {% image entry.header_image width-500 as header_image %}
+            <img src="{{ header_image.url }}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-64" 
             alt="image" />
           <div class="p-4">
             <h4 class="font-bold leading-5 mb-2">{{ entry.title }}</h4>
