@@ -126,7 +126,7 @@
             <h2 class="pb-4 font-bold capitalize"><i class="fa-solid fa-star mr-2 text-amber-600"></i>
               {{ promo.model }}
             </h2>
-            <p class="font-bold text-xs">
+            <p class="text-xs">
               {{ promo.description }}
             </p>
           </div>
@@ -354,7 +354,7 @@
               </h4>
             </a>
             <p
-              class="font-bold text-left text-sm bg-blue-gray-800 p-5 text-gray-200 leading-5 md:min-h-[160px] shadow-md rounded">
+              class="text-left text-sm bg-blue-gray-800 p-5 text-gray-200 leading-5 md:min-h-[160px] shadow-md rounded">
               {{ block.value.software.description }}
             </p>
             <div class="w-11/12 h-2 mx-auto bg-blue-gray-800 rounded-b opacity-75"></div>
@@ -485,8 +485,8 @@
             {% image entry.header_image width-500 as header_image %}
             <img src="{{ header_image.url }}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-64" 
             alt="image" />
-          <div class="p-4">
-            <h4 class="font-bold leading-5 mb-2">{{ entry.title }}</h4>
+          <div class="p-4 text-sm">
+            <h4 class="font-bold leading-5 mb-2 text-base">{{ entry.title }}</h4>
             {{ entry.excerpt|richtext }}
         </div>
       </a>
