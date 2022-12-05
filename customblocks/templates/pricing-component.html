@@ -2,10 +2,11 @@
 
   {% for item in self.product_details %}
          {% if not item.hidden %}
-         <div class="grid grid-rows-1">
-          <div class="relative bg-gray-200 grid grid-cols-1 gap-8 rounded-[60px] shadow w-full">
-            <div class="h-neon absolute w-full">
-              <svg class="text-teal-accent-400 absolute w-full right-0 -mt-[34%] z-[-1]" version="1.1" viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg">
+         <div class="grid grid-rows-1 mb-40">
+          <div class="relative bg-gray-200 grid grid-cols-1 gap-8 rounded rounded-b-xl shadow w-full">
+            <div class="absolute w-full">
+              <div class="relative mx-4">
+              <svg class="text-teal-accent-400 absolute -mt-[34%] z-[-1]" version="1.1" viewBox="0 0 88 44" xmlns="http://www.w3.org/2000/svg">
                 <g fill="currentColor">
                  <circle cx="44" cy="44" r="15.5"/>
                  <circle cx="44" cy="44" r="44" fill-opacity=".1"/>
@@ -16,6 +17,7 @@
                  </g>
                 </g>
                </svg>
+              </div>
                <picture>
                 {% image item.image original class="object-contain  w-full p-10 -mt-[28%] md:-mt-[32%] lg:-mt-[38%] h-[300px]" %}
               </picture>
@@ -45,18 +47,13 @@
               </div>
                 <div class="relative">
                   <a target="_blank" href="{{ item.button_url }}"
-                  class="text-sm rounded-b-[60px] inline-flex items-center justify-self-end self-end justify-center w-full h-12 px-6 font-bold tracking-wide text-white bg-pink-700 hover:bg-pink-500 focus:shadow-outline focus:outline-none"
+                  class="text-sm rounded-b inline-flex items-center justify-self-end self-end justify-center w-full h-12 px-6 font-bold tracking-wide text-white bg-pink-700 hover:bg-pink-500 focus:shadow-outline focus:outline-none"
                 >         
                   Where to buy
                 </a>
               </div> 
             </div>
           </div>  
-          <div class="h-6 w-full mb-40">
-            <div class="w-9/12 h-2 mx-auto bg-black rounded-b opacity-40"></div>
-            <div class="w-8/12 h-2 mx-auto bg-black rounded-b opacity-30"></div>
-            <div class="w-7/12 h-2 mx-auto bg-black rounded-b opacity-20"></div>
-          </div>
          </div>
           {% endif %}
       {% endfor %} 
