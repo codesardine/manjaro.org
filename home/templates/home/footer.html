@@ -3,13 +3,14 @@
 {% get_menu "footer-two" as footer_two %}
 {% get_menu "footer-three" as footer_three %}
 {% get_menu "footer-four" as footer_four %}
-<footer id="footer" class="translate-footer lg:px-4 shadow-footer max-w-screen-xl mx-auto lg:transition-transform lg:duration-500 lg:fixed lg:bottom-0 lg:right-0 lg:left-0 lg:z-30 text-teal-900 will-change-transform">
-  <div class="lg:rounded-t-lg pb-20 lg:pb-0 mx-auto relative md:max-w-full lg:max-w-screen-xl bg-gradient-to-b via-teal-accent-400 from-teal-accent-400 to-teal-accent-700">
-    <div class="flex flex-col justify-between sm:flex-row text-sm bg-blue-gray-900 text-gray-200 px-4 py-2 lg:rounded-t-md">
-      <p class="font-semibold pb-4 md:pb-0 ">
+<footer id="footer" class="text-teal-900 bg-gradient-to-b via-teal-accent-400 from-teal-accent-400 to-teal-accent-700">
+  <div class="relative">
+    <div class="flex justify-between text-sm bg-blue-gray-900 text-gray-200 py-2">
+      <div class="lg:max-w-screen-xl mx-auto flex">
+      <p class="font-semibold pb-4 md:pb-0 lg:mr-8">
         © Copyright {% now "Y" %} Manjaro GmbH & Co KG All rights reserved.
       </p>
-      <div class="relative capitalize flex gap-6">
+      <div class="relative capitalize flex gap-4">
         <a href="https://manjaro.org/imprint/" aria-label="imprint"
           class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft-darker"></i>imprint</a>
         <a href="https://manjaro.org/privacy-policy/" aria-label="privacy policy"
@@ -18,8 +19,9 @@
           class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft-darker"></i>terms of use</a>
       </div>
     </div>
+    </div>
     <div>
-    <div class="flex relative text-sm gap-0 flex-wrap lg:flex-nowrap">
+    <div class="flex relative text-sm gap-0 flex-wrap lg:flex-nowrap lg:max-w-screen-xl mx-auto px-4">
       <div class="bg-gray-200 w-full md:1/2 lg:w-1/2">
         <a class="twitter-timeline" 
         href="https://twitter.com/ManjaroLinux?ref_src=https://manjaro.org" 
@@ -118,7 +120,7 @@
         {% endif %}
       </div>
     </div>
-    <div class="relative w-full py-2 px-4">
+    <div class="relative w-full py-2 px-4 lg:max-w-screen-xl mx-auto">
       <a rel="nofollow" href="/admin/" aria-label="Log in"
         class="z-0 relative tracking-wide font-semibold link-decor link-decor-ft">log in</a>
     </div>

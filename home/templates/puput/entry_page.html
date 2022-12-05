@@ -57,12 +57,12 @@
         </g>
     </svg>
   </div>
-<header class="px-4 mx-auto max-w-screen-xl text-blue-gray-900">
+<header class="px-4 mx-auto max-w-screen-xl text-blue-gray-900 mt-20">
     <div class="flex flex-col bg-gray-200 rounded shadow-sm lg:flex-row">
       <div class="relative lg:w-1/2">
         {% if self.header_image %}
             {% image self.header_image fill-800x450 as header_image %}
-            <img src="{{ header_image.url }}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="{{ self.header_image.title }}" class="object-cover w-full lg:absolute h-80 lg:h-full" />
+            <img src="{{ header_image.url }}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="{{ self.header_image.title }}" class="object-cover w-full lg:absolute h-80 lg:h-full rounded" />
         {% endif %}
         <svg class="absolute top-0 right-0 hidden h-full text-gray-200 lg:inline-block" viewBox="0 0 18 104" fill="currentColor">
           <polygon points="17.3036738 5.68434189e-14 20 5.68434189e-14 20 104 0.824555778 104"></polygon>
