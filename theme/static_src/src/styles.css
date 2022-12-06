@@ -443,11 +443,7 @@ html {
     height: 30px;    
 }
 
-.link-decor-ft:before {
-    background: #a7ffeb; 
-}
-
-.link-decor-ft-darker:before, .link-decor-left:before {
+.link-decor-left:before, .link-decor-ft:before {
     background: #009688; 
 }
 

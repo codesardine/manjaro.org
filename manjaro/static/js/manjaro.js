@@ -56,9 +56,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     let leftSubmenu = document.querySelectorAll(".dropdown")
     leftSubmenu.forEach(function (el) {
       if (el.id === "submenu" + event.target.textContent.trim()) {
-        el.classList.toggle("hidden");
+        el.classList.toggle("hidden")
       } else {
-        el.classList.add("hidden");
+        el.classList.add("hidden")
       }
     })
   }
@@ -66,23 +66,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
   tippy(".home-btn", {
     content: "GO BACK HOME" + tooltipIcon,
     allowHTML: true,
-  });
+  })
 
   tippy("#download-btn", {
     content: "GET MANJARO INSTALL MEDIA" + tooltipIcon,
     allowHTML: true,
-  });
+  })
 
   tippy("#menu-btn", {
     content: "TOGGLE MENU _ CTRL + M" + tooltipIcon,
     allowHTML: true,
-  });
-
-  tippy("#top-btn", {
-    content: "BACK TO TOP" + tooltipIcon,
-    allowHTML: true,
-  });
+  })
   const node = document.getElementById("link-grid")
   const twiter = document.getElementsByClassName("twitter-timeline")
   twiter[0].setAttribute("height", node.offsetHeight)
-});
+})
+
