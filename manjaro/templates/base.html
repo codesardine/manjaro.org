@@ -37,7 +37,7 @@
         {% wagtailuserbar %}
 
         {% include "home/navigation.html" %}
-        <main class="min-h-[calc(100vh-82px)] pb-20">
+        <main class="min-h-[calc(100vh-82px)] {% if not 'home' in page.title %}pb-20{% endif %}">
         {% if page.intro or "blog" in self.title.lower %}
             <div class="grid gap-10 lg:grid-cols-1 relative lg:mt-20">
                 <div class="lg:col-span-3">
