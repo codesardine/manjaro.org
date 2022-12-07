@@ -72,14 +72,6 @@ html {
     font-family: 'Comfortaa', cursive;
 }
 
-.circle {
-    z-index: -1;
-    border-radius: 100%;
-    width: 14rem;
-    height: 14rem;
-    box-shadow: 1px 1px 4px #362708;
-}
-
 .green-circle,
 .orange-circle,
 .red-circle {
@@ -540,11 +532,6 @@ html {
         transform: translateY(calc(0.4rem * 8)) scale(0.5);
     }
 }
-
-.v-text {
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-  }
 
 @media screen and (min-width: 1024px) {
     .translate-footer {

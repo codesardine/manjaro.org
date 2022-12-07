@@ -1,18 +1,11 @@
 {% load static menu_tags wagtailcore_tags %}
 {% get_menu "top-left" as left_navigation %}
 {% get_menu "top-right" as right_navigation %}
-<div id="dim-screen" class="z-[10] fixed transition-all duration-700 backdrop-grayscale-0 backdrop-filter top-0 left-0"></div>
 <div class="hidden fixed top-0 lg:flex flex-row max-w-screen-xl left-0 right-0 z-10 mx-auto px-4 will-change-transform">
   <div class="flex flex-row h-[80px] relative">
     <a href="https://manjaro.org" aria-label="Home" class=" bg-white rounded-b-md home-btn shadow">
       <img src="{% static 'img/block-logo.svg' %}" alt="manjaro logo" width="72" height="80" class="w-[72px]">
     </a>
-    <!-- hide menu button 
-    <div id="menu-btn" role="button" onclick="toggleDmenu()"
-      class="v-text uppercase shadow bg-blue-gray-900 text-gray-200 text-sm font-bold p-1 rounded-b-md cursor-pointer flex justify-center items-center">
-      <span>menu</span>
-    </div>
-    -->
   </div>
 
   <div id="desktop-menu"
