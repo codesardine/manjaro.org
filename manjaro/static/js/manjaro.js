@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   })
 
   tippy("#download-btn", {
-    content: "GET MANJARO INSTALL MEDIA" + tooltipIcon,
+    content: "GET INSTALL MEDIA" + tooltipIcon,
     allowHTML: true,
   })
 
