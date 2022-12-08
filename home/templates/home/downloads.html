@@ -290,8 +290,8 @@
                 Desktop
             {% endif %}</h2>
         </picture>
-        <div class="relative">
-          <div class="grid {% if not 'minimal' in arm_title.lower %}grid-cols-2{% endif %} gap-0">
+        <div class="relative h-full">
+          <div class="h-full grid {% if not 'minimal' in arm_title.lower %}grid-cols-2{% endif %} gap-0">
           <button id="arm-tippy-{{ arm_title }}" onclick="slideDown(this)" class="bg-orange-500 hover:bg-orange-300 text-gray-800 py-2 px-3 justify-center flex items-center">
             <i class="fa-solid fa-download mr-4"></i>
             <span>Download</span>
@@ -322,7 +322,7 @@
             href="https://swaywm.org/"
           {% endif %}
             target="_blank" class="bg-cyan-500 hover:bg-cyan-400 text-gray-800 py-2 px-3 justify-center flex items-center">
-                  <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>
+                  <i class="fa-solid fa-arrow-up-right-from-square mr-4"></i>
                   <span class="capitalize">Visit {{ arm_title }}</span>
             </a>
           {% endif %}
@@ -443,8 +443,8 @@
                   {% endif %}
                 </h2>
               </picture>
-              <div class="relative">
-                <div class="grid grid-cols-2 gap-0">
+              <div class="relative h-full">
+                <div class="grid grid-cols-2 gap-0 h-full">
                 {% if not desktop.custom %}
                 <button id="c-tippy-{{ title }}" onclick="slideDown(this)" class="bg-orange-500 hover:bg-orange-300 text-gray-800 py-2 px-3 justify-center flex items-center">
                   <i class="fa-solid fa-download mr-4"></i>
