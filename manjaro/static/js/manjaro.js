@@ -1,8 +1,12 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+function toggleMenu() {
+  let mobileMenu = document.getElementById("mobile-menu")
+  mobileMenu.classList.toggle("translate-x-[-150%]")
+}
+
+document.addEventListener("DOMContentLoaded", () => {
   const toggleMobileBtn = document.getElementById("toggle-mobile-btn")
   toggleMobileBtn.addEventListener("click", function () {
-    toggleMmenu()
-    dimScreen()
+    toggleMenu()
   })
 
   window.onclick = function (event) {
