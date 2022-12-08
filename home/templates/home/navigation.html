@@ -3,11 +3,10 @@
 {% get_menu "top-right" as right_navigation %}
 <div class="hidden fixed top-0 lg:flex flex-row max-w-screen-xl left-0 right-0 z-10 mx-auto px-4 will-change-transform">
   <div class="flex flex-row h-[80px] relative">
-    <a href="https://manjaro.org" aria-label="Home" class=" bg-white rounded-b-md home-btn shadow">
+    <a href="https://manjaro.org" aria-label="Home" class="bg-white rounded-b-md home-btn shadow">
       <img src="{% static 'img/block-logo.svg' %}" alt="manjaro logo" width="72" height="80" class="w-[72px]">
     </a>
   </div>
-
   <div id="desktop-menu"
     class="relative bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 grid grid-row-2 shadow rounded-b-lg w-full flex-wrap text-teal-900 transition-transform duration-500">
     <div class="nav relative flex gap-4 w-full px-4 h-[34px] text-right">
@@ -68,15 +67,15 @@
             class="{{ item.title }} font-bold inline-flex capitalize tracking-wide link-decor link-decor-left relative z-0"><i
               class="fa-solid fa-ellipsis-vertical pt-1 pr-4"></i> {{ item.title }}</button>
           <ul id="submenu{{ item.title }}"
-            class="mt-[5px] dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-50">
+            class="mt-[5px] dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-200">
             {% for block in item.submenu %}
             {% with subitem=block.value.submenu_item %}
             <li class="relative text-sm py-2">
               <a {% if subitem.open_in_new_tab %}target="_blank" {% endif %} href="{{ subitem.url }}"
-                class="w-full pl-14 pr-3 py-2 block tracking-wide text-gray-700 hover:text-teal-800 hover:bg-teal-accent-400">
+                class="w-full pl-14 pr-3 py-2 block tracking-wide text-blue-gray-700 hover:text-teal-800 hover:bg-teal-accent-400">
                 {{ subitem.icon|safe }}
                 {{ subitem.title }}
-                <span class="block text-xs text-gray-500">{{ subitem.description }}</span>
+                <span class="block text-xs text-blue-gray-600 hover:text-teal-600">{{ subitem.description }}</span>
               </a>
             </li>
             {% endwith %}
@@ -87,7 +86,7 @@
         {% endfor %}
         <li class="ml-4 w-full flex justify-end">
           <a id="download-btn" href="https://manjaro.org/download/"
-            class="inline-block text-sm px-4 py-2 leading-none border font-semibold rounded text-teal-500 bg-white">
+            class="inline-block text-sm px-4 py-2 leading-none border font-semibold rounded text-teal-500 bg-gray-200">
             <i class="fa-solid fa-circle-arrow-down"></i>
             Download
           </a>
