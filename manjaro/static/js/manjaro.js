@@ -1,17 +1,17 @@
-function toggleMenu() {
+toggleMenu = () => {
   let mobileMenu = document.getElementById("mobile-menu")
   mobileMenu.classList.toggle("translate-x-[-150%]")
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   const toggleMobileBtn = document.getElementById("toggle-mobile-btn")
-  toggleMobileBtn.addEventListener("click", function () {
+  toggleMobileBtn.addEventListener("click", () => {
     toggleMenu()
   })
 
-  window.onclick = function (event) {
+  window.onclick = (event) => {
     let leftSubmenu = document.querySelectorAll(".dropdown")
-    leftSubmenu.forEach(function (el) {
+    leftSubmenu.forEach((el) => {
       if (el.id === "submenu" + event.target.textContent.trim()) {
         el.classList.toggle("hidden")
       } else {
