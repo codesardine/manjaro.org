@@ -63,7 +63,7 @@
       <div class="lg:col-span-3">
         <div class="text-blue-gray-900">
             {% if search_term %}
-                <h3 class="searchTerm text-center pt-1">{% trans 'Entries for' %} {{ search_type }} "{{ search_term }}"</h3>
+                <h3 class="searchTerm text-center pb-2 text-base font-bold text-gray-200">{% trans 'Entries for' %} {{ search_type }} "{{ search_term }}"</h3>
             {% endif %}
             <div class="grid gap-4 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:mx-auto lg:max-w-full">
                 {% with per_page=blog_page.num_entries_page %}
@@ -117,7 +117,7 @@
             </div>
         </div>        
       </div>
-      <div class="bg-gray-200 rounded p-3 xl:p-4 hidden lg:flex flex-row gap-1">
+      <div class="bg-gray-200 rounded p-4 hidden lg:flex flex-row gap-1">
       <div class="lg:flex flex-col flex-wrap gap-4 w-full">
         {% if blog_page.display_last_entries %}
         <div class="text-left text-xs">
