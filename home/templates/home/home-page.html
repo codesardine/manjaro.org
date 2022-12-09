@@ -182,13 +182,13 @@
     <div id="manjaro" class="flex flex-col gap-4 lg:flex-row">
       <div class="mx-auto w-full lg:max-w-screen-xl md:p-4">
         <div class="relative grid gap-4 lg:grid-cols-2 text-gray-800">
-          <div
+          <div 
             class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow group hover:shadow-2xl">
             <div class="p-4">
               <p class="mb-2 font-bold"><i class="fa fa-heart mr-4 text-red-700"></i>Open Source</p>
               <p class="text-sm leading-5">
                 Use your preferred operating system and desktop environment from our wide choice,
-                install many of the available open source software as a native package,
+                install many of the available <a id="open-source" class="text-teal-500 underline capitalize" href="https://opensource.com/resources/what-open-source">open source</a> software as a native package,
                  flatpak or snap or build your own packages using the arch user repository</p>
             </div>
             <div
@@ -201,7 +201,7 @@
               <p class="mb-2 font-bold"><i class="fa-solid fa-plug mr-4 text-teal-400"></i>Compability</p>
               <p class="text-sm leading-5">
                 Manjaro works on computers independently of their age, boost older Hardware or super boost new hardware,
-                 powered by the Linux kernel, it lets you use touch screens and sound cards, graphic cards and peripherals out of the box,
+                 powered by the <a id="linux" class="text-teal-500 underline capitalize" href="https://www.linux.com/what-is-linux/">Linux kernel</a>, it lets you use touch screens and sound cards, graphic cards and peripherals out of the box,
                   without having to fetch for device drivers from manufactures</p>
             </div>
             <div
@@ -513,6 +513,14 @@
   });
   tippy('.scroll-btn', {
     content: "NEXT SECTION" + tooltipIcon,
+    allowHTML: true,
+  });
+  tippy('#linux', {
+    content: "WHAT IS LINUX" + tooltipIcon,
+    allowHTML: true,
+  });
+  tippy('#open-source', {
+    content: "WHAT IS OPEN SOURCE" + tooltipIcon,
     allowHTML: true,
   });
   })
