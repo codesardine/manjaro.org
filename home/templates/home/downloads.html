@@ -206,9 +206,7 @@
                       provided by 
                       <a href="https://www.cdn77.com">
                         <picture>
-                          <source srcset="{% static 'img/cdn77.webp' %}" type="image/webp">
-                          <source srcset="{% static 'img/cdn77.png' %}" type="image/png"> 
-                          <img class="inline-block bg-gray-200 p-1 px-4 mx-auto ml-2 rounded-full shadow capitalize" width="80" src="{% static 'img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
+                          <img class="inline-block bg-gray-200 p-1 px-4 mx-auto ml-2 rounded-full shadow capitalize" width="80" src="{% static 'img/cdn77.webp?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
                         </picture>
                     </div>
                     {% endif %}
@@ -434,7 +432,7 @@
         <div class="inline-block overflow-hidden rounded shadow-sm font-bold">
             <div class="flex flex-col h-full relative bg-gray-200">
               <picture>
-                <img src="/static/img/{{ title }}.jpg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-52" alt="{{ title }} Desktop" />
+                <img src="/static/img/{{ title }}.webp?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" class="object-cover w-full h-52" alt="{{ title }} Desktop" />
                 <h2 class="uppercase text-gray-200 absolute top-0 right-0 rounded-bl py-1 px-2 bg-blue-gray-900 z-[2]">
                   {{ title }}
                   {% if "i3" in title.lower or "sway" in title.lower %} 
@@ -556,9 +554,7 @@
                   provided by 
                   <a href="https://www.cdn77.com">
                     <picture>
-                      <source srcset="{% static 'img/cdn77.webp' %}" type="image/webp">
-                      <source srcset="{% static 'img/cdn77.png' %}" type="image/png"> 
-                      <img class="inline-block bg-gray-200 p-1 px-4 mx-auto ml-2 rounded-full shadow capitalize" width="80" src="{% static 'img/cdn77.png?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
+                      <img class="inline-block bg-gray-200 p-1 px-4 mx-auto ml-2 rounded-full shadow capitalize" width="80" src="{% static 'img/cdn77.webp?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
                     </picture>
                 </div>
                 {% endif %}
