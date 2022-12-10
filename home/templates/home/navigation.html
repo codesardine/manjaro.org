@@ -67,7 +67,7 @@
             class="{{ item.title }} font-bold inline-flex capitalize tracking-wide link-decor link-decor-left relative z-0"><i
               class="fa-solid fa-ellipsis-vertical pt-1 pr-4"></i> {{ item.title }}</button>
           <ul id="submenu{{ item.title }}"
-            class="mt-[5px] dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-200">
+            class="mt-4 dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-200">
             {% for block in item.submenu %}
             {% with subitem=block.value.submenu_item %}
             <li class="relative text-sm py-2">
