@@ -550,15 +550,12 @@ html {
     }
 }
 
-/* talwind filters not working when building with sass */
-.backdrop-grayscale-0 {
-    backdrop-filter: grayscale(0);
-}
-
-.backdrop-grayscale	{
-    backdrop-filter: grayscale(100%);
-}
-
 .shadow-inset-blue-gray-900 {
   box-shadow: inset 0 0 10px #263238;
+}
+
+.link {
+    text-transform: capitalize;
+    color: #009688;
+    text-decoration: underline;
 }
