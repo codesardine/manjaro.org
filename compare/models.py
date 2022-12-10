@@ -212,7 +212,8 @@ class Packages(RoutablePageMixin, Page):
            any(match in self.regex for match in search_query) \
            and query_total == 0:
             context['query'] = "your regex"
-
+        
+        context["arm"] = arm
         context["search_query"] = search_query if search_query else ""
         context['packages'] = search_results
         context['query_total'] = query_total
