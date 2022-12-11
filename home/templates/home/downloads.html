@@ -263,7 +263,7 @@
   {% for iso, value in desktops.items %}
     {% if edition == "arm" %}
       {% with device=iso %}  
-            <option{% if forloop.first %}selected{% endif %}>{{ device|removedash|upper }}</option>
+            <option {% if forloop.first %}selected{% endif %}>{{ device|removedash|upper }}</option>
       {% endwith %}     
     {% endif %}
   {% endfor %}
