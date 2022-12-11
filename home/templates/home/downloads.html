@@ -258,7 +258,8 @@
             bg-blue-gray-900
             rounded
             m-0
-            focus:border-green-accent-400 focus:outline-none" aria-label="Select a device">
+            focus:border-green-accent-400 focus:outline-none"
+            aria-label="Select a arm device">
 {% for edition, desktops in data.items %}
   {% for iso, value in desktops.items %}
     {% if edition == "arm" %}
