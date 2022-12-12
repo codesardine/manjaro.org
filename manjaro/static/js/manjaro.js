@@ -3,7 +3,7 @@ toggleMenu = () => {
   mobileMenu.classList.toggle("translate-x-[-150%]")
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
   const toggleMobileBtn = document.getElementById("toggle-mobile-btn")
   toggleMobileBtn.addEventListener("click", () => {
     toggleMenu()
