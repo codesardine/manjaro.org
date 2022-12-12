@@ -16,3 +16,7 @@ def random_list(list):
 def clean_id(string):
     return string.replace(" ", "")
 
+@register.filter
+def sitemap_date(date):
+    return date.strftime('%d/%m/%y')
+    
