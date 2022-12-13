@@ -91,6 +91,7 @@ class UrlBlock(blocks.StructBlock):
 
     video = blocks.StructBlock(
             [   ("title", blocks.CharBlock(required=True)),
+                ("date", blocks.DateBlock(required=False)),
                 ("hidden", blocks.BooleanBlock(required=False, default=False, help_text="hide this video")),
                 ("embed_code", blocks.CharBlock(required=True)),
                 ("description", blocks.TextBlock(required=True)),

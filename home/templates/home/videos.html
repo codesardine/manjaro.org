@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags static %}
+
+{% block body_class %}hardware overflow-x-hidden{% endblock %}
+
+{% block title %}
+    {% if page.seo_title %}
+        {{ page.seo_title }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+{% endblock %}
+
+{% block meta_title %}
+    {% if page.seo_title %}
+        {{ page.seo_title }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+{% endblock %}
+
+{% block meta_description %}
+    {% if page.search_description %}
+        {{ page.search_description }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="overflow-hidden h-full w-full bg-blue-gray-800 fixed top-0 z-[-1]">
+    <svg class="fixed text-teal-300 hidden md:block left-0 h-full top-0" version="1.1" viewBox="0 0 140 135"
+      xmlns="http://www.w3.org/2000/svg">
+      <g transform="matrix(-1,0,0,1,140,0)" fill="CurrentColor">
+        <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748" />
+        <g fill-opacity=".4">
+          <path d="m140 80v-70l-45.252 45-84.748 80h75z" />
+          <path d="m140 70v-50l-45 45-75 70h55z" />
+          <path d="m140 60v-30l-45.252 45-64.748 60h35z" />
+          <path d="m140 50v-10l-45.252 45-49.748 50h10z" />
+        </g>
+    </svg>
+</div>
+<div class="flex justify-center relative text-blue-gray-800 max-w-screen-xl mx-auto px-4">
+    <div id="scroll" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {% for block in page.video_media %}
+        <div class="overflow-hidden bg-white rounded shadow">
+            <div class="flex flex-col h-full w-full">
+                <iframe id="{{ block.value.video.embed_code }}" width="100%" height="200" src="https://www.youtube-nocookie.com/embed/{{ block.value.video.embed_code }}?enablejsapi=1&origin=https://manjaro.org" frameborder="0" allow="encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>          
+                <div class="flex-grow border-t-4 rounded-b border-teal-accent-400">
+                    <div class="py-2 px-4">
+                        <h6 class="mb-4 font-semibold leading-5 text-center">{{ block.value.video.title }}</h6>
+                        <p class="text-xs">
+                            {{ block.value.video.description }}
+                        </p>
+                        {% if block.value.video.date %}
+                        <datte class="py-2 text-xs text-right w-full block">{{ block.value.video.date }}</date>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>  
+    {% endfor %}    
+    </div>
+</div>
+{% endblock %}
