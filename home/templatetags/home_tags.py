@@ -18,5 +18,5 @@ def clean_id(string):
 
 @register.filter
 def sitemap_date(date):
-    return date.strftime('%d-%m-%y')
+    return date.strftime('%Y-%m-%d')
     
