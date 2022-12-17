@@ -1,7 +1,7 @@
 from django.db import models
 from wagtail.core.models import Page
 from customblocks import blocks
-from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.core.fields import StreamField
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
@@ -239,6 +239,7 @@ class Donations(Page):
         ],
         null=True,
         blank=True,
+        use_json_field=True,
     )
 
     search_fields = Page.search_fields + [
@@ -248,7 +249,7 @@ class Donations(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('intro'),
-        StreamFieldPanel("content"),
+        FieldPanel("content"),
     ]
 
     keywords = models.CharField(default='', blank=True, max_length=150)
@@ -282,6 +283,7 @@ class Hardware(Page):
         ],
         null=True,
         blank=True,
+        use_json_field=True,
     )
 
     search_fields = Page.search_fields + [
@@ -291,7 +293,7 @@ class Hardware(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('intro'),
-        StreamFieldPanel("content"),
+        FieldPanel("content"),
     ]
 
     reviews = StreamField(
@@ -300,10 +302,11 @@ class Hardware(Page):
         ],
         null=True,
         blank=True,
+        use_json_field=True,
     )
 
     reviews_panels = [
-        StreamFieldPanel("reviews"),
+        FieldPanel("reviews"),
     ]
 
     keywords = models.CharField(default='', blank=True, max_length=150)
@@ -504,6 +507,7 @@ class CustomPage(Page):
         ],
         null=True,
         blank=True,
+        use_json_field=True,
     )
 
     search_fields = Page.search_fields + [
@@ -513,7 +517,7 @@ class CustomPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
-        StreamFieldPanel("content"),
+        FieldPanel("content"),
     ]
     
 
@@ -547,6 +551,7 @@ class PartnersSponsors(Page):
         ],
         null=True,
         blank=True,
+        use_json_field=True,
     )
 
     intro =  models.TextField(default='', blank=True, max_length=350)
@@ -558,7 +563,7 @@ class PartnersSponsors(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
-        StreamFieldPanel("content"),
+        FieldPanel("content"),
     ]
 
     keywords = models.CharField(default='', blank=True, max_length=150)
@@ -602,6 +607,7 @@ class HomePage(Page):
         ],
         null=True,
         blank=True,
+        use_json_field=True,
     )
 
     manjaro_title = models.CharField(default='', blank=True, max_length=50)
@@ -619,7 +625,7 @@ class HomePage(Page):
         FieldPanel("partners_title"),
         FieldPanel("partners_intro"),
         FieldPanel("partners_url"),
-        StreamFieldPanel("content"),
+        FieldPanel("content"),
     ]
 
     affiliate = StreamField(
@@ -628,6 +634,7 @@ class HomePage(Page):
         ],
         null=True,
         blank=True,
+        use_json_field=True,
     )
 
     software = StreamField(
@@ -636,15 +643,16 @@ class HomePage(Page):
         ],
         null=True,
         blank=True,
+        use_json_field=True,
     )
 
     affiliate_panels = [
-        StreamFieldPanel("affiliate"),
+        FieldPanel("affiliate"),
     ]
 
     software_panels = [
         FieldPanel("software_intro"),
-        StreamFieldPanel("software"),
+        FieldPanel("software"),
     ]
 
     keywords = models.CharField(default='', blank=True, max_length=100)
@@ -686,6 +694,7 @@ class Videos(Page):
         ],
         null=True,
         blank=True,
+        use_json_field=True,
     )
 
     search_fields = Page.search_fields + [
@@ -695,7 +704,7 @@ class Videos(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),
-        StreamFieldPanel("video_media"),
+        FieldPanel("video_media"),
     ]
     
 

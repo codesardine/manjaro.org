@@ -4,7 +4,8 @@ from django.db import models
 from wagtail.snippets.models import register_snippet
 from modelcluster.fields import ParentalManyToManyField
 from django import forms
-from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel, MultiFieldPanel
+from wagtail.admin.edit_handlers import MultiFieldPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
 from django.utils.text import slugify
@@ -63,7 +64,7 @@ class Document(CustomPage):
         return self.categories.first()
 
     content_panels = Page.content_panels + [
-        StreamFieldPanel("content"),
+        FieldPanel("content"),
         MultiFieldPanel(
             [
                 FieldPanel("categories", widget=forms.SelectMultiple)

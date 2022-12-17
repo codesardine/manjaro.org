@@ -11,7 +11,7 @@ from wagtail.core.models import Orderable
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.core.fields import StreamField
-from wagtail.admin.edit_handlers import StreamFieldPanel, FieldPanel
+from wagtail.admin.panels import FieldPanel
 from . import blocks
 class MenuItem(Orderable):
     
@@ -41,6 +41,7 @@ class MenuItem(Orderable):
         ],
         null=True,
         blank=True,
+        use_json_field=True,
     )
 
     panels = [
@@ -48,7 +49,7 @@ class MenuItem(Orderable):
         FieldPanel("link_url"),
         PageChooserPanel("link_page"),
         FieldPanel("open_in_new_tab"),
-        StreamFieldPanel("submenu")
+        FieldPanel("submenu")
     ]
 
     @property
