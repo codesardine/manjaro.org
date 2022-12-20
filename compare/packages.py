@@ -348,8 +348,8 @@ def update_db(arch, repos, pkg_model, test=False):
     # TODO remove:    CACHE_DIR / arch
 
 def send_log(err:Exception):
-    from wagtail.core.models import Page
-    from wagtail.core.log_actions import log
+    from wagtail.models import Page
+    from wagtail.log_actions import log
     try:
         page =Page.objects.get(title="Packages")
         log(
@@ -357,7 +357,7 @@ def send_log(err:Exception):
             #data={"error":"Exception xxxx"},    # wagtail page no display data ?
             title=f"[Update ERROR] {err}"
         )
-    except: # wagtail.core.models.Page.DoesNotExist:
+    except: # wagtail.models.Page.DoesNotExist:
         pass
 
 

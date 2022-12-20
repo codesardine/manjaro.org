@@ -1,4 +1,4 @@
-from wagtail.core.models import Page
+from wagtail.models import Page
 from home.models import CustomPage
 from django.db import models
 from wagtail.snippets.models import register_snippet

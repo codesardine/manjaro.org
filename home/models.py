@@ -1,8 +1,8 @@
 from django.db import models
-from wagtail.core.models import Page
+from wagtail.models import Page
 from customblocks import blocks
 from wagtail.admin.panels import FieldPanel
-from wagtail.core.fields import StreamField
+from wagtail.fields import StreamField
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
@@ -21,7 +21,7 @@ import concurrent.futures
 
 def get_sitemap_urls(self, request=None):
     # fix for https://github.com/APSL/puput/issues/225
-    from wagtail.core.models import Site
+    from wagtail.models import Site
     from puput.urls import get_entry_url
     root_page = Site.find_for_request(request).root_page
     root_url = self.get_url_parts()[1]
@@ -674,7 +674,7 @@ class HomePage(Page):
     def get_context(self, request):   
         from puput.models import EntryPage 
         context = super(HomePage, self).get_context(request)
-        from wagtail.core.models import Page
+        from wagtail.models import Page
         context['blog'] = EntryPage.objects.all().order_by('-date')[0:3]
         return context
 

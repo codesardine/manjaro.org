@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import Q
 from django.db import connection
-from wagtail.core.models import Page
+from wagtail.models import Page
 from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
