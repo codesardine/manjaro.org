@@ -1,3 +1,8 @@
 {% extends "wagtailadmin/login.html" %}
+{% load static %}
 
-{% block branding_login %}Sign in to Manjaro's Site{% endblock %}
+{% block branding_login %}
+<div style="text-align: center;">
+    <img width="150" height="auto" src="{% static 'img/block-logo.svg' %}" alt="manjaro" />
+</div>
+{% endblock %}
