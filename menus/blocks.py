@@ -13,18 +13,24 @@ class SubmenuBlock(blocks.StructBlock):
                     )
                 ),
                 ("icon", blocks.CharBlock(
+                    required=True,
                     max_length=150,
-                    blank=True
+                    blank=True,
+                    null=True,
                     )
                 ),
                 ("description", blocks.CharBlock(
+                    required=True,
                     max_length=150,
-                    blank=True
+                    blank=True,
+                    null=True,
                     )
                 ),
                 ("url", blocks.CharBlock(
+                    required=True,
                     max_length=500,
-                    blank=True
+                    blank=True,
+                    null=True,
                     )
                 ),
                 ("open_in_new_tab", blocks.BooleanBlock(required=False))

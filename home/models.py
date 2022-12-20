@@ -1,9 +1,12 @@
 from django.db import models
 from wagtail.models import Page
 from customblocks import blocks
-from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
-from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
+from wagtail.admin.panels import (
+    TabbedInterface,
+    ObjectList,
+    FieldPanel
+)
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
 import requests

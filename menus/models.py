@@ -1,6 +1,6 @@
 from django.db import models
 from django_extensions.db.fields import AutoSlugField
-from wagtail.admin.edit_handlers import (
+from wagtail.admin.panels import (
     MultiFieldPanel,
     InlinePanel,
     FieldPanel,
@@ -10,9 +10,10 @@ from wagtail.snippets.models import register_snippet
 from wagtail.models import Orderable
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.fields import StreamField
-from wagtail.admin.panels import FieldPanel
+from wagtail.core.fields import StreamField
 from . import blocks
+
+
 class MenuItem(Orderable):
     
     link_title = models.CharField(

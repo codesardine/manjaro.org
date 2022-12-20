@@ -1,9 +1,9 @@
 from django.db import models
-from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
+from wagtail.admin.panels import TabbedInterface, ObjectList
 from wagtail.models import Page
 
 from modelcluster.fields import ParentalKey
-from wagtail.admin.edit_handlers import (
+from wagtail.admin.panels import (
     FieldPanel,
     FieldRowPanel,
     InlinePanel,

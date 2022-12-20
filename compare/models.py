@@ -2,10 +2,10 @@ from django.db import models
 from django.db.models import Q
 from django.db import connection
 from wagtail.models import Page
-from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
+from wagtail.admin.panels import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.panels import FieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 import re
 import enum

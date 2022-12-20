@@ -4,9 +4,12 @@ from django.db import models
 from wagtail.snippets.models import register_snippet
 from modelcluster.fields import ParentalManyToManyField
 from django import forms
-from wagtail.admin.edit_handlers import MultiFieldPanel
-from wagtail.admin.panels import FieldPanel
-from wagtail.admin.edit_handlers import TabbedInterface, ObjectList
+from wagtail.admin.panels import (
+    TabbedInterface,
+    ObjectList,
+    MultiFieldPanel,
+    FieldPanel
+)
 from wagtailyoast.edit_handlers import YoastPanel
 from django.utils.text import slugify
 
