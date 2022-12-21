@@ -45,7 +45,7 @@ def get_sitemap_urls(self, request=None):
     entry_url = get_entry_url(self, self.blog_page.page_ptr, root_page) 
     return [
         {
-            'location': root_url + entry_url,
+            'location': root_url + f"/{entry_url.split('/')[4].strip()}/",
             'lastmod': (self.last_published_at or self.latest_revision_created_at),
         }
     ]
