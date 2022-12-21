@@ -16,26 +16,37 @@ from wagtail.users.models import UserProfile
 from manjaro.settings.base import MEDIA_ROOT, MEDIA_URL
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from django.shortcuts import redirect
+
 from puput.models import EntryPage
+from puput import feeds
+from wagtail.models import Site
 
 import urllib.request
 import json
 import concurrent.futures
 
+
+def item_link(self, item):
+    # fix for https://github.com/APSL/puput/issues/225
+    from puput.urls import get_entry_url
+    root_page = Site.find_for_request(self.request).root_page
+    entry_url = get_entry_url(item, self.blog_page.page_ptr, root_page)
+    page = f"https://blog.manjaro.org/{entry_url.split('/')[4].strip()}/"
+    print(page)
+    return page
+
+feeds.BlogPageFeed.item_link = item_link
+
+
 def get_sitemap_urls(self, request=None):
     # fix for https://github.com/APSL/puput/issues/225
-    from wagtail.models import Site
     from puput.urls import get_entry_url
     root_page = Site.find_for_request(request).root_page
     root_url = self.get_url_parts()[1]
-    
-    # use root_page instance, not root_url
     entry_url = get_entry_url(self, self.blog_page.page_ptr, root_page) 
     return [
         {
             'location': root_url + entry_url,
-            # fall back on latest_revision_created_at if last_published_at is null
-            # (for backwards compatibility from before last_published_at was added)
             'lastmod': (self.last_published_at or self.latest_revision_created_at),
         }
     ]
