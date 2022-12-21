@@ -261,7 +261,6 @@ html {
         background-color: #212121;
         color: #fafafa;
         padding: 4px 10px;
-        position: absolute;
     }
 
     & iframe {
