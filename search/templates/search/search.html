@@ -1,25 +1,44 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
 
-{% block body_class %}template-searchresults{% endblock %}
+{% block body_class %}search-results bg-blue-gray-800{% endblock %}
 
 {% block title %}Search{% endblock %}
 
 {% block content %}
-    <h1>Search</h1>
-
-    <form action="{% url 'search' %}" method="get">
-        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-        <input type="submit" value="Search" class="button">
-    </form>
-
+<div class="overflow-hidden h-full w-full bg-blue-gray-800 fixed top-0 z-[-1]">
+    <svg class="fixed text-teal-300 hidden md:block left-0 h-full top-0" version="1.1" viewBox="0 0 140 135"
+      xmlns="http://www.w3.org/2000/svg">
+      <g transform="matrix(-1,0,0,1,140,0)" fill="CurrentColor">
+        <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748" />
+        <g fill-opacity=".4">
+          <path d="m140 80v-70l-45.252 45-84.748 80h75z" />
+          <path d="m140 70v-50l-45 45-75 70h55z" />
+          <path d="m140 60v-30l-45.252 45-64.748 60h35z" />
+          <path d="m140 50v-10l-45.252 45-49.748 50h10z" />
+        </g>
+    </svg>
+  </div>
+<div class="lg:mt-24 h-[100%] max-w-screen-lg px-4 mx-auto bg-gray-200 rounded py-4 text-gray-800">
+    <div class="text-center font-bold">
+        <h1>Search results for <span class="text-pink-500">"{{ search_query }}"</span></h1>
+    </div>
     {% if search_results %}
         <ul>
             {% for result in search_results %}
-                <li>
-                    <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
+                <li class="mb-4">
+                    <h2>
+                        <a class="text-teal-500 text-sm hover:underline capitalize"
+                        href="{% pageurl result %}">{{ result }}</a>
+                    </h2>
                     {% if result.search_description %}
-                        {{ result.search_description }}
+                        <p class="text-xs capitalize">
+                            {{ result.search_description }}
+                        </p>
+                    {% else %}
+                    <p class="text-xs capitalize">
+                        No meta description
+                    </p>
                     {% endif %}
                 </li>
             {% endfor %}
@@ -33,6 +52,9 @@
             <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
         {% endif %}
     {% elif search_query %}
-        No results found
+        <p class="text-center">
+            No results found
+        </p>
     {% endif %}
+</div>
 {% endblock %}

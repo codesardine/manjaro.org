@@ -25,9 +25,8 @@ import urllib.request
 import json
 import concurrent.futures
 
-
+# fix for https://github.com/APSL/puput/issues/225
 def item_link(self, item):
-    # fix for https://github.com/APSL/puput/issues/225
     from puput.urls import get_entry_url
     root_page = Site.find_for_request(self.request).root_page
     entry_url = get_entry_url(item, self.blog_page.page_ptr, root_page)
@@ -38,7 +37,6 @@ feeds.BlogPageFeed.item_link = item_link
 
 
 def get_sitemap_urls(self, request=None):
-    # fix for https://github.com/APSL/puput/issues/225
     from puput.urls import get_entry_url
     root_page = Site.find_for_request(request).root_page
     root_url = self.get_url_parts()[1]
@@ -51,6 +49,20 @@ def get_sitemap_urls(self, request=None):
     ]
 
 EntryPage.get_sitemap_urls = get_sitemap_urls
+# end of fix
+
+
+class Search:
+    def search(request):
+        # Search
+        search_query = request.GET.get('query', None)
+        if search_query:
+            search_results = Page.objects.live().search(search_query)
+
+        return render(request, 'search_results.html', {
+            'search_query': search_query,
+            'search_results': search_results,
+        })
 
 
 class UpdateStatus(Page):

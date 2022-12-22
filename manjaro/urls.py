@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.contrib import admin
 
 from wagtail.admin import urls as wagtailadmin_urls
@@ -8,14 +8,15 @@ from wagtail.documents import urls as wagtaildocs_urls
 from puput import urls as puput_urls 
 from compare.views import pkgs_update_status_json
 from wagtail.contrib.sitemaps.views import sitemap
+from search import views as search_views
 
 
 urlpatterns = [
     path('django-admin/', admin.site.urls),
-
     path('admin/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
     path('status.json', pkgs_update_status_json),
+    re_path(r"^search/$", search_views.search, name="search"),
 ]
 
 if settings.DEBUG:

@@ -9,8 +9,8 @@
   </div>
   <div id="desktop-menu"
     class="relative bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 grid grid-row-2 shadow rounded-b-lg w-full flex-wrap text-teal-900 transition-transform duration-500">
-    <div class="nav relative flex gap-4 w-full px-4 h-[34px] text-right">
-      <ul class="items-center flex capitalize text-sm gap-4">
+    <div class="nav relative flex gap-4 w-full pl-4 h-[34px] text-right">
+      <ul class="items-center flex capitalize text-sm gap-4 w-full">
         {% for item in right_navigation.menu_items.all %}
         {% if not item.submenu %}
         <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
@@ -53,6 +53,10 @@
           </a>
         </li>
       </ul>
+      <form action="{% url 'search' %}" method="get" class="relative text-sm m-[5px] mr-2">
+        <input class="h-[24px] transition duration-200 bg-white rounded border-0 appearance-none focus:ring-0" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+        <button class="fa fa-magnifying-glass text-black absolute top-[1px] right-1 p-1" type="submit"></button>
+    </form>
     </div>
 
     <div class="nav relative flex items-center gap-4 bg-gradient-to-b from-blue-gray-800 to-blue-gray-900 pl-4 pr-2 rounded-b-md text-gray-200 h-[46px]">
