@@ -26,9 +26,15 @@
     {% if search_results %}
         <ul>
             {% for result in search_results %}
-                <li class="mb-4">
-                    <h2>
-                        <a class="text-teal-500 text-sm hover:underline capitalize"
+                <li class="mb-4 text-sm">
+                    <h2>{% if "Entry" in result.content_type.name %}
+                        <i class="fa-solid fa-blog text-blue-gray-600"></i>
+                        {% elif "doc" in result.content_type.name %}
+                        <i class="fa-solid fa-book text-blue-gray-600"></i>
+                        {% else %}
+                        <i class="fa-solid fa-file text-blue-gray-600"></i>
+                        {% endif %}
+                        <a class="text-teal-500 hover:underline capitalize ml-2"
                         href="{% pageurl result %}">{{ result }}</a>
                     </h2>
                     {% if result.search_description %}

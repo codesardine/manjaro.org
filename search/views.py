@@ -9,7 +9,7 @@ def search(request):
     page = request.GET.get('page', 1)
 
     if search_query:
-        search_results = Page.objects.live().search(search_query)
+        search_results = Page.objects.live().public().search(search_query)
         query = Query.get(search_query)
         #query.add_hit()
     else:
@@ -17,6 +17,7 @@ def search(request):
 
 
     paginator = Paginator(search_results, 10)
+    print(search_results)
     try:
         search_results = paginator.page(page)
     except PageNotAnInteger:
