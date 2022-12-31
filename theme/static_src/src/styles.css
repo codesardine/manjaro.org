@@ -438,11 +438,11 @@ html {
 }
 
 .link-decor-left:hover:before {
-    top: -3px;
-    left: -13px;
+    top: -1px;
+    left: -11px;
     opacity: 1;
-    width: 30px;
-    height: 30px;    
+    width: 26px;
+    height: 26px;    
 }
 
 .link-decor-left:before, .link-decor-ft:before {
