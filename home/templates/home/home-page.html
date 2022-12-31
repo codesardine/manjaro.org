@@ -111,7 +111,7 @@
         </div>
       </div>
 
-      {% if not promo.hidden %}
+      {% if not promo.hidden and promo.url|url_exists %}
       <div class="relative flex flex-col w-full lg:w-2/3 justify-end pb-20 lg:pb-0">
         <picture class="self-start px-[20%] pb-12">
           {% image promo.image width-420 format-webp class="object-contain promo-glow" alt="device" %}
