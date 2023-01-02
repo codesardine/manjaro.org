@@ -1,7 +1,7 @@
 {% load wagtailimages_tags home_tags static %}
 
   {% for item in self.product_details %}
-         {% if not item.hidden and item.button_url|url_exists %}
+         {% if not item.hidden %}
          <div class="grid grid-rows-1 mb-40">
           <div class="relative bg-gray-200 grid grid-cols-1 gap-8 rounded rounded-b-xl shadow w-full">
             <div class="absolute w-full">
