@@ -24,7 +24,7 @@ def url_exists(url):
     import requests
     ok = (301, 302, 200)
     try:
-        response = requests.head(url)
+        response = requests.head(url, timeout=2.50)
         if response.status_code in ok:
             return True
         else:
