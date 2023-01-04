@@ -1,4 +1,4 @@
-from django.core.paginator import Paginator
+#from django.core.paginator import Paginator
 from django.template.response import TemplateResponse
 from wagtail.models import Page
 from wagtail.search.models import Query
@@ -6,9 +6,8 @@ import requests
 from mediawiki import MediaWiki
 
 
-URL = "https://forum.manjaro.org/"
-
 def get_forum_results(query):
+    URL = "https://forum.manjaro.org/"
     endpoint = f"{URL}/search.json"
     response = requests.get(endpoint, params={
         "q": query,
@@ -20,18 +19,21 @@ def get_forum_results(query):
     if response.ok:
         search_results = []
         response = response.json()
-        topics = response["topics"]
-        posts = response["posts"]
-        for topic in topics:
-            topic_result = {
-            "url": f"{URL}t/{topic['slug']}",
-            "title": topic["title"],
-            "description": ""
-            }
-            for post in posts:
-                if post["topic_id"] == topic["id"]:
-                    topic_result["description"] = post["blurb"]
-            search_results.append(topic_result)
+        try:
+            topics = response["topics"]
+            posts = response["posts"]
+            for topic in topics:
+                topic_result = {
+                "url": f"{URL}t/{topic['slug']}",
+                "title": topic["title"],
+                "description": ""
+                }
+                for post in posts:
+                    if post["topic_id"] == topic["id"]:
+                        topic_result["description"] = post["blurb"]
+                search_results.append(topic_result)
+        except KeyError:
+            pass        
         return search_results
 
 def get_page_results(search_query):
@@ -73,7 +75,7 @@ def get_wiki_search_results(query):
 
 def search(request):
     search_query = request.GET.get('query', None)
-    page = request.GET.get('page', 1)
+    #page = request.GET.get('page', 1)
     forum_results = get_forum_results(search_query)
     website_results  = get_page_results(search_query)
     wiki_results = get_wiki_search_results(search_query)
