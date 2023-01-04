@@ -31,3 +31,8 @@ def url_exists(url):
             return False
     except requests.ConnectionError:
         return False
+
+@register.filter
+def is_doc(url):
+    if "docs" not in url and "wiki" not in url:
+        return True

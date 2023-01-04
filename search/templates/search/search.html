@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags home_tags %}
 
 {% block body_class %}search-results bg-blue-gray-800{% endblock %}
 
@@ -24,33 +24,64 @@
         <h1>Search results for <span class="text-pink-500">"{{ search_query }}"</span></h1>
     </div>
     {% if search_results %}
+    <div class="grid gap-4 grid-cols-1 {% if has_docs %}lg:grid-cols-2{% else %}lg:grid-cols-1{% endif %}">
         <ul>
+            {% if has_docs %}
+            <h2 class="font-semibold mb-4 text-sm text-center">Documentation available</h2>
+            {% endif %}
             {% for result in search_results %}
-                <li class="mb-4 text-sm">
-                    <h2>{% if "blog" in result.url %}
-                        <i class="fa-solid fa-blog text-blue-gray-600"></i>
-                        {% elif "docs" in result.url %}
-                        <i class="fa-solid fa-book text-blue-gray-600"></i>
-                        {% elif "forum" in result.url %}
-                        <i class="fa-solid fa-comment text-blue-gray-600"></i>
+                {% if "docs" in result.url or "wiki" in result.url %}
+                    <li class="mb-4 text-sm">
+                        <h2>
+                            {% if "docs" in result.url %} 
+                            <i class="fa-solid fa-book text-blue-gray-600"></i>
+                            {% elif "wiki" in result.url %}
+                            <i class="fa-solid fa-file-word text-blue-gray-600"></i>
+                            {% endif %}
+                            <a target="_blank" class="text-teal-500 hover:underline capitalize ml-2"
+                            href="{{ result.url }}">{{ result.title }}</a>
+                        </h2>
+                        {% if result.description %}
+                            <p class="text-xs capitalize">
+                                {{ result.description }}
+                            </p>
                         {% else %}
-                        <i class="fa-solid fa-file text-blue-gray-600"></i>
-                        {% endif %}
-                        <a target="_blank" class="text-teal-500 hover:underline capitalize ml-2"
-                        href="{{ result.url }}">{{ result.title }}</a>
-                    </h2>
-                    {% if result.description %}
                         <p class="text-xs capitalize">
-                            {{ result.description }}
+                            No description available
                         </p>
-                    {% else %}
-                    <p class="text-xs capitalize">
-                        No meta description
-                    </p>
-                    {% endif %}
-                </li>
+                        {% endif %}
+                    </li>
+                {% endif %}
             {% endfor %}
         </ul>
+        <ul>
+            {% for result in search_results %}
+                {% if result.url|is_doc %}
+                    <li class="mb-4 text-sm">
+                        <h2>{% if "blog" in result.url %}
+                            <i class="fa-solid fa-blog text-blue-gray-600"></i>
+                            {% elif "forum" in result.url %}
+                            <i class="fa-solid fa-comment text-blue-gray-600"></i>
+                            {% else %}
+                            <i class="fa-solid fa-file text-blue-gray-600"></i>
+                            {% endif %}
+                            <a target="_blank" class="text-teal-500 hover:underline capitalize ml-2"
+                            href="{{ result.url }}">{{ result.title }}</a>
+                        </h2>
+                        {% if result.description %}
+                            <p class="text-xs capitalize">
+                                {{ result.description }}
+                            </p>
+                        {% else %}
+                        <p class="text-xs capitalize">
+                            No description available
+                        </p>
+                        {% endif %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
 
         {% if search_results.has_previous %}
             <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
