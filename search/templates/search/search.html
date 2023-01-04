@@ -20,26 +20,28 @@
     </svg>
   </div>
 <div class="lg:mt-24 h-[100%] max-w-screen-lg px-4 mx-auto bg-gray-200 rounded py-4 text-gray-800">
-    <div class="text-center font-bold">
+    <div class="text-center font-bold mb-4">
         <h1>Search results for <span class="text-pink-500">"{{ search_query }}"</span></h1>
     </div>
     {% if search_results %}
         <ul>
             {% for result in search_results %}
                 <li class="mb-4 text-sm">
-                    <h2>{% if "Entry" in result.content_type.name %}
+                    <h2>{% if "blog" in result.url %}
                         <i class="fa-solid fa-blog text-blue-gray-600"></i>
-                        {% elif "doc" in result.content_type.name %}
+                        {% elif "docs" in result.url %}
                         <i class="fa-solid fa-book text-blue-gray-600"></i>
+                        {% elif "forum" in result.url %}
+                        <i class="fa-solid fa-comment text-blue-gray-600"></i>
                         {% else %}
                         <i class="fa-solid fa-file text-blue-gray-600"></i>
                         {% endif %}
-                        <a class="text-teal-500 hover:underline capitalize ml-2"
-                        href="{% pageurl result %}">{{ result }}</a>
+                        <a target="_blank" class="text-teal-500 hover:underline capitalize ml-2"
+                        href="{{ result.url }}">{{ result.title }}</a>
                     </h2>
-                    {% if result.search_description %}
+                    {% if result.description %}
                         <p class="text-xs capitalize">
-                            {{ result.search_description }}
+                            {{ result.description }}
                         </p>
                     {% else %}
                     <p class="text-xs capitalize">
