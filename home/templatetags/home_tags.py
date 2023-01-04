@@ -33,6 +33,8 @@ def url_exists(url):
         return False
 
 @register.filter
-def is_doc(url):
-    if "docs" not in url and "wiki" not in url:
-        return True
+def is_doc(item):
+    if item != None:
+        if item == "40" or "docs" in item or "wiki" in item:
+            return True
+        return False

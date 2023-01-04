@@ -26,7 +26,8 @@ def get_forum_results(query):
                 topic_result = {
                 "url": f"{URL}t/{topic['slug']}",
                 "title": topic["title"],
-                "description": ""
+                "description": "",
+                "category": str(topic["category_id"])
                 }
                 for post in posts:
                     if post["topic_id"] == topic["id"]:
@@ -86,6 +87,9 @@ def search(request):
         results.extend(wiki_results)
 
     if forum_results:
+        for result in forum_results:
+            if result["category"] == 40:
+                has_docs = True
         results.extend(forum_results)
 
     if website_results:
