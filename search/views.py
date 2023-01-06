@@ -2,7 +2,7 @@ from django.template.response import TemplateResponse
 from django.http import JsonResponse, HttpResponse
 from wagtail.models import Page
 from wagtail.search.models import Query
-import requests
+import requests, re
 from mediawiki import MediaWiki
 import concurrent.futures
 
@@ -26,7 +26,7 @@ def get_forum_results(query):
             for topic in topics:
                 topic_result = {
                 "url": f"{URL}t/{topic['slug']}",
-                "title": topic["title"],
+                "title": re.sub("[\[].*?[\]]", "", topic["title"]),
                 "description": "",
                 "is_doc": False,
                 "type": "forum"
