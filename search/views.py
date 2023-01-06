@@ -16,7 +16,7 @@ def get_forum_results(query):
         "status": "public",
         "in": "title",
         "in": "first"
-    }, timeout=3 )
+    }, timeout=3.50 )
     if response.ok:
         search_results = []
         response = response.json()
