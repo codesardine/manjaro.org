@@ -31,16 +31,17 @@
             {% endif %}
             {% for result in search_results %}
                 {% if result.is_doc %}
-                    <li class="mb-4 text-sm">
-                        <h2>
-                            {% if "docs" in result.url %} 
+                    <li class="mb-4 text-sm overflow-hidden">
+                        <span class="text-xs truncate text-black">{{ result.url|remove_protocol }}</span>
+                        <h2 class="flex items-center">
+                            {% if "docs." in result.url %} 
                             <i class="fa-solid fa-book text-blue-gray-600"></i>
-                            {% elif "wiki" in result.url %}
+                            {% elif "wiki." in result.url %}
                             <i class="fa-solid fa-file-word text-blue-gray-600"></i>
-                            {% elif "forum" in result.url %}
+                            {% elif "forum." in result.url %}
                             <i class="fa-solid fa-comment text-blue-gray-600"></i>
                             {% endif %}
-                            <a target="_blank" class="text-teal-500 hover:underline capitalize ml-2"
+                            <a target="_blank" class="text-teal-500 hover:underline capitalize ml-2 truncate"
                             href="{{ result.url }}">{{ result.title }}</a>
                         </h2>
                         {% if result.description %}
@@ -59,15 +60,16 @@
         <ul>
             {% for result in search_results %}
                 {% if not result.is_doc %}
-                    <li class="mb-4 text-sm {% if result.category|is_doc %}hidden{% endif %}">
-                        <h2>{% if "blog" in result.url %}
+                    <li class="overflow-hidden mb-4 text-sm">
+                        <span class="text-xs truncate text-black">{{ result.url|remove_protocol }}</span>
+                        <h2 class="flex items-center">{% if "blog." in result.url %}
                             <i class="fa-solid fa-blog text-blue-gray-600"></i>
-                            {% elif "forum" in result.url %}
+                            {% elif "forum." in result.url %}
                             <i class="fa-solid fa-comment text-blue-gray-600"></i>
                             {% else %}
                             <i class="fa-solid fa-file text-blue-gray-600"></i>
                             {% endif %}
-                            <a target="_blank" class="text-teal-500 hover:underline capitalize ml-2"
+                            <a target="_blank" class="text-teal-500 hover:underline capitalize ml-2 truncate"
                             href="{{ result.url }}">{{ result.title }}</a>
                         </h2>
                         {% if result.description %}

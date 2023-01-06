@@ -33,8 +33,5 @@ def url_exists(url):
         return False
 
 @register.filter
-def is_doc(item):
-    if item != None:
-        if item == "40" or "docs." in item or "wiki." in item:
-            return True
-        return False
+def remove_protocol(url):
+    return url.replace("http://", "").replace("https://", "")
