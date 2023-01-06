@@ -21,7 +21,7 @@
   </div>
 <div class="lg:mt-24 h-[100%] max-w-screen-lg px-4 mx-auto bg-gray-200 rounded py-4 text-gray-800">
     <div class="text-center font-bold mb-4">
-        <h1>Search results for <span class="text-pink-500">"{{ search_query }}"</span></h1>
+        <h1>{{ results_found }} search results for <span class="text-pink-500">"{{ search_query }}"</span></h1>
     </div>
     {% if search_results %}
     <div class="grid gap-4 grid-cols-1 {% if has_docs %}lg:grid-cols-2{% else %}lg:grid-cols-1{% endif %}">
