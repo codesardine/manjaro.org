@@ -27,10 +27,10 @@
     <div class="grid gap-4 grid-cols-1 {% if has_docs %}lg:grid-cols-2{% else %}lg:grid-cols-1{% endif %}">
         <ul>
             {% if has_docs %}
-            <h2 class="font-semibold mb-4 text-sm text-center">Documentation Available</h2>
+            <h2 class="font-semibold mb-4 text-sm text-center">Documentation</h2>
             {% endif %}
             {% for result in search_results %}
-                {% if result.url|is_doc or result.category|is_doc %}
+                {% if result.is_doc %}
                     <li class="mb-4 text-sm">
                         <h2>
                             {% if "docs" in result.url %} 
@@ -58,7 +58,7 @@
         </ul>
         <ul>
             {% for result in search_results %}
-                {% if not result.url|is_doc %}
+                {% if not result.is_doc %}
                     <li class="mb-4 text-sm {% if result.category|is_doc %}hidden{% endif %}">
                         <h2>{% if "blog" in result.url %}
                             <i class="fa-solid fa-blog text-blue-gray-600"></i>

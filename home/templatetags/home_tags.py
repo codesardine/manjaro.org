@@ -35,6 +35,6 @@ def url_exists(url):
 @register.filter
 def is_doc(item):
     if item != None:
-        if item == "40" or "docs" in item or "wiki" in item:
+        if item == "40" or "docs." in item or "wiki." in item:
             return True
         return False

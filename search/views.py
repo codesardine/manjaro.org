@@ -1,9 +1,9 @@
-#from django.core.paginator import Paginator
 from django.template.response import TemplateResponse
 from wagtail.models import Page
 from wagtail.search.models import Query
 import requests
 from mediawiki import MediaWiki
+import concurrent.futures
 
 
 def get_forum_results(query):
@@ -15,7 +15,7 @@ def get_forum_results(query):
         "status": "public",
         "in": "title",
         "in": "first"
-    })
+    }, timeout=3 )
     if response.ok:
         search_results = []
         response = response.json()
@@ -27,8 +27,11 @@ def get_forum_results(query):
                 "url": f"{URL}t/{topic['slug']}",
                 "title": topic["title"],
                 "description": "",
-                "category": str(topic["category_id"])
+                "is_doc": False
                 }
+                # shoud we exclude any forum categories?
+                if topic["category_id"] == 40: # tutorials
+                    topic_result["is_doc"] = True
                 for post in posts:
                     if post["topic_id"] == topic["id"]:
                         topic_result["description"] = post["blurb"]
@@ -50,8 +53,12 @@ def get_page_results(search_query):
             page_result = {
             "url": str(result.url),
             "title": result.title,
-            "description": result.search_description
-            }            
+            "description": result.search_description,
+            "is_doc": False
+            }
+            if "docs." in page_result["url"]:
+                page_result["is_doc"] = True
+            
             search_results.append(page_result)
         return search_results
 
@@ -62,45 +69,50 @@ def get_wiki_search_results(query):
     search = wiki.search(query)
     search_results = []
     for page in search:
+        # do not add same page in multiples languages
         if "/" not in page:
             p = wiki.page(page)
             description = p.summarize(chars=150)
             page_result = {
             "url": f"{url}index.php/{p.title.replace(' ', '_')}",
             "title": p.title,
-            "description": description
+            "description": description,
+            "is_doc": True
             } 
-            if description:
-                search_results.append(page_result)
+            # do not add existing pages
+            if page_result["url"] not in (p["url"] for p in search_results):
+                if description:
+                    search_results.append(page_result)
     return search_results 
 
 def search(request):
     search_query = request.GET.get('query', None)
     #page = request.GET.get('page', 1)
-    forum_results = get_forum_results(search_query)
-    website_results  = get_page_results(search_query)
-    wiki_results = get_wiki_search_results(search_query)
+    futures = []
     results = []
+    search_providers = (
+        get_forum_results,
+        get_wiki_search_results,
+        get_page_results
+        )
+    with concurrent.futures.ThreadPoolExecutor(len(search_providers)) as executor:
+        for provider in search_providers:
+            futures.append(executor.submit(provider, search_query))
+        for future in concurrent.futures.as_completed(futures):
+            try:
+                results.extend(future.result())
+            except Exception as e:
+                print(e)
+
     has_docs = False
-    if wiki_results:
-        has_docs = True
-        results.extend(wiki_results)
+    for result in results:
+        if result["is_doc"]:
+            has_docs = True
+            break
 
-    if forum_results:
-        for result in forum_results:
-            if result["category"] == 40:
-                has_docs = True
-        results.extend(forum_results)
-
-    if website_results:
-        for result in website_results:
-            if "docs" in result["url"]:
-                has_docs = True
-        results.extend(website_results)
-
-    search_results = sorted(results, key=lambda i: i['title'])
+    search_results = sorted(tuple(results), key=lambda i: i['title'])
     return TemplateResponse(request, 'search/search.html', {
         'search_query': search_query,
-        'search_results': tuple(search_results),
+        'search_results': search_results,
         'has_docs': has_docs,
     })
