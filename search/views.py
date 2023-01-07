@@ -42,6 +42,16 @@ def get_forum_results(query):
             pass        
         return search_results
 
+def get_software_results(query):
+    URL = "https://software.manjaro.org/"
+    endpoint = f"{URL}/search.json"
+    response = requests.get(endpoint, params={
+        "query": query,
+    }, timeout=3.50 )
+    if response.ok:
+        response = response.json()            
+        return response
+
 def get_page_results(search_query):
         search_results = []
         if search_query:
@@ -97,7 +107,8 @@ def search(request):
     search_providers = (
         get_forum_results,
         get_wiki_search_results,
-        get_page_results
+        get_page_results,
+        get_software_results
         )
     with concurrent.futures.ThreadPoolExecutor(len(search_providers)) as executor:
         for provider in search_providers:
