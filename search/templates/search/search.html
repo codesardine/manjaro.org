@@ -31,9 +31,9 @@
             {% endif %}
             {% for result in search_results %}
                 {% if result.is_doc %}
-                    <li class="mb-4 text-sm overflow-hidden">
-                        <span class="text-xs truncate text-black">{{ result.url|remove_protocol }}</span>
-                        <h2 class="flex items-center">
+                    <li class="mb-6 text-sm overflow-hidden">
+                        <span class="text-xs truncate text-black mb-1 block">{{ result.url|remove_protocol }}</span>
+                        <h2 class="flex items-center mb-1">
                             {% if "docs." in result.url %} 
                             <i class="fa-solid fa-book text-blue-gray-600"></i>
                             {% elif "wiki." in result.url %}
@@ -41,15 +41,15 @@
                             {% elif "forum." in result.url %}
                             <i class="fa-solid fa-comment text-blue-gray-600"></i>
                             {% endif %}
-                            <a target="_blank" class="text-teal-500 hover:underline capitalize ml-2 truncate"
+                            <a target="_blank" class="text-teal-500 font-semibold hover:underline capitalize ml-2 truncate"
                             href="{{ result.url }}">{{ result.title }}</a>
                         </h2>
                         {% if result.description %}
-                            <p class="text-xs capitalize">
+                            <p class="capitalize text-sm">
                                 {{ result.description }}
                             </p>
                         {% else %}
-                        <p class="text-xs capitalize">
+                        <p class="text-sm capitalize">
                             No description available
                         </p>
                         {% endif %}
@@ -60,9 +60,9 @@
         <ul>
             {% for result in search_results %}
                 {% if not result.is_doc %}
-                    <li class="overflow-hidden mb-4 text-sm">
-                        <span class="text-xs truncate text-black">{{ result.url|remove_protocol }}</span>
-                        <h2 class="flex items-center">{% if "blog." in result.url %}
+                    <li class="overflow-hidden mb-6 text-sm">
+                        <span class="text-xs truncate text-black mb-1 block">{{ result.url|remove_protocol }}</span>
+                        <h2 class="flex items-center font-semibold">{% if "blog." in result.url %}
                             <i class="fa-solid fa-blog text-blue-gray-600"></i>
                             {% elif "forum." in result.url %}
                             <i class="fa-solid fa-comment text-blue-gray-600"></i>
@@ -75,11 +75,11 @@
                             href="{{ result.url }}">{{ result.title }}</a>
                         </h2>
                         {% if result.description %}
-                            <p class="text-xs capitalize">
+                            <p class="text-sm capitalize">
                                 {{ result.description }}
                             </p>
                         {% else %}
-                        <p class="text-xs capitalize">
+                        <p class="text-sm capitalize">
                             No description available
                         </p>
                         {% endif %}
