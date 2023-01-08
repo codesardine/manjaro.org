@@ -32,18 +32,19 @@
             {% for result in search_results %}
                 {% if result.is_doc %}
                     <li class="mb-6 text-sm overflow-hidden">
-                        <span class="text-xs truncate text-black mb-1 block">{{ result.url|remove_protocol }}</span>
-                        <h2 class="flex items-center mb-1">
-                            {% if "docs." in result.url %} 
-                            <i class="fa-solid fa-book text-blue-gray-600"></i>
+                        <a target="_blank" class="hover:underline underline-offset-4"
+                            href="{{ result.url }}">
+                        <span class="text-xs truncate text-black pb-1 block">{{ result.url|remove_protocol }}</span>
+                        {% if "docs." in result.url %} 
+                            <i class="fa-solid fa-book text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
                             {% elif "wiki." in result.url %}
-                            <i class="fa-solid fa-file-word text-blue-gray-600"></i>
+                            <i class="fa-solid fa-file-word text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
                             {% elif "forum." in result.url %}
-                            <i class="fa-solid fa-comment text-blue-gray-600"></i>
+                            <i class="fa-solid fa-comment text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
                             {% endif %}
-                            <a target="_blank" class="text-teal-500 font-semibold hover:underline capitalize ml-2 truncate"
-                            href="{{ result.url }}">{{ result.title }}</a>
-                        </h2>
+                        <h2 class="mb-1 truncate font-semibold text-teal-500 capitalize">
+                            {{ result.title }}
+                        </h2></a>
                         {% if result.description %}
                             <p class="capitalize text-sm">
                                 {{ result.description }}
@@ -61,19 +62,21 @@
             {% for result in search_results %}
                 {% if not result.is_doc %}
                     <li class="overflow-hidden mb-6 text-sm">
-                        <span class="text-xs truncate text-black mb-1 block">{{ result.url|remove_protocol }}</span>
-                        <h2 class="flex items-center font-semibold">{% if "blog." in result.url %}
-                            <i class="fa-solid fa-blog text-blue-gray-600"></i>
+                        <a target="_blank" class="hover:underline underline-offset-4"
+                            href="{{ result.url }}">
+                        <span class="text-xs truncate text-black pb-1 block">{{ result.url|remove_protocol }}</span>
+                        {% if "blog." in result.url %}
+                            <i class="fa-solid fa-blog text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
                             {% elif "forum." in result.url %}
-                            <i class="fa-solid fa-comment text-blue-gray-600"></i>
+                            <i class="fa-solid fa-comment text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
                             {% elif "software." in result.url %}
-                            <i class="fa-solid fa-archive text-blue-gray-600"></i>
+                            <i class="fa-solid fa-archive text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
                             {% else %}
-                            <i class="fa-solid fa-file text-blue-gray-600"></i>
+                            <i class="fa-solid fa-file text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
                             {% endif %}
-                            <a target="_blank" class="text-teal-500 hover:underline capitalize ml-2 truncate"
-                            href="{{ result.url }}">{{ result.title }}</a>
-                        </h2>
+                        <h2 class="mb-1 truncate font-semibold text-teal-500 capitalize">
+                            {{ result.title }}
+                        </h2></a>
                         {% if result.description %}
                             <p class="text-sm capitalize">
                                 {{ result.description }}
