@@ -15,9 +15,8 @@ def get_forum_results(query):
         "q": query,
         "order":"latest",
         "status": "public",
-        "in": "title",
-        "in": "first"
-    }, timeout=3.50 )
+        "in": "title"
+    }, timeout=4 )
     if response.ok:
         search_results = []
         response = response.json()
@@ -25,21 +24,31 @@ def get_forum_results(query):
             topics = response["topics"]
             posts = response["posts"]
             for topic in topics:
-                topic_result = {
-                "url": f"{URL}t/{topic['slug']}",
-                "title": re.sub("[\[].*?[\]]", "", topic["title"]),
-                "description": "",
-                "is_doc": False,
-                "type": "forum"
-                }
-                # shoud we exclude any forum categories?
-                if topic["category_id"] == 40: # tutorials
-                    topic_result["is_doc"] = True
-                for post in posts:
-                    if post["topic_id"] == topic["id"]:
-                        desc = Truncator(post["blurb"])
-                        topic_result["description"] = desc.chars(160)
-                search_results.append(topic_result)
+                if topic["visible"]:
+                    topic_result = {
+                    "url": f"{URL}t/{topic['slug']}",
+                    "title": re.sub("[\[].*?[\]]", "", topic["title"]),
+                    "description": "",
+                    "is_doc": False,
+                    "type": "forum",
+                    "activity": topic["posts_count"] + topic["reply_count"],
+                    "solved": "unsolved"
+                    }
+                    if topic["tags"]:
+                        tags = []
+                        for tag in topic["tags"]:
+                            tags.append(tag)
+                        topic_result["tags"] = tags
+                    if topic["has_accepted_answer"]:
+                        topic_result["solved"] = "solved"
+                    # shoud we exclude any forum categories?
+                    if topic["category_id"] == 40: # tutorials
+                        topic_result["is_doc"] = True
+                    for post in posts:
+                        if post["topic_id"] == topic["id"]:
+                            desc = Truncator(post["blurb"])
+                            topic_result["description"] = desc.chars(160)
+                    search_results.append(topic_result)
         except KeyError:
             pass        
         return search_results

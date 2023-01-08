@@ -95,18 +95,39 @@
                             No description available
                         </p>
                         {% endif %}
+                        {% if result.type == "package" or result.type == "snap" or result.type == "flatpak" %}
                         <span class="mt-2 block">
-                        {% if result.type == "package" %}
-                            <a class="text-xs font-semibold text-gray-200 bg-teal-600 rounded py-1 px-2 inline-block" href="web-pamac://pkg={{ result.package }}">
-                                <i class="fa-solid fa-archive mr-2"></i>Install this package</a>
-                            {% elif result.type == "snap" %}
-                            <a class="text-xs font-semibold text-gray-200 bg-teal-600 rounded py-1 px-2 inline-block" href="web-pamac://snap={{ result.package }}">
-                                <i class="fa-solid fa-archive mr-2"></i>Install this snap</a>
-                            {% elif result.type == "flatpak" %}
-                            <a class="text-xs font-semibold text-gray-200 bg-teal-600 rounded py-1 px-2 inline-block" href="web-pamac://flatpak={{ result.package }}">
-                                <i class="fa-solid fa-archive mr-2"></i>Install this flatpak</a>
+                            {% if result.type == "package" %}
+                                <a class="text-xs font-semibold text-gray-200 bg-teal-600 rounded py-1 px-2 inline-block" href="web-pamac://pkg={{ result.package }}">
+                                    <i class="fa-solid fa-archive mr-2"></i>Install this package</a>
+                                {% elif result.type == "snap" %}
+                                <a class="text-xs font-semibold text-gray-200 bg-teal-600 rounded py-1 px-2 inline-block" href="web-pamac://snap={{ result.package }}">
+                                    <i class="fa-solid fa-archive mr-2"></i>Install this snap</a>
+                                {% elif result.type == "flatpak" %}
+                                <a class="text-xs font-semibold text-gray-200 bg-teal-600 rounded py-1 px-2 inline-block" href="web-pamac://flatpak={{ result.package }}">
+                                    <i class="fa-solid fa-archive mr-2"></i>Install this flatpak</a>
                             {% endif %}
                         </span>
+                        {% endif %}
+                        <div class="font-semibold">
+                            <span class="text-xs capitalize {% if result.solved == 'solved' %}text-teal-400{% else %}text-orange-900{% endif %}">
+                                {{ result.solved }}
+                             </span> 
+                            {% if result.activity %}
+                            <span class="text-xs capitalize ml-4">
+                                <span class="text-gray-700">activity:</span>
+                                <span class="text-pink-500">{{ result.activity }}</span> 
+                            </span>
+                            {% endif %}  
+                            {% if result.tags %}
+                            <span class="text-xs capitalize ml-4">
+                                <span class="text-gray-700">tags:</span>
+                               {% for tag in result.tags %}
+                                   <span class="text-blue-400 mr-1">{{ tag }}</span>
+                               {% endfor %}
+                            </span>
+                            {% endif %}
+                        </div>                         
                     </li>
                 {% endif %}
             {% endfor %}
