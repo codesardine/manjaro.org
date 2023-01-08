@@ -102,14 +102,20 @@
 
 <!-- Mobile menu -->
 <div id="nav-mobile" class="lg:hidden relative">
-  <button id="toggle-mobile-btn" aria-label="Open Menu"
-    class="bottom-1 left-2 text-2xl z-[41] fixed w-[52px] shadow h-[52px] justify-center rounded-full bg-gray-900 text-gray-200 flex items-center">
+  <div class="w-full fixed bottom-0 left-0 z-40 flex" style="filter: drop-shadow(0 -1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 -1px 1px rgb(0 0 0 / 0.06));">
+    <a href="https://manjaro.org" aria-label="Home"
+    class="shadow bg-white flex justify-center items-center w-auto h-[55px]">
+    <img src="{% static 'img/block-logo.svg' %}" alt="manjaro logo" width="50" height="auto" class="w-[50px]">
+  </a>
+    <button id="toggle-mobile-btn" aria-label="Open Menu"
+    class="bottom-1 text-2xl px-4 shadow h-[55px] justify-center bg-gray-900 text-gray-200 flex items-center">
     <i class="fa-solid fa-bars"></i>
   </button>
-  <a href="https://manjaro.org" aria-label="Home"
-    class="fixed z-40 bottom-3 left-7 pl-8 pr-3 w-[150px] shadow py-1 bg-white flex justify-center items-center rounded-2xl">
-    <img src="{% static 'img/logo-light.svg' %}" alt="manjaro logo" width="100" height="26" class="ml-[8px]">
-  </a>
+  <form action="{% url 'search' %}" method="get" class="text-sm flex bg-white w-full">
+    <input class="h-[55px] w-full transition duration-200 bg-white border-0 appearance-none focus:ring-0" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+    <button class="fa fa-magnifying-glass text-teal-900 bg-teal-accent-700 w-10" type="submit"></button>
+</form>
+  </div>
   <div id="mobile-menu"
     class="z-[30] max-w-50 fixed top-0 left-0 h-[100vh] lg:h-auto translate-x-[-150%] lg:translate-x-0 transition-transform duration-500 shadow-md will-change-transform transform-gpu">
     <div class="px-2 shadow-lg bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 h-[100vh] font-bold text-gray-200 capitalize text-center">
