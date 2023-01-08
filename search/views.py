@@ -87,14 +87,22 @@ def get_wiki_search_results(query):
         # do not add same page in multiples languages
         if "/" not in page:
             p = wiki.page(page)
-            description = p.summarize(chars=150)
+            description = p.summarize(chars=160)
             page_result = {
             "url": f"{url}index.php/{p.title.replace(' ', '_')}",
             "title": p.title,
-            "description": Truncator(description).chars(160),
+            "description": description,
             "is_doc": True,
-            "type": "wiki"
+            "type": "wiki",
+            "links": []
             } 
+            for link in p.links:
+                links = {
+                    "url": f"{url}index.php/{link.replace(' ', '_')}",
+                    "title": link,
+                    "description": Truncator(wiki.page(link).summarize(chars=140))
+                }
+                page_result["links"].append(links)
             # do not add existing pages
             if page_result["url"] not in (p["url"] for p in search_results):
                 if description:

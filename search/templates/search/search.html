@@ -31,7 +31,7 @@
             {% endif %}
             {% for result in search_results %}
                 {% if result.is_doc %}
-                    <li class="mb-6 text-sm overflow-hidden">
+                    <li class="mb-8 text-sm overflow-hidden">
                         <a target="_blank" class="hover:underline underline-offset-4"
                             href="{{ result.url }}">
                         <span class="text-xs truncate text-black pb-1 block">{{ result.url|remove_protocol }}</span>
@@ -54,6 +54,16 @@
                             No description available
                         </p>
                         {% endif %}
+                        {% if result.links %}
+                        <ol class="mt-1 ml-2 grid grid-cols-1 gap-1">
+                            {% for link in result.links %}
+                            <li>
+                                <a target="_blank" class="hover:underline text-xs truncate font-semibold text-teal-500 capitalize" href="{{ link.url }}">{{ link.title }}</a>
+                                <p class="text-xs mt-1">{{ link.description }}</p> 
+                            </li>
+                            {% endfor %}
+                        </ol>
+                        {% endif %}                      
                     </li>
                 {% endif %}
             {% endfor %}
@@ -61,7 +71,7 @@
         <ul>
             {% for result in search_results %}
                 {% if not result.is_doc %}
-                    <li class="overflow-hidden mb-6 text-sm">
+                    <li class="overflow-hidden mb-8 text-sm">
                         <a target="_blank" class="hover:underline underline-offset-4"
                             href="{{ result.url }}">
                         <span class="text-xs truncate text-black pb-1 block">{{ result.url|remove_protocol }}</span>
