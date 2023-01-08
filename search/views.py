@@ -5,6 +5,7 @@ from wagtail.search.models import Query
 import requests, re
 from mediawiki import MediaWiki
 import concurrent.futures
+from django.utils.text import Truncator
 
 
 def get_forum_results(query):
@@ -36,7 +37,8 @@ def get_forum_results(query):
                     topic_result["is_doc"] = True
                 for post in posts:
                     if post["topic_id"] == topic["id"]:
-                        topic_result["description"] = post["blurb"]
+                        desc = Truncator(post["blurb"])
+                        topic_result["description"] = desc.chars(160)
                 search_results.append(topic_result)
         except KeyError:
             pass        
@@ -89,7 +91,7 @@ def get_wiki_search_results(query):
             page_result = {
             "url": f"{url}index.php/{p.title.replace(' ', '_')}",
             "title": p.title,
-            "description": description,
+            "description": Truncator(description).chars(160),
             "is_doc": True,
             "type": "wiki"
             } 
