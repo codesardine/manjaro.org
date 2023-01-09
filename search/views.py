@@ -24,7 +24,8 @@ def get_forum_results(query):
             topics = response["topics"]
             posts = response["posts"]
             for topic in topics:
-                if topic["visible"]:
+                excluded_categories = [120]
+                if topic["visible"] and topic["category_id"] not in excluded_categories:
                     topic_result = {
                     "url": f"{URL}t/{topic['slug']}",
                     "title": re.sub("[\[].*?[\]]", "", topic["title"]),
@@ -32,18 +33,21 @@ def get_forum_results(query):
                     "is_doc": False,
                     "type": "forum",
                     "activity": topic["posts_count"] + topic["reply_count"],
-                    "solved": "unsolved"
+                    "message": "unsolved"
                     }
                     if topic["tags"]:
                         tags = []
                         for tag in topic["tags"]:
                             tags.append(tag)
                         topic_result["tags"] = tags
-                    if topic["has_accepted_answer"]:
-                        topic_result["solved"] = "solved"
-                    # shoud we exclude any forum categories?
+                    announcements = [11, 19, 12, 15, 13, 18, 79, 80, 81, 102, 101, 112]
                     if topic["category_id"] == 40: # tutorials
                         topic_result["is_doc"] = True
+                        topic_result["message"] = "Tutorial"
+                    elif topic["category_id"] in announcements:
+                        topic_result["message"] = None
+                    elif topic["has_accepted_answer"]:
+                        topic_result["message"] = "solved"
                     for post in posts:
                         if post["topic_id"] == topic["id"]:
                             desc = Truncator(post["blurb"])
@@ -58,7 +62,7 @@ def get_software_results(query):
     endpoint = f"{URL}/search.json"
     response = requests.get(endpoint, params={
         "query": query,
-    }, timeout=3.50 )
+    }, timeout=4 )
     if response.ok:
         response = response.json()            
         return response
@@ -109,7 +113,7 @@ def get_wiki_search_results(query):
                 links = {
                     "url": f"{url}index.php/{link.replace(' ', '_')}",
                     "title": link,
-                    "description": Truncator(wiki.page(link).summarize(chars=140))
+                    "description": Truncator(wiki.page(link).summarize(chars=160))
                 }
                 page_result["links"].append(links)
             # do not add existing pages
@@ -138,13 +142,11 @@ def search(request):
             except Exception as e:
                 print(e)
 
-    has_docs = False
-    for result in results:
-        if result["is_doc"]:
-            has_docs = True
-            break
+    def sort(results):
+        r = sorted(results, key=lambda i: i['title'])
+        return sorted(tuple(r), key=lambda i: i['is_doc'] == False)
 
-    search_results = sorted(tuple(results), key=lambda i: i['title'])
+    search_results = sort(results)
     if format == "json":
         data = {
             "Status": HttpResponse.status_code,
@@ -157,6 +159,5 @@ def search(request):
         return TemplateResponse(request, 'search/search.html', {
             "search_query": search_query,
             "search_results": search_results,
-            "has_docs": has_docs,
             "results_found": len(search_results),
         })

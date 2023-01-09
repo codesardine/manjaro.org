@@ -24,23 +24,26 @@
         <h1>{{ results_found }} search results for <span class="text-pink-500">"{{ search_query }}"</span></h1>
     </div>
     {% if search_results %}
-    <div class="grid gap-4 grid-cols-1 {% if has_docs %}lg:grid-cols-2{% else %}lg:grid-cols-1{% endif %}">
+    <div class="grid gap-4 grid-cols-1">
         <ul>
-            {% if has_docs %}
-            <h2 class="font-semibold mb-4 text-sm text-center">Documentation</h2>
-            {% endif %}
             {% for result in search_results %}
-                {% if result.is_doc %}
                     <li class="mb-8 text-sm overflow-hidden">
                         <a target="_blank" class="hover:underline underline-offset-4"
                             href="{{ result.url }}">
-                        <span class="text-xs truncate text-black pb-1 block">{{ result.url|remove_protocol }}</span>
+                        <cite class="text-xs truncate text-black pb-1">{{ result.url|remove_protocol }}</cite>
                         {% if "docs." in result.url %} 
                             <i class="fa-solid fa-book text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
                             {% elif "wiki." in result.url %}
                             <i class="fa-solid fa-file-word text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
                             {% elif "forum." in result.url %}
                             <i class="fa-solid fa-comment text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
+                            {% elif "blog." in result.url %}
+                            <i class="fa-solid fa-blog text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
+                            {% elif "forum." in result.url %}
+                            <i class="fa-solid fa-comment text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
+                            {% elif "software." in result.url %}
+                            {% else %}
+                            <i class="fa-solid fa-file text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
                             {% endif %}
                         <h2 class="mb-1 truncate font-semibold text-teal-500 capitalize">
                             {{ result.title }}
@@ -63,73 +66,42 @@
                             </li>
                             {% endfor %}
                         </ol>
-                        {% endif %}                      
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-        <ul>
-            {% for result in search_results %}
-                {% if not result.is_doc %}
-                    <li class="overflow-hidden mb-8 text-sm">
-                        <a target="_blank" class="hover:underline underline-offset-4"
-                            href="{{ result.url }}">
-                        <span class="text-xs truncate text-black pb-1 block">{{ result.url|remove_protocol }}</span>
-                        {% if "blog." in result.url %}
-                            <i class="fa-solid fa-blog text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
-                            {% elif "forum." in result.url %}
-                            <i class="fa-solid fa-comment text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
-                            {% elif "software." in result.url %}
-                            {% else %}
-                            <i class="fa-solid fa-file text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
-                            {% endif %}
-                        <h2 class="mb-1 truncate font-semibold text-teal-500 capitalize">
-                            {{ result.title }}
-                        </h2></a>
-                        {% if result.description %}
-                            <p class="text-sm capitalize">
-                                {{ result.description }}
-                            </p>
-                        {% else %}
-                        <p class="text-sm capitalize">
-                            No description available
-                        </p>
-                        {% endif %}
+                        {% endif %}    
                         {% if result.type == "package" or result.type == "snap" or result.type == "flatpak" %}
                         <span class="mt-2 block">
                             {% if result.type == "package" %}
-                                <a class="text-xs font-semibold text-gray-200 bg-teal-600 rounded py-1 px-2 inline-block" href="web-pamac://pkg={{ result.package }}">
-                                    <i class="fa-solid fa-archive mr-2"></i>Install this package</a>
+                                <a class="shadow text-xs font-semibold text-gray-200 bg-teal-600 rounded py-1 px-2 inline-block" href="web-pamac://pkg={{ result.package }}">
+                                    <i class="fa-solid fa-archive mr-2"></i>Install package</a>
                                 {% elif result.type == "snap" %}
-                                <a class="text-xs font-semibold text-gray-200 bg-teal-600 rounded py-1 px-2 inline-block" href="web-pamac://snap={{ result.package }}">
-                                    <i class="fa-solid fa-archive mr-2"></i>Install this snap</a>
+                                <a class="shadow text-xs font-semibold text-gray-200 bg-teal-600 rounded py-1 px-2 inline-block" href="web-pamac://snap={{ result.package }}">
+                                    <i class="fa-solid fa-archive mr-2"></i>Install snap</a>
                                 {% elif result.type == "flatpak" %}
-                                <a class="text-xs font-semibold text-gray-200 bg-teal-600 rounded py-1 px-2 inline-block" href="web-pamac://flatpak={{ result.package }}">
-                                    <i class="fa-solid fa-archive mr-2"></i>Install this flatpak</a>
+                                <a class="shadow text-xs font-semibold text-gray-200 bg-teal-600 rounded py-1 px-2 inline-block" href="web-pamac://flatpak={{ result.package }}">
+                                    <i class="fa-solid fa-archive mr-2"></i>Install flatpak</a>
                             {% endif %}
                         </span>
                         {% endif %}
                         <div class="font-semibold">
-                            <span class="text-xs capitalize {% if result.solved == 'solved' %}text-teal-400{% else %}text-orange-900{% endif %}">
-                                {{ result.solved }}
+                            {% if result.message %}
+                            <span class="text-xs capitalize mr-4 text-blue-400">
+                                {{ result.message }}
                              </span> 
+                            {% endif %}
                             {% if result.activity %}
-                            <span class="text-xs capitalize ml-4">
+                            <span class="text-xs capitalize mr-4">
                                 <span class="text-gray-700">activity:</span>
                                 <span class="text-pink-500">{{ result.activity }}</span> 
                             </span>
                             {% endif %}  
                             {% if result.tags %}
-                            <span class="text-xs capitalize ml-4">
+                            <span class="text-xs capitalize">
                                 <span class="text-gray-700">tags:</span>
                                {% for tag in result.tags %}
-                                   <span class="text-blue-400 mr-1">{{ tag }}</span>
+                                   <span class="text-pink-500 mr-1">{{ tag }}</span>
                                {% endfor %}
                             </span>
-                            {% endif %}
-                        </div>                         
+                            {% endif %}                 
                     </li>
-                {% endif %}
             {% endfor %}
         </ul>
     </div>
