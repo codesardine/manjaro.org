@@ -125,7 +125,7 @@ def get_wiki_search_results(query):
 def search(request):
     search_query = request.GET.get('query', None)
     format = request.GET.get('format', None)
-    futures = []
+    _type = request.GET.get('type', None)
     results = []
     search_providers = (
         get_forum_results,
@@ -134,6 +134,7 @@ def search(request):
         get_software_results
         )
     with concurrent.futures.ThreadPoolExecutor(len(search_providers)) as executor:
+        futures = []
         for provider in search_providers:
             futures.append(executor.submit(provider, search_query))
         for future in concurrent.futures.as_completed(futures):
@@ -142,11 +143,18 @@ def search(request):
             except Exception as e:
                 print(e)
 
-    def sort(results):
+    def sort(results, _type):
+        if _type:
+            type_results = []
+            for result in results:
+                if result["type"] == _type:
+                    type_results.append(result)
+            results = type_results
+
         r = sorted(results, key=lambda i: i['title'])
         return sorted(tuple(r), key=lambda i: i['is_doc'] == False)
 
-    search_results = sort(results)
+    search_results = sort(results, _type)
     if format == "json":
         data = {
             "Status": HttpResponse.status_code,
