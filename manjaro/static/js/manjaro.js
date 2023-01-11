@@ -8,6 +8,25 @@ window.addEventListener("load", () => {
   toggleMobileBtn.addEventListener("click", () => {
     toggleMenu()
   })
+  
+  const queryMsg = "Input a query to search for"
+  const searchBtn = document.getElementById("search-form")
+  searchBtn.addEventListener("submit", (event) => {
+    let search = document.getElementById("search-query")
+    if (search.value == 0) {
+      event.preventDefault();
+      alert(queryMsg)
+    }
+  })
+
+  const searchBtnM = document.getElementById("search-form-mobile")
+  searchBtnM.addEventListener("submit", (event) => {
+    let search = document.getElementById("search-query-mobile")
+    if (search.value == 0) {
+      event.preventDefault();
+      alert(queryMsg)
+    }
+  })
 
   window.onclick = (event) => {
     let leftSubmenu = document.querySelectorAll(".dropdown")

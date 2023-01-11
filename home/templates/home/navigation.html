@@ -53,9 +53,9 @@
           </a>
         </li>
       </ul>
-      <form action="{% url 'search' %}" method="get" class="relative text-sm flex">
-        <input class="h-[34px] transition duration-200 bg-gray-200 border-0 appearance-none focus:ring-0" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-        <button class="fa fa-magnifying-glass text-teal-900 bg-teal-accent-700 w-10" type="submit"></button>
+      <form id="search-form" action="{% url 'search' %}" method="get" class="relative text-sm hidden lg:flex">
+        <input id="search-query" spellcheck="true" class="h-[34px] transition duration-200 bg-gray-200 border-0 appearance-none focus:ring-0" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+        <button class="hidden lg:block fa fa-magnifying-glass text-teal-900 bg-teal-accent-700 w-10" type="submit"></button>
     </form>
     </div>
 
@@ -111,8 +111,8 @@
     class="bottom-1 text-2xl px-4 shadow h-[55px] justify-center bg-gray-900 text-gray-200 flex items-center">
     <i class="fa-solid fa-bars"></i>
   </button>
-  <form action="{% url 'search' %}" method="get" class="text-sm flex bg-white w-full">
-    <input class="h-[55px] w-full transition duration-200 bg-white border-0 appearance-none focus:ring-0" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+  <form id="search-form-mobile" action="{% url 'search' %}" method="get" class="text-sm flex bg-white w-full">
+    <input id="search-query-mobile" class="h-[55px] w-full transition duration-200 bg-white border-0 appearance-none focus:ring-0" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
     <button class="fa fa-magnifying-glass text-teal-900 bg-teal-accent-700 w-10" type="submit"></button>
 </form>
   </div>

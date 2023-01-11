@@ -127,57 +127,57 @@ def get_wiki_results(query):
 
 def search(request):
     search_query = request.GET.get('query', None)
-    if search_query:
-        format = request.GET.get('format', None)
-        _type = request.GET.get('type', None)
-        pkg_formats = ("appimage", "package", "snap", "flatpak", "pkgs")
-        results = []
-        search_providers = []
-        if _type:
-            for provider in _type.split(" "):
-                if provider in pkg_formats:
-                    search_providers.append(get_software_results)
-                if provider == "forum":
-                    search_providers.append(get_forum_results)
-                if provider == "wiki":
-                    search_providers.append(get_wiki_results)
-                if provider == "page":
-                    search_providers.append(get_page_results)
-        else:
-            search_providers.append(get_software_results)
-            search_providers.append(get_forum_results)
-            search_providers.append(get_wiki_results)
-            search_providers.append(get_page_results)
+    
+    format = request.GET.get('format', None)
+    _type = request.GET.get('type', None)
+    pkg_formats = ("appimage", "package", "snap", "flatpak", "pkgs")
+    results = []
+    search_providers = []
+    if _type:
+        for provider in _type.split(" "):
+            if provider in pkg_formats:
+                search_providers.append(get_software_results)
+            if provider == "forum":
+                search_providers.append(get_forum_results)
+            if provider == "wiki":
+                search_providers.append(get_wiki_results)
+            if provider == "page":
+                search_providers.append(get_page_results)
+    else:
+        search_providers.append(get_software_results)
+        search_providers.append(get_forum_results)
+        search_providers.append(get_wiki_results)
+        search_providers.append(get_page_results)
 
-        with concurrent.futures.ThreadPoolExecutor(len(search_providers)) as executor:
-            futures = []
-            for provider in search_providers:
-                if provider == get_software_results:
-                    futures.append(executor.submit(provider, search_query, _type))
-                else:
-                    futures.append(executor.submit(provider, search_query))
-            for future in concurrent.futures.as_completed(futures):
-                try:
-                    results.extend(future.result())
-                except Exception as e:
-                    print(e)
+    with concurrent.futures.ThreadPoolExecutor(len(search_providers)) as executor:
+        futures = []
+        for provider in search_providers:
+            if provider == get_software_results:
+                futures.append(executor.submit(provider, search_query, _type))
+            else:
+                futures.append(executor.submit(provider, search_query))
+        for future in concurrent.futures.as_completed(futures):
+            try:
+                results.extend(future.result())
+            except Exception as e:
+                print(e)
 
-        def sort(results):
-            r = sorted(results, key=lambda i: i['title'])
-            return sorted(tuple(r), key=lambda i: i['is_doc'] == False)
+    def sort(results):
+        r = sorted(results, key=lambda i: i['title'])
+        return sorted(tuple(r), key=lambda i: i['is_doc'] == False)
 
-        search_results = sort(results)
-        if format == "json":
-            data = {
-                "Status": HttpResponse.status_code,
-                "results-found": len(search_results),
-                "Content-Type": "application/json",
-                "search-results": search_results
-            }
-            return JsonResponse(data, safe=False)
-        else:
-            return TemplateResponse(request, 'search/search.html', {
-                "search_query": search_query,
-                "search_results": search_results,
-                "results_found": len(search_results),
-            })
+    search_results = sort(results)
+    if format == "json":
+        data = {
+            "Status": HttpResponse.status_code,
+            "results-found": len(search_results),
+            "Content-Type": "application/json",
+            "search-results": search_results
+        }
+        return JsonResponse(data, safe=False)
+    else:
+        return TemplateResponse(request, 'search/search.html', {
+            "search_query": search_query,
+            "search_results": search_results,
+            "results_found": len(search_results),
+        })
