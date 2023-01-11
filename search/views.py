@@ -7,6 +7,10 @@ from mediawiki import MediaWiki
 import concurrent.futures
 from django.utils.text import Truncator
 
+headers = {
+    "User-Agent": "Manjaro-Search-Bot 1.0 (+https://manjaro.org)"
+}
+
 def get_query(search_query, _type):
         pkg_formats = ("appimage", "package", "snap", "flatpak", "packages")
         results = []
@@ -63,7 +67,7 @@ def get_forum_results(query):
         "order":"latest",
         "status": "public",
         "in": "title"
-    }, timeout=4 )
+    }, timeout=4, headers=headers)
     if response.ok:
         search_results = []
         response = response.json()
@@ -112,7 +116,7 @@ def get_software_results(query, _type):
     }
     if _type:
         params["type"] = _type
-    response = requests.get(endpoint, params, timeout=4)
+    response = requests.get(endpoint, params, timeout=4, headers=headers)
     if response.ok:
         response = response.json()            
         return response
@@ -143,7 +147,7 @@ def get_page_results(search_query):
 def get_wiki_results(query):
     url = "https://wiki.manjaro.org/"
     endpoint = "api.php"
-    wiki = MediaWiki(url=f"{url}{endpoint}")
+    wiki = MediaWiki(url=f"{url}{endpoint}", user_agent=headers["User-Agent"])
     search = wiki.search(query)
     search_results = []
     for page in search:
