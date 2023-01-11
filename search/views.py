@@ -7,6 +7,53 @@ from mediawiki import MediaWiki
 import concurrent.futures
 from django.utils.text import Truncator
 
+def get_query(search_query, _type):
+        pkg_formats = ("appimage", "package", "snap", "flatpak", "packages")
+        results = []
+        search_providers = []
+        if _type:
+            for provider in _type.split(" "):
+                if provider in pkg_formats:
+                    search_providers.append(get_software_results)
+                if provider == "forum":
+                    search_providers.append(get_forum_results)
+                if provider == "wiki":
+                    search_providers.append(get_wiki_results)
+                if provider == "page":
+                    search_providers.append(get_page_results)
+        else:
+            search_providers.append(get_software_results)
+            search_providers.append(get_forum_results)
+            search_providers.append(get_wiki_results)
+            search_providers.append(get_page_results)
+
+        with concurrent.futures.ThreadPoolExecutor(10) as executor:
+            futures = []
+            for provider in search_providers:
+                if provider == get_software_results:
+                    futures.append(executor.submit(provider, search_query, _type))
+                else:
+                    futures.append(executor.submit(provider, search_query))
+            for future in concurrent.futures.as_completed(futures):
+                try:
+                    results.extend(future.result())
+                except Exception as e:
+                    print(e)
+
+        return results
+
+def sort_search_results(results, terms_blacklist):
+    if terms_blacklist:
+        search_results = []
+        for result in results:
+            test_case = f'{result["title"]} {result["description"]} {result["url"]}'
+            if any(term.lower() not in test_case.lower() for term in terms_blacklist):
+                search_results.append(result)
+    else:
+        search_results = results        
+                
+    r = sorted(search_results, key=lambda i: i['title'])
+    return sorted(tuple(r), key=lambda i: i['is_doc'] == False)
 
 def get_forum_results(query):
     URL = "https://forum.manjaro.org/"
@@ -127,46 +174,33 @@ def get_wiki_results(query):
 
 def search(request):
     search_query = request.GET.get('query', None)
-    
-    format = request.GET.get('format', None)
     _type = request.GET.get('type', None)
-    pkg_formats = ("appimage", "package", "snap", "flatpak", "pkgs")
-    results = []
-    search_providers = []
-    if _type:
-        for provider in _type.split(" "):
-            if provider in pkg_formats:
-                search_providers.append(get_software_results)
-            if provider == "forum":
-                search_providers.append(get_forum_results)
-            if provider == "wiki":
-                search_providers.append(get_wiki_results)
-            if provider == "page":
-                search_providers.append(get_page_results)
+    if _type == "packages":
+            _type = "appimage snap flatpak package"
+    queries = []
+    search_results = []
+    term_blacklist = []
+
+    if "NOT" in search_query:
+        term_blacklist.append(search_query.split("NOT")[1].strip())
+        search_query = search_query.split("NOT")[0].strip()
+
+    if "AND" in search_query:
+        _type = search_query.split("AND")[1].strip()
+        if _type == "packages":
+            _type = "appimage snap flatpak package"
+        search_query = search_query.split("AND")[0].strip()
+
+    if "OR" in search_query:
+        queries.append(search_query.split("OR")[1].strip())
+        queries.append(search_query.split("OR")[0].strip())
     else:
-        search_providers.append(get_software_results)
-        search_providers.append(get_forum_results)
-        search_providers.append(get_wiki_results)
-        search_providers.append(get_page_results)
+        queries.append(search_query)
 
-    with concurrent.futures.ThreadPoolExecutor(len(search_providers)) as executor:
-        futures = []
-        for provider in search_providers:
-            if provider == get_software_results:
-                futures.append(executor.submit(provider, search_query, _type))
-            else:
-                futures.append(executor.submit(provider, search_query))
-        for future in concurrent.futures.as_completed(futures):
-            try:
-                results.extend(future.result())
-            except Exception as e:
-                print(e)
+    for query in queries:
+        search_results.extend(get_query(query, _type))
 
-    def sort(results):
-        r = sorted(results, key=lambda i: i['title'])
-        return sorted(tuple(r), key=lambda i: i['is_doc'] == False)
-
-    search_results = sort(results)
+    search_results = sort_search_results(search_results, term_blacklist)
     if format == "json":
         data = {
             "Status": HttpResponse.status_code,
@@ -177,7 +211,9 @@ def search(request):
         return JsonResponse(data, safe=False)
     else:
         return TemplateResponse(request, 'search/search.html', {
-            "search_query": search_query,
+            "search_query": " AND ".join(queries),
             "search_results": search_results,
             "results_found": len(search_results),
         })
+
+    
