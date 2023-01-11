@@ -179,6 +179,7 @@ def get_wiki_results(query):
 def search(request):
     search_query = request.GET.get('query', None)
     _type = request.GET.get('type', None)
+    _format = request.GET.get('format', None)
     if _type == "packages":
             _type = "appimage snap flatpak package"
     queries = []
@@ -205,7 +206,7 @@ def search(request):
         search_results.extend(get_query(query, _type))
 
     search_results = sort_search_results(search_results, term_blacklist)
-    if format == "json":
+    if _format == "json":
         data = {
             "Status": HttpResponse.status_code,
             "results-found": len(search_results),
