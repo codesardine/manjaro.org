@@ -26,9 +26,9 @@ def get_query(search_query, _type):
                     search_providers.append(get_wiki_results)
                 if provider == "page":
                     search_providers.append(get_page_results)
-                if provider == "projects":
+                if provider == "project":
                     search_providers.append(get_gitlab_hosted_projects_results)
-                if provider == "issues":
+                if provider == "issue":
                     search_providers.append(get_gitlab_hosted_issues_results)
                 if provider == "git":
                     search_providers.append(get_gitlab_hosted_projects_results)
@@ -195,6 +195,7 @@ def get_gitlab_hosted_projects_results(search_query):
         private_token=os.getenv('GITLAB_HOSTED_TOKEN'),
         user_agent=headers["User-Agent"]
         )
+
     projects = gl.search(gitlab.const.SearchScope.PROJECTS, search_query, iterator=True)
     search_results = []
     for item in projects:
@@ -204,7 +205,7 @@ def get_gitlab_hosted_projects_results(search_query):
             "description": Truncator(item["description"]).chars(160),
             "is_doc": False,
             "type": "project",
-            "message": "Project"
+            "message": "project"
             }
         search_results.append(page_result)
     return search_results
@@ -225,7 +226,8 @@ def get_gitlab_hosted_issues_results(search_query):
             "description": Truncator(item["description"]).chars(160),
             "is_doc": False,
             "type": "issue",
-            "message": "Issue"
+            "message": "issue",
+            "state": item["state"]
             }
         search_results.append(page_result)        
     return search_results

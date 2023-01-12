@@ -83,24 +83,28 @@
                             {% endif %}
                         </span>
                         {% endif %}
-                        <div class="font-semibold">
+                        <div class="font-semibold mt-1">
                             {% if result.message %}
-                            <span class="text-xs capitalize mr-4 text-blue-400">
-                                {{ result.message }}
+                            <span class="{% if result.message == 'solved'%}bg-green-400{% else %}bg-blue-400{% endif %}
+                            text-xs capitalize mr-2 text-gray-200 py-1 px-2 float-left block w-min rounded">
+                             {{ result.message }}
                              </span> 
+                             {% if result.message == 'issue' %}
+                             <span class="{% if result.state == 'opened'%}bg-purple-500{% else %}bg-gray-800{% endif %}
+                            text-xs capitalize mr-2 text-gray-200 py-1 px-2 float-left block rounded">{{ result.state }}
+                             {% endif %}
                             {% endif %}
                             {% if result.activity %}
-                            <span class="text-xs capitalize mr-4">
-                                <span class="text-gray-700">activity:</span>
-                                <span class="text-pink-500">{{ result.activity }}</span> 
+                            <span class="text-xs capitalize">
+                                <span class="bg-pink-500 text-gray-200 py-1 px-2 float-left inline-block rounded mr-2">activity:&nbsp;{{ result.activity }}</span> 
                             </span>
                             {% endif %}  
                             {% if result.tags %}
                             <span class="text-xs capitalize">
-                                <span class="text-gray-700">tags:</span>
-                               {% for tag in result.tags %}
-                                   <span class="text-pink-500 mr-1">{{ tag }}</span>
-                               {% endfor %}
+                                <span class="bg-purple-500 text-gray-200 py-1 px-2 float-left inline-block rounded">tags:</span>
+                                {% for tag in result.tags %}
+                                <span class="bg-purple-500 text-gray-200 py-1 px-2 float-left inline-block rounded ml-1">{{ tag }}</span>
+                                {% endfor %}
                             </span>
                             {% endif %}                 
                     </li>
