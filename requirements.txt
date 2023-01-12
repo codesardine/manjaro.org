@@ -12,3 +12,4 @@ apscheduler
 django-debug-toolbar
 python-dateutil
 pymediawiki
+python-gitlab

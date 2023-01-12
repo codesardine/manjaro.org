@@ -6,7 +6,7 @@ import requests, re
 from mediawiki import MediaWiki
 import concurrent.futures
 from django.utils.text import Truncator
-import gitlab
+import gitlab, os
 
 headers = {
     "User-Agent": "Manjaro-Starter 1.0 (+https://manjaro.org)"
@@ -26,11 +26,20 @@ def get_query(search_query, _type):
                     search_providers.append(get_wiki_results)
                 if provider == "page":
                     search_providers.append(get_page_results)
+                if provider == "projects":
+                    search_providers.append(get_gitlab_hosted_projects_results)
+                if provider == "issues":
+                    search_providers.append(get_gitlab_hosted_issues_results)
+                if provider == "git":
+                    search_providers.append(get_gitlab_hosted_projects_results)
+                    search_providers.append(get_gitlab_hosted_issues_results)
         else:
             search_providers.append(get_software_results)
             search_providers.append(get_forum_results)
             search_providers.append(get_wiki_results)
             search_providers.append(get_page_results)
+            search_providers.append(get_gitlab_hosted_projects_results)
+            search_providers.append(get_gitlab_hosted_issues_results)
 
 
         with concurrent.futures.ThreadPoolExecutor(10) as executor:
@@ -179,8 +188,48 @@ def get_wiki_results(query):
                 if description:
                     search_results.append(page_result)
     return search_results 
-    
 
+def get_gitlab_hosted_projects_results(search_query):
+    gl = gitlab.Gitlab(
+        url='https://gitlab.manjaro.org',
+        private_token=os.getenv('GITLAB_HOSTED_TOKEN'),
+        user_agent=headers["User-Agent"]
+        )
+    projects = gl.search(gitlab.const.SearchScope.PROJECTS, search_query, iterator=True)
+    search_results = []
+    for item in projects:
+        page_result = {
+            "url": item["web_url"],
+            "title": item["name"],
+            "description": Truncator(item["description"]).chars(160),
+            "is_doc": False,
+            "type": "project",
+            "message": "Project"
+            }
+        search_results.append(page_result)
+    return search_results
+
+def get_gitlab_hosted_issues_results(search_query):
+    gl = gitlab.Gitlab(
+        url='https://gitlab.manjaro.org',
+        private_token=os.getenv('GITLAB_HOSTED_TOKEN'),
+        user_agent=headers["User-Agent"]
+        )
+
+    issues = gl.search(gitlab.const.SearchScope.ISSUES, search_query, iterator=True)
+    search_results = []
+    for item in issues:
+        page_result = {
+            "url": item["web_url"],
+            "title": item["title"],
+            "description": Truncator(item["description"]).chars(160),
+            "is_doc": False,
+            "type": "issue",
+            "message": "Issue"
+            }
+        search_results.append(page_result)        
+    return search_results
+    
 def search(request):
     search_query = request.GET.get('query', None)
     _type = request.GET.get('type', None)
