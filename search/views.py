@@ -167,7 +167,7 @@ def get_wiki_results(query):
                 links = {
                     "url": f"{url}index.php/{link.replace(' ', '_')}",
                     "title": link,
-                    "description": Truncator(wiki.page(link).summarize(chars=160))
+                    "description": wiki.page(link).summarize(chars=160)
                 }
                 page_result["links"].append(links)
             # do not add existing pages
