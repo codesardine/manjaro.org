@@ -6,9 +6,10 @@ import requests, re
 from mediawiki import MediaWiki
 import concurrent.futures
 from django.utils.text import Truncator
+import gitlab
 
 headers = {
-    "User-Agent": "Manjaro-Search-Bot 1.0 (+https://manjaro.org)"
+    "User-Agent": "Manjaro-Starter 1.0 (+https://manjaro.org)"
 }
 
 def get_query(search_query, _type):
@@ -30,6 +31,7 @@ def get_query(search_query, _type):
             search_providers.append(get_forum_results)
             search_providers.append(get_wiki_results)
             search_providers.append(get_page_results)
+
 
         with concurrent.futures.ThreadPoolExecutor(10) as executor:
             futures = []
@@ -101,8 +103,7 @@ def get_forum_results(query):
                         topic_result["message"] = "solved"
                     for post in posts:
                         if post["topic_id"] == topic["id"]:
-                            desc = Truncator(post["blurb"])
-                            topic_result["description"] = desc.chars(160)
+                            topic_result["description"] = Truncator(post["blurb"]).chars(160)
                     search_results.append(topic_result)
         except KeyError:
             pass        
@@ -115,7 +116,10 @@ def get_software_results(query, _type):
         "query": query,
     }
     if _type:
-        params["type"] = _type
+        if _type == "packages":
+            _type = "snap appimage package flatpak"        
+        else:
+            params["type"] = _type
     response = requests.get(endpoint, params, timeout=4, headers=headers)
     if response.ok:
         response = response.json()            
@@ -175,13 +179,12 @@ def get_wiki_results(query):
                 if description:
                     search_results.append(page_result)
     return search_results 
+    
 
 def search(request):
     search_query = request.GET.get('query', None)
     _type = request.GET.get('type', None)
     _format = request.GET.get('format', None)
-    if _type == "packages":
-            _type = "appimage snap flatpak package"
     queries = []
     search_results = []
     term_blacklist = []
@@ -192,8 +195,6 @@ def search(request):
 
     if "AND" in search_query:
         _type = search_query.split("AND")[1].strip()
-        if _type == "packages":
-            _type = "appimage snap flatpak package"
         search_query = search_query.split("AND")[0].strip()
 
     if "OR" in search_query:
