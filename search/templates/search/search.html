@@ -41,7 +41,7 @@
                             <i class="fa-solid fa-blog text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
                             {% elif "forum." in result.url %}
                             <i class="fa-solid fa-comment text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
-                            {% elif result.type == "issue"  or result.type == "project" %}
+                            {% elif result.type == "issue"  or result.type == "project" or result.type == "repository" %}
                             <i class="fa-brands fa-git text-blue-gray-600 float-left mr-2 pt-1"></i>
                             {% elif "software." in result.url %}
                             {% else %}

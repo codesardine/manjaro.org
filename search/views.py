@@ -33,6 +33,8 @@ def get_query(search_query, _type):
                 if provider == "git":
                     search_providers.append(get_gitlab_hosted_projects_results)
                     search_providers.append(get_gitlab_hosted_issues_results)
+                if provider == "gh":
+                    search_providers.append(get_github_manjaro_results)
         else:
             search_providers.append(get_software_results)
             search_providers.append(get_forum_results)
@@ -230,6 +232,48 @@ def get_gitlab_hosted_issues_results(search_query):
             "state": item["state"]
             }
         search_results.append(page_result)        
+    return search_results
+
+def get_github_manjaro_results(search_query):
+    from github import Github
+    if os.getenv('GITHUB_MANJARO_TOKEN'):
+        token = os.getenv('GITHUB_MANJARO_TOKEN')
+    else:
+        token = ""
+    gh = Github(token)
+    repos = gh.get_organization("manjaro").get_repos()    
+    results = []
+    for item in repos:
+        if not item.archived:
+            repo_result = {
+                "url": item.html_url,
+                "title": item.name,
+                "description": "",
+                "is_doc": False,
+                "type": "repository",
+                "message": "repository"
+                }
+            if item.description:
+                repo_result["description"] = Truncator(item.description).chars(160)
+            #print(dir(item))
+            results.append(repo_result) 
+            if item.has_issues:
+                for issue in item.get_issues():
+                    if "pull" not in item.html_url:
+                        repo_result = {
+                        "url": issue.html_url,
+                        "title": issue.title,
+                        "description": Truncator(issue.body).chars(160),
+                        "is_doc": False,
+                        "type": "issue",
+                        "message": "issue",
+                        "state": issue.state
+                        }
+                    results.append(repo_result)   
+    search_results = []
+    for result in results:
+        if search_query in result["title"] or search_query in result["description"]:
+            search_results.append(result)
     return search_results
     
 def search(request):
