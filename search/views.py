@@ -293,7 +293,7 @@ def _build_github_search_data():
 @cache(maxsize=128)
 def _check_github_needs_updating():
     time_now = datetime.datetime.now().astimezone()
-    update_frequency = 30 
+    update_frequency = 58
     try:
         last_update = SearchLastUpdate.objects.get(id=1)
     except SearchLastUpdate.DoesNotExist:
