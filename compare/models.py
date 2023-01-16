@@ -200,6 +200,9 @@ class Packages(RoutablePageMixin, Page):
                     search_results = [match for match in all if match.tag == "error"]
                 elif "manjaro" in search_query:
                     search_results = model.objects.filter(packager__contains='manjaro')
+            elif "maintainer:" in search_query:
+                packager = search_query.split("maintainer:")[1]
+                search_results = model.objects.filter(packager__contains=packager)
 
         else:
             search_results = model.objects.none()
