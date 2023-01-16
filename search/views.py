@@ -6,11 +6,18 @@ import requests, re
 from mediawiki import MediaWiki
 import concurrent.futures
 from django.utils.text import Truncator
-import gitlab, os
+import gitlab, os, datetime
+from .models import SearchData, SearchLastUpdate
+from django.db.models import Q
+from github import Github
+import asyncio
+from functools import lru_cache as cache
+
 
 headers = {
     "User-Agent": "Manjaro-Starter 1.0 (+https://manjaro.org)"
 }
+
 
 def get_query(search_query, _type):
         pkg_formats = ("appimage", "package", "snap", "flatpak", "packages")
@@ -26,15 +33,10 @@ def get_query(search_query, _type):
                     search_providers.append(get_wiki_results)
                 if provider == "page":
                     search_providers.append(get_page_results)
-                if provider == "project":
-                    search_providers.append(get_gitlab_hosted_projects_results)
-                if provider == "issue":
-                    search_providers.append(get_gitlab_hosted_issues_results)
                 if provider == "git":
                     search_providers.append(get_gitlab_hosted_projects_results)
                     search_providers.append(get_gitlab_hosted_issues_results)
-                if provider == "gh":
-                    search_providers.append(get_github_manjaro_results)
+                    search_providers.append(get_github_results)
         else:
             search_providers.append(get_software_results)
             search_providers.append(get_forum_results)
@@ -42,7 +44,7 @@ def get_query(search_query, _type):
             search_providers.append(get_page_results)
             search_providers.append(get_gitlab_hosted_projects_results)
             search_providers.append(get_gitlab_hosted_issues_results)
-
+            search_providers.append(get_github_results)
 
         with concurrent.futures.ThreadPoolExecutor(10) as executor:
             futures = []
@@ -59,6 +61,7 @@ def get_query(search_query, _type):
 
         return results
 
+
 def sort_search_results(results, terms_blacklist):
     if terms_blacklist:
         search_results = []
@@ -71,6 +74,7 @@ def sort_search_results(results, terms_blacklist):
                 
     r = sorted(search_results, key=lambda i: i['title'])
     return sorted(tuple(r), key=lambda i: i['is_doc'] == False)
+
 
 def get_forum_results(query):
     URL = "https://forum.manjaro.org/"
@@ -120,6 +124,7 @@ def get_forum_results(query):
             pass        
         return search_results
 
+
 def get_software_results(query, _type):
     URL = "https://software.manjaro.org/"
     endpoint = f"{URL}/search.json"
@@ -135,6 +140,7 @@ def get_software_results(query, _type):
     if response.ok:
         response = response.json()            
         return response
+
 
 def get_page_results(search_query):
         search_results = []
@@ -158,6 +164,7 @@ def get_page_results(search_query):
             
             search_results.append(page_result)
         return search_results
+
 
 def get_wiki_results(query):
     url = "https://wiki.manjaro.org/"
@@ -191,6 +198,7 @@ def get_wiki_results(query):
                     search_results.append(page_result)
     return search_results 
 
+
 def get_gitlab_hosted_projects_results(search_query):
     gl = gitlab.Gitlab(
         url='https://gitlab.manjaro.org',
@@ -206,11 +214,12 @@ def get_gitlab_hosted_projects_results(search_query):
             "title": item["name"],
             "description": Truncator(item["description"]).chars(160),
             "is_doc": False,
-            "type": "project",
-            "message": "project"
+            "type": "repository",
+            "message": "repository"
             }
         search_results.append(page_result)
     return search_results
+
 
 def get_gitlab_hosted_issues_results(search_query):
     gl = gitlab.Gitlab(
@@ -234,48 +243,110 @@ def get_gitlab_hosted_issues_results(search_query):
         search_results.append(page_result)        
     return search_results
 
-def get_github_manjaro_results(search_query):
-    from github import Github
-    if os.getenv('GITHUB_MANJARO_TOKEN'):
-        token = os.getenv('GITHUB_MANJARO_TOKEN')
-    else:
-        token = ""
-    gh = Github(token)
-    repos = gh.get_organization("manjaro").get_repos()    
+
+def _build_github_search_data():
+    orgs = ("manjaro", "manjaro-sway", "manjaro-plasma", "manjaro-gnome")
     results = []
-    for item in repos:
-        if not item.archived:
-            repo_result = {
-                "url": item.html_url,
-                "title": item.name,
-                "description": "",
-                "is_doc": False,
-                "type": "repository",
-                "message": "repository"
-                }
-            if item.description:
-                repo_result["description"] = Truncator(item.description).chars(160)
-            #print(dir(item))
-            results.append(repo_result) 
-            if item.has_issues:
-                for issue in item.get_issues():
-                    if "pull" not in item.html_url:
-                        repo_result = {
-                        "url": issue.html_url,
-                        "title": issue.title,
-                        "description": Truncator(issue.body).chars(160),
-                        "is_doc": False,
-                        "type": "issue",
-                        "message": "issue",
-                        "state": issue.state
-                        }
-                    results.append(repo_result)   
+
+    async def task_org(org):
+        if os.getenv('GITHUB_TOKEN'):
+            gh = Github(os.getenv('GITHUB_TOKEN'))
+        else:
+            gh = Github()
+
+        repos = gh.get_organization(org).get_repos()    
+        for item in repos:
+            if not item.archived:
+                repo_result = {
+                    "url": item.html_url,
+                    "title": item.name,
+                    "description": "",
+                    "is_doc": False,
+                    "type": "repository",
+                    "message": "repository"
+                    }
+                if item.description:
+                    repo_result["description"] = Truncator(item.description).chars(160)
+                results.append(repo_result) 
+                if item.has_issues:
+                    for issue in item.get_issues():
+                        if "pull" not in item.html_url:
+                            repo_result = {
+                            "url": issue.html_url,
+                            "title": issue.title,
+                            "description": Truncator(issue.body).chars(160),
+                            "is_doc": False,
+                            "type": "issue",
+                            "message": "issue",
+                            "state": issue.state
+                            }
+                        results.append(repo_result)  
+    
+    async def main():
+        tasks = [task_org(org) for org in orgs]
+        await asyncio.gather(*tasks)
+       
+    asyncio.run(main())
+    return results
+
+
+@cache(maxsize=128)
+def _check_github_needs_updating():
+    time_now = datetime.datetime.now().astimezone()
+    update_frequency = 30 
+    try:
+        last_update = SearchLastUpdate.objects.get(id=1)
+    except SearchLastUpdate.DoesNotExist:
+        SearchLastUpdate(
+            time = time_now - datetime.timedelta(minutes=update_frequency+1)
+        ).save()
+        last_update = SearchLastUpdate.objects.get(id=1)
+
+    if last_update.time + datetime.timedelta(minutes=update_frequency) <= time_now:
+        print("Updating github data")
+        last_update.time = time_now
+        last_update.save()
+        SearchData.objects.all().delete()
+        results = _build_github_search_data()
+        for result in results:
+            try:
+                data = SearchData.objects.create(
+                    url=result["url"],
+                    title=result["title"],
+                    description=result["description"],
+                    type=result["type"],
+                    message=result["message"]
+                )
+                if result["state"]:
+                    data.state = result["state"]
+                data.save()
+            except Exception as e:
+                print(e)
+    else:
+        print("Github already up to date")
+
+
+def get_github_results(search_query):
+    _check_github_needs_updating()    
+    results = SearchData.objects.filter(
+        Q(title__icontains=search_query) | Q(description__icontains=search_query)
+        )
+    
     search_results = []
     for result in results:
-        if search_query in result["title"] or search_query in result["description"]:
-            search_results.append(result)
+        page_result = {
+            "url": result.url,
+            "title": result.title,
+            "description": result.description,
+            "is_doc": result.is_doc,
+            "type": result.type,
+            "message": result.message,
+            "state": result.state
+            }
+        search_results.append(page_result)
     return search_results
-    
+
+
 def search(request):
     search_query = request.GET.get('query', None)
     _type = request.GET.get('type', None)

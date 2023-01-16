@@ -83,29 +83,25 @@
                             {% endif %}
                         </span>
                         {% endif %}
-                        <div class="font-semibold mt-1">
+                        <div class="font-semibold mt-2 flex flex-wrap gap-2 capitalize text-xs">
                             {% if result.message %}
                             <span class="{% if result.message == 'solved'%}bg-green-400{% else %}bg-blue-400{% endif %}
-                            text-xs capitalize mr-2 text-gray-200 py-1 px-2 float-left block w-min rounded">
+                             text-gray-200 py-1 px-2 rounded">
                              {{ result.message }}
                              </span> 
                              {% if result.message == 'issue' %}
-                             <span class="{% if result.state == 'opened'%}bg-purple-500{% else %}bg-gray-800{% endif %}
-                            text-xs capitalize mr-2 text-gray-200 py-1 px-2 float-left block rounded">{{ result.state }}
+                             <span class="{% if 'open' in result.state %}bg-purple-500{% else %}bg-gray-800{% endif %}
+                            text-xs capitalize text-gray-200 py-1 px-2 rounded">{{ result.state }}
                              {% endif %}
                             {% endif %}
                             {% if result.activity %}
-                            <span class="text-xs capitalize">
-                                <span class="bg-pink-500 text-gray-200 py-1 px-2 float-left inline-block rounded mr-2">activity:&nbsp;{{ result.activity }}</span> 
-                            </span>
+                                <span class="bg-pink-500 text-gray-200 py-1 px-2 rounded">activity:&nbsp;{{ result.activity }}</span> 
                             {% endif %}  
                             {% if result.tags %}
-                            <span class="text-xs capitalize">
-                                <span class="bg-purple-500 text-gray-200 py-1 px-2 float-left inline-block rounded">tags:</span>
+                                <span class="bg-purple-500 text-gray-200 py-1 px-2 rounded">tags:</span>
                                 {% for tag in result.tags %}
-                                <span class="bg-purple-500 text-gray-200 py-1 px-2 float-left inline-block rounded ml-1">{{ tag }}</span>
+                                <span class="bg-purple-500 text-gray-200 py-1 px-2 rounded">{{ tag }}</span>
                                 {% endfor %}
-                            </span>
                             {% endif %}                 
                     </li>
             {% endfor %}
