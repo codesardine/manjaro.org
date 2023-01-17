@@ -18,7 +18,7 @@ headers = {
     "User-Agent": "Manjaro-Starter 1.0 (+https://manjaro.org)"
 }
 
-
+@cache(maxsize=128)
 def get_query(search_query, _type):
         pkg_formats = ("appimage", "package", "snap", "flatpak", "packages")
         results = []
@@ -78,6 +78,7 @@ def sort_alphabetically(results):
     return sorted(tuple(results), key=lambda i: i['title'])
 
 
+@cache(maxsize=128)
 def get_forum_results(query):
     URL = "https://forum.manjaro.org/"
     endpoint = f"{URL}/search.json"
@@ -127,6 +128,7 @@ def get_forum_results(query):
         return tuple(search_results)
 
 
+@cache(maxsize=128)
 def get_software_results(query, _type):
     URL = "https://software.manjaro.org/"
     endpoint = f"{URL}/search.json"
@@ -141,9 +143,10 @@ def get_software_results(query, _type):
     response = requests.get(endpoint, params, timeout=4, headers=headers)
     if response.ok:
         response = response.json()            
-        return response
+        return tuple(response)
 
 
+@cache(maxsize=128)
 def get_page_results(search_query):
         search_results = []
         if search_query:
@@ -168,6 +171,7 @@ def get_page_results(search_query):
         return tuple(search_results)
 
 
+@cache(maxsize=128)
 def get_wiki_results(query):
     url = "https://wiki.manjaro.org/"
     endpoint = "api.php"
@@ -201,6 +205,7 @@ def get_wiki_results(query):
     return tuple(search_results) 
 
 
+@cache(maxsize=128)
 def get_gitlab_hosted_projects_results(search_query):
     gl = gitlab.Gitlab(
         url='https://gitlab.manjaro.org',
@@ -223,6 +228,7 @@ def get_gitlab_hosted_projects_results(search_query):
     return tuple(search_results)
 
 
+@cache(maxsize=128)
 def get_gitlab_hosted_issues_results(search_query):
     gl = gitlab.Gitlab(
         url='https://gitlab.manjaro.org',
@@ -292,7 +298,6 @@ def _build_github_search_data():
     return tuple(results)
 
 
-@cache(maxsize=128)
 def _check_github_needs_updating():
     time_now = datetime.datetime.now().astimezone()
     update_frequency = 58
@@ -328,6 +333,7 @@ def _check_github_needs_updating():
         print("Github already up to date")
 
 
+@cache(maxsize=128)
 def get_github_results(search_query):
     _check_github_needs_updating()    
     results = SearchData.objects.filter(
@@ -349,6 +355,7 @@ def get_github_results(search_query):
     return tuple(search_results)
 
 
+@cache(maxsize=128)
 def search(request):
     search_query = request.GET.get('query', None)
     _type = request.GET.get('type', None)
@@ -405,7 +412,7 @@ def search(request):
         results["documentation"] = sort_alphabetically(results["documentation"])
         results["git"] = sort_alphabetically(results["git"])
         results["packages"] = sort_alphabetically(results["packages"])
-        
+
         tabs = (
             {
               "name": "documentation",
@@ -432,7 +439,8 @@ def search(request):
         return TemplateResponse(request, 'search/search.html', {
             "search_query": " OR ".join(queries),
             "tabs": tabs,
-            "search_results": results
+            "search_results": results,
+            "total": len(search_results)
         })
 
     
