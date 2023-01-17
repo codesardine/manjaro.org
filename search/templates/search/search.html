@@ -20,7 +20,7 @@
     </svg>
   </div>
 <div class="lg:mt-24 h-[100%] max-w-screen-lg px-4 mx-auto bg-gray-200 rounded py-4 text-gray-800">
-    <ul class="flex gap-4 flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4 justify-center" id="tabs-tab" role="tablist">
+    <ul class="flex gap-4 flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-1 justify-center" id="tabs-tab" role="tablist">
 {% for tab in tabs %}
   {% if tab.total %}
     <li role="presentation">
@@ -55,6 +55,12 @@
   </li>
   {% endif %}
 {% endfor %}
+<li class="flex items-center justify-center relative">
+    <a id="info" class="text-3xl rounded-full text-teal-400"
+    href="https://docs.manjaro.org/using-website-search-and-search-query-language/">
+    <i class="fa-solid fa-circle-info mr-1 text-blue-500 shadow rounded-full"></i>
+    </a>
+</li>
 </ul>
 <div class="text-center font-bold mb-6 text-sm">
     <h1>{{ results_found }} search results for <span class="text-pink-500">"{{ search_query }}"</span></h1>
@@ -155,5 +161,9 @@
 </div>
 <script>
      document.querySelectorAll(".tab")[0].classList.remove("hidden")
+     tippy('#info', {
+    content: "USING ADVANCED SEARCH" + tooltipIcon,
+    allowHTML: true,
+  })
 </script>
 {% endblock %}
