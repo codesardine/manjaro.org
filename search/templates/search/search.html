@@ -20,36 +20,55 @@
     </svg>
   </div>
 <div class="lg:mt-24 h-[100%] max-w-screen-lg px-4 mx-auto bg-gray-200 rounded py-4 text-gray-800">
-    <div class="text-center font-bold mb-4">
-        <h1>{{ results_found }} search results for <span class="text-pink-500">"{{ search_query }}"</span></h1>
-    </div>
-    <div class="sort">
-
-    </div>
-    {% if search_results %}
-    <div class="grid gap-4 grid-cols-1">
-        <ul>
-            {% for result in search_results %}
+    <ul class="flex gap-4 flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4 justify-center" id="tabs-tab" role="tablist">
+{% for tab in tabs %}
+  {% if tab.total %}
+    <li role="presentation">
+    <button id="{{ tab.name }}-btn" class="
+      cursor-pointer
+      flex 
+      items-center
+      justify-center           
+      font-bold
+      text-xs
+      leading-tight
+      uppercase
+      my-2 
+    " id="tabs-docs-tab" data-bs-toggle="pill" data-bs-target="#tabs-docs" role="tab" aria-controls="tabs-docs"
+      aria-selected="true">
+      {% if tab.name == "documentation" %}
+      <i class="fa-solid fa-book text-blue-gray-600 mr-1"></i>
+      {% elif tab.name == "pages" %}
+      <i class="fa-solid fa-file text-blue-gray-600 mr-1"></i>
+      {% elif tab.name == "git" %}
+      <i class="fa-brands fa-git text-blue-gray-600 mr-1"></i>
+      {% elif tab.name == "packages" %}
+      <i class="fa-solid fa-archive text-blue-gray-600 mr-1"></i>
+      {% elif tab.name == "forum" %}
+      <i class="fa-solid fa-comment text-blue-gray-600 mr-1"></i>
+      {% endif %}
+      {{ tab.name }} 
+      <span class="bg-pink-500 text-white rounded-full p-2 w-[30px] h-[30px] flex items-center justify-center ml-4">
+        {{ tab.total }}
+      </span>
+    </button>
+  </li>
+  {% endif %}
+{% endfor %}
+</ul>
+<div class="text-center font-bold mb-6 text-sm">
+    <h1>{{ results_found }} search results for <span class="text-pink-500">"{{ search_query }}"</span></h1>
+</div>
+<div class="grid gap-4 grid-cols-1">
+    {% if search_results %}        
+        {% for provider, results in search_results.items %}
+            {% if results %}
+            <ul class="hidden tab" id="tab-{{ provider }}" role="tabpanel" aria-labelledby="tabs-{{ provider }}">
+                {% for result in results %}
                     <li class="mb-8 text-sm overflow-hidden">
                         <a target="_blank" class="hover:underline underline-offset-4"
                             href="{{ result.url }}">
                         <cite class="text-xs truncate text-black pb-1">{{ result.url|remove_protocol }}</cite>
-                        {% if "docs." in result.url %} 
-                            <i class="fa-solid fa-book text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
-                            {% elif "wiki." in result.url %}
-                            <i class="fa-solid fa-file-word text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
-                            {% elif "forum." in result.url %}
-                            <i class="fa-solid fa-comment text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
-                            {% elif "blog." in result.url %}
-                            <i class="fa-solid fa-blog text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
-                            {% elif "forum." in result.url %}
-                            <i class="fa-solid fa-comment text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
-                            {% elif result.type == "issue"  or result.type == "repository" %}
-                            <i class="fa-brands fa-git text-blue-gray-600 float-left mr-2 pt-1"></i>
-                            {% elif "software." in result.url %}
-                            {% else %}
-                            <i class="fa-solid fa-file text-blue-gray-600 float-left mr-2 mt-[2px]"></i>
-                            {% endif %}
                         <h2 class="mb-1 truncate font-semibold text-teal-500 capitalize">
                             {{ result.title }}
                         </h2></a>
@@ -63,7 +82,7 @@
                         </p>
                         {% endif %}
                         {% if result.links %}
-                        <ol class="mt-1 ml-2 grid grid-cols-1 gap-1">
+                        <ol class="mt-1 ml-4 grid grid-cols-1 gap-1">
                             {% for link in result.links %}
                             <li>
                                 <a target="_blank" class="hover:underline text-xs truncate font-semibold text-teal-500 capitalize" href="{{ link.url }}">{{ link.title }}</a>
@@ -89,13 +108,13 @@
                         <div class="font-semibold mt-2 flex flex-wrap gap-2 capitalize text-xs">
                             {% if result.message %}
                             <span class="{% if result.message == 'solved'%}bg-green-400{% else %}bg-blue-400{% endif %}
-                             text-gray-200 py-1 px-2 rounded">
-                             {{ result.message }}
-                             </span> 
-                             {% if result.message == 'issue' %}
-                             <span class="{% if 'open' in result.state %}bg-purple-500{% else %}bg-gray-800{% endif %}
+                                text-gray-200 py-1 px-2 rounded">
+                                {{ result.message }}
+                                </span> 
+                                {% if result.message == 'issue' %}
+                                <span class="{% if 'open' in result.state %}bg-purple-500{% else %}bg-gray-800{% endif %}
                             text-xs capitalize text-gray-200 py-1 px-2 rounded">{{ result.state }}
-                             {% endif %}
+                                {% endif %}
                             {% endif %}
                             {% if result.activity %}
                                 <span class="bg-pink-500 text-gray-200 py-1 px-2 rounded">activity:&nbsp;{{ result.activity }}</span> 
@@ -106,10 +125,20 @@
                                 <span class="bg-purple-500 text-gray-200 py-1 px-2 rounded">{{ tag }}</span>
                                 {% endfor %}
                             {% endif %}                 
-                    </li>
-            {% endfor %}
-        </ul>
-    </div>
+                        </li>
+                {% endfor %}
+            </ul>
+            <script>
+                document.getElementById("{{ provider }}-btn").addEventListener("click", function() {
+                    document.querySelectorAll(".tab").forEach((tab) => {
+                        tab.classList.add("hidden")
+                    })
+                    document.getElementById("tab-{{ provider }}").classList.remove("hidden")
+                })
+              </script>
+            {% endif %}
+        {% endfor %}
+</div>
 
         {% if search_results.has_previous %}
             <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
@@ -124,4 +153,7 @@
         </p>
     {% endif %}
 </div>
+<script>
+     document.querySelectorAll(".tab")[0].classList.remove("hidden")
+</script>
 {% endblock %}

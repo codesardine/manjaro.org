@@ -62,7 +62,7 @@ def get_query(search_query, _type):
         return results
 
 
-def sort_search_results(results, terms_blacklist):
+def check_blacklist(results, terms_blacklist):
     if terms_blacklist:
         search_results = []
         for result in results:
@@ -71,9 +71,11 @@ def sort_search_results(results, terms_blacklist):
                 search_results.append(result)
     else:
         search_results = results        
-                
-    r = sorted(search_results, key=lambda i: i['title'])
-    return sorted(tuple(r), key=lambda i: i['is_doc'] == False)
+    return search_results
+
+
+def sort_alphabetically(results):
+    return sorted(tuple(results), key=lambda i: i['title'])
 
 
 def get_forum_results(query):
@@ -122,7 +124,7 @@ def get_forum_results(query):
                     search_results.append(topic_result)
         except KeyError:
             pass        
-        return search_results
+        return tuple(search_results)
 
 
 def get_software_results(query, _type):
@@ -163,7 +165,7 @@ def get_page_results(search_query):
                 page_result["is_doc"] = True
             
             search_results.append(page_result)
-        return search_results
+        return tuple(search_results)
 
 
 def get_wiki_results(query):
@@ -196,7 +198,7 @@ def get_wiki_results(query):
             if page_result["url"] not in (p["url"] for p in search_results):
                 if description:
                     search_results.append(page_result)
-    return search_results 
+    return tuple(search_results) 
 
 
 def get_gitlab_hosted_projects_results(search_query):
@@ -218,7 +220,7 @@ def get_gitlab_hosted_projects_results(search_query):
             "message": "repository"
             }
         search_results.append(page_result)
-    return search_results
+    return tuple(search_results)
 
 
 def get_gitlab_hosted_issues_results(search_query):
@@ -241,7 +243,7 @@ def get_gitlab_hosted_issues_results(search_query):
             "state": item["state"]
             }
         search_results.append(page_result)        
-    return search_results
+    return tuple(search_results)
 
 
 def _build_github_search_data():
@@ -287,7 +289,7 @@ def _build_github_search_data():
         await asyncio.gather(*tasks)
        
     asyncio.run(main())
-    return results
+    return tuple(results)
 
 
 @cache(maxsize=128)
@@ -344,7 +346,7 @@ def get_github_results(search_query):
             "state": result.state
             }
         search_results.append(page_result)
-    return search_results
+    return tuple(search_results)
 
 
 def search(request):
@@ -372,7 +374,7 @@ def search(request):
     for query in queries:
         search_results.extend(get_query(query, _type))
 
-    search_results = sort_search_results(search_results, term_blacklist)
+    search_results = check_blacklist(search_results, term_blacklist)
     if _format == "json":
         data = {
             "Status": HttpResponse.status_code,
@@ -382,10 +384,55 @@ def search(request):
         }
         return JsonResponse(data, safe=False)
     else:
+        results = {}
+        results["documentation"] = []
+        results["forum"] = []
+        results["pages"] = []
+        results["git"] = []
+        results["packages"] = []
+        for item in search_results:
+            if item["is_doc"]:
+                results["documentation"].append(item)
+            elif item["type"] == "forum":
+                results["forum"].append(item)
+            elif item["type"] == "page":
+                results["pages"].append(item)
+            elif item["type"] == "issue" or item["type"] == "repository":
+                results["git"].append(item)
+            elif item["type"] == "snap" or item["type"] == "package" or item["type"] == "appimage" or item["type"] == "snap":
+                results["packages"].append(item)
+        
+        results["documentation"] = sort_alphabetically(results["documentation"])
+        results["git"] = sort_alphabetically(results["git"])
+        results["packages"] = sort_alphabetically(results["packages"])
+        
+        tabs = (
+            {
+              "name": "documentation",
+              "total": len(results["documentation"]),
+            },
+            {
+              "name": "forum",
+              "total": len(results["forum"]),
+            },
+            {
+              "name": "pages", 
+              "total": len(results["pages"]),
+            },
+            {
+              "name": "git",
+              "total": len(results["git"]),
+            },
+            {
+              "name": "packages",
+              "total": len(results["packages"]),
+            }
+        )
+
         return TemplateResponse(request, 'search/search.html', {
-            "search_query": " AND ".join(queries),
-            "search_results": search_results,
-            "results_found": len(search_results),
+            "search_query": " OR ".join(queries),
+            "tabs": tabs,
+            "search_results": results
         })
 
     
