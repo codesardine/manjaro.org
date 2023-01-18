@@ -8,14 +8,11 @@ from .gitlab import (
     get_gitlab_hosted_issues_results,
     get_gitlab_hosted_projects_results)
 from .github import (
-    get_gnome_results,
     get_manjaro_results,
-    get_plasma_results,
-    get_sway_results,
-    get_architect_results,
-    get_kernels_results,
-    get_pinephone_results,
-    get_xfce_results)
+    get_sway_results)
+    #get_gnome_results,
+    #get_plasma_results,
+    #get_xfce_results)
 
 
 def get_tabs(results):

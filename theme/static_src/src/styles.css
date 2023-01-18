@@ -562,3 +562,34 @@ html {
     color: #009688;
     text-decoration: underline;
 }
+
+#loading span {
+    font-size: 5rem;
+    color: white;
+ }
+
+#loading span:after {
+    content: ' .';
+    animation: dots 1s steps(5, end) infinite;
+}
+  
+  @keyframes dots {
+    0%, 20% {
+      color: rgba(0,0,0,0);
+      text-shadow:
+        .25em 0 0 rgba(0,0,0,0),
+        .5em 0 0 rgba(0,0,0,0);}
+    40% {
+      color: #1de9b6;
+      text-shadow:
+        .25em 0 0 rgba(0,0,0,0),
+        .5em 0 0 rgba(0,0,0,0);}
+    60% {
+      text-shadow:
+        .25em 0 0 #00bfa5,
+        .5em 0 0 rgba(0,0,0,0);}
+    80%, 100% {
+      text-shadow:
+        .25em 0 0 #00bfa5,
+        .5em 0 0 #00bfa5;}
+    }

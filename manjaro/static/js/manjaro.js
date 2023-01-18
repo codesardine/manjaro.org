@@ -4,6 +4,8 @@ toggleMenu = () => {
 }
 
 window.addEventListener("load", () => {
+  const loading = document.getElementById("loading")
+  loading.classList.add("hidden")
   const toggleMobileBtn = document.getElementById("toggle-mobile-btn")
   toggleMobileBtn.addEventListener("click", () => {
     toggleMenu()
@@ -16,6 +18,8 @@ window.addEventListener("load", () => {
     if (search.value == 0) {
       event.preventDefault();
       alert(queryMsg)
+    } else {
+      loading.classList.remove("hidden")
     }
   })
 
