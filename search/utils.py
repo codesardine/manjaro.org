@@ -11,7 +11,11 @@ from .github import (
     get_gnome_results,
     get_manjaro_results,
     get_plasma_results,
-    get_sway_results)
+    get_sway_results,
+    get_architect_results,
+    get_kernels_results,
+    get_pinephone_results,
+    get_xfce_results)
 
 
 def get_tabs(results):
@@ -57,10 +61,10 @@ def do_task(search_query, _type):
                     search_providers.append(get_gitlab_hosted_projects_results)
                     search_providers.append(get_gitlab_hosted_issues_results)
                     search_providers.append(get_manjaro_results)
-                    search_providers.append(get_gnome_results)
-                    search_providers.append(get_plasma_results)
+                    #search_providers.append(get_gnome_results)
+                    #search_providers.append(get_plasma_results)
                     search_providers.append(get_sway_results)
-
+                    #search_providers.append(get_xfce_results)
         else:
             search_providers.append(get_software_results)
             search_providers.append(get_forum_results)
@@ -69,10 +73,10 @@ def do_task(search_query, _type):
             search_providers.append(get_gitlab_hosted_projects_results)
             search_providers.append(get_gitlab_hosted_issues_results)
             search_providers.append(get_manjaro_results)
-            search_providers.append(get_gnome_results)
-            search_providers.append(get_plasma_results)
+            #search_providers.append(get_gnome_results)
+            #search_providers.append(get_plasma_results)
             search_providers.append(get_sway_results)
-
+            #search_providers.append(get_xfce_results)
 
         with concurrent.futures.ThreadPoolExecutor(20) as executor:
             futures = []

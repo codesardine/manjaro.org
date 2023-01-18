@@ -3,7 +3,7 @@ import os, datetime
 from .models import SearchData, SearchLastUpdate
 from django.db.models import Q
 from django.utils.text import Truncator
-
+from functools import lru_cache as cache
 
 def _build_github_search_data(org, results=[]):
     if os.getenv('GITHUB_TOKEN'):
@@ -77,7 +77,7 @@ def _check_github_needs_updating(org):
         print("Github already up to date")
 
 
-#@cache(maxsize=128)
+@cache(maxsize=128)
 def get_github_results(search_query, org):
     _check_github_needs_updating(org)    
     results = SearchData.objects.filter(
@@ -109,3 +109,6 @@ def get_gnome_results(search_query):
 
 def get_plasma_results(search_query):
     return get_github_results(search_query, "manjaro-plasma")
+
+def get_xfce_results(search_query):
+    return get_github_results(search_query, "manjaro-xfce")
