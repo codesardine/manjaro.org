@@ -1,8 +1,10 @@
 import gitlab, os
 from django.utils.text import Truncator
 from . import get_headers
+from functools import lru_cache as cache
 
-#@cache(maxsize=128)
+
+@cache(maxsize=128)
 def get_gitlab_hosted_projects_results(search_query):
     gl = gitlab.Gitlab(
         url='https://gitlab.manjaro.org',

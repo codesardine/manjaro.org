@@ -2,7 +2,7 @@ from mediawiki import MediaWiki
 from . import get_headers
 from functools import lru_cache as cache
 
-@cache(maxsize=128)
+#@cache(maxsize=128)
 def get_wiki_results(query):
     url = "https://wiki.manjaro.org/"
     endpoint = "api.php"

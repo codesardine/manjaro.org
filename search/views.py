@@ -10,8 +10,6 @@ from .utils import (
 
 @cache(maxsize=128)
 def search(request):
-    import time
-    start = time.time()
     search_query = request.GET.get('query', None)
     _type = request.GET.get('type', None)
     _format = request.GET.get('format', None)
@@ -68,9 +66,6 @@ def search(request):
         results["git"] = sort_alphabetically(results["git"])
         results["packages"] = sort_alphabetically(results["packages"])
 
-        
-        end = time.time()
-        print(end - start)
         return TemplateResponse(request, 'search/search.html', {
             "search_query": " OR ".join(queries),
             "tabs": get_tabs(results),

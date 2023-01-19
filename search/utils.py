@@ -75,7 +75,7 @@ def do_task(search_query, _type):
             search_providers.append(get_sway_results)
             #search_providers.append(get_xfce_results)
 
-        with concurrent.futures.ThreadPoolExecutor(20) as executor:
+        with concurrent.futures.ThreadPoolExecutor(len(search_providers)) as executor:
             futures = []
             for provider in search_providers:
                 if provider == get_software_results:
@@ -87,7 +87,6 @@ def do_task(search_query, _type):
                     results.extend(future.result())
                 except Exception as e:
                     print(e)
-
         return results
 
 def check_blacklist(results, terms_blacklist):
