@@ -62,7 +62,7 @@ def search(request):
             elif item["type"] == "snap" or item["type"] == "package" or item["type"] == "appimage" or item["type"] == "snap":
                 results["packages"].append(item)
         
-        results["documentation"] = sort_alphabetically(results["documentation"])
+        results["documentation"] = sort_alphabetically(results["documentation"], reverse=True, sort_by="type")
         results["git"] = sort_alphabetically(results["git"])
         results["packages"] = sort_alphabetically(results["packages"])
 

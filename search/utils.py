@@ -100,5 +100,5 @@ def check_blacklist(results, terms_blacklist):
         search_results = results        
     return search_results
 
-def sort_alphabetically(results):
-    return sorted(tuple(results), key=lambda i: i['title'])
+def sort_alphabetically(results, reverse=False, sort_by="title"):
+    return sorted(tuple(results), key=lambda i: i[sort_by], reverse=reverse)
