@@ -44,6 +44,8 @@ def get_forum_results(query):
                         topic_result["message"] = None
                     elif topic["has_accepted_answer"]:
                         topic_result["message"] = "solved"
+                    if  topic_result["message"] == None:
+                        topic_result["message"] = "unsolved"
                     for post in posts:
                         if post["topic_id"] == topic["id"]:
                             topic_result["description"] = Truncator(post["blurb"]).chars(160)

@@ -65,6 +65,8 @@ def search(request):
         results["documentation"] = sort_alphabetically(results["documentation"], reverse=True, sort_by="type")
         results["git"] = sort_alphabetically(results["git"])
         results["packages"] = sort_alphabetically(results["packages"])
+        results["forum"] = sort_alphabetically(results["forum"], sort_by="message")
+
 
         return TemplateResponse(request, 'search/search.html', {
             "search_query": " OR ".join(queries),
