@@ -16,11 +16,6 @@
         <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
           <a {% if item.open_in_new_tab %} target="_blank" {% endif %} href="{{ item.link }}"
             class="flex items-center justify-center w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} font-bold tracking-wide link-decor-right link-decor relative z-0 h-[36px]">
-            {% if "merchandise" in item.title.lower %}
-            <i class="fa-solid fa-gifts mr-2"></i>
-            {% elif "hardware" in item.title.lower %}
-            <i class="fa-solid fa-microchip mr-2"></i>
-            {% endif %}
             {{ item.title }}
           </a>
         </li>
@@ -48,7 +43,6 @@
         <li>
           <a href="https://manjaro.org/contact/"
             class="font-bold tracking-wide link-decor-right link-decor relative z-0 flex items-center justify-center px-2 h-[36px]">
-            <i class="fa-solid fa-envelope mr-2"></i>
             Get in touch
           </a>
         </li>
