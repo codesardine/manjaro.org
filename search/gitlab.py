@@ -27,7 +27,7 @@ def get_gitlab_hosted_projects_results(search_query):
     return tuple(search_results)
 
 
-#@cache(maxsize=128)
+@cache(maxsize=128)
 def get_gitlab_hosted_issues_results(search_query):
     gl = gitlab.Gitlab(
         url='https://gitlab.manjaro.org',
