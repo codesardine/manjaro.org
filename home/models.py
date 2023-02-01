@@ -700,7 +700,7 @@ class HomePage(Page):
         from puput.models import EntryPage 
         context = super(HomePage, self).get_context(request)
         from wagtail.models import Page
-        context['blog'] = EntryPage.objects.all().order_by('-date')[0:3]
+        context['blog'] = EntryPage.objects.live().order_by('-date')[0:3]
         return context
 
     
