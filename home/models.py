@@ -118,7 +118,7 @@ class UpdateStatus(Page):
         context["arm"] = arm
         return context
 
-    intro = models.TextField(default='', blank=True, max_length=350)
+    intro = models.TextField(default='', blank=True, max_length=1000)
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -151,25 +151,25 @@ class Downloads(RoutablePageMixin, Page):
         'home.HomePage'
     ]
 
-    intro = models.TextField(default='', blank=True, max_length=700)
+    intro = models.TextField(default='', blank=True, max_length=1000)
 
-    manjaro_team_intro = models.TextField(default='', blank=True, max_length=200)
-    community_intro = models.TextField(default='', blank=True, max_length=200)
-    manjaro_arm_team_intro = models.TextField(default='', blank=True, max_length=200)
+    manjaro_team_intro = models.TextField(default='', blank=True, max_length=1000)
+    community_intro = models.TextField(default='', blank=True, max_length=1000)
+    manjaro_arm_team_intro = models.TextField(default='', blank=True, max_length=1000)
 
-    xfce_description = models.TextField(default='', blank=True, max_length=350)
-    plasma_description = models.TextField(default='', blank=True, max_length=350)
-    gnome_description = models.TextField(default='', blank=True, max_length=350)
-    cinnamon_description = models.TextField(default='', blank=True, max_length=350)
-    i3_description = models.TextField(default='', blank=True, max_length=350)
-    budgie_description = models.TextField(default='', blank=True, max_length=350)
-    mate_description = models.TextField(default='', blank=True, max_length=350)
-    sway_description = models.TextField(default='', blank=True, max_length=350)
-    docker_intro = models.TextField(default='', blank=True, max_length=350)
+    xfce_description = models.TextField(default='', blank=True, max_length=1000)
+    plasma_description = models.TextField(default='', blank=True, max_length=1000)
+    gnome_description = models.TextField(default='', blank=True, max_length=1000)
+    cinnamon_description = models.TextField(default='', blank=True, max_length=1000)
+    i3_description = models.TextField(default='', blank=True, max_length=1000)
+    budgie_description = models.TextField(default='', blank=True, max_length=1000)
+    mate_description = models.TextField(default='', blank=True, max_length=1000)
+    sway_description = models.TextField(default='', blank=True, max_length=1000)
+    docker_intro = models.TextField(default='', blank=True, max_length=1000)
     
-    phosh_description = models.TextField(default='', blank=True, max_length=350)
-    plasma_mobile_description = models.TextField(default='', blank=True, max_length=350)
-    minimal_description = models.TextField(default='', blank=True, max_length=350)
+    phosh_description = models.TextField(default='', blank=True, max_length=1000)
+    plasma_mobile_description = models.TextField(default='', blank=True, max_length=1000)
+    minimal_description = models.TextField(default='', blank=True, max_length=1000)
 
     edition_panels = [
         FieldPanel("xfce_description"),
@@ -300,7 +300,7 @@ class Hardware(Page):
         'home.HomePage'
     ]
 
-    intro = models.TextField(max_length=350, null=True)
+    intro = models.TextField(max_length=1000, null=True)
 
     content = StreamField(
         [
@@ -358,34 +358,34 @@ class Features(Page):
         'home.HomePage'
     ]
 
-    intro =  models.TextField(blank=True, max_length=450)
-    branches_intro =  models.TextField(blank=True, max_length=650)
-    arch_linux_intro =  models.TextField(blank=True, max_length=350)
-    unstable_intro =  models.TextField(blank=True, max_length=350)
-    testing_intro =  models.TextField(blank=True, max_length=350)
-    stable_intro =  models.TextField(blank=True, max_length=350)
+    intro =  models.TextField(blank=True, max_length=1000)
+    branches_intro =  models.TextField(blank=True, max_length=1000)
+    arch_linux_intro =  models.TextField(blank=True, max_length=1000)
+    unstable_intro =  models.TextField(blank=True, max_length=1000)
+    testing_intro =  models.TextField(blank=True, max_length=1000)
+    stable_intro =  models.TextField(blank=True, max_length=1000)
 
-    pamac_intro =  models.TextField(blank=True, max_length=500)
-    package_formats_intro =  models.TextField(blank=True, max_length=350)
-    updates_intro =  models.TextField(blank=True, max_length=350)
-    aur_intro =  models.TextField(blank=True, max_length=450)
+    pamac_intro =  models.TextField(blank=True, max_length=1000)
+    package_formats_intro =  models.TextField(blank=True, max_length=1000)
+    updates_intro =  models.TextField(blank=True, max_length=1000)
+    aur_intro =  models.TextField(blank=True, max_length=1000)
 
-    gnome_layout_switcher_intro =  models.TextField(blank=True, max_length=350)
-    manjaro_layout_intro =  models.TextField(blank=True, max_length=350)
-    traditional_layout_intro =  models.TextField(blank=True, max_length=350)
-    tilling_layout_intro =  models.TextField(blank=True, max_length=350)
-    gnome_layout_intro =  models.TextField(blank=True, max_length=350)
+    gnome_layout_switcher_intro =  models.TextField(blank=True, max_length=1000)
+    manjaro_layout_intro =  models.TextField(blank=True, max_length=1000)
+    traditional_layout_intro =  models.TextField(blank=True, max_length=1000)
+    tilling_layout_intro =  models.TextField(blank=True, max_length=1000)
+    gnome_layout_intro =  models.TextField(blank=True, max_length=1000)
 
-    msm_intro =  models.TextField(blank=True, max_length=350)
-    kernels_intro =  models.TextField(blank=True, max_length=350)
-    common_settings_intro =  models.TextField(blank=True, max_length=350)
-    graphic_drivers_intro =  models.TextField(blank=True, max_length=350)
+    msm_intro =  models.TextField(blank=True, max_length=1000)
+    kernels_intro =  models.TextField(blank=True, max_length=1000)
+    common_settings_intro =  models.TextField(blank=True, max_length=1000)
+    graphic_drivers_intro =  models.TextField(blank=True, max_length=1000)
 
-    web_app_manager_intro =  models.TextField(blank=True, max_length=450)
-    microsoft_office_intro =  models.TextField(blank=True, max_length=350)
-    skype_intro =  models.TextField(blank=True, max_length=350)
+    web_app_manager_intro =  models.TextField(blank=True, max_length=1000)
+    microsoft_office_intro =  models.TextField(blank=True, max_length=1000)
+    skype_intro =  models.TextField(blank=True, max_length=1000)
 
-    calamares_intro =  models.TextField(blank=True, max_length=450)    
+    calamares_intro =  models.TextField(blank=True, max_length=1000)    
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -463,7 +463,7 @@ class Team(Page):
         'home.HomePage'
     ]
 
-    intro =  models.TextField(blank=True, max_length=350)
+    intro =  models.TextField(blank=True, max_length=1000)
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -524,7 +524,7 @@ class CustomPage(Page):
         'home.HomePage'
     ]
 
-    intro =  models.TextField(default='', blank=True, max_length=450)
+    intro =  models.TextField(default='', blank=True, max_length=1000)
 
     content = StreamField(
         [
@@ -579,7 +579,7 @@ class PartnersSponsors(Page):
         use_json_field=True,
     )
 
-    intro =  models.TextField(default='', blank=True, max_length=350)
+    intro =  models.TextField(default='', blank=True, max_length=1000)
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -635,14 +635,14 @@ class HomePage(Page):
         use_json_field=True,
     )
 
-    manjaro_title = models.CharField(default='', blank=True, max_length=50)
-    manjaro_intro = models.TextField(blank=True, max_length=350)
+    manjaro_title = models.CharField(default='', blank=True, max_length=200)
+    manjaro_intro = models.TextField(blank=True, max_length=1000)
     
-    partners_title = models.CharField(default='', blank=True, max_length=50)
-    partners_intro = models.TextField(blank=True, max_length=350)
+    partners_title = models.CharField(default='', blank=True, max_length=200)
+    partners_intro = models.TextField(blank=True, max_length=1000)
     partners_url = models.URLField(blank=True)
 
-    software_intro = models.TextField(blank=True, max_length=350)
+    software_intro = models.TextField(blank=True, max_length=1000)
 
     content_panels = Page.content_panels + [
         FieldPanel("manjaro_title"),
@@ -680,7 +680,7 @@ class HomePage(Page):
         FieldPanel("software"),
     ]
 
-    keywords = models.CharField(default='', blank=True, max_length=100)
+    keywords = models.CharField(default='', blank=True, max_length=150)
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading=('Content')),
@@ -711,7 +711,7 @@ class Videos(Page):
         'home.HomePage'
     ]
 
-    intro =  models.TextField(default='', blank=True, max_length=450)
+    intro =  models.TextField(default='', blank=True, max_length=1000)
 
     video_media = StreamField(
         [
