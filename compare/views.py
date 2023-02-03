@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 from .models import lastModified
-import requests
 
 
 def pkgs_update_status_json(request):
