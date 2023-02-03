@@ -209,15 +209,15 @@ class Packages(RoutablePageMixin, Page):
 
         query_total = len(search_results) if isinstance(search_results, list) else search_results.count()
         context['total_packages'] = total_packages
-        context['query'] = search_query
+        context['term'] = search_query
 
         if search_query is not None and \
            any(match in self.regex for match in search_query) \
            and query_total == 0:
-            context['query'] = "your regex"
+            context['term'] = "your regex"
         
         context["arm"] = arm
-        context["search_query"] = search_query if search_query else ""
+        context["p_search_query"] = search_query if search_query else ""
         context['packages'] = search_results
         context['query_total'] = query_total
 
