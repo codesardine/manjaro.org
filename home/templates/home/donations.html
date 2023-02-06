@@ -4,14 +4,6 @@
 
 {% block body_class %}donate bg-blue-gray-800{% endblock %}
 
-{% block head %}
-  <link href="https://opencollective.com" rel="preconnect" crossorigin>
-  <link rel="preload" href="https://opencollective.com/manjaro/banner.js" as="script">
-  <link rel="preload" href="https://opencollective.com/manjaro-us/banner.js" as="script">
-  <link rel="preload" href="https://opencollective.com/manjaro-uk/banner.js" as="script">
-  <link rel="preload" href="https://opencollective.com/manjaro-arm/banner.js" as="script">
-{% endblock %}
-
 {% block title %}
     {% if page.seo_title %}
         {{ page.seo_title }}
@@ -142,10 +134,6 @@
           }
         })
       </script>
-      <script src="https://opencollective.com/manjaro/banner.js"></script>
-      <script src="https://opencollective.com/manjaro-us/banner.js"></script>
-      <script src="https://opencollective.com/manjaro-uk/banner.js"></script>
-      <script src="https://opencollective.com/manjaro-arm/banner.js"></script>
     </article>
   </div>
 </div>
