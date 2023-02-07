@@ -25,3 +25,10 @@ def pkgs_json(request):
     serialized_data = serialize("json", search_results)
     serialized_data = json.loads(serialized_data)
     return JsonResponse(serialized_data, safe=False)
+
+def mesa_json(request):    
+    # mesa endpoint for automated builds
+    mesa = PackageModel.objects.all().filter(name="mesa", arch="x86_64")
+    serialized_data = serialize("json", mesa)
+    serialized_data = json.loads(serialized_data)
+    return JsonResponse(serialized_data, safe=False)
