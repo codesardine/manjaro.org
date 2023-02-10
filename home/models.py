@@ -256,7 +256,7 @@ class Donations(Page):
         'home.HomePage'
     ]
 
-    intro = models.TextField(max_length=350, null=True)
+    intro = models.TextField(max_length=1000, null=True)
 
     content = StreamField(
         [
