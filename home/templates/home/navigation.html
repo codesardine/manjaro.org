@@ -47,8 +47,8 @@
           </a>
         </li>
       </ul>
-      <form id="search-form" action="{% url 'search' %}" method="get" class="relative text-sm hidden lg:flex">
-        <input id="search-query" placeholder="Search.." class="focus:border-pink-500 focus:border-b-2 border-gray-200 shadow-inner h-[34px] transition duration-200 bg-gray-200 border-0 border-b-2 appearance-none focus:ring-0" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+      <form id="search-form" action="{% url 'search' %}" method="get" class="relative text-sm hidden lg:flex w-[60%]">
+        <input id="search-query" placeholder="Search.." class="w-full focus:border-pink-500 focus:border-b-2 border-gray-200 shadow-inner h-[34px] transition duration-200 bg-gray-200 border-0 border-b-2 appearance-none focus:ring-0" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
         <button class="hidden lg:block fa fa-magnifying-glass text-teal-900 bg-teal-accent-700 w-10" type="submit"></button>
     </form>
     </div>
