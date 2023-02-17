@@ -48,7 +48,7 @@
         </li>
       </ul>
       <form id="search-form" action="{% url 'search' %}" method="get" class="relative text-sm hidden lg:flex w-[60%]">
-        <input id="search-query" placeholder="Search.." class="w-full focus:border-pink-500 focus:border-b-2 border-gray-200 shadow-inner h-[34px] transition duration-200 bg-gray-200 border-0 border-b-2 appearance-none focus:ring-0" type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+        <input id="search-query" placeholder="Search.." class="w-full focus:border-pink-500 focus:border-b-2 border-gray-200 shadow-inner h-[34px] transition duration-200 bg-gray-200 border-0 border-b-2 appearance-none focus:ring-0" type="text" name="query" {% if search_query %} value="{{ search_query }}"{% endif %}>
         <button class="hidden lg:block fa fa-magnifying-glass text-teal-900 bg-teal-accent-700 w-10" type="submit"></button>
     </form>
     </div>
@@ -96,22 +96,22 @@
 
 <!-- Mobile menu -->
 <div id="nav-mobile" class="lg:hidden relative">
-  <div class="w-full fixed bottom-0 left-0 z-40 flex" style="filter: drop-shadow(0 -1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 -1px 1px rgb(0 0 0 / 0.06));">
-    <a href="https://manjaro.org" aria-label="Home"
-    class="shadow bg-white flex justify-center items-center w-auto h-[55px]">
-    <img src="{% static 'img/block-logo.svg' %}" alt="manjaro logo" width="50" height="auto" class="w-[50px]">
-  </a>
+  <div class="w-full fixed top-0 left-0 z-40 flex h-[50px]" style="filter: drop-shadow(0 -1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 -1px 1px rgb(0 0 0 / 0.06));">
     <button id="toggle-mobile-btn" aria-label="Open Menu"
-    class="bottom-1 text-2xl px-4 shadow h-[55px] justify-center bg-gray-900 text-gray-200 flex items-center">
+    class="bottom-1 text-2xl px-4 shadow h-[50px] justify-center bg-gray-900 text-gray-200 flex items-center">
     <i class="fa-solid fa-bars"></i>
   </button>
+  <a href="https://manjaro.org" aria-label="Home"
+  class="shadow bg-white flex justify-center items-center w-auto h-[50px]">
+  <img src="{% static 'img/favicon.svg' %}" alt="manjaro logo" width="100%" height="100%" class="p-2 w-16">
+</a>
   <form id="search-form-mobile" action="{% url 'search' %}" method="get" class="text-sm flex bg-white w-full">
-    <input id="search-query-mobile" class="h-[55px] w-full transition duration-200 bg-white border-0 appearance-none focus:ring-0" type="text" placeholder="Search.." name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-    <button class="fa fa-magnifying-glass text-teal-900 bg-teal-accent-700 w-10" type="submit"></button>
-</form>
+    <input id="search-query-mobile" class="h-[50px] w-full transition duration-200 bg-white border-0 appearance-none focus:ring-0" type="text" placeholder="Search.." name="query" {% if search_query %} value="{{ search_query }}"{% endif %}>
+    <button class="fa fa-magnifying-glass text-teal-900 bg-teal-accent-700 w-[50px]" type="submit"></button>
+  </form>
   </div>
-  <div id="mobile-menu"
-    class="z-[30] max-w-50 fixed top-0 left-0 h-[100vh] lg:h-auto translate-x-[-150%] lg:translate-x-0 transition-transform duration-500 shadow-md will-change-transform transform-gpu">
+
+  <div id="mobile-menu" class="mt-[50px] z-[30] max-w-50 fixed top-0 left-0 h-[100vh] lg:h-auto translate-x-[-150%] lg:translate-x-0 transition-transform duration-500 shadow-md will-change-transform transform-gpu">
     <div class="px-2 shadow-lg bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 h-[100vh] font-bold text-gray-200 capitalize text-center">
       <nav class="overflow-y-scroll h-[100vh] pb-16 px-2">
         <ul class="py-2">
@@ -119,7 +119,7 @@
           {% if not item.submenu %}
           <li class="py-2">
             <a {% if item.open_in_new_tab %}target="_blank" {% endif %} href="{{ item.link }}" 
-              class="shadow-inset-blue-gray-900 inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
+              class="shadow inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
               {{ item.title }}</a>
           </li>
           {% endif %}
@@ -128,7 +128,7 @@
           {% if subitem.title %}
           <li class="py-2">
             <a {% if subitem.open_in_new_tab %}target="_blank" {% endif %} href="{{ subitem.url }}"
-              class="shadow-inset-blue-gray-900 inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
+              class="shadow inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
               {{ subitem.title }}</a>
           </li>
           {% endif %}
@@ -139,7 +139,7 @@
           {% if not item.submenu %}
           <li class="py-2">
             <a {% if item.open_in_new_tab %}target="_blank" {% endif %} href="{{ item.link }}"
-              class="shadow-inset-blue-gray-900 inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
+              class="shadow inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
               {{ item.title }}</a>
           </li>
           {% endif %}
@@ -148,7 +148,7 @@
           {% if subitem.title %}
           <li class="py-2">
             <a {% if subitem.open_in_new_tab %}target="_blank" {% endif %} href="{{ subitem.url }}"
-              class="shadow-inset-blue-gray-900 inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
+              class="shadow inline-block py-4 px-6 text-ellipsis whitespace-nowrap bg-blue-gray-800 w-full rounded-full">
               {{ subitem.title }}</a>
           </li>
           {% endif %}
@@ -157,11 +157,11 @@
           {% endfor %}
           <li class="py-2">
             <a href="https://manjaro.org/donate/"
-              class="shadow-inset-blue-gray-900 shadow-inset-blue-gray-900 inline-block text-ellipsis whitespace-nowrap py-4 px-6 bg-blue-gray-800 w-full rounded-full">donate</a>
+              class="shadow inline-block text-ellipsis whitespace-nowrap py-4 px-6 bg-blue-gray-800 w-full rounded-full">donate</a>
           </li>
           <li class="py-2">
             <a href="https://manjaro.org/contact/"
-              class="shadow-inset-blue-gray-900 inline-block text-ellipsis whitespace-nowrap py-4 px-6 bg-blue-gray-800 w-full rounded-full">get in touch</a>
+              class="shadow inline-block text-ellipsis whitespace-nowrap py-4 px-6 bg-blue-gray-800 w-full rounded-full">get in touch</a>
           </li>
         </ul>
       </nav>

@@ -13,12 +13,8 @@
         </title>
         <meta name="title" content="{% block meta_title %}{% endblock %}"/>
         <meta name="description" content="{% block meta_description %}{% endblock %}" />
-        <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
-        <link rel="manifest" href="{% static 'site.webmanifest' %}">
-        <link rel="mask-icon" href="{% static 'img/safari-pinned-tab.svg' %}" color="#5bbad5">
+        <link rel="icon" type="image/svg+xml" href="/static/img/favicon.svg">
+        <link rel="icon" type="image/png" href="/static/img/favicon.png">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#00695c">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">        <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -59,7 +55,7 @@
         {% include "home/navigation.html" %}
         <main class="min-h-[calc(100vh-82px)] {% if not 'home' in page.title.lower %}pb-20{% endif %}">
         {% if page.intro or "blog" in self.title.lower %}
-            <div class="grid gap-10 lg:grid-cols-1 relative lg:mt-20">
+            <div class="grid gap-10 lg:grid-cols-1 relative mt-12 lg:mt-20">
                 <div class="lg:col-span-3">
                     <div class="mx-auto md:max-w-full lg:max-w-screen-xl mb-4">
                         <div id="intro" class="text-left bg-white p-4 pt-[10px] rounded lg:w-2/3 shadow lg:mt-4 transition-transform duration-500 relative mx-auto">

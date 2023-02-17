@@ -54,7 +54,7 @@
     <div id="promo" class="flex flex-col gap-10 items-center justify-between lg:flex-row w-full z-[2] relative">
 
       <div class="lg:w-1/2 text-teal-900 font-bold">
-        <h1 class="mb-6 font-extrabold text-[2.2rem] tracking-tight leading-none text-left">
+        <h1 class="mb-6 mt-16 font-extrabold text-[2.2rem] tracking-tight leading-none text-left">
           <span class="uppercase">
             {{ page.manjaro_title }}</span>
         </h1>
@@ -117,7 +117,7 @@
 
       {% if not promo.hidden %}
       <div class="relative flex flex-col w-full lg:w-2/3 justify-end pb-20 lg:pb-0">
-        <picture class="self-start px-[20%] pb-12">
+        <picture class="self-start px-[20%] pb-4 lg:pb-6 mx-auto">
           {% image promo.image width-420 format-webp class="object-contain promo-glow" alt="device" %}
         </picture>
         <div>
