@@ -49,7 +49,7 @@ window.addEventListener("load", () => {
   })
 
   tippy("#download-btn", {
-    content: "GET INSTALL MEDIA" + tooltipIcon,
+    content: "DOWNLOAD INSTALL MEDIA" + tooltipIcon,
     allowHTML: true,
   })
 
