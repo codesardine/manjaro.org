@@ -3,7 +3,7 @@
 {% get_menu "footer-two" as footer_two %}
 {% get_menu "footer-three" as footer_three %}
 {% get_menu "footer-four" as footer_four %}
-<footer id="footer" class="text-sm text-gray-200 bg-blue-gray-900 font-bold px-4 overflow-hidden">
+<footer id="footer" class="text-sm text-gray-200 font-bold bg-blue-gray-900">
   <div class="w-full justify-center lg:flex relative">
     <img src="{% static 'img/darker-woble.svg' %}" alt="wobble"
       class="absolute top-[-24px] w-full h-16 py-4 sm:max-w-screen-lg lg:max-w-screen-xl">
@@ -108,11 +108,13 @@
         {% endif %}
       </div>
     </div>
-    <div class="mx-auto max-w-screen-xl h-[28px]">
-      <span class="float-left text-blue-gray-200">
+    <div class="p-4 md:p-8">
+      <div class="text-blue-gray-200 mb-4 md:mb-0 md:float-left">
         © Copyright {% now "Y" %} Manjaro GmbH & Co KG All rights reserved.
-      </span>
-      <a rel="nofollow" href="/admin/" aria-label="Log in"
-        class="link-decor link-decor-ft float-right relative z-0">log in</a>
+      </div>
+      <div class="text-right w-full md:w-auto md:float-right">
+        <a rel="nofollow" href="/admin/" aria-label="Log in"
+        class="link-decor link-decor-ft relative z-0">log in</a>
+      </div>
     </div>
 </footer>
