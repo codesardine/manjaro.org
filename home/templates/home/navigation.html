@@ -40,12 +40,6 @@
         </li>
         {% endif %}
         {% endfor %}
-        <li>
-          <a href="https://manjaro.org/contact/"
-            class="font-bold tracking-wide link-decor-right link-decor relative z-0 flex items-center justify-center px-2 h-[36px]">
-            Get in touch
-          </a>
-        </li>
       </ul>
       <form id="search-form" action="{% url 'search' %}" method="get" class="relative text-sm hidden lg:flex w-[60%]">
         <input id="search-query" placeholder="Search.." class="w-full focus:border-pink-500 focus:border-b-2 border-gray-200 shadow-inner h-[34px] transition duration-200 bg-gray-200 border-0 border-b-2 appearance-none focus:ring-0" type="text" name="query" {% if search_query %} value="{{ search_query }}"{% endif %}>
@@ -158,10 +152,6 @@
           <li class="py-2">
             <a href="https://manjaro.org/donate/"
               class="shadow inline-block text-ellipsis whitespace-nowrap py-4 px-6 bg-blue-gray-800 w-full rounded-full">donate</a>
-          </li>
-          <li class="py-2">
-            <a href="https://manjaro.org/contact/"
-              class="shadow inline-block text-ellipsis whitespace-nowrap py-4 px-6 bg-blue-gray-800 w-full rounded-full">get in touch</a>
           </li>
         </ul>
       </nav>
