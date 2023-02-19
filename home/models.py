@@ -256,8 +256,6 @@ class Donations(Page):
         'home.HomePage'
     ]
 
-    intro = models.TextField(max_length=1500, null=True)
-
     content = StreamField(
         [
             ("richtext", blocks.RichtextBlock()),
@@ -268,12 +266,10 @@ class Donations(Page):
     )
 
     search_fields = Page.search_fields + [
-        index.SearchField('intro'),
         index.SearchField('content'),
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro'),
         FieldPanel("content"),
     ]
 
