@@ -39,20 +39,33 @@
             <form class="w-full">
               <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3 mb-6 md:mb-0">
-                <div class="w-full mt-4">
-                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
-                    select currency
-                  </label>
-                  <div class="relative grid grid-cols-2 w-full gap-4">
-                    <select class="block appearance-none w-full bg-white border-2 border-white text-gray-700 pt-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-101 focus:ring-blue-101 shadow hover:border-blue-101 focus:border" 
-                    id="grid-state">
-                      <option>Euro</option>
-                      <option>Dollar</option>
-                      <option>Pound</option>
-                    </select>
-                    <a target="_blank" href="https://opencollective.com/manjaro-us/donate/crypto" class="bg-white text-gray-700 p-2 px-4 rounded shadow flex justify-center items-center border-2 border-white hover:border-blue-101">
-                      <i class="fa-solid fa-bitcoin-sign mr-1"></i>Crypto</a>
+
+                  <div class="w-full bg-white relative rounded mt-2 h-8">
+                    <div id="balance" class="bg-teal-200 py-1 px-2 float-left rounded h-8" style="width:{{ total }};">
+                      <span class="absolute left-2">
+                        {{ balance }}
+                      </span>
+                    </div>
+                    <div class="text-right py-1 right-2 absolute">
+                      {{ goal }} 
+                      <div class="text-xs absolute -right-2 bottom-[-16px] text-blue-gray-600">per year</div>
+                    </div>
                   </div>
+
+                  <div class="w-full mt-2">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                      select currency
+                    </label>
+                    <div class="relative grid grid-cols-2 w-full gap-4">
+                      <select class="block appearance-none w-full bg-white border-2 border-white text-gray-700 pt-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-blue-101 focus:ring-blue-101 shadow hover:border-blue-101 focus:border" 
+                      id="grid-state">
+                        <option>Euro</option>
+                        <option>Dollar</option>
+                        <option>Pound</option>
+                      </select>
+                      <a target="_blank" href="https://opencollective.com/manjaro-us/donate/crypto" class="bg-white text-gray-700 p-2 px-4 rounded shadow flex justify-center items-center border-2 border-white hover:border-blue-101">
+                        <i class="fa-solid fa-bitcoin-sign mr-1"></i>Crypto</a>
+                   </div>
                 </div>
               </div>
             </form>

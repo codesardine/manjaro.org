@@ -304,6 +304,7 @@ class Donations(Page):
         context["balance"] = self.convert_currency(self.balance)
         context["backers"] = self.backers
         context["goal"] = self.convert_currency(self.yearly_goal)
+        context["total"] = str(100 * float(self.balance)/float(self.yearly_goal)).split(".")[0] + "%"
         return context
 
 
