@@ -73,7 +73,7 @@
                         <article class="overflow-hidden rounded shadow-sm bg-gray-200">
                             {% image entry.header_image width-400 as header_image %}
                             <img src="{{ header_image.url }}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-                                class="object-cover w-full h-50" alt="{{ entry.header_image.title }}" />
+                                class="object-contain w-full h-48" alt="{{ entry.header_image.title }}" />
                             <div class="text-center p-5 text-sm">
                                 <a aria-label="{{ entry.title }}"
                                     class="text-teal-600 hover:text-teal-400"
