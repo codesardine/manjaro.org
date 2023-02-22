@@ -65,9 +65,9 @@
             {% if search_term %}
                 <h3 class="searchTerm text-center pb-2 text-base font-bold text-gray-200">{% trans 'Entries for' %} {{ search_type }} "{{ search_term }}"</h3>
             {% endif %}
-            <div class="grid gap-4 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:mx-auto lg:max-w-full">
                 {% with per_page=blog_page.num_entries_page %}
                     {% paginate per_page entries %}
+                    <div class="grid gap-4 sm:grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:mx-auto lg:max-w-full">
                     {% for entry in entries %}
                         {% entry_url entry blog_page as post_url %}
                         <article class="overflow-hidden rounded shadow-sm bg-gray-200">
@@ -110,9 +110,9 @@
                         {% empty %}
                         <span>{% trans 'No results found.' %}</span>
                     {% endfor %}
-                    <div class="pagination">
+                </div>
+                    <div class="pagination flex w-full mt-4">
                         {% show_paginator %}
-                    </div>
                 {% endwith %}
             </div>
         </div>        
