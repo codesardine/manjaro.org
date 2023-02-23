@@ -14,3 +14,5 @@ manage.py tailwind start
 
 manage.py runserver
 ```
+
+This project is tested with BrowserStack.
