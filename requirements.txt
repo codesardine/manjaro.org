@@ -1,9 +1,9 @@
-wagtail==4.0.4
+wagtail==4.1.2
 Django>=3.2,<4.1
 django-extensions
-wagtail-django-recaptcha==1.0
+wagtail-django-recaptcha
 wagtailyoast
-puput==1.2
+puput
 django-cors
 django-tailwind
 gunicorn 
