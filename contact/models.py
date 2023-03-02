@@ -27,7 +27,7 @@ class FormField(AbstractFormField):
 
 class ContactPage(WagtailCaptchaEmailForm):
 
-    template = "contact.html"
+    template = "contact_page.html"
     landing_page_template = "contact-landing.html"
 
     intro = RichTextField(blank=True)
@@ -70,4 +70,4 @@ class ContactPage(WagtailCaptchaEmailForm):
         ObjectList(security_panels, heading=('Security')),
         ObjectList(Page.promote_panels, heading=('Promote')),
         ObjectList(Page.settings_panels, heading=('Settings')),
-    ]) 
+    ])

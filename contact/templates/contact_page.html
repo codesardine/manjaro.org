@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags static %}
+
+{% block body_class %}contact-form bg-blue-gray-800{% endblock %} 
+
+{% block head %}
+<meta name="robots" content="noindex, nofollow">
+<style>
+main input[type=text], main input[type=email], select {
+    width: 100%;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+main li {
+    padding: 4px 0;
+}
+main p {
+    margin: 0.6rem 0;
+}
+main ul {
+    margin-bottom: 1.5rem;
+}
+main .errorlist {
+    margin: 0;
+}
+main .errorlist li {
+    padding: 0;
+}
+main label:not(:empty), main label input {
+    cursor: pointer;
+}
+main label input {
+    margin-right: 6px;
+}
+main textarea {
+    width: 100%;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+main input, main textarea {
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    color:black;    
+    font-weight: normal;
+}
+main input:focus,
+main textarea:focus {
+    border-color: #004d40 !important;
+    --tw-ring-color: #004d40 !important;
+}
+main input[type="checkbox"],
+main input[type="radio"] {
+    color: #004d40;
+}
+body.progress, body.progress * { 
+    cursor: progress !important;
+}
+@media (min-width: 1024px) {
+    .bg {
+    border-bottom-left-radius: 50% !important;
+    border-top-left-radius: 50% !important;
+    }
+}
+#intro {
+    display: none;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="lg:max-w-screen-xl mx-auto text-teal-900 text-xs font-semibold lg:px-4">
+<div class="bg rounded relative w-full capitalize pl-4 font-bold p-4 bg-gradient-to-b from-teal-accent-700 to-teal-700 grid md:grid-cols-2 md:rounded-tr-full md:rounded-br-full">
+    <form id="email-form">
+        {{ form.as_p }}
+        <button id="btnSubmit" type="submit" class="bg-green-600 text-gray-200 rounded px-4 py-2 shadow">
+            <i class="fa-solid fa-paper-plane mr-1"></i>Send Email</button>
+        <div class="text-xs normal-case font-normal text-gray-900">
+            {{ page.intro|safe }}
+        </div>
+    </form>
+    <div class="hidden md:flex justify-center">
+        <img src="{% static 'img/manjaro-email.svg' %}">
+    </div>
+</div>
+</div>
+<script>
+    let company = false
+    const errors = [0,0,0,0,0,0,0]
+    function handleClicks() {
+        if (event.target.value == "company" && event.target.checked) {
+            company = true
+        } else if (event.target.value == "project" && event.target.checked) {
+            company = false
+        }
+    }
+</script>
+{% if page.allowed_languages %}
+<script>
+    const languages = true
+    function checkLanguages(target) {
+        let en_or_gb = /^[a-zA-Z-äöüÄÖÜß+@!%?.’,'(): \r\n]+$/
+        if (!target.value.match(en_or_gb)) {
+           alert("Only English or German letters commas or dots are allowed.")
+           errors[5] = 1
+        } else {
+            errors[5] = 0
+        }
+    }
+</script>
+{% else %}
+<script>
+    const languages = false
+</script>
+{% endif %}
+
+{% if page.no_html %}
+<script>
+    const noHtml = true
+    function checkHtml(target) {
+        let parser = new DOMParser()
+        let doc = parser.parseFromString(target.value, 'text/html');
+        if (doc.body.children.length != 0) {
+            alert("HTML not allowed.")
+            errors[4] = 1
+        } else {
+            errors[4] = 0
+        }
+    }
+</script>
+{% else %}
+<script>
+    const noHtml = false
+</script>
+{% endif %}
+
+{% if page.no_links %}
+<script>
+    const noLinks = true
+    function checkLinks(target) {
+        if (target.value.includes("://")) {
+            alert("Links not allowed")
+            errors[3] = 1
+        } else {
+            errors[3] = 0
+        }
+    }
+</script>
+{% else %}
+<script>
+    const noLinks = false
+</script>
+{% endif %}
+
+{% if page.min_message_characters %}
+<script>
+    const minChar = true
+    function checkMinChar(target) {
+        if (target.value.length < parseInt("{{ page.min_message_characters }}")) {
+            errors[2] = 1
+            alert("A minimum of {{ page.min_message_characters }} characters is needed in the Message field")
+        } else {
+            errors[2] = 0
+        }
+    }
+</script>
+{% else %}
+<script>
+    const minChar = false
+</script>
+{% endif %}
+
+{% if page.only_bussiness_addresses %}
+<script>
+    const onlyBussinessAddress = true
+    function checkBussinessAddress(target) {
+        let freeMailProviders = ["yahoo", "gmail", "proton", "protonmail", "aol", "mail.ru", "hotmail", "yandex"]
+        for (let mail of freeMailProviders) {
+            if (target.value.includes(mail)) {
+                errors[1] = 1
+                alert("Please insert a Business Email Address")
+            } else {
+                errors[1] = 0
+            }
+        }
+    }
+</script>
+{% else %}
+<script>
+    const onlyBussinessAddress = false
+</script>
+{% endif %}
+
+<script>
+    let mouseMoved = false
+    let keysPressed = false
+    function setMouse() {
+        mouseMoved = true        
+    }
+    function setKeys() {
+        keysPressed = true        
+    }
+    function validate() {
+        let inputs = document.querySelectorAll("input")
+        let textarea = document.querySelectorAll("textarea")
+        for (let input of inputs) {
+            if (input.id.includes("company") && company) {
+                if (input.value.length < 3) {
+                    errors[0] = 1
+                    alert("At least 3 characters needed for company name.") 
+                    break                   
+                } else {
+                    errors[0] = 0
+                }
+            } else if (input.id.includes("email") && company && onlyBussinessAddress) {
+                checkBussinessAddress(input)
+                break
+            }
+        }
+
+        for (let text of textarea) {
+            if (text.id.includes("message")) {
+                if (noHtml) {
+                    checkHtml(text)
+                    if (errors[4] != 0) {
+                        break
+                    }
+                }
+                if (languages) {
+                    checkLanguages(text)
+                    if (errors[5] != 0) {
+                        break
+                    }
+                }
+                if (minChar) {
+                    checkMinChar(text)
+                    if (errors[1] != 0) {
+                        break
+                    }
+                }
+                if (noLinks) {
+                    checkLinks(text)
+                    if (errors[3] != 0) {
+                        break
+                    }
+                }
+            }
+        }
+        if (errors.includes(1)) {
+            console.log(errors)
+        } else {
+            document.body.classList.add("progress")
+            setTimeout(() => {
+                var form = document.querySelector("#email-form")
+                form.action = "{% pageurl page %}"
+                form.method = "POST"
+                let child = form.firstChild
+                if (child.tagName != 'INPUT') {
+                    form.insertAdjacentHTML("afterbegin", '{% csrf_token %}')
+                }
+                form.submit();
+            }, "3000")
+        }
+    }
+
+window.onload = function() {
+    document.querySelectorAll("input").forEach((input) => {
+        if (input.value == "company" && input.checked) {
+            company = true
+        } else if (input.value == "project" && input.checked) {
+            company = false
+        }            
+    })
+    window.addEventListener("mousemove", (event) => {
+        window.removeEventListener("mousemove", setMouse)
+        setMouse()
+    })
+    window.addEventListener("click", handleClicks)
+    document.querySelector("#email-form").addEventListener('submit', function (event) {
+        if (event.submitter.id == "btnSubmit") {
+            console.log(event.submitter)
+            event.preventDefault()
+        }     
+        validate()
+    });
+}
+</script>
+{% endblock %}
+

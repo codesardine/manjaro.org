@@ -3,14 +3,21 @@
 
 {% block head %}
   <meta name="robots" content="noindex, nofollow">
+  <style>
+    #intro {
+    display: none;
+}
+  </style>
 {% endblock %}
 
+{% block body_class %}contact-form bg-blue-gray-800{% endblock %} 
+
 {% block content %}
-<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 bg-gray-50">
-    <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-      <p class="text-base text-gray-700 md:text-lg">
+<div class="lg:max-w-screen-lg mx-auto flex justify-center items-center font-semibold lg:px-[86px] h-[80vh]">
+  <div class="rounded bg-gray-200 relative w-full gap-4 capitalize px-4 mx-auto font-bold p-4">
+      <div class="text-gray-900 text-xl">
         {{ self.thank_you_text|richtext }}
-      </p>
+      </div>
     </div>
  </div>
  {% endblock %}
