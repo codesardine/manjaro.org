@@ -182,10 +182,12 @@ body.progress, body.progress * {
             if (target.value.includes(mail)) {
                 errors[1] = 1
                 alert("Please insert a Business Email Address")
+                break
             } else {
                 errors[1] = 0
             }
         }
+        console.log(errors)
     }
 </script>
 {% else %}
@@ -217,7 +219,9 @@ body.progress, body.progress * {
                 }
             } else if (input.id.includes("email") && company && onlyBussinessAddress) {
                 checkBussinessAddress(input)
-                break
+                if (errors[1] != 0) {
+                    break
+                }
             }
         }
 
@@ -249,6 +253,7 @@ body.progress, body.progress * {
                 }
             }
         }
+        console.log(errors)
         if (errors.includes(1)) {
             console.log(errors)
         } else {
@@ -261,7 +266,8 @@ body.progress, body.progress * {
                 if (child.tagName != 'INPUT') {
                     form.insertAdjacentHTML("afterbegin", '{% csrf_token %}')
                 }
-                form.submit();
+                //form.submit();
+                console.log("submit")
             }, "3000")
         }
     }
