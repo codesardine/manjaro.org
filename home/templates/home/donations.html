@@ -42,13 +42,13 @@
 {% block content %}
   <div class="relative">
     <div class="bg-gray-900 bg-opacity-75 fixed h-full w-full top-0 z-[0]"></div>
-    <div class="py-14 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:px-4 lg:py-24 z-1 relative">
+    <div class="pt-20 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:px-4 z-1 relative">
       <div class="flex flex-col gap-4 md:flex-row">
         <div class="w-full mb-12 xl:mb-0 bg-gray-200 rounded">
             {{ page.content }}
         </div>
         <div class="w-full lg:max-w-lg">
-          <div class="bg-gray-200 rounded shadow-2xl px-4 pb-4 h-full pt-2">
+          <div class="bg-gray-200 rounded shadow-2xl md:px-4 pb-4 h-full pt-2">
             <div class="w-full bg-white relative rounded h-8 mb-2">
               <div id="balance" class="bg-teal-200 py-1 px-2 float-left rounded h-8" style="width:{{ total }};">
                 <span class="absolute left-2">
@@ -90,7 +90,7 @@
                    </div>
                 </div>
               </div>
-              <iframe class="w-full h-[800px] focus:outline-none overflow-hidden" scrolling="no" src="https://opencollective.com/embed/manjaro/donate?hideHeader=true&hideFAQ=true&hideSteps=true"></iframe>
+              <iframe class="w-full h-[1600px] sm:h-[800px] md:h-[910px] lg:h-[820px] focus:outline-none overflow-hidden" scrolling="no" src="https://opencollective.com/embed/manjaro/donate?hideHeader=true&hideFAQ=true&hideSteps=true"></iframe>
             </form>
           </div>
         </div>
@@ -116,8 +116,8 @@
   window.addEventListener("load", () => {
     const select = document.getElementsByTagName("select")[0]
     function setCurrency() {
+      const iframe = document.getElementsByTagName("iframe")[1]
       let currency = select.value
-      var iframe = document.getElementsByTagName("iframe")[1]
       switch(currency) {
         case "Euro":
           var collective = `https://opencollective.com/embed/manjaro/donate?hideHeader=true&hideFAQ=true&hideSteps=true`
