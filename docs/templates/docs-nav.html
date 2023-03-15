@@ -13,10 +13,13 @@
   #menu-docs ul {
     width: 100%;
   }
+  #intro {
+    display:none;
+  }
 </style>
 {% endblock %}
 
-<div id="menu-docs" class="lg:w-[40%] transition-transform z-[5] duration-500 translate-x-[-120%] lg:translate-x-0 bg-blue-gray-800 lg:bg-transparent fixed top-0 bottom-0 left-0 right-0 lg:relative lg:flex">
+<div id="menu-docs" class="lg:w-[40%] transition-transform z-[5] duration-500 translate-x-[-120%] lg:translate-x-0 bg-blue-gray-800 lg:bg-transparent fixed top-0 lg:pt-0 pt-[54px] bottom-0 left-0 right-0 lg:relative lg:flex">
   <ul class="lg:w-[40%] overflow-hidden h-full" id="tabs-tab" role="tablist">
   {% for category in categories %}
       {% if not user.is_authenticated and category != "internal" %}
