@@ -1,6 +1,10 @@
 toggleMenu = () => {
   let mobileMenu = document.getElementById("mobile-menu")
   mobileMenu.classList.toggle("translate-x-[-150%]")
+  let menuDocs = document.getElementById("menu-docs")
+  if (menuDocs) {
+    menuDocs.classList.add("translate-x-[-150%]")
+  }
 }
 
 window.addEventListener("load", () => {
