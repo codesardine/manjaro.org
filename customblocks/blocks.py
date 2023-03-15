@@ -53,6 +53,19 @@ class PartnerBlock(blocks.StructBlock):
         label = "Partner"
 
 
+class SponsorsBlock(blocks.StructBlock):
+
+    url = blocks.URLBlock(required=False)
+    description = blocks.TextBlock(required=False, help_text="Short Vendor Description")
+    vendor_logo = ImageChooserBlock(required=False)
+    category = blocks.TextBlock(required=True)
+
+    class Meta:
+        template = "sponsor-component.html"
+        icon = "user"
+        label = "Sponsor"
+
+
 class AffiliateBlock(blocks.StructBlock):
 
     promotion = blocks.StructBlock(

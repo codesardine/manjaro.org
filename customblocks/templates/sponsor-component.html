@@ -1,0 +1,23 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+
+  <div class="w-max bg-white">     
+    <a class="px-4 py-2 text-center" href="{{ self.url }}">
+      {% if block.value.category == 'platinum' %}
+        {% image block.value.vendor_logo original class="object-contain h-32 w-max" %}
+      {% elif block.value.category == 'gold' %}
+        {% image block.value.vendor_logo original class="object-contain h-28 w-max" %}
+      {% elif block.value.category == 'silver' %}
+        {% image block.value.vendor_logo original class="object-contain h-24 w-max" %}
+      {% elif block.value.category == 'bronze' %}
+        {% image block.value.vendor_logo original class="object-contain h-20 w-max" %}
+      {% elif block.value.category == 'outstanding' %}
+        {% image block.value.vendor_logo original class="object-contain h-16 w-max" %}
+      {% elif block.value.category == 'amazing' %}
+        {% image block.value.vendor_logo original class="object-contain h-14 w-max" %}
+      {% elif block.value.category == 'generous' %}
+        {% image block.value.vendor_logo original class="object-contain h-12 w-max" %}
+      {% else %}
+        <p>No sponsors yet</p>
+      {% endif %}
+    </a>
+  </div>

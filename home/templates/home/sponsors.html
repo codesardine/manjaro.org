@@ -1,0 +1,353 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}sponsors bg-blue-gray-800{% endblock %}
+
+{% block title %}
+    {% if page.seo_title %}
+        {{ page.seo_title }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+{% endblock %}
+
+{% block meta_title %}
+    {% if page.seo_title %}
+        {{ page.seo_title }}
+    {% else %}
+        {{ page.title }}
+    {% endif %}
+{% endblock %}
+
+{% block meta_description %}
+    {% if page.search_description %}
+        {{ page.search_description }}
+    {% endif %}
+{% endblock %}
+
+{% block head %}
+<style>
+.text-engraved {
+    content: '';
+    color: transparent;
+    background: black;
+    background-clip: text;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.3);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="overflow-hidden h-full w-full bg-blue-gray-800 fixed top-0 z-[-1]">
+    <svg class="fixed text-teal-300 hidden md:block left-0 h-full top-0" version="1.1" viewBox="0 0 140 135"
+      xmlns="http://www.w3.org/2000/svg">
+      <g transform="matrix(-1,0,0,1,140,0)" fill="CurrentColor">
+        <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748" />
+        <g fill-opacity=".4">
+          <path d="m140 80v-70l-45.252 45-84.748 80h75z" />
+          <path d="m140 70v-50l-45 45-75 70h55z" />
+          <path d="m140 60v-30l-45.252 45-64.748 60h35z" />
+          <path d="m140 50v-10l-45.252 45-49.748 50h10z" />
+        </g>
+    </svg>
+  </div>
+<div class="mx-auto w-full md:max-w-screen-xl md:px-4 mt-20">
+    <div class="bg-gray-200 rounded">
+        <div class="flex gap-4 relative">
+            <div class="w-full lg:w-2/3 md:px-4">
+                <h1 class="text-gray-800 font-semibold text-3xl p-4 pb-10">
+                    Become a Manjaro Sponsor</h1>
+                    <table class="table-auto bg-white md:p-4 w-full capitalize">
+                        <thead>
+                          <tr class="capitalize text-gray-200 bg-blue-gray-900 font-bold">
+                            <th class="p-4">sponsorship tiers</th>
+                            <th class="p-4 border-l border-gray-400 text-center">contribution</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="bg-green-200">
+                            <td class="p-2">Global platinum</td>
+                            <td class="p-2 border-l border-gray-400 text-center">€{{ page.platinum}}/month</td>
+                          </tr>
+                          <tr>
+                            <td class="p-2">Gold</td>
+                            <td class="p-2 border-l border-gray-400 text-center">€{{ page.gold}}/month</td>
+                          </tr>
+                          <tr class="bg-green-200">
+                            <td class="p-2">Silver</td>
+                            <td class="p-2 border-l border-gray-400 text-center">€{{ page.silver}}/month</td>
+                          </tr>
+                          <tr>
+                            <td class="p-2">Bronze</td>
+                            <td class="p-2 border-l border-gray-400 text-center">€{{ page.bronze}}/month</td>
+                          </tr>
+                          <tr class="bg-green-200">
+                            <td class="p-2">Outstanding</td>
+                            <td class="p-2 border-l border-gray-400 text-center">€{{ page.outstanding}}/month</td>
+                          </tr>
+                          <tr class="">
+                            <td class="p-2">Amazing</td>
+                            <td class="p-2 border-l border-gray-400 text-center">€{{ page.amazing}}/month</td>
+                          </tr>
+                          <tr class="bg-green-200">
+                            <td class="p-2">Generous</td>
+                            <td class="p-2 border-l border-gray-400 text-center">Product or Service.</td>
+                          </tr>
+                          <tr class="">
+                            <td class="p-2">individual</td>
+                            <td class="p-2 border-l border-gray-400 text-center">
+                               <a href="https://manjaro.org/donate/" class="text-teal-600 hover:text-teal-400">Donations</a> 
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                
+            <div class="p-4">
+                <div id="sponsoring-manjaro-as-a-business" class="pt-24">
+                    <h2 class="text-gray-900 font-semibold text-2xl pb-10">
+                        Sponsoring Manjaro as a Business</h2>
+                    <p class="">{{ page.sponsoring_manjaro_as_a_business }}</p>
+                </div>
+
+                <div id="sponsoring-manjaro-as-a-individual" class="pt-24">
+                    <h2 class="text-gray-900 font-semibold text-2xl pb-10">
+                        Sponsoring Manjaro as a individual</h2>
+                    <p class="">{{ page.sponsoring_manjaro_as_a_individual }}</p>
+                </div>
+                    
+                <div id="tier-benefits" class="pt-24">
+                    <h3  class="text-gray-900 font-semibold text-xl">Tier Benefits</h3>
+                    <h4 class="font-semibold text-teal-600 pt-4 capitalize">platinum sponsor</h4>
+                    <ul>
+                        <li class="w-full py-1">Limited to one sponsor globally.</li>
+                        <li class="w-full py-1">Exclusive above the fold logo placement on the front page on manjaro.org</li>
+                        <li class="w-full py-1">Plus all benefits of tier bellow.</li>                
+                    </ul>
+
+                    <h4 class="font-semibold text-teal-600 pt-4 capitalize">gold sponsor</h4>
+                    <ul>
+                        <li class="w-full py-1">Logo placement at forum.manjaro.org.</li>
+                        <li class="w-full py-1">Plus all benefits of tier bellow.</li>
+                    </ul>
+
+                    <h4 class="font-semibold text-teal-600 pt-4 capitalize">silver sponsor</h4>
+                    <ul>
+                        <li class="w-full py-1">Logo placement at the sidebar on all pages of manjaro.org except donations.</li>
+                        <li class="w-full py-1">Plus all benefits of tier bellow.</li>
+                    </ul>
+                    <h4 class="font-semibold text-teal-600 pt-4 capitalize">bronze sponsor</h4>
+                    <ul>
+                        <li class="w-full py-1">Logo placement at the bottom of front page of manjaro.org</li>
+                        <li class="w-full py-1">Plus all benefits of tier bellow.</li>                
+                    </ul>
+
+                    <h4 class="font-semibold text-teal-600 pt-4 capitalize">Outstanding sponsor</h4>
+                    <ul>
+                        <li class="w-full py-1">Logo placement at the sidebar of blog.manjaro.org.</li>
+                        <li class="w-full py-1">Plus all benefits of tier bellow.</li>
+                    </ul>
+
+                    <h4 class="font-semibold text-teal-600 pt-4 capitalize">Amazing sponsor</h4>
+                    <ul>
+                        <li class="w-full py-1">Logo placement at sponsors page of manjaro.org.</li>
+                        <li class="w-full py-1">Logo placement in sidebar of docs.manjaro.org.</li>
+                    </ul>
+
+                    <h4 class="font-semibold text-teal-600 pt-4 capitalize">Generous sponsor</h4>
+                    <ul>
+                        <li class="w-full py-1">Logo placement at sponsors page of manjaro.org.</li>                
+                    </ul>
+                </div>
+                
+                <div id="current-sponsors" class="pt-24">
+                    <h5 class="text-blue-gray-900 font-semibold text-xl text-center mb-6 w-full">Manjaro is proudly sponsored by.</h5>
+                    <div class="flex items-center justify-center py-10">
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star pr-4 pl-2"></i>
+                        <h1 class="min-w-max relative overflow-hidden bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 text-gray-800 shadow-xl w-max capitalize px-8 py-2 font-extrabold text-3xl rounded">
+                        <span class="text-engraved">
+                            platinum
+                        </span></h1>
+                        <i class="text-gray-900 fa-solid fa-star pl-4 pr-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                    </div>
+                    <div class="py-4 flex gap-2 justify-center">
+                        {% for block in page.content %}
+                            {% if block.value.category == "platinum" %}
+                                {% include_block block %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="flex items-center justify-center py-10">
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star pr-4 pl-2"></i>
+                        <h1 class="min-w-max relative overflow-hidden bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 text-gray-800 shadow-xl w-max capitalize px-8 py-2 font-extrabold text-2xl rounded">
+                        <span class="text-engraved">
+                            Gold
+                        </span></h1>
+                        <i class="text-gray-900 fa-solid fa-star pl-4 pr-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                    </div>
+                    <div class="py-4 flex gap-2 justify-center">
+                        {% for block in page.content %}
+                            {% if block.value.category == "gold" %}
+                                {% include_block block %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="flex items-center justify-center py-10">
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star pr-4 pl-2"></i>
+                        <h2 class="min-w-max relative overflow-hidden bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 text-gray-800 shadow-xl w-max capitalize px-6 py-2 font-extrabold text-xl rounded">
+                        <span class="text-engraved">
+                            Silver
+                        </span></h2>
+                        <i class="text-gray-900 fa-solid fa-star pl-4 pr-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                    </div>
+            
+                    <div class="flex gap-2 py-4 justify-center">
+                        {% for block in page.content %}
+                            {% if block.value.category == "silver" %}
+                            {% include_block block %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="flex items-center justify-center py-10">
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star pr-4 pl-2"></i>
+                        <h3 class="min-w-max relative overflow-hidden bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 text-gray-800 shadow-xl w-max capitalize px-3 py-1 font-extrabold text-lg rounded">
+                        <span class="text-engraved">
+                            Bronze
+                        </span></h3>
+                        <i class="text-gray-900 fa-solid fa-star pl-4 pr-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                    </div>
+                    <div class="flex gap-2 py-4 justify-center">
+                        {% for block in page.content %}
+                            {% if block.value.category == "bronze" %}
+                            {% include_block block %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="flex items-center justify-center py-10">
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star pr-4 pl-2"></i>
+                        <h3 class="min-w-max relative overflow-hidden bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 text-gray-800 shadow-xl w-max capitalize px-3 py-1 font-extrabold text-lg rounded">
+                        <span class="text-engraved">
+                            outstanding
+                        </span></h3>
+                        <i class="text-gray-900 fa-solid fa-star pl-4 pr-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                    </div>
+                    <div class="flex gap-2 py-4 justify-center">
+                        {% for block in page.content %}
+                            {% if block.value.category == "outstanding" %}
+                            {% include_block block %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="flex items-center justify-center py-10">
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star pr-4 pl-2"></i>
+                        <h3 class="min-w-max relative overflow-hidden bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 text-gray-800 shadow-xl w-max capitalize px-3 py-1 font-extrabold text-lg rounded">
+                        <span class="text-engraved">
+                            amazing
+                        </span></h3>
+                        <i class="text-gray-900 fa-solid fa-star pl-4 pr-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                    </div>
+                    <div class="flex gap-2 py-4 justify-center">
+                        {% for block in page.content %}
+                            {% if block.value.category == "amazing" %}
+                            {% include_block block %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <div class="flex items-center justify-center py-10">
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star pr-4 pl-2"></i>
+                        <h3 class="min-w-max relative overflow-hidden bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 text-gray-800 shadow-xl w-max capitalize px-3 py-1 font-extrabold text-lg rounded">
+                        <span class="text-engraved">
+                            generous
+                        </span></h3>
+                        <i class="text-gray-900 fa-solid fa-star pl-4 pr-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                        <i class="text-gray-900 fa-solid fa-star px-2"></i>
+                    </div>
+                    <div class="flex gap-2 py-4 justify-center">
+                        {% for block in page.content %}
+                            {% if block.value.category == "generous" %}
+                            {% include_block block %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                </div>
+        </div>
+        <div class="w-1/3 hidden lg:block right-0 text-sm p-4">
+            <nav class="sticky bottom-0 rounded top-24 bg-blue-gray-900 p-4 text-gray-200">
+                <span class="uppercase font-semibold mb-2 inline-block text-pink-500">
+                    on this page</span>
+                    <ul id="sidemenu">
+                        <li>
+                            <a id="top" class="py-1 inline-block focus:text-teal-accent-400 hover:text-teal-accent-400 active:text-teal-accent-400" href="#become-a-manjaro-sponsor">
+                                Become a Manjaro Sponsor</a>
+                       </li>
+                        <li>
+                            <a class="py-1 inline-block focus:text-teal-accent-400 hover:text-teal-accent-400 active:text-teal-accent-400" href="#sponsoring-manjaro-as-a-business">
+                                Sponsoring Manjaro as a Business</a>
+                       </li>
+                       <li>
+                        <a class="py-1 inline-block focus:text-teal-accent-400 hover:text-teal-accent-400 active:text-teal-accent-400" href="#sponsoring-manjaro-as-a-individual">
+                            Sponsoring Manjaro as a individual</a>
+                   </li>
+                        <li>
+                            <a class="py-1 inline-block" href="#tier-benefits">
+                                Tier Benefits</a>
+                        </li>
+                        <li>
+                            <a class="py-1 inline-block" href="#current-sponsors">
+                                Current Sponsors</a>
+                        </li>
+                    </ul>
+                </nav>
+        </div>
+    </div>    
+  </div>
+</div>
+  <script>
+    sidemenu = document.querySelectorAll("a")    
+    sidemenu.forEach(el => {
+        el.onclick = (event) => {
+            sidemenu.forEach(el => {
+               el.classList.remove("text-teal-accent-400")
+            })
+            event.target.classList.add("text-teal-accent-400")
+            if (event.target.id.includes("top")) {
+            window.scrollTo(0, 0)
+        }
+        } 
+    });
+  </script>
+{% endblock %}

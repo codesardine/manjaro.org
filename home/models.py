@@ -621,6 +621,70 @@ class PartnersSponsors(Page):
         ),
     ]) 
 
+
+class Sponsors(Page):
+    max_count=1
+    template = "home/sponsors.html"
+    subpage_types = []
+    parent_page_types = [
+        'home.HomePage'
+    ]
+
+    sponsoring_manjaro_as_a_business = models.TextField(blank=True)
+    sponsoring_manjaro_as_a_individual = models.TextField(blank=True)
+
+    content = StreamField(
+        [
+            ("sponsors", blocks.SponsorsBlock()),     
+        ],
+        null=True,
+        blank=True,
+        use_json_field=True,
+    )
+    
+    platinum =  models.IntegerField(default=0, blank=True, help_text="montly ammount")
+    gold =  models.IntegerField(default=0, blank=True, help_text="montly ammount")
+    silver =  models.IntegerField(default=0, blank=True, help_text="montly ammount")
+    bronze =  models.IntegerField(default=0, blank=True, help_text="montly ammount")
+    outstanding =  models.IntegerField(default=0, blank=True, help_text="montly ammount")
+    amazing =  models.IntegerField(default=0, blank=True, help_text="montly ammount")
+
+    tier_panels = [
+        FieldPanel("platinum"),
+        FieldPanel("gold"),
+        FieldPanel("silver"),
+        FieldPanel("bronze"),
+        FieldPanel("outstanding"),
+        FieldPanel("amazing"),
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('sponsoring_manjaro_as_a_business'),
+        index.SearchField('sponsoring_manjaro_as_a_individual'),
+        index.SearchField('content'),
+    ]
+
+    content_panels = Page.content_panels + [
+        FieldPanel("sponsoring_manjaro_as_a_business"),
+        FieldPanel("sponsoring_manjaro_as_a_individual"),
+        FieldPanel("content"),
+    ]
+
+    keywords = models.CharField(default='', blank=True, max_length=150)
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading=('Content')),
+        ObjectList(tier_panels, heading=('Tiers')),
+        ObjectList(Page.promote_panels, heading=('Promote')),
+        ObjectList(Page.settings_panels, heading=('Settings')),
+        YoastPanel(
+            keywords='keywords',
+            title='seo_title',
+            search_description='search_description',
+            slug='slug'
+        ),
+    ]) 
+
     
 class HomePage(Page):
     max_count=1
@@ -635,7 +699,8 @@ class HomePage(Page):
         'contact.ContactPage',
         'features',
         'home.UpdateStatus',
-        'home.videos'
+        'home.videos',
+        'home.Sponsors'
         ]
     parent_page_types = [
         'wagtailcore.Page'
