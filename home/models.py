@@ -293,7 +293,7 @@ class Donations(Page):
     ])  
 
     def convert_currency(self, value):
-        return "€{:,.2f}".format(float(value/100.0))   
+        return "€ {:,.2f}".format(float(value/100.0))   
 
 
     def get_context(self, request):        
