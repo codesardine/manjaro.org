@@ -293,10 +293,7 @@ class Donations(Page):
     ])  
 
     def convert_currency(self, value):
-        import locale
-        locale.setlocale(locale.LC_ALL, 'de_DE.utf8')
-        add_decimal = "{:.2f}".format(float(value/100.0))
-        return locale.currency(float(add_decimal), grouping=True)    
+        return "€{:,.2f}".format(float(value/100.0))   
 
 
     def get_context(self, request):        
