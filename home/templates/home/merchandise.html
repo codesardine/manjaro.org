@@ -38,6 +38,14 @@
          .sprd-bg-m2 {
             background: linear-gradient(#00888A, #026B67, #018B85) !important;
          }
+         @media (max-width: 993px) { 
+            .sprd-burgermenu {
+                padding-top: 40px;
+            }
+         }
+         .SprdMain .sprd-department-filter {
+             height: auto !important;
+         }
     </style>
 {% endblock %}
 
@@ -55,7 +63,7 @@
         </g>
     </svg>
   </div>
-  <div class="pt-20 mt-[-150px] top-0 relative rounded lg:max-w-screen-xl lg:px-4 mx-auto" id="shop"></div>
+  <div class="pt-20 mt-[-180px] lg:mt-[-150px] top-0 relative rounded lg:max-w-screen-xl lg:px-4 mx-auto" id="shop"></div>
     <script>
         var spread_shop_config = {
             prefix: 'https://manjaro.myspreadshop.net',
