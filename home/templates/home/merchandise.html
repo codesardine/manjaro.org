@@ -28,7 +28,7 @@
 
 {% block head %}
     <style>
-        #shop *{
+        #shop * {
             font-family: inherit;
         }
         main {
@@ -38,13 +38,10 @@
         .sprd-social-bar__link {
             display:none !important;
         }
-        .sprd-social-bar__about-link {
-            margin: 0 !important;
-        }
 
         @media (min-width: 992px) { 
             .sprd-promo-header__center {
-            height: 100px;
+            height: 120px;
             font-size: 2rem;
             }
          }
@@ -71,7 +68,7 @@
   <div class="pt-20 mt-[-150px] top-0 relative rounded lg:max-w-screen-xl lg:px-4 mx-auto" id="shop"></div>
     <script>
         var spread_shop_config = {
-            prefix: 'https://manjaro.myspreadshop.de',
+            prefix: 'https://manjaro.myspreadshop.net',
             shopName: 'manjaro',
             baseId: 'shop',
             locale: 'en_EU',
@@ -82,4 +79,15 @@
         };
     </script>
 <script defer type="text/javascript" src="https://manjaro.myspreadshop.net/js/shopclient.nocache.js"></script>
+<script>
+    window.onload = () => {
+        let socialBar = document.querySelector(".sprd-social-bar")
+        let a = document.createElement("a")
+        a.classList.add("us-btn")
+        a.href = "https://manjaro.myspreadshop.com/"
+        a.textContent = "US Shop"
+        a.target = "_blank"
+        socialBar.append(a)
+        }
+</script>
 {% endblock %}
