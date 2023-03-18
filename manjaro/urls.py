@@ -10,6 +10,7 @@ from compare.views import pkgs_update_status_json
 from wagtail.contrib.sitemaps.views import sitemap
 from search import views as search_views
 from compare.views import pkgs_json, mesa_json
+from home.views import merch
 
 
 urlpatterns = [
@@ -19,7 +20,8 @@ urlpatterns = [
     path('status.json', pkgs_update_status_json),
     #path('packages.json', pkgs_json),
     path('mesa.json', mesa_json),
-    re_path(r"^search/$", search_views.search, name="search"),    path('status.json', pkgs_update_status_json),
+    re_path(r"^search/$", search_views.search, name="search"), 
+    path('merchandise/', merch),
 
 ]
 
