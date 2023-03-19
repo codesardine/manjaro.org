@@ -92,14 +92,31 @@
     </script>
 <script defer type="text/javascript" src="https://manjaro.myspreadshop.net/js/shopclient.nocache.js"></script>
 <script>
-    window.onload = () => {
-        let socialBar = document.querySelector(".sprd-social-bar")
+    function usShopBtn() {
         let a = document.createElement("a")
         a.classList.add("us-btn")
         a.href = "https://manjaro.myspreadshop.com/"
-        a.textContent = "US Shop"
-        a.target = "_blank"
+        a.textContent = "Visit US Shop"
+        a.target = "_blank"     
+        return a   
+    }
+    window.onload = () => {
+        let socialBar = document.querySelector(".sprd-social-bar")
+        let a = usShopBtn()
         socialBar.append(a)
+        let nav = document.querySelector("#sprd-mobile-navigation")
+        nav.addEventListener("click", (event) => {
+            let li = document.createElement("li")
+            li.classList.add("sprd-burgermenu__footer-item")
+            let a = usShopBtn()
+            a.classList.add("sprd-link")
+            li.append(a)
+            setTimeout(() => {
+                let mobileMenu = document.querySelector(".sprd-burgermenu__footer")
+                mobileMenu.querySelector("li:last-child").style.display = "none"
+                mobileMenu.append(li)
+            }, "300");
+        })
         }
 </script>
 {% endblock %}
