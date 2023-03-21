@@ -32,6 +32,13 @@
       clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
     }
   }
+              
+.star-twelve {
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  background: teal;
+}
 </style>
 {% endblock %}
 
@@ -432,8 +439,28 @@
             </div>
           Latest Merchandise
         </h3>
+        {% if latest_promo %}
+            <div class="bg-pink-500 text-xl font-bold rounded py-3 px-8 flex justify-center items-center text-center mb-4 mt-[-32px] gap-2 max-w-fit mx-auto">
+                {% for k, v in latest_promo.items %}
+                {% if k == "description" %}
+                      <span>{{ v }} valid until</span>
+                {% elif k == "validUntil" %}
+                      <span id="expire"></span>
+                      <script>
+                        function toLocaleDate(date) {
+                          d = new Date(date).toString()
+                          i = d.lastIndexOf(":")
+                          return d.slice(0,i)
+                        }
+                        document.querySelector("#expire").textContent = toLocaleDate("{{ v }}")
+                      </script>
+                {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-         {% for item in shop %}
+         {% for item in latest_merch %}
          <div class="flex relative bg-gray-200 flex-wrap rounded">
           {% if forloop.first %}
           {% with customize="Customize your own" %}
@@ -447,7 +474,7 @@
             {% for key, value in item.items %}
             {% if "description" in key %}
             <div class="p-6 font-bold text-center text-lg bg-blue-gray-900 w-full h-[88px] rounded-b">
-              <a href="https://staging.manjaro.org/merchandise/#!/create" class="px-4 py-1 bg-teal-600 block rounded min-w-fit">
+              <a href="https://staging.manjaro.org/merchandise/#!/create" class="px-6 py-2 bg-teal-600 block rounded max-w-fit mx-auto">
                 <i class="fa-solid fa-cart-shopping mr-4"></i>{{customize}}</a>
             </div>
             {% endif %}
@@ -464,7 +491,7 @@
             {% for key, value in item.items %}
             {% if "description" in key %}
             <div class="p-6 font-bold text-center text-lg bg-blue-gray-900 w-full h-[88px] rounded-b">
-              <a href="https://staging.manjaro.org/merchandise/" class="px-4 py-1 bg-teal-600 block rounded min-w-fit">
+              <a href="https://staging.manjaro.org/merchandise/" class="px-6 py-2 bg-teal-600 block rounded max-w-fit mx-auto">
                 <i class="fa-solid fa-cart-shopping mr-4"></i>Discover Merch</a>
             </div>
             {% endif %}

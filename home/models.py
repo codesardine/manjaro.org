@@ -702,22 +702,24 @@ class HomePage(Page):
         ),
     ])
 
-    def shop(self):
-        data_source = "https://api.spreadshirt.net/api/v1/shops/739762/sellables?page=0"
+    def shop(self, endpoint, key=None):
+        data_source = f"https://api.spreadshirt.net/api/v1/shops/739762/{endpoint}"
         api_key = os.getenv("SPRD_API_KEY")
         headers = {
             "Authorization": f'SprdAuth apiKey="{api_key}"',
             "User-Agent": "Manjaro-Shop/1.0"
         }
         response = requests.get(data_source, headers=headers)
-        return response.json()['sellables']
+        if key:
+            return response.json()[key]
+        return response.json()
 
     def get_context(self, request):   
         from puput.models import EntryPage 
         context = super(HomePage, self).get_context(request)
-        from wagtail.models import Page
         context['blog'] = EntryPage.objects.live().order_by('-date')[0:3]
-        context['shop'] = self.shop()[:3]
+        context['latest_merch'] = self.shop("sellables?page=0", "sellables")[:3]
+        context['latest_promo'] = self.shop("currentPromotion")
         return context
 
     
