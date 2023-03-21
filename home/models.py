@@ -704,7 +704,7 @@ class HomePage(Page):
 
     def shop(self):
         data_source = "https://api.spreadshirt.net/api/v1/shops/739762/sellables?page=0"
-        api_key = os.environ["SPRD_API_KEY"]
+        api_key = os.getenv("SPRD_API_KEY")
         headers = {
             "Authorization": f'SprdAuth apiKey="{api_key}"',
             "User-Agent": "Manjaro-Shop/1.0"
