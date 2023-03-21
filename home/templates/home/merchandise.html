@@ -136,5 +136,14 @@ var spread_shop_config = {
                 load.classList.add("hidden") 
             }, 800)
     })
+    window.onload = () => {
+        if (window.location.hash === "#!/create") {
+            document.querySelector("#modal").classList.add("hidden")
+            loadShop("https://manjaro.myspreadshop.com/js/shopclient.nocache.js")
+            setTimeout(() => {
+                load.classList.add("hidden") 
+            }, 800)
+        }
+    }
 </script>
 {% endblock %}

@@ -24,6 +24,7 @@ from wagtail.models import Site
 import urllib.request
 import json
 import concurrent.futures
+import os
 
 # fix for https://github.com/APSL/puput/issues/225
 def item_link(self, item):
@@ -649,20 +650,12 @@ class HomePage(Page):
     )
 
     manjaro_title = models.CharField(default='', blank=True, max_length=200)
-    manjaro_intro = models.TextField(blank=True, max_length=1000)
-    
-    partners_title = models.CharField(default='', blank=True, max_length=200)
-    partners_intro = models.TextField(blank=True, max_length=1000)
-    partners_url = models.URLField(blank=True)
-
+    manjaro_intro = models.TextField(blank=True, max_length=1000)    
     software_intro = models.TextField(blank=True, max_length=1000)
 
     content_panels = Page.content_panels + [
         FieldPanel("manjaro_title"),
         FieldPanel("manjaro_intro"),
-        FieldPanel("partners_title"),
-        FieldPanel("partners_intro"),
-        FieldPanel("partners_url"),
         FieldPanel("content"),
     ]
 
@@ -709,11 +702,22 @@ class HomePage(Page):
         ),
     ])
 
+    def shop(self):
+        data_source = "https://api.spreadshirt.net/api/v1/shops/739762/sellables?page=0"
+        api_key = os.environ["SPRD_API_KEY"]
+        headers = {
+            "Authorization": f'SprdAuth apiKey="{api_key}"',
+            "User-Agent": "Manjaro-Shop/1.0"
+        }
+        response = requests.get(data_source, headers=headers)
+        return response.json()['sellables']
+
     def get_context(self, request):   
         from puput.models import EntryPage 
         context = super(HomePage, self).get_context(request)
         from wagtail.models import Page
         context['blog'] = EntryPage.objects.live().order_by('-date')[0:3]
+        context['shop'] = self.shop()[:3]
         return context
 
     
