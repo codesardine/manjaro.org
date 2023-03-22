@@ -9,7 +9,8 @@ from wagtail.admin.panels import (
 )
 from wagtailyoast.edit_handlers import YoastPanel
 from wagtail.search import index
-import requests
+from manjaro import session_requests
+from datetime import timedelta
 import random
 from django.contrib.auth import get_user_model
 from wagtail.users.models import UserProfile
@@ -21,8 +22,6 @@ from puput.models import EntryPage
 from puput import feeds
 from wagtail.models import Site
 
-import urllib.request
-import json
 import concurrent.futures
 import os
 
@@ -78,9 +77,8 @@ class UpdateStatus(Page):
         
         def _get_votes(topic):
             """read one subject"""
-            with urllib.request.urlopen(f"https://forum.manjaro.org/t/{topic['id']}.json") as f_url:
-                req = f_url.read()
-            post = json.loads(req)['post_stream']['posts'][0]
+            response = session_requests.get(f"https://forum.manjaro.org/t/{topic['id']}.json", expire_after=timedelta(hours=1)) 
+            post = response.json()['post_stream']['posts'][0]
             topic['voters'] = 0
             if post['polls'][0]['voters'] > 0:
                 topic['voters'] = post['polls'][0]['voters']
@@ -101,11 +99,10 @@ class UpdateStatus(Page):
         else:
             updates_url = f"https://forum.manjaro.org/c/announcements/{branch}-updates.json"
 
-        with urllib.request.urlopen(updates_url) as f_url:
-            req = f_url.read()
+        response = session_requests.get(updates_url, expire_after=timedelta(hours=1))
 
         # doc: https://docs.discourse.org/#tag/Categories
-        topics = json.loads(req)['topic_list']['topics']
+        topics = response.json()['topic_list']['topics']
         post_limit = 4
         topics = [t for t in topics if not t['title'].startswith('About')][0:post_limit]  # limit 12 / 30
 
@@ -207,7 +204,7 @@ class Downloads(RoutablePageMixin, Page):
     
     def get_iso_info(self):
         data_source = "https://gitlab.manjaro.org/webpage/iso-info/-/raw/master/file-info.json"
-        response = requests.get(data_source)
+        response = session_requests.get(data_source, expire_after=timedelta(hours=1))
         return response.json()
 
     def get_context(self, request):    
@@ -702,14 +699,17 @@ class HomePage(Page):
         ),
     ])
 
-    def shop(self, endpoint, key=None):
+    def shop(self, endpoint, key=None, hours=0, minutes=0):
         data_source = f"https://api.spreadshirt.net/api/v1/shops/739762/{endpoint}"
         api_key = os.getenv("SPRD_API_KEY")
         headers = {
             "Authorization": f'SprdAuth apiKey="{api_key}"',
             "User-Agent": "Manjaro-Shop/1.0"
         }
-        response = requests.get(data_source, headers=headers)
+        response = session_requests.get(
+            data_source,
+            headers=headers,
+            expire_after=timedelta(hours=hours, minutes=minutes))
         if key:
             return response.json()[key]
         return response.json()
@@ -718,8 +718,8 @@ class HomePage(Page):
         from puput.models import EntryPage 
         context = super(HomePage, self).get_context(request)
         context['blog'] = EntryPage.objects.live().order_by('-date')[0:3]
-        context['latest_merch'] = self.shop("sellables?page=0", "sellables")[:3]
-        context['latest_promo'] = self.shop("currentPromotion")
+        context['latest_merch'] = self.shop("sellables?page=0", key="sellables", hours=24)[:3]
+        context['latest_promo'] = self.shop("currentPromotion", minutes=30)
         return context
 
     
