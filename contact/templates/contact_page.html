@@ -187,7 +187,6 @@ body.progress, body.progress * {
                 errors[1] = 0
             }
         }
-        console.log(errors)
     }
 </script>
 {% else %}
@@ -266,8 +265,7 @@ body.progress, body.progress * {
                 if (child.tagName != 'INPUT') {
                     form.insertAdjacentHTML("afterbegin", '{% csrf_token %}')
                 }
-                //form.submit();
-                console.log("submit")
+                form.submit();
             }, "3000")
         }
     }
@@ -287,7 +285,6 @@ window.onload = function() {
     window.addEventListener("click", handleClicks)
     document.querySelector("#email-form").addEventListener('submit', function (event) {
         if (event.submitter.id == "btnSubmit") {
-            console.log(event.submitter)
             event.preventDefault()
         }     
         validate()
