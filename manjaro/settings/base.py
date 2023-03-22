@@ -23,7 +23,7 @@ LOGGING = {
 }
 
 HARDWARE_NOISE = os.urandom(10)
-SECRET_KEY = get_random_secret_key() + HARDWARE_NOISE.hex() + str(time.time()) + get_random_secret_key()
+SECRET_KEY = get_random_secret_key() + HARDWARE_NOISE.hex() + str(time.time())
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
