@@ -467,7 +467,7 @@
 
           {% for key, value in item.items %}
             {% if "preview" in key %}
-            <img src="{{ value.url }}" class="w-full rounded-t">
+            <img src="{{ value.url }}" class="w-full rounded-t" alt="Merchandise">
             {% endif %}
             {% endfor %}
 
@@ -484,7 +484,7 @@
           {% elif forloop.last %}
           {% for key, value in item.items %}
             {% if "preview" in key %}
-            <img src="{{ value.url }}" class="w-full rounded-t">
+            <img src="{{ value.url }}" class="w-full rounded-t" alt="Merchandise">"
             {% endif %}
             {% endfor %}
 
@@ -500,7 +500,7 @@
 
             {% for key, value in item.items %}
             {% if "preview" in key %}
-            <img src="{{ value.url }}" class="w-full rounded-t">
+            <img src="{{ value.url }}" class="w-full rounded-t" alt="Merchandise">
             {% endif %}
             {% endfor %}
 
