@@ -439,7 +439,7 @@
             </div>
           Latest Merchandise
         </h3>
-        {% if latest_promo %}
+        {% if not latest_promo.message %}
             <div class="bg-pink-500 text-xl font-bold rounded py-3 px-8 flex justify-center items-center text-center mb-4 mt-[-32px] gap-2 max-w-fit mx-auto">
                 {% for k, v in latest_promo.items %}
                 {% if k == "description" %}
