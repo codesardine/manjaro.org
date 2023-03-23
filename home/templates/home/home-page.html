@@ -32,13 +32,6 @@
       clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
     }
   }
-              
-.star-twelve {
-  width: 80px;
-  height: 80px;
-  text-align: center;
-  background: teal;
-}
 </style>
 {% endblock %}
 
@@ -182,7 +175,7 @@
 
   <div id="manjaro" class="text-gray-200 relative flex justify-center flex-col lg:min-h-[100vh] w-full">
     <h3
-      class="w-full uppercase mb-6 font-sans flex justify-center items-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
+      class="w-full uppercase mb-6 lg:mt-20 font-sans flex justify-center items-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
       <span class="flex items-center justify-center text-xl mr-2 text-teal-900 w-12 h-12 rounded-full bg-yellow-accent-700">
         <i class="fa-solid fa-list-check"></i>
       </span>
@@ -194,15 +187,17 @@
           <div 
             class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow group hover:shadow-2xl">
             <div class="py-2 px-4">
-              <p class="mb-2 font-bold"><i class="fa fa-heart mr-4 text-red-700"></i>Open Source</p>
+              <h4 class="mb-2 font-bold"><i class="fa fa-heart mr-4 text-red-700"></i>Open Source<h4>
               <p class="text-sm leading-5">
-                Feel right at home with Manjaro operating system using your favorit desktop environment from a wide choice,
-                install many of the available 
+                Choose a desktop user interface to create your ideal computing environment.
+                With Manjaro, you can easily install a plethora of 
                 <a target="_blank" id="open-source" class="link" href="https://opensource.com/resources/what-open-source">open source</a>
-                 software, use native packages,
-                <a target="_blank" id="flatpak" class="link" href="https://docs.flatpak.org/en/latest/introduction.html">flatpak</a> or 
-                <a target="_blank" id="snap" class="link" href="https://ubuntu.com/core/services/guide/snaps-intro">snap</a> or build your own packages using the 
-                <a target="_blank" id="aur" class="link" href="https://wiki.archlinux.org/title/Arch_User_Repository">arch user repository</a>
+                 software, utilizing either native packages,
+                <a target="_blank" id="flatpak" class="link" href="https://docs.flatpak.org/en/latest/introduction.html">Flatpak</a> or 
+                <a target="_blank" id="snap" class="link" href="https://ubuntu.com/core/services/guide/snaps-intro">Snap packages</a>. 
+                Additionally, you can take advantage of the 
+                <a target="_blank" id="aur" class="link" href="https://wiki.archlinux.org/title/Arch_User_Repository">Arch User Repository</a>
+                to build your own customized packages. Manjaro provides the ultimate flexibility and control over your computing experience.
               </p>
             </div>
             <div
@@ -212,12 +207,13 @@
           <div
             class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow group hover:shadow-2xl">
             <div class="py-2 px-4">
-              <p class="mb-2 font-bold"><i class="fa-solid fa-plug mr-4 text-teal-400"></i>Compatibility</p>
+              <h4 class="mb-2 font-bold"><i class="fa-solid fa-plug mr-4 text-teal-400"></i>Compatibility</h4>
               <p class="text-sm leading-5">
-                Manjaro works on computers independently of their age, boost older Hardware or super boost new hardware,
-                 powered by the <a target="_blank" id="linux" class="link" href="https://www.linux.com/what-is-linux/">Linux kernel</a>, it lets you use touch screens and sound cards, graphic cards and peripherals out of the box,
-                  without having to fetch for 
-                  <a target="_blank" id="drivers" class="link" href="https://en.wikipedia.org/wiki/Device_driver">device drivers</a> from manufactures</p>
+                Boost older hardware or fully harness the capabilities of the latest hardware. Manjaro is powered by the robust 
+                <a target="_blank" id="linux" class="link" href="https://en.wikipedia.org/wiki/Linux_kernel">Linux kernel</a> and supports touchscreens, sound cards, graphics cards, and peripherals out of the box, without the need to search for 
+                <a target="_blank" id="drivers" class="link" href="https://en.wikipedia.org/wiki/Device_driver">drivers</a>
+                 from manufacturers. This means you can enjoy a hassle-free experience with Manjaro, focusing on your work or leisure activities rather than dealing with tedious driver installations.
+                  </p>
             </div>
             <div
               class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100">
@@ -226,11 +222,11 @@
           <div
             class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow group hover:shadow-2xl">
             <div class="py-2 px-4">
-              <p class="mb-2 font-bold"><i class="fa-solid fa-envelopes-bulk mr-4 text-teal-400"></i>Office</p>
+              <h4 class="mb-2 font-bold"><i class="fa-solid fa-envelopes-bulk mr-4 text-teal-400"></i>Office</h4>
               <p class="text-sm leading-5">
-                Easily accomplish any office task with the available office suites,
-                multiple document formats are supported and compatible with document format standards.
-                 Get your email on check with the best email clients</p>
+                Effortlessly tackle any office task with the comprehensive office suites available.
+                 These suites support multiple document formats and adhere to document format standards, ensuring compatibility and ease of use.
+                 In addition, Manjaro offers a range of email clients, allowing you to stay on top of your email inbox and communication needs. Stay organized, productive, and efficient.</p>
             </div>
             <div
               class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100">
@@ -239,20 +235,14 @@
           <div
             class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow group hover:shadow-2xl">
             <div class="py-2 px-4">
-              <p class="mb-2 font-bold"><i class="fa-solid fa-gamepad mr-4 text-teal-400"></i>Gaming</p>
+              <h4 class="mb-2 font-bold"><i class="fa-solid fa-gamepad mr-4 text-teal-400"></i>Gaming</h4>
               <p class="text-sm leading-5">
-                Play native games using 
-                <a target="_blank" id="steam" class="link" href="https://store.steampowered.com/about/">steam</a>
-                 or 
-                 <a target="_blank" id="lutris" class="link" href="https://lutris.net/about">lutris</a>
-                 , 
-                emulate other game platforms with steam
-                <a target="_blank" id="proton" class="link" href="https://www.protondb.com/">proton</a> 
-                or 
-                <a target="_blank" id="wine" class="link" href="https://www.winehq.org/about">wine</a>, 
-                use retro emulators
-                 and get all your games in one place, play media or video content or setup a media center,
-                  connect controllers over usb or bluetooth</p>
+                Seamless gaming experience with the option to play native games using Steam
+                 or Lutris.
+                 You can also emulate other game platforms with Steam Proton or Wine.
+                Retro gaming enthusiasts can enjoy playing their favorite classic games using the various retro emulators available on the platform.
+                Simplified media consumption with the ability to play media or video content, and even set up a dedicated media center.
+                Additionally, connecting controllers is made easy with support for both USB and Bluetooth controllers.</p>
             </div>
             <div
               class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100">
@@ -261,23 +251,14 @@
           <div
             class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow group hover:shadow-2xl">
             <div class="py-2 px-4">
-              <p class="mb-2 font-bold"><i class="fa-solid fa-pen mr-4 text-teal-400"></i>Creativity</p>
+              <h4 class="mb-2 font-bold"><i class="fa-solid fa-pen mr-4 text-teal-400"></i>Creativity</h4>
               <p class="text-sm leading-5">
-                Design using 
-                <a target="_blank" id="inkscape" class="link" href="https://inkscape.org/">inkscape</a> 
-                or 
-                <a target="_blank" id="gimp" class="link" href="https://www.gimp.org/">gimp</a>,
-                 do 3d with 
-                 <a target="_blank" id="blender" class="link" href="https://www.blender.org/features/">blender</a> or 
-                 <a target="_blank" id="freecad" class="link" href="https://www.freecadweb.org/">freecad</a>
-                  and bring them to life on your 3d printer with
-                  <a target="_blank" id="prusa" class="link" href="https://www.prusa3d.com/prusaslicer/">prusa slicer</a>,
-                 do video editing using 
-                 <a target="_blank" id="kde-live" class="link" href="https://kdenlive.org/en/features/">kde-live</a>,
-                 or 
-                 <a target="_blank" id="openshot" class="link" href="https://www.openshot.org/features/">openshot</a>
-                 , record or stream videos with 
-                 <a target="_blank" id="obs" class="link" href="https://obsproject.com/">open broadcast software</a>
+                Unleash your creativity and bring your design projects to life.
+                Design graphics and vector art using Inkscape or GIMP, or create 3D models with Blender or FreeCAD.
+                When you're ready to print your 3D designs, use Prusa Slicer to simplify the process. 
+                You can also edit your videos using popular software options like KDE-Live or OpenShot. 
+                For content creators Open Broadcast Software (OBS) for recording and streaming videos.
+                Take your designs and video content to the next level.
               </p>
             </div>
             <div
@@ -287,10 +268,13 @@
           <div
             class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow group hover:shadow-2xl">
             <div class="py-2 px-4">
-              <p class="mb-2 font-bold"><i class="fa-solid fa-server mr-4 text-teal-400"></i>DevOps</p>
+              <h4 class="mb-2 font-bold"><i class="fa-solid fa-server mr-4 text-teal-400"></i>DevOps</h4>
               <p class="text-sm leading-5">
-                Use git version control for your projects, deploy and run virtual machines, manage docker or kubernetes instances,
-                 access configure and administer your remote machines via ssh, vnc, rdp or telnet</p>
+             Take full control of your projects by utilizing the powerful git version control system.
+             In addition, the platform offers robust virtualization capabilities, enabling you to deploy and run virtual machines with ease.
+             Simplified containerization with the ability to manage Docker or Kubernetes instances.
+              You can remotely access, configure, and administer your machines via various protocols such as SSH, VNC, RDP, or Telnet,
+               giving you unparalleled flexibility and control over your computing environment. Streamline your development workflows and achieve greater productivity.</p>
             </div>
             <div
               class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100">
@@ -299,10 +283,13 @@
           <div
             class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow group hover:shadow-2xl">
             <div class="py-2 px-4">
-              <p class="mb-2 font-bold"><i class="fa-solid fa-code mr-4 text-teal-400"></i>Development</p>
+              <h4 class="mb-2 font-bold"><i class="fa-solid fa-code mr-4 text-teal-400"></i>Development</h4>
               <p class="text-sm leading-5">
-                Build software and user interfaces with any programming language and test on top of the latest software with a rolling release model,
-                use text editors like visual studio code, pycharm, sublime text or run a IDE such as eclipse or apache netbeans</p>
+                Manjaro offers a versatile platform for software development with support for many programming language.
+                 You can build software and user interfaces using your preferred programming language and test on the latest software with a rolling release model.
+                 The platform also provides access to a range of popular text editors, including Visual Studio Code,
+                 PyCharm, and Sublime Text. For more complex development projects, you can run a comprehensive integrated development environment (IDE) such as Eclipse or Apache NetBeans.
+                 Bring your software development projects to life.</p>
             </div>
             <div
               class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100">
@@ -311,10 +298,13 @@
           <div
             class="flex flex-col justify-between overflow-hidden text-left transition-shadow duration-200 bg-gray-200 rounded shadow group hover:shadow-2xl">
             <div class="py-2 px-4">
-              <p class="mb-2 font-bold"><i class="fa-solid fa-walkie-talkie mr-4 text-teal-400"></i>Communication</p>
+              <h4 class="mb-2 font-bold"><i class="fa-solid fa-walkie-talkie mr-4 text-teal-400"></i>Communication</h4>
               <p class="text-sm leading-5">
-                Keep on top of your team communication in realtime, do chat or video mettings using mattermost, slack,
-                 telegram or any other available tool from many choices available in the Manjaro repositories</p>
+               Stay connected with your team in real-time using a variety of communication tools.
+                Conduct chat or video meetings seamlessly using Mattermost, Slack, Telegram.
+                The platform offers a vast selection of communication tools to suit your team's specific needs.
+                Easily collaborate and communicate with your team, no matter where you are located.
+                Stay connected, stay productive, and achieve your goals.</p>
             </div>
             <div
               class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-teal-accent-400 group-hover:scale-x-100">
@@ -484,7 +474,7 @@
           {% elif forloop.last %}
           {% for key, value in item.items %}
             {% if "preview" in key %}
-            <img src="{{ value.url }}" class="w-full rounded-t" alt="Merchandise">"
+            <img src="{{ value.url }}" class="w-full rounded-t" alt="Merchandise">
             {% endif %}
             {% endfor %}
 
@@ -513,7 +503,6 @@
             {% endfor %}
             {% endif %}
       </div>
-
         {% endfor %}
       </div>
       </div>
@@ -622,39 +611,7 @@
   tippy('#drivers', {
     content: "WHAT ARE DRIVERS" + tooltipIcon,
     allowHTML: true,
-  })
-  tippy('#steam', {
-    content: "GAMING WITH STEAM" + tooltipIcon,
-    allowHTML: true,
-  })
-  tippy('#lutris', {
-    content: "GAMING WITH LUTRIS" + tooltipIcon,
-    allowHTML: true,
-  })
-  tippy('#proton', {
-    content: "CHECK PROTONDB" + tooltipIcon,
-    allowHTML: true,
-  })
-  tippy('#wine', {
-    content: "WHAT IS WINE" + tooltipIcon,
-    allowHTML: true,
-  })
-  tippy('#inkscape', {
-    content: "FOR VECTOR GRAPHICS" + tooltipIcon,
-    allowHTML: true,
-  })
-  tippy('#gimp', {
-    content: "PHOTOSHOP REPLACEMENT" + tooltipIcon,
-    allowHTML: true,
-  })
-  tippy('#blender', {
-    content: "ALL IN ONE 3D SOFTWARE" + tooltipIcon,
-    allowHTML: true,
-  })
-  tippy('#freecad', {
-    content: "PARAMETRIC 3D MODELER" + tooltipIcon,
-    allowHTML: true,
-  })
+  })  
   tippy('#features', {
     content: "MANJARO TRAITS AND SOFTWARE" + tooltipIcon,
     allowHTML: true,
