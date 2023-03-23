@@ -8,4 +8,8 @@
             <lastmod>{{ url.lastmod|sitemap_date }}</lastmod>
         </url>
     {% endfor %}
+    <url>
+        <loc>https://manjaro.org/merchandise/</loc>
+        <lastmod>{{ ""|date_today }}</lastmod>
+    </url>
 </urlset>

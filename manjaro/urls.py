@@ -21,7 +21,7 @@ urlpatterns = [
     #path('packages.json', pkgs_json),
     path('mesa.json', mesa_json),
     re_path(r"^search/$", search_views.search, name="search"), 
-    path('merchandise/', merch),
+    path('merchandise/', merch, name="Merchandise"),
 
 ]
 
@@ -35,7 +35,8 @@ if settings.DEBUG:
     urlpatterns += path('__debug__/', include('debug_toolbar.urls')),
 
 urlpatterns = urlpatterns + [
-    path('sitemap.xml', sitemap),
     path(r'',include(puput_urls)),
     path("", include(wagtail_urls)),
+    path('sitemap.xml', sitemap),
+
 ]

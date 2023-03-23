@@ -1,4 +1,5 @@
 from django import template
+from datetime import date
 register = template.Library()
 
 
@@ -18,6 +19,10 @@ def clean_id(string):
 @register.filter
 def sitemap_date(date):
     return date.strftime('%Y-%m-%d')
+
+@register.filter
+def date_today(str):
+    return date.today().strftime('%Y-%m-%d')
     
 @register.filter
 def url_exists(url):
