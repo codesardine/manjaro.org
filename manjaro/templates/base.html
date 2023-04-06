@@ -54,31 +54,7 @@
         {% wagtailuserbar %}
 
         {% include "home/navigation.html" %}
-        <main class="min-h-[calc(100vh-82px)] {% if not 'home' in page.title.lower %}pb-20{% endif %}">
-        {% if page.intro or "blog" in self.title.lower %}
-            <div class="grid gap-10 lg:grid-cols-1 relative mt-12 lg:mt-20">
-                <div class="lg:col-span-3">
-                    <div class="mx-auto md:max-w-full lg:max-w-screen-xl mb-4">
-                        <div id="intro" class="text-left bg-white p-4 pt-[10px] rounded lg:w-2/3 shadow lg:mt-4 transition-transform duration-500 relative mx-auto">
-                            <h1 class="inline-block px-3 text-xs font-semibold shadow tracking-wider text-teal-900 uppercase rounded-full bg-yellow-accent-700">
-                                {% if "team" in page.title %}
-                                        Know Our {{ page.title }}
-                                {% else %}
-                            {{ page.title }}
-                                {% endif %}
-                            </h1>
-                            <p class="text-gray-800 pt-[10px] text-sm">
-                                {% if page.description %}
-                                  {{ page.description }}
-                                {% else %}
-                                  {{ page.intro|richtext }}
-                                {% endif %}
-                            </p>
-                        </div>            
-                    </div>
-                </div>        
-            </div>
-        {% endif %}
+        <main class="min-h-[calc(100vh-82px)] {% if not 'home' in page.title.lower %}pb-20 lg:pt-20{% endif %}">
           {% block content %}{% endblock %}        
         </main>
 

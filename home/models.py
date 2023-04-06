@@ -116,20 +116,10 @@ class UpdateStatus(Page):
         context["arm"] = arm
         return context
 
-    intro = models.TextField(default='', blank=True, max_length=1000)
-
-    search_fields = Page.search_fields + [
-        index.SearchField('intro'),
-    ]
-
-    content_panels = Page.content_panels + [
-        FieldPanel('intro'),
-    ]
-
     keywords = models.CharField(default='', blank=True, max_length=150)
 
     edit_handler = TabbedInterface([
-        ObjectList(content_panels, heading=('Content')),
+        ObjectList(Page.content_panels, heading=('Content')),
         ObjectList(Page.promote_panels, heading=('Promote')),
         ObjectList(Page.settings_panels, heading=('Settings')),
         YoastPanel(
@@ -148,8 +138,6 @@ class Downloads(RoutablePageMixin, Page):
     parent_page_types = [
         'home.HomePage'
     ]
-
-    intro = models.TextField(default='', blank=True, max_length=1000)
 
     manjaro_team_intro = models.TextField(default='', blank=True, max_length=1000)
     community_intro = models.TextField(default='', blank=True, max_length=1000)
@@ -188,7 +176,6 @@ class Downloads(RoutablePageMixin, Page):
     
 
     content_panels = Page.content_panels + [
-        FieldPanel("intro"),
         FieldPanel("manjaro_team_intro"),
         FieldPanel("community_intro"),
         FieldPanel("manjaro_arm_team_intro"),
@@ -311,8 +298,6 @@ class Hardware(Page):
         'home.HomePage'
     ]
 
-    intro = models.TextField(max_length=1000, null=True)
-
     content = StreamField(
         [
             ("product_details", blocks.ProductBlock()),        
@@ -323,12 +308,10 @@ class Hardware(Page):
     )
 
     search_fields = Page.search_fields + [
-        index.SearchField('intro'),
         index.SearchField('content'),
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro'),
         FieldPanel("content"),
     ]
 
@@ -369,7 +352,6 @@ class Features(Page):
         'home.HomePage'
     ]
 
-    intro =  models.TextField(blank=True, max_length=1000)
     branches_intro =  models.TextField(blank=True, max_length=1000)
     arch_linux_intro =  models.TextField(blank=True, max_length=1000)
     unstable_intro =  models.TextField(blank=True, max_length=1000)
@@ -399,7 +381,6 @@ class Features(Page):
     calamares_intro =  models.TextField(blank=True, max_length=1000)    
 
     search_fields = Page.search_fields + [
-        index.SearchField('intro'),
         index.SearchField("branches_intro"),
         index.SearchField("arch_linux_intro"),
         index.SearchField("unstable_intro"),
@@ -425,7 +406,6 @@ class Features(Page):
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel("intro"),
         FieldPanel("branches_intro"),
         FieldPanel("arch_linux_intro"),
         FieldPanel("unstable_intro"),
@@ -474,16 +454,6 @@ class Team(Page):
         'home.HomePage'
     ]
 
-    intro =  models.TextField(blank=True, max_length=1000)
-
-    search_fields = Page.search_fields + [
-        index.SearchField('intro'),
-    ]
-
-    content_panels = Page.content_panels + [
-        FieldPanel("intro"),
-    ]
-
     def get_context(self, request):
         User = get_user_model()
         users = User.objects.all()
@@ -516,7 +486,7 @@ class Team(Page):
     keywords = models.CharField(default='', blank=True, max_length=150)
 
     edit_handler = TabbedInterface([
-        ObjectList(content_panels, heading=('Content')),
+        ObjectList(Page.content_panels, heading=('Content')),
         ObjectList(Page.promote_panels, heading=('Promote')),
         ObjectList(Page.settings_panels, heading=('Settings')),
         YoastPanel(
@@ -535,8 +505,6 @@ class CustomPage(Page):
         'home.HomePage'
     ]
 
-    intro =  models.TextField(default='', blank=True, max_length=1000)
-
     content = StreamField(
         [
             ("richtext", blocks.RichtextBlock()),
@@ -547,20 +515,17 @@ class CustomPage(Page):
     )
 
     search_fields = Page.search_fields + [
-        index.SearchField('intro'),
         index.SearchField('content'),
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel("intro"),
         FieldPanel("content"),
     ]
     
-
     keywords = models.CharField(default='', blank=True, max_length=150)
 
     edit_handler = TabbedInterface([
-        ObjectList(content_panels, heading=('Content')),
+        ObjectList(Page.content_panels, heading=('Content')),
         ObjectList(Page.promote_panels, heading=('Promote')),
         ObjectList(Page.settings_panels, heading=('Settings')),
         YoastPanel(
@@ -590,15 +555,11 @@ class PartnersSponsors(Page):
         use_json_field=True,
     )
 
-    intro =  models.TextField(default='', blank=True, max_length=1000)
-
     search_fields = Page.search_fields + [
-        index.SearchField('intro'),
         index.SearchField('content'),
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel("intro"),
         FieldPanel("content"),
     ]
 
@@ -730,8 +691,6 @@ class Videos(Page):
         'home.HomePage'
     ]
 
-    intro =  models.TextField(default='', blank=True, max_length=1000)
-
     video_media = StreamField(
         [
             ("video", blocks.UrlBlock()),
@@ -742,16 +701,13 @@ class Videos(Page):
     )
 
     search_fields = Page.search_fields + [
-        index.SearchField('intro'),
         index.SearchField('video_media'),
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel("intro"),
         FieldPanel("video_media"),
     ]
     
-
     keywords = models.CharField(default='', blank=True, max_length=150)
 
     edit_handler = TabbedInterface([

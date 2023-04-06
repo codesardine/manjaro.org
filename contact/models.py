@@ -30,12 +30,10 @@ class ContactPage(WagtailCaptchaEmailForm):
     template = "contact_page.html"
     landing_page_template = "contact-landing.html"
 
-    intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
 
 
     content_panels = AbstractEmailForm.content_panels + [
-        FieldPanel('intro'),
         InlinePanel('form_fields', label='Form Fields'),
         FieldPanel('thank_you_text'),
         MultiFieldPanel([
