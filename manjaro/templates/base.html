@@ -29,11 +29,8 @@
             </div>
         </noscript>
 
-
-<!-- Matomo -->
 <script>
     var _paq = window._paq = window._paq || [];
-    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
     _paq.push(["setCookieDomain", "*.manjaro.org"]);
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
@@ -44,9 +41,7 @@
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
       g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
-  </script>
-  <!-- End Matomo Code -->
-  
+  </script>  
   
     </head>
 
@@ -54,7 +49,7 @@
         {% wagtailuserbar %}
 
         {% include "home/navigation.html" %}
-        <main class="min-h-[calc(100vh-82px)] {% if not 'home' in page.title.lower %}pb-20 lg:pt-20{% endif %}">
+        <main class="min-h-[calc(100vh-82px)] {% if not 'home' in page.title.lower %}pb-20 pt-12 lg:pt-20{% endif %}">
           {% block content %}{% endblock %}        
         </main>
 
