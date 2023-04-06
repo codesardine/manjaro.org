@@ -173,7 +173,6 @@ class Downloads(RoutablePageMixin, Page):
         FieldPanel("plasma_mobile_description"),
         FieldPanel("minimal_description"),
     ]
-    
 
     content_panels = Page.content_panels + [
         FieldPanel("manjaro_team_intro"),
@@ -182,7 +181,6 @@ class Downloads(RoutablePageMixin, Page):
     ]
 
     search_fields = Page.search_fields + [
-        index.SearchField("intro"),
         index.SearchField("manjaro_team_intro"),
         index.SearchField("community_intro"),
         index.SearchField("manjaro_arm_team_intro"),
