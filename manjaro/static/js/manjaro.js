@@ -36,16 +36,32 @@ window.addEventListener("load", () => {
     }
   })
 
-  window.onclick = (event) => {
-    let leftSubmenu = document.querySelectorAll(".dropdown")
-    leftSubmenu.forEach((el) => {
-      if (el.id === "submenu" + event.target.textContent.trim()) {
-        el.classList.toggle("hidden")
-      } else {
+  const leftMenu = document.querySelector("#left-menu")
+  const buttons = leftMenu.querySelectorAll("button")
+  buttons.forEach((btn) => {
+    let submenu = btn.parentElement.querySelector(".dropdown")
+    btn.onmouseenter = function () {  
+      let subMenus = document.querySelectorAll(".dropdown")    
+      subMenus.forEach((el) => {
         el.classList.add("hidden")
-      }
-    })
-  }
+      })
+      submenu.classList.remove("hidden")
+    }
+    submenu.onmouseleave = function () {      
+      submenu.classList.add("hidden")
+    }
+    submenu.onmouseenter = function () {
+      clearTimeout(navTimeout);
+    }
+    btn.onmouseleave = function () {
+      navTimeout = setTimeout( function() {
+        submenu.classList.add("hidden")
+      }, 200);
+    }
+    btn.onclick = function () {
+      submenu.classList.toggle("hidden")
+    }
+  })
 
   tippy(".home-btn", {
     content: "BACK HOME" + tooltipIcon,

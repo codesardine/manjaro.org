@@ -12,33 +12,12 @@
     <div class="nav relative flex gap-4 w-full pl-4 h-[34px] text-right">
       <ul class="items-center flex capitalize text-sm gap-4 w-full">
         {% for item in right_navigation.menu_items.all %}
-        {% if not item.submenu %}
         <li class="{% if not 'home' in page.title.lower and '#' in item.link %}hidden{% endif %}">
           <a {% if item.open_in_new_tab %} target="_blank" {% endif %} href="{{ item.link }}"
             class="flex items-center justify-center w-full {% if 'home' in page.title.lower and '#' in item.link %}link{% endif %} font-bold tracking-wide link-decor-right link-decor relative z-0 h-[36px]">
             {{ item.title }}
           </a>
         </li>
-        {% else %}
-        <li>
-          <button
-            class="{{ item.title }} flex-row hover:border-b-[1px] border-b-[1px] border-transparent font-medium tracking-wide text-teal-900 hover:text-gray-900 hover:border-gray-900">
-            <i class="fa-solid fa-ellipsis-vertical pt-1 pr-2"></i> {{ item.title }}</button>
-          <ul id="submenu{{ item.title }}"
-            class="text-sm dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
-            {% for block in item.submenu %}
-            {% with subitem=block.value.submenu_item %}
-            <li>
-              <a {% if subitem.open_in_new_tab %}target="_blank" {% endif %} href="{{ subitem.url }}"
-                title="{{ subitem.title }}"
-                class="w-full px-10 py-4 block font-medium tracking-wide bg-gray-50 hover:bg-blue-gray-700 text-gray-700 hover:text-teal-50">
-                {{ subitem.title }}</a>
-            </li>
-            {% endwith %}
-            {% endfor %}
-          </ul>
-        </li>
-        {% endif %}
         {% endfor %}
       </ul>
       <form id="search-form" action="{% url 'search' %}" method="get" class="relative text-sm hidden lg:flex w-[60%]">
@@ -48,7 +27,7 @@
     </div>
 
     <div class="nav relative flex items-center gap-4 bg-gradient-to-b from-blue-gray-800 to-blue-gray-900 pl-4 pr-2 rounded-b-md text-gray-200 h-[46px]">
-      <ul class="items-center hidden lg:flex text-md font-bold capitalize space-x-4 w-full">
+      <ul id="left-menu" class="items-center hidden lg:flex text-md font-bold capitalize space-x-4 w-full">
         {% for item in left_navigation.menu_items.all %}
         <li>
           {% if not item.submenu %}
@@ -59,7 +38,8 @@
             class="{{ item.title }} font-bold inline-flex capitalize tracking-wide link-decor link-decor-left relative z-0"><i
               class="fa-solid fa-ellipsis-vertical pt-1 pr-4"></i> {{ item.title }}</button>
           <ul id="submenu{{ item.title }}"
-            class="mt-4 dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl px-2 bg-gray-200">
+            class="dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
+            <div class="bg-gray-200 px-2 mt-4 rounded-t">
             {% for block in item.submenu %}
             {% with subitem=block.value.submenu_item %}
             <li class="relative text-sm py-2">
@@ -72,6 +52,7 @@
             </li>
             {% endwith %}
             {% endfor %}
+          </div>
           </ul>
           {% endif %}
         </li>
