@@ -38,8 +38,8 @@
             class="{{ item.title }} font-bold inline-flex capitalize tracking-wide link-decor link-decor-left relative z-0"><i
               class="fa-solid fa-ellipsis-vertical pt-1 pr-4"></i> {{ item.title }}</button>
           <ul id="submenu{{ item.title }}"
-            class="dropdown rounded overflow-hidden absolute hidden flex flex-col drop-shadow-xl">
-            <div class="bg-gray-200 px-2 mt-4 rounded-t">
+            class="dropdown rounded overflow-hidden absolute hidden flex flex-col">
+            <div class="bg-gray-200 px-2 mt-4 rounded-t drop-shadow">
             {% for block in item.submenu %}
             {% with subitem=block.value.submenu_item %}
             <li class="relative text-sm py-2">
