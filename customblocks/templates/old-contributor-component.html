@@ -1,0 +1,13 @@
+{% load wagtailimages_tags wagtailcore_tags static %}
+
+<div class="inline-block overflow-hidden">
+    <div class="flex flex-col h-full bg-gray-200 rounded pt-4">
+      <a href="{{ self.url }}">{% image block.value.picture original class="object-cover mx-auto h-[100px] w-[100px] rounded-full" %}</a>
+      <div class="flex-grow mt-4">
+          <p class="text-center">{{ self.name }}</p>
+          <p class="text-sm text-blue-gray-900 text-center p-4">
+            {{ self.description }}
+          </p>
+      </div>
+    </div>
+</div>

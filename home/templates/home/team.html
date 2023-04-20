@@ -42,7 +42,7 @@ We all contribute to bring Manjaro to you, it is very rewarding to build somethi
       </g>
   </svg>
 </div>
-<div class="mx-auto md:max-w-screen-xl px-4 lg:pb-8 lg:mt-4">
+<div class="mx-auto md:max-w-screen-xl px-4 lg:mt-4">
     <div class="grid gap-4 mx-auto lg:grid-cols-2">
       {% for user in users %}
       <div class="grid sm:grid-cols-3 bg-gray-200 rounded">
@@ -81,6 +81,14 @@ We all contribute to bring Manjaro to you, it is very rewarding to build somethi
         </div>
       </div>
       {% endfor %}
+    </div>
+  </div>
+  <div class="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-4">
+    <h2 class="text-2xl text-gray-200 font-bold text-center py-10 px-4 uppercase">past contributors</h2>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {% for block in old %}
+              {% include_block block %}
+        {% endfor %}     
     </div>
   </div>
   {% endblock %}

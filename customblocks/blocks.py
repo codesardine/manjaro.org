@@ -53,6 +53,18 @@ class PartnerBlock(blocks.StructBlock):
         label = "Partner"
 
 
+class OldContributors(blocks.StructBlock):
+
+    name = blocks.TextBlock(required=True)
+    description = blocks.TextBlock(required=True)
+    picture = ImageChooserBlock(required=False)
+
+    class Meta:
+        template = "old-contributor-component.html"
+        icon = "user"
+        label = "Old Contributor"
+
+
 class AffiliateBlock(blocks.StructBlock):
 
     promotion = blocks.StructBlock(

@@ -452,6 +452,15 @@ class Team(Page):
         'home.HomePage'
     ]
 
+    old_contributer = StreamField(
+    [
+        ("old_contributer", blocks.OldContributors()),
+    ],
+    null=True,
+    blank=True,
+    use_json_field=True,
+    )
+
     def get_context(self, request):
         User = get_user_model()
         users = User.objects.all()
@@ -478,13 +487,19 @@ class Team(Page):
             
         profiles.sort(key=get_position)
         context = super().get_context(request)
+        context["old"] = self.old_contributer
         context['users'] = profiles
         return context
 
     keywords = models.CharField(default='', blank=True, max_length=150)
+    
+    old_contributers_panels = [
+    FieldPanel("old_contributer"),
+    ]
 
     edit_handler = TabbedInterface([
         ObjectList(Page.content_panels, heading=('Content')),
+        ObjectList(old_contributers_panels, heading=('Old Contributors')),
         ObjectList(Page.promote_panels, heading=('Promote')),
         ObjectList(Page.settings_panels, heading=('Settings')),
         YoastPanel(
