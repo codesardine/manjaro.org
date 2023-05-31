@@ -364,7 +364,7 @@ def send_log(err:Exception):
 def update_x86_64(test_directory=None):
     arch = Archs.x86_64
     branches = ("stable", "testing", "unstable")
-    repos = ("multilib", "core", "extra", "community", "kde-unstable")
+    repos = ("multilib", "core", "extra", "kde-unstable")
     global CACHE_DIR
     if test_directory:
         CACHE_DIR = test_directory
@@ -382,7 +382,7 @@ def update_x86_64(test_directory=None):
 def update_aarch64(test_directory=None):
     arch = Archs.aarch64
     branches = ("arm-stable", "arm-testing", "arm-unstable")
-    repos = ("core", "extra", "community", "kde-unstable")
+    repos = ("core", "extra",, "kde-unstable")
     global CACHE_DIR
     if test_directory:
         CACHE_DIR = test_directory
