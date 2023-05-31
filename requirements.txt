@@ -15,3 +15,4 @@ pymediawiki
 python-gitlab
 pygithub
 requests-cache
+gevent
