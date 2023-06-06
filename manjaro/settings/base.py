@@ -170,7 +170,10 @@ WAGTAILSEARCH_BACKENDS = {
 }
 
 BASE_URL = 'https://manjaro.org'
+
 WAGTAILADMIN_BASE_URL = BASE_URL
+
+CSRF_TRUSTED_ORIGINS = [BASE_URL]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
