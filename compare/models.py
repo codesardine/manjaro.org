@@ -4,8 +4,6 @@ from django.db import connection
 from wagtail.models import Page
 from wagtail.admin.panels import TabbedInterface, ObjectList
 from wagtailyoast.edit_handlers import YoastPanel
-from wagtail.search import index
-from wagtail.admin.panels import FieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 import re
 import enum
