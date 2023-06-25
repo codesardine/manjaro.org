@@ -8,6 +8,7 @@ from datetime import datetime, date
 from dateutil.parser import parse as parsedate
 import concurrent.futures
 from .models import x86_64, aarch64, lastModified, Archs, Branches
+from manjaro import session_requests
 
 
 MIRROR = "https://repo.manjaro.org/repo/"
@@ -69,10 +70,11 @@ class Downloader():
     @staticmethod
     def download(url: str, local_filename: Path, arch, branch, repo, files_times) -> tuple:
         """download one file in thread"""
-        response = requests.head(url=url, timeout=30)  
-        if not response.ok:
-            #TODO error use another mirror
-            raise Exception("Download Error", url, response)
+        with session_requests.cache_disabled():
+            response = requests.head(url=url, timeout=30)  
+            if not response.ok:
+                #TODO error use another mirror
+                raise Exception("Download Error", url, response)
 
         try:
             remote_datetime = parsedate(response.headers['Last-Modified']).astimezone()
@@ -97,17 +99,18 @@ class Downloader():
         if local_datetime == remote_datetime and local_filename.exists():
             print("Nothing to do", url, repo)
             return False, url, repo
-
-        resp = requests.get(url=url, timeout=20)
-        if resp.ok:
-            with open(local_filename, 'wb') as fdb:
-                fdb.write(resp.content)
-            model = files_times.objects.get(arch=arch, branch=branch, repo=repo)
-            model.date=remote_datetime
-            model.status=response.status_code
-            model.save()
-            return True, url, repo
-        return False, url, repo
+        
+        with session_requests.cache_disabled():
+            resp = requests.get(url=url, timeout=20)
+            if resp.ok:
+                with open(local_filename, 'wb') as fdb:
+                    fdb.write(resp.content)
+                model = files_times.objects.get(arch=arch, branch=branch, repo=repo)
+                model.date=remote_datetime
+                model.status=response.status_code
+                model.save()
+                return True, url, repo
+            return False, url, repo
 
 
 @dataclass(slots=True)
