@@ -11,7 +11,7 @@ from .models import x86_64, aarch64, lastModified, Archs, Branches
 from manjaro import session_requests
 
 
-MIRROR = "https://repo.manjaro.org/repo/"
+MIRROR = "https://repo.manjaro.org/repo"
 CACHE_DIR = "/tmp"
 MAX_WORKERS = 10
 
