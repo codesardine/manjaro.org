@@ -5,7 +5,7 @@ def start():
     import datetime
 
     now = datetime.datetime.now()+datetime.timedelta(seconds=2)
-    TIMER = 30
+    TIMER = 1
 
     jobs = BackgroundScheduler()
     @jobs.scheduled_job('interval', minutes=TIMER, start_date=now)
