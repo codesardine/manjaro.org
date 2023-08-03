@@ -111,20 +111,9 @@
                       <span class="pb-1 pt-1.5 px-2 bg-green-500 rounded-full">{{ pkg.tag }}</span>
                       {% elif pkg.tag == "error" %}
                       <span class="pb-1 pt-1.5 px-2 bg-orange-800 rounded-full">{{ pkg.tag }}</span>
-                      {% elif pkg.tag == "eol" and pkg.repo != "community" %}
-                      <span class="pb-1 pt-1.5 px-2 font-bold bg-red-800 rounded-full">{{ pkg.tag }}</span>
-                      {% elif pkg.tag == "eol" and pkg.repo == "community" %}
-                      <span class="pb-1 pt-1.5 px-2 font-bold bg-yellow-accent-700 rounded-full text-gray-800">Move to extra</span>
                       {% endif %}
                     </div>
                     {% endif %}
-                    <p class="text-xs capitalize pt-1 pl-0">
-                      {% if pkg.repo == "community" %}
-                      {{ pkg.repo }}: <span class="text-red-900 rounded">to be removed</span>
-                      {% else %}
-                      {{ pkg.repo }}
-                      {% endif %}
-                      </p>
                     <p class="text-xs lg:absolute right-0 text-right">{{ pkg.last_modified }}</p>
                   </div>
                 </div>
