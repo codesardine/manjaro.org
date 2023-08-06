@@ -69,7 +69,7 @@
               </button>
             </div>
             <div id="arm" class="w-full hidden">
-              <iframe class="w-full h-[800px] focus:outline-none overflow-hidden" scrolling="no" src="https://opencollective.com/embed/manjaro-arm/donate?hideHeader=true&hideFAQ=true&hideSteps=true"></iframe>
+              <iframe class="w-full focus:outline-none overflow-hidden" scrolling="no" src="https://opencollective.com/embed/manjaro-arm/donate?hideHeader=true&hideFAQ=true&hideSteps=true"></iframe>
             </div>
             <form id="x86" class="w-full hidden active">
               <div class="flex flex-wrap">
@@ -90,7 +90,7 @@
                    </div>
                 </div>
               </div>
-              <iframe class="w-full h-[1600px] sm:h-[800px] md:h-[910px] lg:h-[820px] focus:outline-none overflow-hidden" scrolling="no" src="https://opencollective.com/embed/manjaro/donate?hideHeader=true&hideFAQ=true&hideSteps=true"></iframe>
+              <iframe class="w-full focus:outline-none overflow-hidden" scrolling="no" src="https://opencollective.com/embed/manjaro/donate?hideHeader=true&hideFAQ=true&hideSteps=true"></iframe>
             </form>
           </div>
         </div>
@@ -132,6 +132,9 @@
           iframe.src = collective
           break;
       }
+      const height = document.body.scrollHeight
+      console.log("hello", height)
+      iframe.style.height=(1100 + "px")
     }
     select.onchange = function () {
       setCurrency()
