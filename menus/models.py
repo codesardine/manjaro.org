@@ -10,7 +10,7 @@ from wagtail.snippets.models import register_snippet
 from wagtail.models import Orderable
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.core.fields import StreamField
+from wagtail.fields import StreamField
 from . import blocks
 
 

@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 
 
 class Migration(migrations.Migration):
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('intro', models.TextField(blank=True, default='', max_length=450)),
-                ('_videos', wagtail.core.fields.StreamField([('video', wagtail.core.blocks.StructBlock([('video', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(required=True)), ('hidden', wagtail.core.blocks.BooleanBlock(default=False, help_text='hide this video', required=False)), ('embed_code', wagtail.core.blocks.CharBlock(required=True)), ('description', wagtail.core.blocks.TextBlock(required=True))]))]))], blank=True, null=True)),
+                ('_videos', wagtail.fields.StreamField([('video', wagtail.blocks.StructBlock([('video', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock(required=True)), ('hidden', wagtail.blocks.BooleanBlock(default=False, help_text='hide this video', required=False)), ('embed_code', wagtail.blocks.CharBlock(required=True)), ('description', wagtail.blocks.TextBlock(required=True))]))]))], blank=True, null=True)),
                 ('keywords', models.CharField(blank=True, default='', max_length=150)),
             ],
             options={

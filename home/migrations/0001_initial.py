@@ -3,8 +3,8 @@
 import customblocks.blocks
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 import wagtail.images.blocks
 
 
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('intro', models.TextField(blank=True, default='', max_length=150)),
-                ('content', wagtail.core.fields.StreamField([('richtext', customblocks.blocks.RichtextBlock())], blank=True, null=True)),
+                ('content', wagtail.fields.StreamField([('richtext', customblocks.blocks.RichtextBlock())], blank=True, null=True)),
                 ('keywords', models.CharField(blank=True, default='', max_length=100)),
             ],
             options={
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('intro', models.CharField(max_length=250, null=True)),
-                ('content', wagtail.core.fields.StreamField([('richtext', customblocks.blocks.RichtextBlock())], blank=True, null=True)),
+                ('content', wagtail.fields.StreamField([('richtext', customblocks.blocks.RichtextBlock())], blank=True, null=True)),
                 ('keywords', models.CharField(blank=True, default='', max_length=100)),
             ],
             options={
@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
                 ('intro', models.CharField(max_length=250, null=True)),
-                ('content', wagtail.core.fields.StreamField([('product_details', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(help_text='Vendor', required=True)), ('description', wagtail.core.blocks.CharBlock(help_text='Very Short Vendor Description', required=True)), ('vendor_logo', wagtail.images.blocks.ImageChooserBlock(required=True)), ('product_details', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('model', wagtail.core.blocks.CharBlock(max_length=40, required=True)), ('processor', wagtail.core.blocks.CharBlock(max_length=100, required=True)), ('screen', wagtail.core.blocks.CharBlock(max_length=100, required=True)), ('memory', wagtail.core.blocks.CharBlock(max_length=100, required=True)), ('storage', wagtail.core.blocks.CharBlock(max_length=100, required=True)), ('ports', wagtail.core.blocks.CharBlock(max_length=100, required=True)), ('graphics', wagtail.core.blocks.CharBlock(max_length=100, required=False)), ('description', wagtail.core.blocks.TextBlock(max_length=250, required=False)), ('button_url', wagtail.core.blocks.URLBlock(required=True))])))]))], blank=True, null=True)),
+                ('content', wagtail.fields.StreamField([('product_details', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock(help_text='Vendor', required=True)), ('description', wagtail.blocks.CharBlock(help_text='Very Short Vendor Description', required=True)), ('vendor_logo', wagtail.images.blocks.ImageChooserBlock(required=True)), ('product_details', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('model', wagtail.blocks.CharBlock(max_length=40, required=True)), ('processor', wagtail.blocks.CharBlock(max_length=100, required=True)), ('screen', wagtail.blocks.CharBlock(max_length=100, required=True)), ('memory', wagtail.blocks.CharBlock(max_length=100, required=True)), ('storage', wagtail.blocks.CharBlock(max_length=100, required=True)), ('ports', wagtail.blocks.CharBlock(max_length=100, required=True)), ('graphics', wagtail.blocks.CharBlock(max_length=100, required=False)), ('description', wagtail.blocks.TextBlock(max_length=250, required=False)), ('button_url', wagtail.blocks.URLBlock(required=True))])))]))], blank=True, null=True)),
                 ('keywords', models.CharField(blank=True, default='', max_length=100)),
             ],
             options={
@@ -61,7 +61,7 @@ class Migration(migrations.Migration):
             name='HomePage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('content', wagtail.core.fields.StreamField([('richtext', customblocks.blocks.RichtextBlock()), ('product_details', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(help_text='Vendor', required=True)), ('description', wagtail.core.blocks.CharBlock(help_text='Very Short Vendor Description', required=True)), ('vendor_logo', wagtail.images.blocks.ImageChooserBlock(required=True)), ('product_details', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('model', wagtail.core.blocks.CharBlock(max_length=40, required=True)), ('processor', wagtail.core.blocks.CharBlock(max_length=100, required=True)), ('screen', wagtail.core.blocks.CharBlock(max_length=100, required=True)), ('memory', wagtail.core.blocks.CharBlock(max_length=100, required=True)), ('storage', wagtail.core.blocks.CharBlock(max_length=100, required=True)), ('ports', wagtail.core.blocks.CharBlock(max_length=100, required=True)), ('graphics', wagtail.core.blocks.CharBlock(max_length=100, required=False)), ('description', wagtail.core.blocks.TextBlock(max_length=250, required=False)), ('button_url', wagtail.core.blocks.URLBlock(required=True))])))]))], blank=True, null=True)),
+                ('content', wagtail.fields.StreamField([('richtext', customblocks.blocks.RichtextBlock()), ('product_details', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock(help_text='Vendor', required=True)), ('description', wagtail.blocks.CharBlock(help_text='Very Short Vendor Description', required=True)), ('vendor_logo', wagtail.images.blocks.ImageChooserBlock(required=True)), ('product_details', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True)), ('model', wagtail.blocks.CharBlock(max_length=40, required=True)), ('processor', wagtail.blocks.CharBlock(max_length=100, required=True)), ('screen', wagtail.blocks.CharBlock(max_length=100, required=True)), ('memory', wagtail.blocks.CharBlock(max_length=100, required=True)), ('storage', wagtail.blocks.CharBlock(max_length=100, required=True)), ('ports', wagtail.blocks.CharBlock(max_length=100, required=True)), ('graphics', wagtail.blocks.CharBlock(max_length=100, required=False)), ('description', wagtail.blocks.TextBlock(max_length=250, required=False)), ('button_url', wagtail.blocks.URLBlock(required=True))])))]))], blank=True, null=True)),
                 ('manjaro_title', models.CharField(blank=True, default='', max_length=50)),
                 ('manjaro_intro', models.CharField(blank=True, default='', max_length=200)),
                 ('partners_title', models.CharField(blank=True, default='', max_length=50)),
@@ -80,7 +80,7 @@ class Migration(migrations.Migration):
             name='PartnersSponsors',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('content', wagtail.core.fields.StreamField([('partners', wagtail.core.blocks.StructBlock([('title', wagtail.core.blocks.CharBlock(help_text='Vendor', required=True)), ('description', wagtail.core.blocks.TextBlock(help_text='Short Vendor Description', required=True)), ('details', wagtail.core.blocks.ListBlock(wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True))])))]))], blank=True, null=True)),
+                ('content', wagtail.fields.StreamField([('partners', wagtail.blocks.StructBlock([('title', wagtail.blocks.CharBlock(help_text='Vendor', required=True)), ('description', wagtail.blocks.TextBlock(help_text='Short Vendor Description', required=True)), ('details', wagtail.blocks.ListBlock(wagtail.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock(required=True))])))]))], blank=True, null=True)),
                 ('intro', models.TextField(blank=True, default='', max_length=150)),
                 ('keywords', models.CharField(blank=True, default='', max_length=100)),
             ],
