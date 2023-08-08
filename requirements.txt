@@ -3,7 +3,7 @@ Django
 django-extensions
 wagtail-django-recaptcha
 wagtailyoast
-puput
+puput==2.0.0
 django-cors
 django-tailwind
 gunicorn 
