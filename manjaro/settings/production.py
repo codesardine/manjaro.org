@@ -33,7 +33,3 @@ SESSION_COOKIE_SECURE = True
 CONTENT_TYPE_NO_SNIFF=True
 XSS_PROTECTION=True
 
-try:
-    from .local import *
-except ImportError:
-    pass

@@ -26,7 +26,3 @@ SECURE_HSTS_SECONDS = False
 SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = False
 
-try:
-    from .local import *
-except ImportError:
-    pass

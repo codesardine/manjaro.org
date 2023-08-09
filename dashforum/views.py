@@ -1,6 +1,5 @@
 from urllib.request import ssl, socket
 import datetime
-import json
 from django.shortcuts import render
 
 
