@@ -3,8 +3,6 @@ import os
 
 DEBUG = False
 
-ALLOWED_HOSTS = ALLOWED_ORIGINS
-
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get("SQL_ENGINE"),
