@@ -169,7 +169,9 @@ WAGTAILSEARCH_BACKENDS = {
     }
 }
 
-ALLOWED_ORIGINS = os.environ.get('ALLOWED_ORIGINS').split()
+ALLOWED_ORIGINS = os.environ.get('ALLOWED_ORIGINS', default="http://127.0.0.1:8000/").split()
+
+ALLOWED_HOSTS = [host.replace('https://', '') for host in ALLOWED_ORIGINS]
 
 WAGTAILADMIN_BASE_URL = ALLOWED_ORIGINS[0]
 
