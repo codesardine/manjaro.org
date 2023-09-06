@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'compare',
     'dashforum',
     "docs",
+    "advertising",
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -71,7 +72,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'wagtail.contrib.modeladmin',
     'django.contrib.sitemaps',
 ]
 
