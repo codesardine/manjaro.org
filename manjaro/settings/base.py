@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'compare',
     'dashforum',
     "docs",
+    "advertising",
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
