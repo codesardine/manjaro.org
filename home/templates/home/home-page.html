@@ -36,9 +36,6 @@
 {% endblock %}
 
 {% block content %}
-{% if page.affiliate %}
-{% with affiliate=page.affiliate|random_list %}
-{% with promo=affiliate.value.promotion %}
 <div class="relative h-full w-full bg-cover bg-right-bottom bg-no-repeat overflow-hidden pb-10 lg:pb-0">
   <div class="bg-teal-accent-400 absolute h-full clip w-full"></div>
   <svg viewBox="0 0 88 88" class="text-teal-200 absolute w-full hidden lg:block right-0">
@@ -49,11 +46,9 @@
     <circle fill-opacity="0.3" fill="currentColor" cx="44" cy="44" r="22.5"></circle>
   </svg>
 
-  <div class="flex relative justify-items-center mx-auto max-w-screen-xl px-4 lg:min-h-screen">
-        
+  <div class="flex flex-wrap lg:flex-nowrap relative justify-items-center mx-auto max-w-screen-xl px-4 lg:min-h-screen">
     <div id="promo" class="flex flex-col gap-10 items-center justify-between lg:flex-row w-full z-[2] relative">
-
-      <div class="lg:w-1/2 text-teal-900 font-bold">
+      <div class="px-1 text-teal-900 font-bold">
         <h1 class="mb-6 mt-16 font-extrabold text-[2.2rem] tracking-tight leading-none text-left">
           <span class="uppercase">
             {{ page.manjaro_title }}</span>
@@ -61,82 +56,60 @@
         <p class="mb-4 text-left font-semibold">
           {{ page.manjaro_intro }}
         </p>
-        <div class="grid gap-5 row-gap-10 mx-auto">
-          <div class="flex flex-col justify-center">
-            <div class="flex flex-wrap md:gap-4 capitalize">
-              <ul class="font-semibold pr-6">
-                <li class="flex p-1 pl-0">
-                  <span class="mr-1">
-                    <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
-                  </span>
-                  Plug & Play Hardware
-                </li>
-                <li class="flex p-1 pl-0">
-                  <span class="mr-1">
-                    <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
-                  </span>
-                  Rolling release
-                </li>
-                <li class="flex p-1 pl-0">
-                  <span class="mr-1">
-                    <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
-                  </span>
-                  Wide range of software
-                </li>
-              </ul>
-
-              <ul class="font-semibold">
-                <li class="flex p-1 pl-0">
-                  <span class="mr-1">
-                    <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
-                  </span>
-                  Secure by default
-                </li>
-                <li class="flex p-1 pl-0">
-                  <span class="mr-1">
-                    <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
-                  </span>
-                  Lightning fast
-                </li>
-                <li class="flex p-1 pl-0">
-                  <span class="mr-1">
-                    <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
-                  </span>
-                  Easily installed
-                </li>
-              </ul>             
-            </div>
-            <a id="download-btn" href="https://manjaro.org/download/"
-                class="hidden mt-6 lg:block shadow capitalize lg:mt-6 w-max text-base px-4 py-2 text-center font-semibold rounded text-teal-500 bg-gray-200">
-                <i class="fa-solid fa-circle-arrow-down"></i>
-                get manjaro
-              </a> 
-          </div>
-        </div>
+        
       </div>
+    </div>
+    <div class="grid gap-5 row-gap-10 mx-auto w-full px-1">
+      <div class="flex flex-col justify-center items-center">
+        <div class="flex md:gap-4 capitalize lg:mb-6">
+          <ul class="font-semibold pr-6">
+            <li class="flex p-1 pl-0">
+              <span class="mr-1">
+                <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
+              </span>
+              Plug & Play Hardware
+            </li>
+            <li class="flex p-1 pl-0">
+              <span class="mr-1">
+                <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
+              </span>
+              Rolling release
+            </li>
+            <li class="flex p-1 pl-0">
+              <span class="mr-1">
+                <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
+              </span>
+              Wide range of software
+            </li>
+          </ul>
 
-      {% if not promo.hidden %}
-      <div class="relative flex flex-col w-full lg:w-2/3 justify-end pb-20 lg:pb-0">
-        <picture class="self-start px-[20%] pb-4 lg:pb-6 mx-auto">
-          {% image promo.image width-420 format-webp class="object-contain promo-glow" alt="device" %}
-        </picture>
-        <div>
-          <div class="p-5 relative text-gray-200 bg-blue-gray-800 px-4 md:rounded shadow group hover:shadow-2xl">
-            <a id="promo-btn" href="{{ promo.url }}" target="_blank"
-              class="leading-none absolute top-4 right-5 shadow-md text-sm rounded py-2 px-4 capitalize font-bold tracking-wide text-white bg-pink-600 focus:shadow-outline focus:outline-none">
-              <i class="fa-solid fa-circle-info"></i>
-              details
-            </a>
-            <h2 class="pb-4 font-bold capitalize"><i class="fa-solid fa-star mr-2 text-amber-600"></i>
-              {{ promo.model }}
-            </h2>
-            <p class="text-xs">
-              {{ promo.description }}
-            </p>
-          </div>
+          <ul class="font-semibold">
+            <li class="flex p-1 pl-0">
+              <span class="mr-1">
+                <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
+              </span>
+              Secure by default
+            </li>
+            <li class="flex p-1 pl-0">
+              <span class="mr-1">
+                <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
+              </span>
+              Lightning fast
+            </li>
+            <li class="flex p-1 pl-0">
+              <span class="mr-1">
+                <i class="text-sm fa-solid fa-circle w-5 h-5 mt-px text-teal-700"></i>
+              </span>
+              Easily installed
+            </li>
+          </ul>             
         </div>
+        <a id="download-btn" href="https://manjaro.org/download/"
+            class="hidden lg:block shadow capitalize lg:mt-6 w-max text-base px-4 py-2 text-center font-semibold rounded text-teal-500 bg-gray-200">
+            <i class="fa-solid fa-circle-arrow-down"></i>
+            get manjaro
+          </a> 
       </div>
-      {% endif %}
     </div>
   </div>
 
@@ -149,9 +122,7 @@
     </div>
   </a>
 </div>
-{% endwith %}
-{% endwith %}
-{% endif %}
+
 
 <div id="manjaro" class="h-full bg-cover relative z-0 bg-blue-gray-800 pb-10 lg:pb-0">
 
@@ -321,7 +292,7 @@
 
 
   </div>
-  <a href="#software" class="scroll-btn z-1 arrow-links text-6xl hidden xl:block absolute bottom-0 h-[56px] left-0 "
+  <a href="#merch" class="scroll-btn z-1 arrow-links text-6xl hidden xl:block absolute bottom-0 h-[56px] left-0 "
     aria-label="scroll">
     <div class="chevron-container">
       <div class="chevron"></div>
@@ -331,11 +302,11 @@
   </a>
 </div>
 
-<div id="software" class="h-full xl:min-h-[100vh] bg-cover relative z-0 pb-10 lg:pb-0">
-  <div class="bg-teal-accent-400 absolute h-full w-full z-[-1]">
+<div id="merch" class="relative lg:min-h-[100vh] flex justify-center">
+  <div class="bg-teal-accent-400 absolute h-full w-full">
     <div class="w-full justify-center lg:flex relative">
       <img src="{% static 'img/green-woble.svg' %}" alt="wobble"
-        class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl z-[-1]">
+        class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl">
     </div>
     <div class="relative overflow-hidden h-full w-full">
       <svg class="text-gray-300 absolute hidden md:block right-0 h-full top-0" version="1.1" viewBox="0 0 140 135"
@@ -352,76 +323,9 @@
     </div>
 
   </div>
-  <div class="text-teal-900 px-4 relative flex flex-col justify-center lg:min-h-screen mx-auto w-full max-w-screen-xl">
-    <h3
-      class="w-full uppercase mb-4 font-sans flex justify-center items-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
-      <span class="flex items-center justify-center text-xl mr-2 text-teal-900 w-12 h-12 rounded-full bg-yellow-accent-700">
-        <i class="fa-brands fa-linux"></i>
-      </span>
-      {{ page.software_intro }}
-    </h3>
-    <div class="flex items-center justify-center ">
-      {% with blocks=page.software %}
-      <div class="flex flex-wrap gap-12 items-baseline justify-center pb-8">
-        {% for block in blocks %}
-        {% if not block.value.software.hidden %}
-        <div class="overflow-hidden max-w-full md:max-w-sm">
-          {% image block.value.software.image width-380 format-webp as soft_image %}
-          <img src="{{ soft_image.url }}" class="object-contain w-full h-64" width="380" height="auto" alt="{{ block.value.software.title }}" />
-          <div class="w-full text-center">
-            <a target="_blank" href="{{ block.value.software.url }}"
-              class="inline-block mb-3 link-decor link-decor-xl relative">
-              <h4 class="inline-block mb-3 pb-2 capitalize text-2xl font-bold leading-5 text-center">
-                <i class="fa fa-link text-sm align-bottom mr-2"></i>
-                {{ block.value.software.title }}
-              </h4>
-            </a>
-            <p
-              class="text-left text-sm bg-blue-gray-800 p-5 text-gray-200 leading-5 md:min-h-[160px] shadow rounded">
-              {{ block.value.software.description }}
-            </p>
-          </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-      </div>
-      {% endwith %}
-    </div>
-  </div>
-  <a href="#merch" class="scroll-btn z-10 arrow-links text-6xl hidden xl:block absolute bottom-0 h-[56px] left-0 "
-    aria-label="scroll">
-    <div class="chevron-container">
-      <div class="chevron"></div>
-      <div class="chevron"></div>
-      <div class="chevron"></div>
-    </div>
-  </a>
-</div>
-
-<div id="merch" class="relative lg:min-h-[100vh] flex justify-center">
-  <div class="bg-blue-gray-800 absolute h-full w-full">
-    <div class="w-full justify-center lg:flex relative">
-      <img src="{% static 'img/dark-woble.svg' %}" alt="wobble"
-        class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl">
-    </div>
-    <div class="relative overflow-hidden h-full w-full">
-      <svg class="text-teal-300 absolute hidden md:block left-0 h-full top-0" version="1.1" viewBox="0 0 140 135"
-        xmlns="http://www.w3.org/2000/svg">
-        <g transform="matrix(-1,0,0,1,140,0)" fill="CurrentColor">
-          <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748" />
-          <g fill-opacity=".4">
-            <path d="m140 80v-70l-45.252 45-84.748 80h75z" />
-            <path d="m140 70v-50l-45 45-75 70h55z" />
-            <path d="m140 60v-30l-45.252 45-64.748 60h35z" />
-            <path d="m140 50v-10l-45.252 45-49.748 50h10z" />
-          </g>
-      </svg>
-    </div>
-
-  </div>
   <div class="relative flex flex-col items-center justify-center px-4 mx-auto w-full lg:max-w-screen-xl">
     <div class="flex flex-col justify-center">
-      <div class="text-gray-200">
+      <div class="text-teal-900">
         <h3
           class="w-full uppercase mb-6 flex justify-center items-center font-sans text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
             <div class="flex text-xl items-center justify-center w-12 h-12 rounded-full bg-yellow-accent-700 mr-2">
@@ -464,8 +368,8 @@
             {% for key, value in item.items %}
             {% if "description" in key %}
             <div class="p-6 font-bold text-center text-lg bg-blue-gray-900 w-full h-[88px] rounded-b">
-              <a href="https://manjaro.org/merchandise/#!/create" class="px-6 py-2 bg-teal-600 block rounded max-w-fit mx-auto">
-                <i class="fa-solid fa-cart-shopping mr-4"></i>{{customize}}</a>
+              <a href="https://manjaro.org/merchandise/#!/create" class="text-gray-800 px-6 py-2 bg-gray-200 block rounded max-w-fit mx-auto">
+                <i class="fa-solid fa-cart-shopping mr-4 text-blue-400"></i>{{ customize }}</a>
             </div>
             {% endif %}
             {% endfor %}
@@ -481,8 +385,8 @@
             {% for key, value in item.items %}
             {% if "description" in key %}
             <div class="p-6 font-bold text-center text-lg bg-blue-gray-900 w-full h-[88px] rounded-b">
-              <a href="https://manjaro.org/merchandise/" class="px-6 py-2 bg-teal-600 block rounded max-w-fit mx-auto">
-                <i class="fa-solid fa-cart-shopping mr-4"></i>Discover Merch</a>
+              <a href="https://manjaro.org/merchandise/" class="text-gray-800 px-6 py-2 bg-gray-200 block rounded max-w-fit mx-auto">
+                <i class="fa-solid fa-cart-shopping mr-4 text-blue-400"></i>Discover Merch</a>
             </div>
             {% endif %}
             {% endfor %}
@@ -496,7 +400,7 @@
 
             {% for key, value in item.items %}
             {% if "description" in key %}
-            <p class="p-4 font-bold text-center text-lg bg-blue-gray-900 h-[88px] w-full flex justify-center items-center rounded-b">
+            <p class="text-gray-200 p-4 font-bold text-center text-lg bg-blue-gray-900 h-[88px] w-full flex justify-center items-center rounded-b">
               {{value}}
             </p>
             {% endif %}
@@ -519,28 +423,28 @@
 </div>
 
 <div id="blog" class="h-full lg:h-[100vh] bg-cover relative z-0 flex items-center">  
-  <div class="bg-teal-accent-400 absolute h-full w-full z-[-1]">
+  <div class="bg-blue-gray-800 absolute h-full w-full z-[-1]">
     <div class="w-full justify-center lg:flex relative">
-      <img src="{% static 'img/green-woble.svg' %}" alt="wobble"
+      <img src="{% static 'img/dark-woble.svg' %}" alt="wobble"
         class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl z-[-1]">
     </div>
     <div class="relative overflow-hidden h-full w-full">
-      <svg class="text-gray-300 absolute hidden md:block right-0 h-full top-0" version="1.1" viewBox="0 0 140 135"
-        xmlns="http://www.w3.org/2000/svg">
-        <g fill="CurrentColor">
-          <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748" />
-          <g fill-opacity=".4">
-            <path d="m140 80v-70l-45.252 45-84.748 80h75z" />
-            <path d="m140 70v-50l-45 45-75 70h55z" />
-            <path d="m140 60v-30l-45.252 45-64.748 60h35z" />
-            <path d="m140 50v-10l-45.252 45-49.748 50h10z" />
-          </g>
-      </svg>
+      <svg class="text-teal-300 absolute hidden md:block left-0 h-full top-0" version="1.1" viewBox="0 0 140 135"
+      xmlns="http://www.w3.org/2000/svg">
+      <g transform="matrix(-1,0,0,1,140,0)" fill="CurrentColor">
+        <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748" />
+        <g fill-opacity=".4">
+          <path d="m140 80v-70l-45.252 45-84.748 80h75z" />
+          <path d="m140 70v-50l-45 45-75 70h55z" />
+          <path d="m140 60v-30l-45.252 45-64.748 60h35z" />
+          <path d="m140 50v-10l-45.252 45-49.748 50h10z" />
+        </g>
+    </svg>
     </div>
   </div>
   <div class="text-gray-200 px-4 w-full lg:max-w-screen-xl mx-auto">
     <h3
-      class="text-teal-900 w-full uppercase mb-4 flex justify-center items-center font-sans text-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
+      class="w-full uppercase mb-4 flex justify-center items-center font-sans text-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
       <span class="flex items-center justify-center text-xl mr-2 text-teal-900 w-12 h-12 rounded-full bg-yellow-accent-700">
         <i class="fa-solid fa-blog"></i>
       </span>
