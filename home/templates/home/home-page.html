@@ -104,11 +104,18 @@
             </li>
           </ul>             
         </div>
+        <div>
+          <a id="download-btn" href="https://manjaro.org/download/"
+          class="hidden lg:block shadow capitalize w-max text-base px-4 py-2 text-center font-semibold rounded text-teal-500 bg-gray-200">
+          <i class="fa-solid fa-circle-arrow-down"></i>
+          get manjaro
+        </a> 
+        </div>
       </div>
     </div>
   </div>
 
-  <a href="#manjaro" class="scroll-btn z-1 arrow-links text-6xl hidden xl:block absolute bottom-6 h-[56px] left-[50%] translate-x-[-50%]"
+  <a href="#desktops" class="scroll-btn z-1 arrow-links text-6xl hidden xl:block absolute bottom-6 h-[56px] left-[50%] translate-x-[-50%]"
     aria-label="scroll">
     <div class="chevron-container">
       <div class="chevron"></div>
@@ -119,7 +126,7 @@
 </div>
 
 
-<div id="manjaro" class="h-full bg-cover relative z-0 bg-blue-gray-800 pb-10 lg:pb-0">
+<div id="desktops" class="h-full bg-cover relative z-0 bg-blue-gray-800 pb-10 lg:pb-0">
 
   <div class="w-full justify-center lg:flex relative">
     <img src="{% static 'img/dark-woble.svg' %}" alt="wobble"
@@ -147,7 +154,7 @@
       </span>
       desktop choice
     </h3>
-    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
       <div class="grid gap-10 lg:grid-cols-2">
         <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-screen-xl">
           <div class="mb-6">
@@ -166,10 +173,145 @@
           </a> 
           </div>
         </div>
+        <div class="flex items-center justify-center">
+            <img
+              class="object-contain mb-6 rounded drop-shadow-lg"
+              src="{% static 'img/desktops.webp' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+              alt=""
+            />
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#software" class="scroll-btn z-1 arrow-links text-6xl hidden xl:block absolute bottom-6 h-[56px] left-[50%] translate-x-[-50%]"
+    aria-label="scroll">
+    <div class="chevron-container">
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+    </div>
+  </a>
+</div>
+
+<div id="software" class="relative lg:min-h-[100vh] flex justify-center">
+  <div class="bg-teal-accent-400 absolute h-full w-full">
+    <div class="w-full justify-center lg:flex relative">
+      <img src="{% static 'img/green-woble.svg' %}" alt="wobble"
+        class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl">
+    </div>
+    <div class="relative overflow-hidden h-full w-full">
+      <svg class="text-gray-300 absolute hidden md:block right-0 h-full top-0" version="1.1" viewBox="0 0 140 135"
+        xmlns="http://www.w3.org/2000/svg">
+        <g fill="CurrentColor">
+          <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748" />
+          <g fill-opacity=".4">
+            <path d="m140 80v-70l-45.252 45-84.748 80h75z" />
+            <path d="m140 70v-50l-45 45-75 70h55z" />
+            <path d="m140 60v-30l-45.252 45-64.748 60h35z" />
+            <path d="m140 50v-10l-45.252 45-49.748 50h10z" />
+          </g>
+      </svg>
+    </div>
+
+  </div>
+  <div class="text-teal-900 relative flex justify-center flex-col lg:min-h-[100vh] w-full">
+    <h3
+      class="w-full uppercase mb-6 lg:mt-20 font-sans flex justify-center items-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
+      <span class="flex items-center justify-center text-xl mr-2 w-12 h-12 rounded-full bg-yellow-accent-700">
+        <i class="fa-solid fa-list-check"></i>
+      </span>
+      Software Center
+    </h3>
+    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
+      <div class="grid gap-10 lg:grid-cols-2">
+        <div class="flex flex-col justify-center lg:max-w-screen-xl">
+          <div class="mb-6">
+            <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none capitalize">
+              Access many applications 
+            </h2>
+            <p class="text-base md:text-lg">
+              Effortlessly install a plethora of applications via the Pamac software center, which seamlessly accommodates an array of package formats such as Flatpaks, Snaps and native packages. Alternatively, you have the option to create your own packages, leveraging the Arch User Repository as a foundational resource for customization.
+            </p>
+          </div>
+          <div>
+            <a id="download-btn" href="https://manjaro.org/download/"
+            class="hidden lg:block shadow capitalize w-max text-base px-4 py-2 text-center font-semibold rounded text-teal-500 bg-gray-200">
+            <i class="fa-solid fa-circle-arrow-down"></i>
+            get manjaro
+          </a> 
+          </div>
+        </div>
         <div class="flex items-center justify-center -mx-4 lg:pl-8 relative">
             <img
               class="object-cover mb-6 rounded drop-shadow-lg"
-              src="{% static 'img/desktops.webp' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+              src="{% static 'img/pamac.webp' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+              alt=""
+            />
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#branches" class="scroll-btn z-10 arrow-links text-6xl hidden xl:block absolute bottom-6 h-[56px] left-[50%] translate-x-[-50%]"
+  aria-label="scroll">
+  <div class="chevron-container">
+    <div class="chevron"></div>
+    <div class="chevron"></div>
+    <div class="chevron"></div>
+  </div>
+</a>
+</div>
+
+<div id="branches" class="h-full bg-cover relative z-0 bg-blue-gray-800 pb-10 lg:pb-0">
+
+  <div class="w-full justify-center lg:flex relative">
+    <img src="{% static 'img/dark-woble.svg' %}" alt="wobble"
+      class="absolute top-[-24px] w-full h-16 pl-4 pr-4 sm:max-w-screen-lg lg:max-w-screen-xl">
+  </div>
+  <div class="absolute overflow-hidden h-full w-full">
+    <svg class="text-teal-300 absolute hidden md:block left-0 h-full top-0" version="1.1" viewBox="0 0 140 135"
+      xmlns="http://www.w3.org/2000/svg">
+      <g transform="matrix(-1,0,0,1,140,0)" fill="CurrentColor">
+        <path d="m95 45 45-45v89.915l-45.252 45.085h-94.748l60-55z" fill-opacity=".11748" />
+        <g fill-opacity=".4">
+          <path d="m140 80v-70l-45.252 45-84.748 80h75z" />
+          <path d="m140 70v-50l-45 45-75 70h55z" />
+          <path d="m140 60v-30l-45.252 45-64.748 60h35z" />
+          <path d="m140 50v-10l-45.252 45-49.748 50h10z" />
+        </g>
+    </svg>
+  </div>
+
+  <div class="text-gray-200 relative flex justify-center flex-col lg:min-h-[100vh] w-full">
+    <h3
+      class="w-full uppercase mb-6 lg:mt-20 font-sans flex justify-center items-center text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
+      <span class="flex items-center justify-center text-xl mr-2 text-teal-900 w-12 h-12 rounded-full bg-yellow-accent-700">
+        <i class="fa-solid fa-list-check"></i>
+      </span>
+      Multiple branches
+    </h3>
+    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
+      <div class="grid gap-10 lg:grid-cols-2">
+        <div class="flex flex-col justify-center lg:max-w-screen-xl">
+          <div class="mb-6">
+            <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none capitalize">
+              Choose your software experience
+            </h2>
+            <p class="text-base md:text-lg">
+              The presence of multiple branches offers you the opportunity to finely tailor your software experience. By default, you're on the stable branch, but you can transition to the testing or unstable branches to access the latest software versions and improve compatibility with with 3rd party build systems like the Arch user repository.
+            </p>
+          </div>
+          <div>
+            <a id="download-btn" href="https://manjaro.org/download/"
+            class="hidden lg:block shadow capitalize w-max text-base px-4 py-2 text-center font-semibold rounded text-teal-500 bg-gray-200">
+            <i class="fa-solid fa-circle-arrow-down"></i>
+            get manjaro
+          </a> 
+          </div>
+        </div>
+        <div class="flex items-center justify-center -mx-4 lg:pl-8 relative">
+            <img
+              class="object-cover mb-6 rounded drop-shadow-lg"
+              src="{% static 'img/branches.webp' %}?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
               alt=""
             />
         </div>
