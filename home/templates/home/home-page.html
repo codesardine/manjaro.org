@@ -226,9 +226,11 @@
                       <span id="expire"></span>
                       <script>
                         function toLocaleDate(date) {
-                          d = new Date(date).toString()
-                          i = d.lastIndexOf(":")
-                          return d.slice(0,i)
+                          let d = new Date(date).toString()
+                          let i = d.lastIndexOf(":")
+                          let arr = d.split(":")
+                          let formatedDate = arr[0] + ":" + arr[1]
+                          return formatedDate
                         }
                         document.querySelector("#expire").textContent = toLocaleDate("{{ v }}")
                       </script>
