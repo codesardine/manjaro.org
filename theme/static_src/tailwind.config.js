@@ -11,6 +11,9 @@ module.exports = {
           fontFamily: {
             sans: ['Montserrat', defaultTheme.fontFamily.sans],
           },
+          transitionProperty: {
+            'height': 'height'
+          },
           colors: {
             red: {
               '50': '#ffebee',

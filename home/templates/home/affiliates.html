@@ -1,6 +1,5 @@
 <div id="popUp" class="mx-auto fixed transition-transform duration-700 translate-x-[100%] transform-gpu z-50 bottom-0 right-0 w-full">
-  <div class="relative flex flex-col max-w-screen-lg overflow-hidden bg-white rounded shadow-sm lg:flex-row sm:mx-auto">
-    <button id="closeAd" class="z-10 absolute top-0 right-0 font-bold p-1 bg-red-200 w-[32px] h-[32px] rounded-bl-2xl hover:cursor-pointer">X</button>
+  <div id="ramdomAff" class="transition-height duration-700 h-32 relative flex flex-col max-w-screen-lg overflow-hidden bg-white shadow-sm lg:flex-row sm:mx-auto">
     <a id="url" href="#" aria-label="" target="_blank" class="flex flex-row gap-2 justify-center items-center bg-white px-2 lg:px-1 w-full">
      <div class="hidden relative lg:w-1/4 lg:flex justify-center">
       <img id="img" src="" alt="" class="object-contain max-h-36" />
@@ -9,12 +8,25 @@
       <h5 id="title" class="capitalize py-1 text-2xl font-extrabold leading-none sm:text-3xl"></h5>
       <p id="desc" class="mb-2 text-gray-800"></p>
     </div>
-      
     </a>
+  </div>
+  <div id="offers" class="h-0 w-full mx-auto max-w-screen-lg bg-gray-200 transition-height duration-700 flex flex-col gap-2"></div>
+  <div id="miniOffers" class="transition-height h-0 duration-700 relative flex flex-col max-w-screen-lg overflow-hidden bg-white shadow-sm lg:flex-row sm:mx-auto">
+    <button id="toggleOffersBtn" class="z-10 absolute top-0 right-0 font-bold p-1 bg-red-200 w-[32px] h-[32px] hover:cursor-pointer">^</button>
+    <h5 id="title" class="capitalize p-2 text-lg font-medium leading-none">show current offers</h5>
   </div>
 </div>
 
 <script>
+function showOffers() {
+  let ramdomAff = document.querySelector("#ramdomAff")
+  ramdomAff.classList.replace("h-32","h-0")
+  let openOffers = document.querySelector("#miniOffers")
+  setTimeout(function() {
+    openOffers.classList.replace("h-0","h-8")
+  }, 200)
+}
+
 async function getAffiliates() {
   let response = await fetch("ads.json");
   let ads = await response.json();
@@ -30,14 +42,34 @@ async function getAffiliates() {
   img.src = "media/" + item.img
   let pop = document.querySelector("#popUp")
   pop.classList.remove("translate-x-[100%]")
-}
-const closeAdBtn = document.querySelector("#closeAd")
-function closeAd() {
-  let pop = document.querySelector("#popUp")
-  pop.classList.add("translate-x-[100%]")
-}
-closeAdBtn.onclick = closeAd
-closeAdBtn.ontouchstart = closeAd
-const myTimeout = setTimeout(getAffiliates, 3000);
+  for (a of ads) {
+    let offers = document.querySelector("#offers")
+    let template = `
+    <div class="transition-height duration-700 relative flex flex-col overflow-hidden flex-row">
+    <a href="${a.url}" aria-label="" target="_blank" class="flex flex-row gap-2 bg-white px-2 lg:px-1 w-full">
+     <div class="hidden relative lg:w-1/4 lg:flex justify-center">
+      <img src="${'media/' + a.img}" alt="${a.title}" class="object-contain max-h-36" />
+    </div>
+    <div class="lg:w-3/4">
+      <h5 class="capitalize py-1 text-2xl font-extrabold leading-none sm:text-3xl">${a.title}</h5>
+      <p class="mb-2 text-gray-800">${a.desc}</p>
+    </div>
+    </a>
+  </div>
+    `
+    offers.insertAdjacentHTML("beforeend", template)
 
+  }
+  let showOffersTransition = setTimeout(showOffers, 5000)
+}
+
+const toggleOffersBtn = document.querySelector("#toggleOffersBtn")
+function toggleOffers() {
+  let el = document.querySelector("#offers")
+  el.classList.toggle("h-0")
+  el.classList.toggle("h-[calc(100vh-32px)]")
+}
+toggleOffersBtn.onclick = toggleOffers
+toggleOffersBtn.ontouchstart = toggleOffers
+const affiliatesTimeout = setTimeout(getAffiliates, 3000)
 </script>
