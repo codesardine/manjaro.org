@@ -1,7 +1,7 @@
 {% load wagtailcore_tags %}
 {% wagtail_site as current_site %}
-<div id="popUp" class="select-none mx-auto fixed transition-transform duration-700 translate-x-[100%] transform-gpu z-50 bottom-0 right-0 w-full">
-  <div id="ramdomAff" class="transition-height duration-700 h-32 relative flex flex-col max-w-screen-lg overflow-hidden bg-white shadow-sm lg:flex-row sm:mx-auto">
+<div id="popUp" class="select-none mx-auto left-0 right-0 max-w-screen-lg fixed transition-transform duration-700 translate-x-[200%] transform-gpu z-50 bottom-0">
+  <div id="ramdomAff" class="transition-height duration-700 h-32 relative flex flex-col max-w-screen-lg overflow-hidden bg-white lg:flex-row">
     <a id="url" href="#" aria-label="" target="_blank" class="flex flex-row gap-2 justify-center items-center bg-white px-2 lg:px-1 w-full">
      <div class="hidden relative lg:w-1/4 lg:flex justify-center">
       <img id="img" src="" alt="" class="object-contain max-h-36" />
@@ -12,8 +12,8 @@
     </div>
     </a>
   </div>
-  <div id="offers" class="h-0 w-full lg:mx-auto max-w-screen-lg bg-gray-200 transform-gpu transition-height duration-700 flex flex-col gap-2"></div>
-  <div id="miniOffers" class="transition-height h-0 duration-700 relative flex flex-col max-w-screen-lg overflow-hidden bg-white shadow-sm lg:flex-row sm:mx-auto">
+  <div id="offers" class="h-0 overflow-y-scroll w-full lg:mx-auto max-w-screen-lg bg-gray-200 transform-gpu transition-height duration-700 flex flex-col gap-2"></div>
+  <div id="miniOffers" class="overflow-hidden transition-height h-0 duration-700 relative flex flex-col max-w-screen-lg bg-white shadow-sm lg:flex-row sm:mx-auto">
     <button id="toggleOffersBtn" class="z-10 absolute top-0 right-0 font-bold p-1 bg-gray-200 w-[32px] h-[32px] hover:cursor-pointer">
       <i class="fa-solid fa-up-down"></i>
     </button>
@@ -47,6 +47,10 @@
     animation: scrollText 40s infinite linear;
     animation-delay: 5s;
   }
+
+#ramdomAff, #miniOffers {
+  filter: drop-shadow(0 -1px 1px rgb(0 0 0 / 0.1)) drop-shadow(0 -1px 1px rgb(0 0 0 / 0.06));
+}
 </style>
 
 <script>
@@ -80,12 +84,12 @@ async function getAffiliates() {
   title.textContent = item.title
   img.src = rootSite + "/media/" + item.img
   let pop = document.querySelector("#popUp")
-  pop.classList.remove("translate-x-[100%]")
+  pop.classList.remove("translate-x-[200%]")
   for (a of ads) {
     let offers = document.querySelector("#offers")
     let titleScroll = document.querySelector("#titleScrollcontent")
     let offersTemplate = `
-    <div class="transition-height duration-700 relative flex flex-col overflow-hidden flex-row">
+    <div class="transition-height duration-700 relative flex flex-col flex-row">
     <a href="${a.url}" aria-label="${a.title}" target="_blank" class="flex flex-row gap-2 bg-white px-2 lg:px-1 w-full">
      <div class="hidden relative lg:w-1/4 lg:flex justify-center">
       <img src="${rootSite + '/media/' + a.img}" alt="${a.title}" class="object-contain max-h-36" />
