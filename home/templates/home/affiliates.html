@@ -106,24 +106,29 @@ async function getAffiliates() {
 
 const toggleOffersBtn = document.querySelector("#toggleOffersBtn")
 
+function wHeigth() {
+  return window.innerHeight - 32 + "px"
+}
+
 function closeSlider(event) {
   let el = document.querySelector("#offers")
   let target = event.target
   if ( !target.id.includes("offer") ) {
-    el.classList.replace("h-[calc(100vh-32px)]", "h-0")
+    el.style.height = "0px"
     document.removeEventListener("click", closeSlider)
   } 
-  }
+}
   
 
 function toggleOffers() {
   let el = document.querySelector("#offers")
-  el.classList.toggle("h-0")
-  el.classList.toggle("h-[calc(100vh-32px)]")
-  if (!el.classList.contains("h-0")) {
+  if (el.offsetHeight === 0) {
+    el.style.height = wHeigth()
     setTimeout(function() {
       document.addEventListener('click', closeSlider)
     }, 500)
+  } else {
+    el.style.height = "0px"
   }
 }
 toggleOffersBtn.onclick = toggleOffers
