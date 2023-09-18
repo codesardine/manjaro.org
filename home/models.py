@@ -610,59 +610,18 @@ class HomePage(Page):
         'wagtailcore.Page'
     ]
 
-    content = StreamField(
-        [
-            ("richtext", blocks.RichtextBlock()),
-            ("product_details", blocks.ProductBlock()),        
-        ],
-        null=True,
-        blank=True,
-        use_json_field=True,
-    )
-
     manjaro_title = models.CharField(default='', blank=True, max_length=200)
     manjaro_intro = models.TextField(blank=True, max_length=1000)    
-    software_intro = models.TextField(blank=True, max_length=1000)
 
     content_panels = Page.content_panels + [
         FieldPanel("manjaro_title"),
         FieldPanel("manjaro_intro"),
-        FieldPanel("content"),
-    ]
-
-    affiliate = StreamField(
-        [
-            ("promotion", blocks.AffiliateBlock()),
-        ],
-        null=True,
-        blank=True,
-        use_json_field=True,
-    )
-
-    software = StreamField(
-        [
-            ("software", blocks.SoftwareBlock()),
-        ],
-        null=True,
-        blank=True,
-        use_json_field=True,
-    )
-
-    affiliate_panels = [
-        FieldPanel("affiliate"),
-    ]
-
-    software_panels = [
-        FieldPanel("software_intro"),
-        FieldPanel("software"),
     ]
 
     keywords = models.CharField(default='', blank=True, max_length=150)
 
     edit_handler = TabbedInterface([
         ObjectList(content_panels, heading=('Content')),
-        ObjectList(affiliate_panels, heading=('Affiliate')),
-        ObjectList(software_panels, heading=('Software')),
         ObjectList(Page.promote_panels, heading=('Promote')),
         ObjectList(Page.settings_panels, heading=('Settings')),
         YoastPanel(
