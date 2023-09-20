@@ -14,13 +14,10 @@
   </div>
   <div id="offers" class="h-0 overflow-y-scroll w-full lg:mx-auto max-w-screen-lg bg-gray-200 transform-gpu transition-height duration-700 flex flex-col gap-2"></div>
   <div id="miniOffers" class="overflow-hidden transition-height h-0 duration-700 relative flex flex-col max-w-screen-lg bg-white shadow-sm lg:flex-row sm:mx-auto">
-    <button id="toggleOffersBtn" class="z-10 absolute top-0 right-0 font-bold p-1 bg-gray-200 w-[32px] h-[32px] hover:cursor-pointer">
-      <i class="fa-solid fa-up-down"></i>
-    </button>
-    <div id="titleScroll" class="whitespace-nowrap text-center w-full h-max scrollText transform-gpu">
-      <h5 id="offer1" class="uppercase p-2 text-lg font-semibold leading-none h-[32px]">current offers</h5>
+    <div id="titleScrollBtn" class="whitespace-nowrap text-center w-full h-max scrollText transform-gpu hover:cursor-pointer">
+      <h5 class="uppercase p-2 text-lg font-semibold leading-none h-[32px]">current offers</h5>
       <div id="titleScrollcontent" class="flex flex-col h-max"></div>
-      <h5 id="offer2" class="uppercase p-2 text-lg font-semibold leading-none h-[32px]">current offers</h5>
+      <h5 class="uppercase p-2 text-lg font-semibold leading-none h-[32px]">current offers</h5>
     </div>
   </div>
 </div>
@@ -43,7 +40,7 @@
     transform: translateY(0%);
   }
 }
-#titleScroll {
+#titleScrollBtn {
     animation: scrollText 40s infinite linear;
     animation-delay: 5s;
   }
@@ -102,13 +99,13 @@ async function getAffiliates() {
   </div>
     `
     offers.insertAdjacentHTML("beforeend", offersTemplate)
-    titleScroll.insertAdjacentHTML("beforeend", `<a href="${a.url}" aria-label="${a.title}" target="_blank" class='font-bold text-teal-600 underline capitalize p-2 text-lg leading-none h-[32px]'>${a.title}</a>`)
+    titleScroll.insertAdjacentHTML("beforeend", `<div class='font-bold capitalize p-2 text-lg leading-none h-[32px]'>${a.title}</div>`)
 
   }
   let showOffersTransition = setTimeout(showOffers, 6000)
 }
 
-const toggleOffersBtn = document.querySelector("#toggleOffersBtn")
+const titleScrollBtn = document.querySelector("#titleScrollBtn")
 
 function wHeigth() {
   return window.innerHeight - 32 + "px"
@@ -135,7 +132,7 @@ function toggleOffers() {
     el.style.height = "0px"
   }
 }
-toggleOffersBtn.onclick = toggleOffers
-toggleOffersBtn.ontouchstart = toggleOffers
+titleScrollBtn.onclick = toggleOffers
+titleScrollBtn.ontouchstart = toggleOffers
 const affiliatesTimeout = setTimeout(getAffiliates, 3000)
 </script>
