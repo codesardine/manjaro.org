@@ -13,48 +13,28 @@
     </a>
   </div>
   <div id="offers" class="h-0 overflow-y-scroll w-full lg:mx-auto bg-gray-200 transform-gpu transition-height duration-700 flex flex-col gap-2"></div>
-  <div id="miniOffers" class="overflow-hidden transition-height h-0 duration-700 relative flex flex-col bg-white shadow-sm lg:flex-row sm:mx-auto">
-    <div id="titleScrollBtn" class="whitespace-nowrap text-center w-full h-max scrollText transform-gpu hover:cursor-pointer">
-      <h5 class="uppercase p-2 text-lg font-semibold leading-none h-[32px]">current offers</h5>
-      <div id="titleScrollcontent" class="flex flex-col h-max"></div>
-      <h5 class="uppercase p-2 text-lg font-semibold leading-none h-[32px]">current offers</h5>
+  <div id="miniOffers" class="text-sm px-4 leading-none border font-semibold rounded text-cyan-700 bg-white overflow-hidden transition-height h-0 duration-700 relative flex flex-col shadow-sm lg:flex-row sm:mx-auto">
+    <div id="titleScrollBtn" class="whitespace-nowrap text-center w-full h-max hover:cursor-pointer">
+      <h5 class="uppercase text-lg font-semibold leading-none h-[32px] flex justify-center items-center">
+        <i class="fa-solid fa-rectangle-ad px-4 text-blue-gray-800"></i><span id="typed"></span><i class="text-blue-gray-800 px-4 fa-solid fa-arrows-up-down"></i>
+      </h5>
     </div>
   </div>
 </div>
 
 <style>
-  @keyframes scrollText {
-  0% {
-    transform: translateY(0%);
-  }
-  25% {
-    transform: translateY(0%);
-  }
-  45% {
-    transform: translateY(calc(-100% + 32px));
-  }
-  75% {
-    transform: translateY(calc(-100% + 32px));
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-#titleScrollBtn {
-    animation: scrollText 40s infinite linear;
-    animation-delay: 5s;
-  }
-
 #ramdomAff, #miniOffers {
   filter: drop-shadow(0 -1px 1px rgb(0 0 0 / 0.1)) drop-shadow(0 -1px 1px rgb(0 0 0 / 0.06));
 }
 </style>
-
+<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 <script>
+const titles = []
+
 function showOffers() {
   let ramdomAff = document.querySelector("#ramdomAff")
   let pop = document.querySelector("#popUp")  
-  pop.classList.replace("max-w-screen-lg", "max-w-[240px]")
+  pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
   ramdomAff.classList.replace("h-32","h-0")
   let openOffers = document.querySelector("#miniOffers")
   setTimeout(function() {
@@ -85,8 +65,8 @@ async function getAffiliates() {
   let pop = document.querySelector("#popUp")
   pop.classList.remove("translate-x-[200%]")
   for (a of ads) {
+    titles.push(a.title)
     let offers = document.querySelector("#offers")
-    let titleScroll = document.querySelector("#titleScrollcontent")
     let offersTemplate = `
     <div class="transition-height duration-700 relative flex flex-col flex-row">
     <a href="${a.url}" aria-label="${a.title}" target="_blank" class="flex flex-row gap-2 bg-white px-2 lg:px-1 w-full">
@@ -101,9 +81,16 @@ async function getAffiliates() {
   </div>
     `
     offers.insertAdjacentHTML("beforeend", offersTemplate)
-    titleScroll.insertAdjacentHTML("beforeend", `<div class='font-bold capitalize p-2 text-lg leading-none h-[32px]'>${a.title}</div>`)
-
   }
+  var typed = new Typed('#typed', {
+  strings: titles,
+  typeSpeed: 30,
+  shuffle: false,
+  loop: true,
+  loopCount: Infinity,
+  backDelay: 4500,
+  })
+
   let showOffersTransition = setTimeout(showOffers, 6000)
 }
 
@@ -118,7 +105,7 @@ function closeSlider(event) {
   let target = event.target
   if ( !target.id.includes("offer") ) {
     let pop = document.querySelector("#popUp")  
-    pop.classList.replace("max-w-screen-lg", "max-w-[240px]")
+    pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
     el.style.height = "0px"
     document.removeEventListener("click", closeSlider)
   } 
@@ -129,13 +116,13 @@ function toggleOffers() {
   let el = document.querySelector("#offers")
   let pop = document.querySelector("#popUp")  
   if (el.offsetHeight === 0) {
-    pop.classList.replace("max-w-[240px]", "max-w-screen-lg")
+    pop.classList.replace("max-w-[300px]", "max-w-screen-lg")
     el.style.height = wHeigth()
     setTimeout(function() {
       document.addEventListener('click', closeSlider)
     }, 500)
   } else {
-    pop.classList.replace("max-w-screen-lg", "max-w-[240px]")
+    pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
     el.style.height = "0px"
   }
 }
