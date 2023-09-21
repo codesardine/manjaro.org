@@ -2,11 +2,11 @@
 {% wagtail_site as current_site %}
 <div id="popUp" class="select-none mx-auto left-0 right-0 max-w-screen-lg fixed transition-all duration-700 translate-x-[200%] transform-gpu z-50 bottom-0">
   <div id="ramdomAff" class="transition-height duration-700 h-32 relative flex flex-col overflow-hidden bg-white lg:flex-row">
-    <a id="url" href="#" aria-label="" target="_blank" class="flex flex-row gap-2 justify-center items-center bg-white px-2 lg:px-1 w-full">
+    <a id="url" href="#" aria-label="" target="_blank" class="flex flex-row justify-center items-center bg-white w-full">
      <div class="hidden relative lg:w-1/4 lg:flex justify-center">
-      <img id="img" src="" alt="" class="object-contain max-h-36" />
+      <img id="img" src="" alt="" class="object-contain max-h-36 px-4" />
     </div>
-    <div class="lg:w-3/4">
+    <div class="lg:w-3/4 pr-4">
       <h5 id="title" class="capitalize py-1 text-2xl font-extrabold leading-none sm:text-3xl"></h5>
       <p id="desc" class="mb-2 text-gray-800"></p>
     </div>
@@ -69,11 +69,11 @@ async function getAffiliates() {
     let offers = document.querySelector("#offers")
     let offersTemplate = `
     <div class="transition-height duration-700 relative flex flex-col flex-row">
-    <a href="${a.url}" aria-label="${a.title}" target="_blank" class="flex flex-row gap-2 bg-white px-2 lg:px-1 w-full">
+    <a href="${a.url}" aria-label="${a.title}" target="_blank" class="flex flex-row bg-white px-2 lg:px-1 w-full">
      <div class="hidden relative lg:w-1/4 lg:flex justify-center">
-      <img src="${rootSite + '/media/' + a.img}" alt="${a.title}" class="object-contain max-h-36" />
+      <img src="${rootSite + '/media/' + a.img}" alt="${a.title}" class="object-contain max-h-36 px-4" />
     </div>
-    <div class="lg:w-3/4">
+    <div class="lg:w-3/4 pr-4">
       <h5 class="capitalize py-1 text-2xl font-extrabold leading-none sm:text-3xl">${a.title}</h5>
       <p class="mb-2 text-gray-800">${a.desc}</p>
     </div>
