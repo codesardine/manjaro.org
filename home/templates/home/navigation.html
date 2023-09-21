@@ -86,9 +86,9 @@
   </form>
   </div>
 
-  <div id="mobile-menu" class="mt-[50px] z-[30] max-w-50 fixed top-0 left-0 h-[100vh] lg:h-auto translate-x-[-150%] lg:translate-x-0 transition-transform duration-500 shadow-md will-change-transform transform-gpu">
+  <div id="mobile-menu" class="mt-[50px] z-50 max-w-full right-0 fixed top-0 left-0 h-[100vh] lg:h-auto translate-x-[-150%] lg:translate-x-0 transition-transform duration-500 shadow-md will-change-transform transform-gpu">
     <div class="px-2 shadow-lg bg-gradient-to-b from-teal-accent-400 to-teal-accent-700 h-[100vh] font-bold text-gray-200 capitalize text-center">
-      <nav class="overflow-y-scroll h-[100vh] pb-16 px-2">
+      <nav class="overflow-y-scroll h-[100vh] pb-16 px-2 max-w-sm mx-auto">
         <ul class="py-2">
           {% for item in left_navigation.menu_items.all %}
           {% if not item.submenu %}
