@@ -123,9 +123,8 @@ function toggleOffers() {
     el.style.height = "0px"
   }
 }
-const titles = []
 
-if (!window.location.pathname.includes("donate")) {
+function initAff() {
   let typed = document.createElement('script')
   typed.type = 'text/javascript'
   typed.src = 'https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js'
@@ -134,4 +133,21 @@ if (!window.location.pathname.includes("donate")) {
   titleScrollBtn.ontouchend = toggleOffers
   const affiliatesTimeout = setTimeout(getAffiliates, 3000)
 }
+const titles = []
+if (window.location.pathname.includes("download")) {
+  
+  modal = document.querySelector("#modal-edition")
+
+  function isReady() {
+    if (modal.classList.contains("hidden")) {
+      clearInterval(checkAff)
+      initAff()
+    }
+  }
+
+  var checkAff = setInterval(isReady, 100)
+
+} else if (!window.location.pathname.includes("donate")) {
+  initAff()
+} 
 </script>
