@@ -27,10 +27,7 @@
   filter: drop-shadow(0 -1px 1px rgb(0 0 0 / 0.1)) drop-shadow(0 -1px 1px rgb(0 0 0 / 0.06));
 }
 </style>
-<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 <script>
-const titles = []
-
 function showOffers() {
   let ramdomAff = document.querySelector("#ramdomAff")
   let pop = document.querySelector("#popUp")  
@@ -112,7 +109,6 @@ function closeSlider(event) {
   } 
 }
   
-
 function toggleOffers() {
   let el = document.querySelector("#offers")
   let pop = document.querySelector("#popUp")  
@@ -127,7 +123,15 @@ function toggleOffers() {
     el.style.height = "0px"
   }
 }
-titleScrollBtn.onclick = toggleOffers
-titleScrollBtn.ontouchend = toggleOffers
-const affiliatesTimeout = setTimeout(getAffiliates, 3000)
+const titles = []
+
+if (!window.location.pathname.includes("donate")) {
+  let typed = document.createElement('script')
+  typed.type = 'text/javascript'
+  typed.src = 'https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js'
+  document.head.appendChild(typed)       
+  titleScrollBtn.onclick = toggleOffers
+  titleScrollBtn.ontouchend = toggleOffers
+  const affiliatesTimeout = setTimeout(getAffiliates, 3000)
+}
 </script>
