@@ -12,7 +12,7 @@ module.exports = {
             sans: ['Montserrat', defaultTheme.fontFamily.sans],
           },
           transitionProperty: {
-            'height': 'height'
+            'max-height': 'max-height'
           },
           colors: {
             red: {
