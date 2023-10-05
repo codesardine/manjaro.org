@@ -12,7 +12,7 @@
     </div>
     </a>
   </div>
-  <div id="offers" class="mb-[-4px] h-0 overflow-y-scroll w-full lg:mx-auto bg-gray-200 transform-gpu transition-height duration-700 flex flex-col gap-2"></div>
+  <div id="offers" class="mb-[-4px] max-h-0 overflow-y-scroll w-full lg:mx-auto bg-gray-200 transform-gpu transition-max-height duration-700 flex flex-col gap-2"></div>
   <div id="miniOffers" class="text-sm px-4 leading-none border font-semibold rounded text-cyan-700 bg-white overflow-hidden transition-height h-0 duration-700 relative flex flex-col shadow-sm lg:flex-row sm:mx-auto">
     <div id="titleScrollBtn" class="whitespace-nowrap text-center w-full h-max hover:cursor-pointer">
       <h5 class="uppercase text-lg font-semibold leading-none h-[32px] flex justify-center items-center">
@@ -25,6 +25,12 @@
 <style>
 #ramdomAff, #miniOffers {
   filter: drop-shadow(0 -1px 1px rgb(0 0 0 / 0.1)) drop-shadow(0 -1px 1px rgb(0 0 0 / 0.06));
+}
+#offers {
+  max-height: calc(100vh - 32px);
+}
+.max-h-0 {
+  max-height: 0 !important;
 }
 </style>
 <script>
@@ -98,17 +104,13 @@ async function getAffiliates() {
 
 const titleScrollBtn = document.querySelector("#titleScrollBtn")
 
-function wHeigth() {
-  return window.innerHeight - 32 + 4 + "px"
-}
-
 function closeSlider(event) {
   let el = document.querySelector("#offers")
   let target = event.target
   if ( !target.id.includes("offer") ) {
     let pop = document.querySelector("#popUp")  
     pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
-    el.style.height = "0px"
+    el.classList.add("max-h-0")
     document.removeEventListener("click", closeSlider)
   } 
 }
@@ -118,13 +120,13 @@ function toggleOffers() {
   let pop = document.querySelector("#popUp")  
   if (el.offsetHeight === 0) {
     pop.classList.replace("max-w-[300px]", "max-w-screen-lg")
-    el.style.height = wHeigth()
+    el.classList.remove("max-h-0")
     setTimeout(function() {
       document.addEventListener('click', closeSlider)
     }, 500)
   } else {
     pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
-    el.style.height = "0px"
+    el.classList.add("max-h-0")
   }
 }
 
