@@ -23,15 +23,19 @@
 </div>
 
 <style>
+  :root {
+  --max-height: calc(100vh - 32px);
+}
 #ramdomAff, #miniOffers {
   filter: drop-shadow(0 -1px 1px rgb(0 0 0 / 0.1)) drop-shadow(0 -1px 1px rgb(0 0 0 / 0.06));
 }
 #offers {
-  max-height: calc(100vh - 32px);
+  max-height: var(--max-height);
 }
 .max-h-0 {
   max-height: 0 !important;
 }
+
 </style>
 <script>
 function showOffers() {
