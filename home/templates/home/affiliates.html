@@ -106,8 +106,10 @@ function closeSlider(event) {
   let target = event.target
   if ( !target.id.includes("offer") ) {
     let pop = document.querySelector("#popUp")  
-    pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
     el.classList.add("translate-y-[120%]")
+    setTimeout(function () {
+      pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
+    }, 700)
     document.removeEventListener("click", closeSlider)
   } 
 }
@@ -118,13 +120,18 @@ function toggleOffers() {
   console.log(el.classList) 
   if (el.classList.contains("translate-y-[120%]")) {
     pop.classList.replace("max-w-[300px]", "max-w-screen-lg")
-    el.classList.remove("translate-y-[120%]")
+    setTimeout(function () {
+      el.classList.remove("translate-y-[120%]")
+    }, 300)
+    
     setTimeout(function() {
       document.addEventListener('click', closeSlider)
     }, 500)
   } else {
-    pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
     el.classList.add("translate-y-[120%]")
+    setTimeout(function () {
+      pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
+    }, 300)
   }
 }
 
