@@ -109,30 +109,36 @@ function closeSlider(event) {
     el.classList.add("translate-y-[120%]")
     setTimeout(function () {
       pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
+      adlock = false
     }, 700)
     document.removeEventListener("click", closeSlider)
   } 
 }
   
+var adlock = false
+
 function toggleOffers() {
   let el = document.querySelector("#offers")
   let pop = document.querySelector("#popUp") 
-  console.log(el.classList) 
-  if (el.classList.contains("translate-y-[120%]")) {
-    pop.classList.replace("max-w-[300px]", "max-w-screen-lg")
-    setTimeout(function () {
-      el.classList.remove("translate-y-[120%]")
-    }, 300)
-    
-    setTimeout(function() {
-      document.addEventListener('click', closeSlider)
-    }, 500)
-  } else {
-    el.classList.add("translate-y-[120%]")
-    setTimeout(function () {
-      pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
-    }, 300)
-  }
+  if (!adlock) {
+    adlock = true
+    if (pop.classList.contains("max-w-[300px]") && el.classList.contains("translate-y-[120%]")) {
+      pop.classList.replace("max-w-[300px]", "max-w-screen-lg")
+      setTimeout(function () {
+        el.classList.remove("translate-y-[120%]")
+      }, 300)
+      
+      setTimeout(function() {
+        document.addEventListener('click', closeSlider)
+      }, 500)
+    } else {
+      el.classList.add("translate-y-[120%]")
+      setTimeout(function () {
+        pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
+        adlock = false
+      }, 300)
+    }
+  } 
 }
 
 function is_touch_enabled() {
