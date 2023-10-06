@@ -1,7 +1,7 @@
 {% load wagtailcore_tags %}
 {% wagtail_site as current_site %}
 <div id="popUp" class="select-none mx-auto left-0 right-0 max-w-screen-lg fixed transition-all duration-700 translate-x-[200%] transform-gpu z-40 bottom-0">
-  <div id="ramdomAff" class="transition-height duration-700 h-32 relative flex flex-col overflow-hidden bg-white lg:flex-row">
+  <div id="ramdomAff" class="absolute bottom-0 left-0 right-0 transition-height duration-700 h-32 flex flex-col overflow-hidden bg-white lg:flex-row">
     <a id="url" href="#" aria-label="" target="_blank" class="flex flex-row justify-center items-center bg-white w-full">
      <div class="hidden relative lg:w-1/4 lg:flex justify-center">
       <img id="img" src="" alt="" class="object-contain max-h-36 px-4" />
@@ -12,7 +12,7 @@
     </div>
     </a>
   </div>
-  <div id="offers" class="mb-[-4px] max-h-0 overflow-y-scroll w-full lg:mx-auto bg-gray-200 transform-gpu transition-windowmax-height duration-700 flex flex-col gap-2"></div>
+  <div id="offers" class="mb-[-4px] translate-y-[120%] overflow-y-scroll w-full lg:mx-auto bg-gray-200 transform-gpu duration-700 flex flex-col gap-2"></div>
   <div id="miniOffers" class="text-sm px-4 leading-none border font-semibold rounded text-cyan-700 bg-white overflow-hidden transition-height h-0 duration-700 relative flex flex-col shadow-sm lg:flex-row sm:mx-auto">
     <div id="titleScrollBtn" class="whitespace-nowrap text-center w-full h-max hover:cursor-pointer">
       <h5 class="uppercase text-lg font-semibold leading-none h-[32px] flex justify-center items-center">
@@ -23,19 +23,12 @@
 </div>
 
 <style>
-  :root {
-  --max-height: calc(100vh - 32px);
-}
 #ramdomAff, #miniOffers {
   filter: drop-shadow(0 -1px 1px rgb(0 0 0 / 0.1)) drop-shadow(0 -1px 1px rgb(0 0 0 / 0.06));
 }
 #offers {
-  max-height: var(--max-height);
+  max-height: 100vh - 32px;
 }
-.max-h-0 {
-  max-height: 0 !important;
-}
-
 </style>
 <script>
 function showOffers() {
@@ -114,23 +107,24 @@ function closeSlider(event) {
   if ( !target.id.includes("offer") ) {
     let pop = document.querySelector("#popUp")  
     pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
-    el.classList.add("max-h-0")
+    el.classList.add("translate-y-[120%]")
     document.removeEventListener("click", closeSlider)
   } 
 }
   
 function toggleOffers() {
   let el = document.querySelector("#offers")
-  let pop = document.querySelector("#popUp")  
-  if (el.offsetHeight === 0) {
+  let pop = document.querySelector("#popUp") 
+  console.log(el.classList) 
+  if (el.classList.contains("translate-y-[120%]")) {
     pop.classList.replace("max-w-[300px]", "max-w-screen-lg")
-    el.classList.remove("max-h-0")
+    el.classList.remove("translate-y-[120%]")
     setTimeout(function() {
       document.addEventListener('click', closeSlider)
     }, 500)
   } else {
     pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
-    el.classList.add("max-h-0")
+    el.classList.add("translate-y-[120%]")
   }
 }
 
