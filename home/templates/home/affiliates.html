@@ -1,45 +1,62 @@
 {% load wagtailcore_tags %}
-{% wagtail_site as current_site %}
-<div id="popUp" class="select-none mx-auto left-0 right-0 max-w-screen-lg fixed transition-all duration-700 translate-x-[200%] transform-gpu z-40 bottom-0">
-  <div id="ramdomAff" class="absolute bottom-0 left-0 right-0 transition-height duration-700 h-32 flex flex-col overflow-hidden bg-white lg:flex-row">
+<div id="popUp" class="bg-white select-none mx-auto left-0 right-0 max-w-screen-lg fixed transition-all duration-700 translate-y-[200%] transform-gpu z-40 bottom-0">
+  <div id="ramdomAff" class="h-[130px] flex flex-col overflow-hidden lg:flex-row">
     <a id="url" href="#" aria-label="" target="_blank" class="flex flex-row justify-center items-center bg-white w-full">
      <div class="hidden relative lg:w-1/4 lg:flex justify-center">
       <img id="img" src="" alt="" class="object-contain max-h-36 px-4" />
     </div>
     <div class="w-full lg:w-3/4 px-4">
-      <h5 id="title" class="w-full capitalize py-1 text-2xl font-extrabold leading-none sm:text-3xl"></h5>
-      <p id="desc" class="mb-2 text-gray-800 w-full"></p>
+      <h5 id="title" class="w-full capitalize text-2xl font-extrabold leading-none sm:text-3xl"></h5>
+      <p id="desc" class="text-gray-800 w-full"></p>
     </div>
     </a>
   </div>
-  <div id="offers" class="mb-[-4px] translate-y-[120%] overflow-y-scroll w-full lg:mx-auto bg-gray-200 transform-gpu duration-700 flex flex-col gap-2"></div>
-  <div id="miniOffers" class="text-sm px-4 leading-none border font-semibold rounded text-cyan-700 bg-white overflow-hidden transition-height h-0 duration-700 relative flex flex-col shadow-sm lg:flex-row sm:mx-auto">
-    <div id="titleScrollBtn" class="whitespace-nowrap text-center w-full h-max hover:cursor-pointer">
-      <h5 class="uppercase text-lg font-semibold leading-none h-[32px] flex justify-center items-center">
-        <i class="fa-solid fa-rectangle-ad px-4 text-blue-gray-800"></i><span id="typed"></span><i class="text-blue-gray-800 px-4 fa-solid fa-arrows-up-down"></i>
-      </h5>
-    </div>
-  </div>
+</div>
+
+<div id="bg" class="backdrop-opacity-80 h-[100vh] pb-[32px] mx-auto left-0 right-0 z-40 translate-y-[200%] transform-gpu duration-700 fixed bottom-0">
+  <div id="offers" class="bg-gray-200 pb-[32px] absolute bottom-0 left-0 right-0 overflow-y-scroll max-w-screen-lg lg:mx-auto flex flex-col gap-2"></div>
+</div>
+
+<div id="titleScrollBtn" class="select-none z-40 mx-auto max-w-[300px] bg-gray-200 fixed bottom-0 left-0 right-0 translate-y-[200%] transition-all duration-700 whitespace-nowrap text-center w-full h-max hover:cursor-pointer">
+  <h5 class="uppercase text-lg font-semibold leading-none h-[32px] flex justify-center items-center">
+    <i class="fa-solid fa-rectangle-ad px-4 text-blue-gray-800"></i><span id="typed"></span><i class="text-blue-gray-800 px-4 fa-solid fa-arrows-up-down"></i>
+  </h5>
 </div>
 
 <style>
-#ramdomAff, #miniOffers {
+#offers, #popUp {
   filter: drop-shadow(0 -1px 1px rgb(0 0 0 / 0.1)) drop-shadow(0 -1px 1px rgb(0 0 0 / 0.06));
-}
-#offers {
-  max-height: 100vh - 32px;
+ }
+ #offers { 
+  max-height: 100vh
 }
 </style>
 <script>
-function showOffers() {
-  let ramdomAff = document.querySelector("#ramdomAff")
-  let pop = document.querySelector("#popUp")  
+function closePopUp() {
+  let pop = document.querySelector("#popUp")
   pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
-  ramdomAff.classList.replace("h-32","h-0")
-  let openOffers = document.querySelector("#miniOffers")
-  setTimeout(function() {
-    openOffers.classList.replace("h-0","h-8")
-  }, 200)
+  pop.classList.add("translate-y-[200%]")
+}
+
+function openPopUp() {
+  let pop = document.querySelector("#popUp")
+  pop.classList.remove("translate-y-[200%]")
+}
+
+function openAdsBtn() {
+  closePopUp()
+  let pop = document.querySelector("#titleScrollBtn")
+  pop.classList.remove("translate-y-[200%]")
+}
+
+function openOffers() {  
+    let rotation = document.querySelector("#bg")
+    rotation.classList.remove("translate-y-[200%]")
+}
+
+function closeOffers() {  
+    let rotation = document.querySelector("#bg")
+    rotation.classList.add("translate-y-[200%]")
 }
 
 async function getAffiliates() {
@@ -62,20 +79,19 @@ async function getAffiliates() {
   desc.textContent = item.desc
   title.textContent = item.title
   img.src = rootSite + "/media/" + item.img
-  let pop = document.querySelector("#popUp")
-  pop.classList.remove("translate-x-[200%]")
+  openPopUp()
   for (a of ads) {
     titles.push(a.title)
     let offers = document.querySelector("#offers")
     let offersTemplate = `
     <div class="transition-height duration-700 relative flex flex-col flex-row">
-    <a href="${a.url}" aria-label="${a.title}" target="_blank" class="flex flex-row bg-white px-2 lg:px-1 w-full">
+    <a href="${a.url}" aria-label="${a.title}" target="_blank" class="h-[130px] justify-center items-center flex flex-row bg-white px-2 lg:px-1 w-full">
      <div class="hidden relative lg:w-1/4 lg:flex justify-center">
       <img src="${rootSite + '/media/' + a.img}" alt="${a.title}" class="object-contain max-h-36 px-4" />
     </div>
     <div class="w-full lg:w-3/4 pr-4">
       <h5 class="capitalize py-1 text-2xl font-extrabold leading-none sm:text-3xl">${a.title}</h5>
-      <p class="mb-2 text-gray-800">${a.desc}</p>
+      <p class="text-gray-800">${a.desc}</p>
     </div>
     </a>
   </div>
@@ -92,54 +108,28 @@ async function getAffiliates() {
   showCursor: false,
   })
 
-  let showOffersTransition = setTimeout(showOffers, 6000)
+  setTimeout(openAdsBtn, 6000)
   } catch (error) {
     console.log(error)
   }
-  
 }
 
 const titleScrollBtn = document.querySelector("#titleScrollBtn")
 
 function closeSlider(event) {
-  let el = document.querySelector("#offers")
   let target = event.target
-  if ( !target.id.includes("offer") ) {
-    let pop = document.querySelector("#popUp")  
-    el.classList.add("translate-y-[120%]")
-    setTimeout(function () {
-      pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
-      adlock = false
-    }, 700)
+    closeOffers()
     document.removeEventListener("click", closeSlider)
-  } 
 }
   
-var adlock = false
-
 function toggleOffers() {
-  let el = document.querySelector("#offers")
-  let pop = document.querySelector("#popUp") 
-  if (!adlock) {
-    adlock = true
-    if (pop.classList.contains("max-w-[300px]") && el.classList.contains("translate-y-[120%]")) {
-      pop.classList.replace("max-w-[300px]", "max-w-screen-lg")
-      setTimeout(function () {
-        el.classList.remove("translate-y-[120%]")
-      }, 300)
-      
-      setTimeout(function() {
-        document.addEventListener('click', closeSlider)
-      }, 500)
+  let el = document.querySelector("#bg")
+    if (el.classList.contains("translate-y-[200%]")) {      
+        openOffers()
     } else {
-      el.classList.add("translate-y-[120%]")
-      setTimeout(function () {
-        pop.classList.replace("max-w-screen-lg", "max-w-[300px]")
-        adlock = false
-      }, 300)
+      closeOffers()
     }
   } 
-}
 
 function is_touch_enabled() {
     return ( 'ontouchstart' in window ) || 
@@ -151,11 +141,14 @@ function initAff() {
   let typed = document.createElement('script')
   typed.type = 'text/javascript'
   typed.src = 'https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js'
-  document.head.appendChild(typed)   
+  document.head.appendChild(typed)  
+  const bg = document.querySelector("#bg") 
   if ( is_touch_enabled() ) {
     titleScrollBtn.ontouchend = toggleOffers
+    bg.addEventListener('ontouchend', closeSlider)
   } else {
     titleScrollBtn.onclick = toggleOffers
+    bg.addEventListener('click', closeSlider)
   }
   const affiliatesTimeout = setTimeout(getAffiliates, 3000)
 }
