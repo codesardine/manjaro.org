@@ -85,7 +85,7 @@ async function getAffiliates() {
     let offers = document.querySelector("#offers")
     let offersTemplate = `
     <div class="transition-height duration-700 relative flex flex-col flex-row">
-    <a href="${a.url}" aria-label="${a.title}" target="_blank" class="h-[260px] lg:h-[130px] flex flex-row bg-white px-2 lg:px-1 w-full">
+    <a href="${a.url}" aria-label="${a.title}" target="_blank" class="h-auto lg:h-[130px] flex flex-row bg-white px-2 lg:px-1 w-full">
      <div class="hidden relative lg:w-1/4 lg:flex justify-center">
       <img src="${rootSite + '/media/' + a.img}" alt="${a.title}" class="object-contain max-h-36 px-4" />
     </div>
