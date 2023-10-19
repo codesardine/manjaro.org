@@ -8,7 +8,11 @@ from datetime import datetime, date
 from dateutil.parser import parse as parsedate
 import concurrent.futures
 from .models import x86_64, aarch64, lastModified, Archs, Branches
-from manjaro import session_requests
+#from manjaro import session_requests
+import logging
+
+
+logging.basicConfig(filename='/tmp/package-update.log', encoding='utf-8', level=logging.DEBUG)
 
 
 MIRROR = "https://repo.manjaro.org/repo"
@@ -335,6 +339,7 @@ def update_db(arch, repos, pkg_model, test=False):
                     )
             except Exception as e:
                 #print(pkg, pkg.packager, pkg.builddate_str, e)
+                logging.error(e)
                 raise
         if not test:
             ret = len(pkg_model.objects.bulk_create(objs))
@@ -377,6 +382,7 @@ def update_x86_64(test_directory=None):
         except Exception as err:
             lastModified.objects.filter(arch=arch.name).update(status=f"[ERROR] {err}")
             print("EXCEPTION !", err)
+            logging.error(err)
             send_log(err)
 
 
@@ -393,4 +399,5 @@ def update_aarch64(test_directory=None):
         try:
             update_db(arch, repos, aarch64, bool(test_directory))
         except Exception as err:
+            logging.error(err)
             send_log(err)
