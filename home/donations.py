@@ -13,40 +13,46 @@ def get_exchange_rates(_from, to, ammount):
     data = get_request(endpoint)
     return data
 
+def sort_data(endpoint):
+    try:
+        data = get_request(endpoint)
+        balance = data["balance"]    
+        rates = get_exchange_rates(data["currency"], "EUR", balance)
+        data["total"] = rates["result"]
+        return data
+    except Exception as e:
+        print(e)
+
 def get_uk_info():
     endpoint = 'https://opencollective.com/manjaro-uk.json'
-    data = get_request(endpoint)
-    balance = data["balance"]
-    rates = get_exchange_rates(data["currency"], "EUR", balance)
-    data["total"] = rates["result"]
-    return data
+    return sort_data(endpoint)
 
 def get_us_info():
     endpoint = 'https://opencollective.com/manjaro-us.json'
-    data = get_request(endpoint)
-    balance = data["balance"]
-    rates = get_exchange_rates(data["currency"], "EUR", balance)
-    data["total"] = rates["result"]
-    return data
+    return sort_data(endpoint)
 
 def get_eu_info():
     endpoint = 'https://opencollective.com/manjaro.json'
-    data = get_request(endpoint)
-    data["total"] = data["balance"]
-    return data
+    return sort_data(endpoint)
 
 def get_collectives():
     eu = get_eu_info()
     us = get_us_info()
     uk = get_uk_info()
 
-    balance = eu["total"] + us["total"] + uk["total"]
-    backers = eu["backersCount"] + us["backersCount"] + uk["backersCount"]
+    if eu and us and uk:
+        balance = eu["total"] + us["total"] + uk["total"]
+        backers = eu["backersCount"] + us["backersCount"] + uk["backersCount"]
 
-    return{
-        "balance": balance,
-        "backers": backers
-    }
+        return {
+            "balance": balance,
+            "backers": backers
+        }
+    else:
+        return  {
+            "balance": 0,
+            "backers": 0
+        }
 
 def sheduler_start():
     jobs = BackgroundScheduler()
