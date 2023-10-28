@@ -62,12 +62,15 @@ function closeOffers() {
 async function getAffiliates() {
   let rootSite = window.location.origin
   if (rootSite.includes("staging")) {
-    rootSite = "https://staging.manjaro.org"
-  } else if (!rootSite.includes("localhost")) {
-    rootSite = rootSite.replace(/[/]\w*[.]/g, '/')
+    origin = "https://staging.manjaro.org"
+  } else if (rootSite.includes("localhost")) {
+    origin = rootSite.replace(/[/]\w*[.]/g, '/')
+  } else {
+    origin = "https://manjaro.org"
   }
+
   try {
-    let response = await fetch(rootSite + "/ads.json");
+    let response = await fetch(origin + "/ads.json");
   let ads = await response.json();
   if (Object.keys(ads).length != 0 && ads.constructor === Array) {
     let randomIndex = Math.floor(Math.random() * ads.length);
