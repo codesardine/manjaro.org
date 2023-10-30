@@ -1,4 +1,4 @@
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 <div id="popUp" class="bg-white select-none mx-auto left-0 right-0 max-w-screen-lg fixed transition-all duration-700 translate-y-[200%] transform-gpu z-40 bottom-0">
   <div id="ramdomAff" class="lg:h-[130px] flex flex-col overflow-hidden lg:flex-row">
     <a id="url" href="#" aria-label="" target="_blank" class="flex flex-row bg-white w-full">
@@ -82,7 +82,7 @@ async function getAffiliates() {
     url.href = item.url
     desc.textContent = item.desc
     title.textContent = item.title
-    img.src = rootSite + "/media/" + item.img
+    img.src = rootSite + item.img
     openPopUp()
     for (a of ads) {
       titles.push(a.title)
@@ -91,7 +91,7 @@ async function getAffiliates() {
       <div class="transition-height duration-700 relative flex flex-col flex-row">
       <a href="${a.url}" aria-label="${a.title}" target="_blank" class="h-auto lg:h-[130px] flex flex-row bg-white px-2 lg:px-1 w-full">
       <div class="hidden relative lg:w-1/4 lg:flex justify-center">
-        <img src="${rootSite + '/media/' + a.img}" alt="${a.title}" class="object-contain max-h-36 px-4" />
+        <img src="${rootSite + a.img}" alt="${a.title}" class="object-contain max-h-36 px-4" />
       </div>
       <div class="w-full lg:w-3/4 pr-4">
         <h5 class="capitalize py-1 text-2xl font-extrabold leading-none sm:text-3xl">${a.title}</h5>
