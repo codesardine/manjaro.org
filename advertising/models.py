@@ -6,6 +6,7 @@ from wagtail.admin.panels import (
 
 
 class Advert(models.Model):
+    hidden = models.BooleanField(default=False)
     title = models.CharField(max_length=255, null=False, default="")
     url = models.URLField(null=False, default="")
     description = models.TextField(max_length=255, null=False, default="") 
@@ -18,6 +19,7 @@ class Advert(models.Model):
     )
 
     panels = [
+        FieldPanel("hidden"),
         FieldPanel("title"),
         FieldPanel("url"),
         FieldPanel("image"),
