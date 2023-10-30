@@ -179,10 +179,10 @@ BASE_URL = ALLOWED_ORIGINS[0]
 
 CSRF_TRUSTED_ORIGINS = ALLOWED_ORIGINS
 
-print("Origins", ALLOWED_ORIGINS)
-print("Hosts", ALLOWED_HOSTS)
-print("Base", BASE_URL)
-print("Csrf", CSRF_TRUSTED_ORIGINS)
+#print("Origins", ALLOWED_ORIGINS)
+#print("Hosts", ALLOWED_HOSTS)
+#print("Base", BASE_URL)
+#print("Csrf", CSRF_TRUSTED_ORIGINS)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
