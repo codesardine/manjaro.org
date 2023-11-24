@@ -1,4 +1,4 @@
-wagtail>=5.0,<5.0.5
+wagtail<5.1
 Django
 django-extensions
 wagtail-django-recaptcha
