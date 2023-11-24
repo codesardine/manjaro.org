@@ -1,4 +1,4 @@
-wagtail<5.1
+wagtail>=5.0,<5.0.5
 Django
 django-extensions
 wagtail-django-recaptcha
@@ -17,3 +17,4 @@ pygithub
 requests-cache
 gevent
 requests
+forex-python
