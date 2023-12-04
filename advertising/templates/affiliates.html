@@ -172,8 +172,12 @@ if (window.location.pathname.includes("download")) {
 
   var checkAff = setInterval(isReady, 100)
 
-} else if (blocked.some(string => {
-  if (!window.location.pathname.includes(string)) {
-    initAff();
-  }}));
+} else {
+  for (i of blocked) {
+    if (!window.location.pathname.includes(i)) {
+      initAff();
+      break;
+    }
+  }
+}
 </script>
