@@ -67,8 +67,9 @@ class Downloader():
                     if ok:
                         self.update.add(repo)
                         print("Updating:", url)
-                except Exception:
-                    raise
+                except Exception as e:
+                    print(e)
+
         return self.update
 
     @staticmethod
@@ -89,7 +90,7 @@ class Downloader():
         try:
             model = files_times.objects.get(arch=arch, branch=branch, repo=repo)
             local_datetime = model.date
-            model.status=response.status_code
+            model.status = response.status_code
             model.save()
         except files_times.DoesNotExist:
             files_times(
@@ -108,8 +109,8 @@ class Downloader():
             with open(local_filename, 'wb') as fdb:
                 fdb.write(resp.content)
             model = files_times.objects.get(arch=arch, branch=branch, repo=repo)
-            model.date=remote_datetime
-            model.status=response.status_code
+            model.date = remote_datetime
+            model.status = response.status_code
             model.save()
             return True, url, repo
         return False, url, repo
@@ -238,7 +239,7 @@ class PackageAlpm:
                 '%SHA256SUM%',
                 '%CHECKDEPENDS%',
                 '%MAKEDEPENDS%'
-                ]:
+            ]:
                 continue
 
             if value == 'None':
@@ -248,6 +249,7 @@ class PackageAlpm:
                 value = int(value)
             elif key in LIST_KEYS:
                 value = tuple(value.split(LIST_SEP))
+
             yield key.replace('%', '').lower(), value
 
     @classmethod
@@ -281,7 +283,7 @@ class AlpmDb:
             for repo in self.repos:
                 index = 0
                 filename = Downloader.filename(self.arch.name, branch_name, repo)
-                pkg : PackageAlpm
+                pkg: PackageAlpm
                 with tarfile.open(filename, "r") as tar:
                     for tarinfo in tar:
                         if not (tarinfo.isfile() or tarinfo.name.endswith(".desc")):
@@ -289,6 +291,7 @@ class AlpmDb:
                         fdesc = tar.extractfile(tarinfo)
                         if not fdesc:
                             raise Exception(f"invalid desc ! {tarinfo}")
+                        
                         pkg = PackageAlpm(repo=repo, idx=len(self.pkgs)+1)
                         pkg.inject(fdesc.read().decode(), branch=branch)
                         key = pkg.key
@@ -319,7 +322,7 @@ def update_db(arch, repos, pkg_model, test=False):
         pkg: PackageAlpm
         objs = []
         for _, pkg in db.pkgs.items():
-            #print(pkg)
+            # print(pkg)
             try:
                 objs.append(
                     pkg_model(
@@ -338,7 +341,7 @@ def update_db(arch, repos, pkg_model, test=False):
                         )
                     )
             except Exception as e:
-                #print(pkg, pkg.packager, pkg.builddate_str, e)
+                # print(pkg, pkg.packager, pkg.builddate_str, e)
                 logging.error(e)
                 raise
         if not test:
@@ -350,21 +353,23 @@ def update_db(arch, repos, pkg_model, test=False):
         hours, rem = divmod(time.perf_counter() - start, 3600)
         minutes, seconds = divmod(rem, 60)
         print(f"sql update {arch} :: end {hours:.0f} {minutes:.0f}:{seconds:.0f}")
-    #raise Exception("One test") #TODO for remove, was ok for test error log
+    # raise Exception("One test") #TODO for remove, was ok for test error log
     # TODO remove:    CACHE_DIR / arch
 
-def send_log(err:Exception):
+
+def send_log(err: Exception):
     from wagtail.models import Page
     from wagtail.log_actions import log
     try:
-        page =Page.objects.get(title="Packages")
+        page = Page.objects.get(title="Packages")
         log(
             instance=page, action='wagtail.workflow.cancel',
             #data={"error":"Exception xxxx"},    # wagtail page no display data ?
             title=f"[Update ERROR] {err}"
         )
-    except: # wagtail.models.Page.DoesNotExist:
-        pass
+    except Exception as e:  # wagtail.models.Page.DoesNotExist:
+        print(e)
+
 
 
 def update_x86_64(test_directory=None):
@@ -380,7 +385,9 @@ def update_x86_64(test_directory=None):
         try:
             update_db(arch, repos, x86_64, bool(test_directory))
         except Exception as err:
-            lastModified.objects.filter(arch=arch.name).update(status=f"[ERROR] {err}")
+            lastModified.objects.filter(arch=arch.name).update(
+                status=f"[ERROR] {err}"
+                )
             print("EXCEPTION !", err)
             logging.error(err)
             send_log(err)
