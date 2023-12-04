@@ -171,7 +171,10 @@ if (window.location.pathname.includes("download")) {
 
   var checkAff = setInterval(isReady, 100)
 
-} else if (!window.location.pathname.includes("donate")) {
+} else if (
+  !window.location.pathname.includes("donate") ||
+  !window.location.pathname.includes("merchandise")
+  ) {
   initAff()
 } 
 </script>
