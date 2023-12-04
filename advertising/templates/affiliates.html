@@ -172,8 +172,8 @@ if (window.location.pathname.includes("download")) {
   var checkAff = setInterval(isReady, 100)
 
 } else if (
-  !window.location.pathname.includes("donate") ||
-  !window.location.pathname.includes("merchandise")
+  !window.location.pathname.indexOf("donate") ||
+  !window.location.pathname.indexOf("merchandise")
   ) {
   initAff()
 } 
