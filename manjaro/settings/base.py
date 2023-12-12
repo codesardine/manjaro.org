@@ -1,9 +1,10 @@
 import os, time
 from django.core.management.utils import get_random_secret_key
-from django.contrib.staticfiles.storage import ManifestStaticFilesStorage
+#from django.contrib.staticfiles.storage import ManifestStaticFilesStorage
 
-class StaticFilesOverride(ManifestStaticFilesStorage):
-    manifest_strict = False
+#class StaticFilesOverride(ManifestStaticFilesStorage):
+ #   manifest_strict = False
+
 
 LOGGING = {
     'version': 1,
@@ -153,7 +154,7 @@ STATICFILES_DIRS = [
 
 WHITENOISE_MANIFEST_STRICT = False
 
-STATICFILES_STORAGE = 'manjaro.settings.base.StaticFilesOverride'
+#STATICFILES_STORAGE = 'manjaro.settings.base.StaticFilesOverride'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
@@ -169,7 +170,9 @@ WAGTAILSEARCH_BACKENDS = {
     }
 }
 
-ALLOWED_ORIGINS = os.environ.get('ALLOWED_ORIGINS', default="http://127.0.0.1:8000/").split()
+ALLOWED_ORIGINS = os.environ.get(
+    'ALLOWED_ORIGINS', default="http://127.0.0.1:8000/"
+    ).split()
 
 ALLOWED_HOSTS = [host.split('://')[1] for host in ALLOWED_ORIGINS]
 
@@ -199,4 +202,8 @@ INTERNAL_IPS = [
 AUTH_USER_MODEL = 'users.User'
 WAGTAIL_USER_EDIT_FORM = 'users.admin.CustomUserEditForm'
 WAGTAIL_USER_CREATION_FORM = 'users.admin.CustomUserCreationForm'
-WAGTAIL_USER_CUSTOM_FIELDS = ['position', 'description', 'title', "avatar", "twitter", "forum", "github", "bio"]
+WAGTAIL_USER_CUSTOM_FIELDS = [
+    'position', 'description', 'title',
+    "avatar", "twitter", "forum",
+    "github", "bio"
+    ]
