@@ -3,15 +3,18 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from .packages import update_x86_64, update_aarch64
 
 
-def start():  
+def start():
     print("Scheduler started..\n")
-    now = datetime.datetime.now()+datetime.timedelta(seconds=2)
+    today = datetime.datetime.now()
+    now = today+datetime.timedelta(seconds=2)
     jobs = BackgroundScheduler()
 
     @jobs.scheduled_job('interval', minutes=15, start_date=now)
     def update_pkgs():
-        print("Packages timer fired")
+        print(f"Updating packages at: {today}")
         update_x86_64(None)
+        print("")
         update_aarch64(None)
+        print("")
 
     jobs.start()
