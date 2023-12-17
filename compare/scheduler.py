@@ -1,6 +1,10 @@
 import datetime
+import logging
 from apscheduler.schedulers.background import BackgroundScheduler
 from .packages import update_x86_64, update_aarch64
+
+logging.basicConfig()
+logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
 
 def start():
@@ -13,7 +17,6 @@ def start():
     def update_pkgs():
         print(f"Updating packages at: {today}")
         update_x86_64(None)
-        print("")
         update_aarch64(None)
         print("")
 
