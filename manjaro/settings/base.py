@@ -2,33 +2,35 @@ import os
 import time
 import logging
 from django.core.management.utils import get_random_secret_key
-from django.http.request import HttpRequest, validate_host
+from django.http.request import HttpRequest, validate_host, split_domain_port
 from django.conf import settings
 
 
-def get_host(self):
-    """Return the HTTP host using the environment or request headers."""
-    host = self._get_raw_host()
+class HttpRequestOverride(HttpRequest):
+    def get_host(self):
+        """Return the HTTP host using the environment or request headers."""
+        host = self._get_raw_host()
 
-    # Allow variants of localhost if ALLOWED_HOSTS is empty and DEBUG=True.
-    allowed_hosts = settings.ALLOWED_HOSTS
-    if settings.DEBUG and not allowed_hosts:
-        allowed_hosts = [".localhost", "127.0.0.1", "[::1]"]
+        # Allow variants of localhost if ALLOWED_HOSTS is empty and DEBUG=True.
+        allowed_hosts = settings.ALLOWED_HOSTS
+        if settings.DEBUG and not allowed_hosts:
+            allowed_hosts = [".localhost", "127.0.0.1", "[::1]"]
 
-    if validate_host(host, allowed_hosts):
-        return host
-    else:
-        msg = "Invalid HTTP_HOST header: %r." % host
-        if host:
-            msg += " You may need to add %r to ALLOWED_HOSTS." % host
+        domain, port = split_domain_port(host)
+        if domain and validate_host(domain, allowed_hosts):
+            return host
         else:
-            msg += (
-                " The domain name provided is not valid according to RFC 1034/1035."
-            )
-        logging.warning(msg)
+            msg = "Invalid HTTP_HOST header: %r." % host
+            if domain:
+                msg += " You may need to add %r to ALLOWED_HOSTS." % host
+            else:
+                msg += (
+                    " The domain name provided is not valid according to RFC 1034/1035."
+                )
+            logging.warning(msg)
 
 
-HttpRequest.get_host = get_host
+HttpRequest = HttpRequestOverride
 
 LOGGING = {
     'version': 1,
