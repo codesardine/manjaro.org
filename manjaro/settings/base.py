@@ -1,10 +1,34 @@
-import os, time
+import os
+import time
+import logging
 from django.core.management.utils import get_random_secret_key
-#from django.contrib.staticfiles.storage import ManifestStaticFilesStorage
+from django.http.request import HttpRequest, validate_host
+from django.conf import settings
 
-#class StaticFilesOverride(ManifestStaticFilesStorage):
- #   manifest_strict = False
 
+def get_host(self):
+    """Return the HTTP host using the environment or request headers."""
+    host = self._get_raw_host()
+
+    # Allow variants of localhost if ALLOWED_HOSTS is empty and DEBUG=True.
+    allowed_hosts = settings.ALLOWED_HOSTS
+    if settings.DEBUG and not allowed_hosts:
+        allowed_hosts = [".localhost", "127.0.0.1", "[::1]"]
+
+    if validate_host(host, allowed_hosts):
+        return host
+    else:
+        msg = "Invalid HTTP_HOST header: %r." % host
+        if host:
+            msg += " You may need to add %r to ALLOWED_HOSTS." % host
+        else:
+            msg += (
+                " The domain name provided is not valid according to RFC 1034/1035."
+            )
+        logging.warning(msg)
+
+
+HttpRequest.get_host = get_host
 
 LOGGING = {
     'version': 1,
@@ -153,8 +177,6 @@ STATICFILES_DIRS = [
 ]
 
 WHITENOISE_MANIFEST_STRICT = False
-
-#STATICFILES_STORAGE = 'manjaro.settings.base.StaticFilesOverride'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
