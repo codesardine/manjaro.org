@@ -101,7 +101,7 @@ class Downloader():
             print(f"{arch:10} {branch:14} {repo:16} to download")
         
         if local_datetime == remote_datetime and local_filename.exists():
-            print("Nothing to do", url, repo)
+            # print("Nothing to do", url, repo)
             return False, url, repo
         
         resp = requests.get(url=url, timeout=20)
