@@ -157,8 +157,10 @@ function initAff() {
   }
   const affiliatesTimeout = setTimeout(getAffiliates, 3000)
 }
+
 const titles = []
-const blocked = ['donate', 'merchandise']
+const blocked_urls = ['donate', 'merchandise']
+
 if (window.location.pathname.includes("download")) {
   
   modal = document.querySelector("#modal-edition")
@@ -173,11 +175,17 @@ if (window.location.pathname.includes("download")) {
   var checkAff = setInterval(isReady, 100)
 
 } else {
-  for (i of blocked) {
-    if (!window.location.pathname.includes(i)) {
-      initAff();
-      break;
-    }
+  let blocked = 0
+  for (url of blocked_urls) {
+    let path = window.location.pathname
+    if (path.includes(url)) {
+      blocked = 1
+    } 
   }
+
+  if (blocked == 0) {
+    initAff()
+  }
+
 }
 </script>
