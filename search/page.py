@@ -8,8 +8,6 @@ def get_page_results(search_query):
     search_results = []
     if search_query:
         results = Page.objects.live().public().search(search_query)
-        query = Query.get(search_query)
-        query.add_hit()
     else:
         results = Page.objects.none()
 
