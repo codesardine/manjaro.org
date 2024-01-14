@@ -202,11 +202,11 @@
                       {% endif %}
                     </div>
                     {% if "download." in desktop.image %}
-                    <div class="inline-block text-center w-full p-2 pt-4">
-                      provided by 
+                    <div class="inline-block text-center w-full p-2 pt-8 pb-0">
+                      download provided by 
                       <a href="https://www.cdn77.com">
                         <picture>
-                          <img class="inline-block bg-gray-200 p-1 px-4 mx-auto ml-2 rounded-full shadow capitalize" width="80" src="{% static 'img/cdn77.webp?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
+                          <img class="inline-block bg-gray-200 p-1 px-4 mx-auto ml-2 rounded-full shadow capitalize" width="80" src="{% static 'img/cdn77.webp' %}" alt="CDN77" /></a>                           
                         </picture>
                     </div>
                     {% endif %}
@@ -551,12 +551,12 @@
                   </div>
                   {% if not desktop.custom %}              
                    {% if "download." in desktop.image %}
-                <div class="inline-block text-center w-full p-2 pt-4">
-                  provided by 
+                <div class="inline-block text-center w-full p-2 pt-8 pb-0">
+                  download provided by 
                   <a href="https://www.cdn77.com">
-                    <picture>
-                      <img class="inline-block bg-gray-200 p-1 px-4 mx-auto ml-2 rounded-full shadow capitalize" width="80" src="{% static 'img/cdn77.webp?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260' %}" alt="CDN77" /></a>                           
-                    </picture>
+                  <picture>
+                    <img class="inline-block bg-gray-200 p-1 px-4 mx-auto ml-2 rounded-full shadow capitalize" width="80" src="{% static 'img/cdn77.webp' %}" alt="CDN77" /></a>                           
+                  </picture>
                 </div>
                 {% endif %}
                 {% endif %}
