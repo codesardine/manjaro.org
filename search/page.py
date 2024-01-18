@@ -1,9 +1,8 @@
 from functools import lru_cache as cache
 from wagtail.models import Page
-from wagtail.contrib.search_promotions.models import Query
 
 
-@cache(maxsize=128)
+#@cache(maxsize=128)
 def get_page_results(search_query):
     search_results = []
     if search_query:

@@ -5,7 +5,7 @@ from django.utils.text import Truncator
 from . import get_headers
 
 
-@cache(maxsize=128)
+#@cache(maxsize=128)
 def get_forum_results(query):
     url = "https://forum.manjaro.org/"
     endpoint = f"{url}/search.json"
