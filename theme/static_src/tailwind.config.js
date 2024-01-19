@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+// https://kitwind.io/products/kometa/components
 
 module.exports = {
     content: [
@@ -25,6 +26,10 @@ module.exports = {
             },
             purple: {
               500: '#9c27b0',
+            },
+            'deep-purple': {
+              500: '#673ab7',
+              700: '#512da8',
             },
             teal: {
               50: '#e0f2f1',
