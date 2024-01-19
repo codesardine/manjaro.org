@@ -1,9 +1,11 @@
+import os
+import datetime
 from github import Github
-import os, datetime
+from django.utils.text import Truncator
 from .models import SearchData, SearchLastUpdate
 from django.db.models import Q
-from django.utils.text import Truncator
 from functools import lru_cache as cache
+
 
 #@cache(maxsize=128)
 def _build_github_search_data(org, results=[]):
@@ -25,7 +27,8 @@ def _build_github_search_data(org, results=[]):
                 }
             if item.description:
                 repo_result["description"] = Truncator(item.description).chars(160)
-            results.append(repo_result) 
+
+            results.append(repo_result)
             if item.has_issues:
                 for issue in item.get_issues():
                     if "pull" not in item.html_url:
@@ -38,8 +41,10 @@ def _build_github_search_data(org, results=[]):
                         "message": "issue",
                         "state": issue.state
                         }
-                    results.append(repo_result)  
+                    results.append(repo_result)
+
     return tuple(results)
+
 
 #@cache(maxsize=128)
 def _check_github_needs_updating(org):
@@ -47,6 +52,7 @@ def _check_github_needs_updating(org):
     update_frequency = 58
     try:
         last_update = SearchLastUpdate.objects.get(id=1)
+
     except SearchLastUpdate.DoesNotExist:
         SearchLastUpdate(
             time = time_now - datetime.timedelta(minutes=update_frequency+1)
@@ -75,7 +81,8 @@ def _check_github_needs_updating(org):
             except Exception as e:
                 print(e)
     else:
-        print("Github already up to date")
+        #print("Github already up to date")
+        pass
 
 
 #@cache(maxsize=128)
@@ -84,7 +91,7 @@ def get_github_results(search_query, org):
     results = SearchData.objects.filter(
         Q(title__icontains=search_query) | Q(description__icontains=search_query)
         )
-    
+
     search_results = []
     for result in results:
         page_result = {
@@ -97,6 +104,7 @@ def get_github_results(search_query, org):
             "state": result.state
         }
         search_results.append(page_result)
+
     return tuple(search_results)
 
 def get_manjaro_results(search_query):
