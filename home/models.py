@@ -239,10 +239,6 @@ class Donations(Page):
         'home.HomePage'
     ]
 
-    yearly_goal = models.IntegerField(default=0)
-    backers = models.IntegerField(default=0)
-    balance = models.IntegerField(default=0)
-
     content = StreamField(
         [
             ("richtext", blocks.RichtextBlock()),
@@ -257,7 +253,6 @@ class Donations(Page):
     ]
 
     content_panels = Page.content_panels + [
-        FieldPanel("yearly_goal"),
         FieldPanel("content"),
     ]
 
@@ -273,19 +268,7 @@ class Donations(Page):
             search_description='search_description',
             slug='slug'
         ),
-    ])  
-
-    def convert_currency(self, value):
-        return "€ {:,.2f}".format(float(value/100.0))   
-
-
-    def get_context(self, request):        
-        context = super().get_context(request)
-        context["balance"] = self.convert_currency(self.balance)
-        context["backers"] = self.backers
-        context["goal"] = self.convert_currency(self.yearly_goal)
-        context["total"] = str(100 * float(self.balance)/float(self.yearly_goal)).split(".")[0] + "%"
-        return context
+    ]) 
 
 
 class Hardware(Page):

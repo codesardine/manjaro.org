@@ -49,17 +49,6 @@
         </div>
         <div class="w-full lg:max-w-lg">
           <div class="bg-gray-200 rounded shadow-2xl md:py-4 pb-4 h-full pt-2 relative">
-            <div class="w-auto bg-white relative rounded-xl h-8 mb-2 mx-6 hidden">
-              <div id="balance" class="bg-teal-200 py-1 px-2 float-left rounded-l-xl h-8" style="width:{{ total }};">
-                <span class="absolute left-2">
-                  {{ balance }}
-                </span>
-              </div>
-              <div class="text-right py-1 right-2 absolute">
-                {{ goal }} 
-                <div class="text-xs absolute -right-2 bottom-[-16px] text-blue-gray-600">per year</div>
-              </div>
-            </div>
             <div class="inline-flex py-2 justify-center w-full text-gray-800 font-bold">
               <button id="btn-x86" class="active py-2 px-6 rounded-l-3xl bg-gray-400 focus:text-white focus:bg-[#1869f5] border-2 border-gray-400 hover:border-blue-101 focus:border-blue-101">
                 X86
@@ -131,7 +120,6 @@
           break;
       }
       const height = document.body.scrollHeight
-      console.log("hello", height)
       iframe.style.height=(1100 + "px")
     }
     select.onchange = function () {
