@@ -14,7 +14,7 @@ def start():
     jobs = BackgroundScheduler()
 
     @jobs.scheduled_job(
-            'interval', minutes=15,
+            'interval', minutes=20,
             start_date=today() + datetime.timedelta(seconds=5)
             )
     def update_pkgs():
