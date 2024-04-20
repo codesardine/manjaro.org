@@ -96,15 +96,7 @@
                     <img class="object-cover w-full h-full" src="/static/img/package-{% if 'manjaro' in pkg.packager.lower %}manjaro{% else %}upstream{% endif %}.svg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="package" />
                   </div>
                   <div class="low-screens relative">
-                    {% if pkg.stable %}
-                      <a href="https://software.manjaro.org/package/{{ pkg.name }}"
-                      target="_blank"
-                      class="{% if not pkg.stable %}not-available{% endif %} inline-flex items-center font-semibold  text-teal-600 hover:text-teal-400 underline">
-                      {{ pkg.name }}
-                      </a>
-                    {% else %}
-                      <span class="text-blue-gray-900">{{ pkg.name }}</span>
-                    {% endif %}
+                    <span class="text-blue-gray-900">{{ pkg.name }}</span>
                     {% if pkg.tag %}
                     <div class="text-xs text-gray-200 font-bold absolute top-0 right-0 uppercase">
                       {% if pkg.tag == "new" %}
