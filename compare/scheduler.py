@@ -1,6 +1,6 @@
 import datetime
 import logging
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.gevent import GeventScheduler
 from .packages import update_x86_64, update_aarch64
 
 logging.basicConfig()
@@ -11,16 +11,18 @@ def today():
 
 def start():
     print("Scheduler started..\n")
-    jobs = BackgroundScheduler()
+    jobs = GeventScheduler()
 
     @jobs.scheduled_job(
             'interval', minutes=20,
             start_date=today() + datetime.timedelta(seconds=5)
             )
+    
     def update_pkgs():
         print(f"Checking for package updates: {today()}")
         update_x86_64(None)
         update_aarch64(None)
         print("")
 
-    jobs.start()
+    g = jobs.start()
+    g.join()
