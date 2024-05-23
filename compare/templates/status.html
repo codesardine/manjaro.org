@@ -53,6 +53,7 @@ Package database last update status.
             <th class="px-4 py-3">Unstable</th>
           </tr>
         {% for repo in report|report_arch:arch %}
+        {% if "community" not in repo.repo %}
         <tr class="border-blue-gray-700 border-b">
           <td class="px-4 py-3 border-blue-gray-700 border-b">
                 {{ repo.repo }}
@@ -67,6 +68,7 @@ Package database last update status.
             {{ repo.unstable }}
         </td>
         </tr>
+        {% endif %}
         {% endfor %}
         {% with total=report|report_total:arch %}
         <tr class="bg-blue-gray-900 text-gray-200 text-center font-bold">
