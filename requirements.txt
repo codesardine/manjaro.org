@@ -3,6 +3,7 @@ Django
 django-extensions
 wagtail-django-recaptcha
 django-recaptcha
+captcha
 wagtailyoast
 puput
 django-cors
