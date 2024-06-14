@@ -1,11 +1,10 @@
-wagtail<5.1
+wagtail>=5.2,<4.2
 Django
 django-extensions
 wagtail-django-recaptcha
-django-recaptcha==3.0.0
+django-recaptcha
 wagtailyoast
-puput==2.0.0
-wagtail-markdown==0.11.0
+puput
 django-cors
 django-tailwind
 gunicorn 
@@ -19,4 +18,3 @@ pygithub
 requests-cache
 gevent
 requests
-forex-python
