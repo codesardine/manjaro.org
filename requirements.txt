@@ -20,3 +20,4 @@ requests-cache
 gevent
 requests
 django-social-share
+colorful
