@@ -1,6 +1,6 @@
 import datetime
 import logging
-from apscheduler.schedulers.gevent import GeventScheduler
+from apscheduler.schedulers.background import BackgroundScheduler as scheduler
 from .packages import update_x86_64, update_aarch64
 
 logging.basicConfig()
@@ -11,7 +11,7 @@ def today():
 
 def start():
     print("Scheduler started..\n")
-    jobs = GeventScheduler()
+    jobs = scheduler()
 
     @jobs.scheduled_job(
             'interval', minutes=20,
