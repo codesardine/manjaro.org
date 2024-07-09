@@ -30,7 +30,7 @@ def item_link(self, item):
     from puput.urls import get_entry_url
     root_page = Site.find_for_request(self.request).root_page
     entry_url = get_entry_url(item, self.blog_page.page_ptr, root_page)
-    page = f"https://blog.manjaro.org/{entry_url.split('/')[4].strip()}/"
+    page = f"https://blog.old.manjaro.org/{entry_url.split('/')[4].strip()}/"
     return page
 
 feeds.BlogPageFeed.item_link = item_link

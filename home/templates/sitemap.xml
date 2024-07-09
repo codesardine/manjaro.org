@@ -9,7 +9,7 @@
         </url>
     {% endfor %}
     <url>
-        <loc>https://manjaro.org/merchandise/</loc>
+        <loc>https://old.manjaro.org/merchandise/</loc>
         <lastmod>{{ ""|date_today }}</lastmod>
     </url>
 </urlset>
